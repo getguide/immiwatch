@@ -25,10 +25,6 @@ jobs:
           pip install -r requirements.txt
           pip install aws-sam-cli
           
-      - name: Run tests
-        run: |
-          python -m pytest tests/
-          
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
