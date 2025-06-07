@@ -1,0 +1,42 @@
+name: Deploy Immiwatch Functions
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install aws-sam-cli
+          
+      - name: Run tests
+        run: |
+          python -m pytest tests/
+          
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          
+      - name: Build and deploy with SAM
+        run: |
+          sam build
+          sam deploy --no-fail-on-empty-changeset \n            --stack-name immiwatch-functions \n            --parameter-overrides \n              S3BucketName=${{ secrets.S3_BUCKET_NAME }} \n              AirtableWebhookUrl=${{ secrets.AIRTABLE_WEBHOOK_URL }}
