@@ -35,4 +35,4 @@ jobs:
       - name: Build and deploy with SAM
         run: |
           sam build
-          sam deploy --no-fail-on-empty-changeset \n            --stack-name immiwatch-functions \n            --resolve-s3 \n            --parameter-overrides S3BucketName=${{ secrets.S3_BUCKET_NAME }} AirtableWebhookUrl=${{ secrets.AIRTABLE_WEBHOOK_URL }}
+          sam deploy --no-fail-on-empty-changeset \n            --stack-name immiwatch-functions \n            --resolve-s3 \n            --capabilities CAPABILITY_IAM \n            --parameter-overrides S3BucketName=${{ secrets.S3_BUCKET_NAME }} AirtableWebhookUrl=${{ secrets.AIRTABLE_WEBHOOK_URL }}
