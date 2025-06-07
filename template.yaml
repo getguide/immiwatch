@@ -11,7 +11,7 @@ Parameters:
     NoEcho: true
 
 Resources:
-  DrawCheckerFunction:
+  EEDrawCheckerFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/functions/draw-checker/
@@ -46,9 +46,9 @@ Resources:
             ExpirationInDays: 90
 
 Outputs:
-  DrawCheckerFunction:
+  EEDrawCheckerFunction:
     Description: "Draw Checker Lambda Function ARN"
-    Value: !GetAtt DrawCheckerFunction.Arn
-  DrawCheckerFunctionRole:
+    Value: !GetAtt EEDrawCheckerFunction.Arn
+  EEDrawCheckerFunctionRole:
     Description: "Implicit IAM Role created for the draw checker function"
-    Value: !GetAtt DrawCheckerFunctionRole.Arn
+    Value: !GetAtt EEDrawCheckerFunctionRole.Arn
