@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page not found - ImmiWatch Data Studio. Return to our immigration analytics and reports.">
+    <title>Page Not Found | ImmiWatch Data Studio</title>
+    <link rel="icon" href="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/logo-fav.jpg" type="image/jpeg">
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 0; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container { 
+            max-width: 600px; 
+            text-align: center; 
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .error-code { 
+            font-size: 6rem; 
+            font-weight: 700; 
+            color: #0d9488; 
+            margin: 0; 
+            line-height: 1;
+        }
+        .error-message { 
+            font-size: 1.5rem; 
+            color: #374151; 
+            margin: 1rem 0; 
+        }
+        .description { 
+            color: #6b7280; 
+            margin: 1.5rem 0; 
+            font-size: 1.1rem; 
+        }
+        .actions { 
+            margin: 2rem 0; 
+        }
+        .btn { 
+            display: inline-block; 
+            padding: 0.75rem 1.5rem; 
+            margin: 0.5rem; 
+            background: #0d9488; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 6px; 
+            transition: background 0.2s;
+            font-weight: 500;
+        }
+        .btn:hover { 
+            background: #0f766e; 
+        }
+        .btn-secondary { 
+            background: #6b7280; 
+        }
+        .btn-secondary:hover { 
+            background: #4b5563; 
+        }
+        .popular-links { 
+            margin-top: 2rem; 
+            text-align: left; 
+        }
+        .popular-links h3 { 
+            color: #0f766e; 
+            margin-bottom: 1rem; 
+        }
+        .popular-links ul { 
+            list-style: none; 
+            padding: 0; 
+        }
+        .popular-links li { 
+            margin: 0.5rem 0; 
+        }
+        .popular-links a { 
+            color: #0d9488; 
+            text-decoration: none; 
+        }
+        .popular-links a:hover { 
+            text-decoration: underline; 
+        }
+        .icon { 
+            font-size: 3rem; 
+            margin-bottom: 1rem; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🔍</div>
+        <h1 class="error-code">404</h1>
+        <h2 class="error-message">Page Not Found</h2>
+        <p class="description">
+            The immigration report or page you're looking for seems to have moved or doesn't exist. 
+            Let's get you back to exploring Canada's immigration data and insights.
+        </p>
+        
+        <div class="actions">
+            <a href="/" class="btn">🏠 Return Home</a>
+            <a href="/reports/" class="btn btn-secondary">📊 Browse Reports</a>
+        </div>
+
+        <div class="popular-links">
+            <h3>📈 Popular Reports & Tools</h3>
+            <ul>
+                <li>🎯 <a href="/reports/express-entry/ee-2025.html">Express Entry 2025 Analysis</a></li>
+                <li>🍁 <a href="/reports/express-entry/">Express Entry Monthly Reports</a></li>
+                <li>🏢 <a href="/reports/oinp/">Ontario PNP (OINP) Reports</a></li>
+                <li>🏔️ <a href="/reports/bcpnp/">British Columbia PNP Reports</a></li>
+                <li>🛠️ <a href="/tools/clb-navigator.html">CLB Language Navigator</a></li>
+                <li>💼 <a href="/tools/noc-navigator.html">NOC Occupation Finder</a></li>
+                <li>💰 <a href="/tools/wages.html">Immigration Wage Calculator</a></li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e5e7eb; font-size: 0.9rem; color: #6b7280;">
+            <p>Still can't find what you're looking for? <a href="mailto:support@immigratic.com" style="color: #0d9488;">Contact our support team</a></p>
+            <p>&copy; 2025 ImmiWatch Data Studio - A Lexpoint Product</p>
+        </div>
+    </div>
+
+    <script>
+        // Track 404 errors and suggest alternatives based on URL
+        const currentPath = window.location.pathname;
+        
+        // Simple redirect suggestions based on common patterns
+        if (currentPath.includes('express-entry') || currentPath.includes('ee-')) {
+            const linkElement = document.querySelector('.popular-links ul');
+            linkElement.insertAdjacentHTML('afterbegin', 
+                '<li style="background: #eff6ff; padding: 0.5rem; border-radius: 4px; margin-bottom: 0.5rem;">📌 <strong>Looking for Express Entry?</strong> Try our <a href="/reports/express-entry/">Express Entry Reports section</a></li>'
+            );
+        } else if (currentPath.includes('oinp')) {
+            const linkElement = document.querySelector('.popular-links ul');
+            linkElement.insertAdjacentHTML('afterbegin', 
+                '<li style="background: #f0fdf4; padding: 0.5rem; border-radius: 4px; margin-bottom: 0.5rem;">📌 <strong>Looking for OINP?</strong> Try our <a href="/reports/oinp/">Ontario PNP Reports section</a></li>'
+            );
+        } else if (currentPath.includes('bcpnp')) {
+            const linkElement = document.querySelector('.popular-links ul');
+            linkElement.insertAdjacentHTML('afterbegin', 
+                '<li style="background: #fef3c7; padding: 0.5rem; border-radius: 4px; margin-bottom: 0.5rem;">📌 <strong>Looking for BCPNP?</strong> Try our <a href="/reports/bcpnp/">BC PNP Reports section</a></li>'
+            );
+        }
+    </script>
+</body>
+</html> 
