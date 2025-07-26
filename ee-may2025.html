@@ -634,6 +634,67 @@
             month: 'long',
             day: 'numeric'
         });
+
+        // PDF Export Function
+        function exportToPDF() {
+            // Add print-specific class to body
+            document.body.classList.add('printing');
+            
+            // Trigger browser print dialog
+            window.print();
+            
+            // Remove print class after printing
+            setTimeout(() => {
+                document.body.classList.remove('printing');
+            }, 1000);
+        }
+
+        // Social Sharing Functions
+        function shareOnX() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Check out the Express Entry May 2025 Monthly Report - Return of category-based draws with Education priority by ImmiWatch');
+            const hashtags = encodeURIComponent('ExpressEntry,CanadaImmigration,ImmiWatch');
+            
+            window.open(
+                `https://twitter.com/intent/tweet?url=${url}&text=${text}&hashtags=${hashtags}`,
+                '_blank',
+                'width=600,height=400'
+            );
+        }
+
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent('Express Entry May 2025 Monthly Report');
+            const summary = encodeURIComponent('Return of category-based draws with Education priority and Healthcare consistency, powered by ImmiWatch by Lexpoint.');
+            
+            window.open(
+                `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}&summary=${summary}`,
+                '_blank',
+                'width=600,height=500'
+            );
+        }
+
+        function shareViaEmail() {
+            const subject = encodeURIComponent('Express Entry May 2025 Monthly Report');
+            const body = encodeURIComponent(`Hi,
+
+I wanted to share this comprehensive Express Entry report for May 2025 with you.
+
+${window.location.href}
+
+This report provides detailed analysis of Canada's immigration draws including:
+- Return of category-based draws
+- Education priority and Healthcare consistency
+- Month-over-month comparison with April
+- Strategic insights and trends
+- Professional immigration analytics
+
+The report is powered by ImmiWatch by Lexpoint.
+
+Best regards`);
+            
+            window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        }
     </script>
 </body>
 </html> 
