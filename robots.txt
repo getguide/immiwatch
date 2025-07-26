@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+
+# High-priority content for crawlers
+Allow: /reports/
+Allow: /tools/
+Allow: /newsletters/
+Allow: /updates/
+
+# Sitemaps
+Sitemap: https://immiwatch.ca/sitemap.xml
+
+# Crawl delay (optional, helps with server load)
+Crawl-delay: 1
+
+# Specific instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Block access to any potential admin or config files
+Disallow: /.git/
+Disallow: /admin/
+Disallow: /config/
+Disallow: /.env
+Disallow: /private/
+
+# Allow access to assets
+Allow: /assets/ 
