@@ -1,0 +1,46 @@
+# ImmiWatch Data Studio - GitHub Pages Configuration
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Enable directory indexing
+include:
+  - _pages
+  - assets
+  - reports
+  - tools
+  - newsletters
+  - updates
+  - draws
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - SITE-STRUCTURE.md
+
+# Site settings
+title: "ImmiWatch Data Studio"
+description: "Professional Canada Immigration Analytics & Reports"
+url: "https://immiwatch.ca"
+baseurl: ""
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Default layouts
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: default
+
+# Enable safe mode for GitHub Pages
+safe: true
+
+# Timezone
+timezone: America/Toronto 
