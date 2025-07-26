@@ -544,15 +544,25 @@
                 <p class="font-semibold">Join ImmiWatch</p>
                 <p>Receive notifications on Express Entry draws. <a href="https://www.immigratic.com" target="_blank" class="text-teal-600 hover:underline">Sign up now</a>.</p>
             </div>
-            <p class="mt-4"><a href="#" class="text-teal-600 hover:underline">Download PDF Report (Placeholder)</a></p>
+            <p class="mt-4">
+                <button onclick="exportToPDF()" class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition duration-200 no-print">
+                    📄 Download PDF Report
+                </button>
+            </p>
         </section>
 
-        <section class="mb-8">
+        <section class="mb-8 no-print">
             <h2 class="text-2xl font-semibold text-teal-700">Share This Report</h2>
-            <div class="flex space-x-4">
-                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Share on X</a>
-                <a href="#" class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-900">Share on LinkedIn</a>
-                <a href="#" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">Share via Email</a>
+            <div class="flex flex-wrap gap-3 mt-4">
+                <button onclick="shareOnX()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200">
+                    🐦 Share on X
+                </button>
+                <button onclick="shareOnLinkedIn()" class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-900 transition duration-200">
+                    💼 Share on LinkedIn
+                </button>
+                <button onclick="shareViaEmail()" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-200">
+                    ✉️ Share via Email
+                </button>
             </div>
         </section>
     </main>
