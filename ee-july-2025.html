@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express Entry Canada 2025 Infographic</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        h1 {
+            text-align: center;
+            color: #005566;
+        }
+        h2 {
+            color: #007b8f;
+            margin-top: 20px;
+        }
+        .chart-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .chart {
+            width: 45%;
+            min-width: 300px;
+            margin-bottom: 20px;
+        }
+        .summary {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e6f3f5;
+            border-radius: 5px;
+        }
+        .note {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 10px;
+        }
+        .watermark {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8em;
+            color: rgba(0, 0, 0, 0.3);
+            font-style: italic;
+        }
+        @media (max-width: 768px) {
+            .chart {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Express Entry Canada 2025: Analytical Report</h1>
+        <p style="text-align: center; font-style: italic;">Data Source: ImmiWatch - Immigratic Data Studio (July 2025)</p>
+
+        <h2>Overview</h2>
+        <p>As of July 2025, a total of 49,403 Invitations to Apply (ITAs) have been issued through Canada's Express Entry system, divided into Category-Based and Program-Based draws.</p>
+
+        <div class="chart-container">
+            <div class="chart">
+                <h2>Category-Based Draws</h2>
+                <canvas id="categoryChart"></canvas>
+                <p><strong>Total ITAs:</strong> 24,500</p>
+                <p><strong>Annual Target:</strong> 62,000 Permanent Residents</p>
+                <p><strong>Capacity Utilized (est.):</strong> ~39,200 (~63% of target)</p>
+                <p><strong>Remaining Capacity:</strong> ~22,800 (~13,000 primary applicants)</p>
+            </div>
+            <div class="chart">
+                <h2>Program-Based Draws</h2>
+                <canvas id="programChart"></canvas>
+                <p><strong>Total ITAs:</strong> 24,903</p>
+                <p><strong>Annual Target:</strong> 89,000 Permanent Residents</p>
+                <p><strong>Capacity Utilized (est.):</strong> ~40,000 (~45% of target)</p>
+                <p><strong>Remaining Capacity:</strong> ~49,000 (~25,000 ITAs)</p>
+            </div>
+        </div>
+
+        <div class="summary">
+            <h2>Key Insights</h2>
+            <ul>
+                <li>Over half of the annual Express Entry capacity has been utilized by July 2025.</li>
+                <li>IRCC is expected to issue approximately 38,000–40,000 additional ITAs by year-end, primarily through PNP and CEC pathways.</li>
+                <li>The 1.6 coefficient accounts for family members, with each ITA representing the primary applicant only.</li>
+                <li>Some applications may be rejected or withdrawn, making the 1.6 coefficient a realistic estimate for capacity planning.</li>
+            </ul>
+        </div>
+
+        <div class="note">
+            <p><strong>Note:</strong> Capacities are based on the maximum annual permanent residency allocations, not just ITAs. Family members are included in IRCC’s final capacity counts.</p>
+        </div>
+
+        <div class="watermark">© Immigratic</div>
+    </div>
+
+    <script>
+        // Category-Based Draws Chart
+        const categoryChart = new Chart(document.getElementById('categoryChart'), {
+            type: 'pie',
+            data: {
+                labels: ['French-Speaking', 'Healthcare', 'Education'],
+                datasets: [{
+                    data: [18500, 5000, 1000],
+                    backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56'],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Category-Based ITAs (24,500 Total)' }
+                }
+            }
+        });
+
+        // Program-Based Draws Chart
+        const programChart = new Chart(document.getElementById('programChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Canadian Experience Class (CEC)', 'Provincial Nominee Program (PNP)'],
+                datasets: [{
+                    data: [18850, 6053],
+                    backgroundColor: ['#4BC0C0', '#9966FF'],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Program-Based ITAs (24,903 Total)' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
