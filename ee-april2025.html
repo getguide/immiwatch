@@ -123,7 +123,11 @@
         /* Layout utilities */
         .flex { display: flex; }
         .justify-center { justify-content: center; }
+        .space-x-2 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.5rem; }
         .space-x-4 > :not([hidden]) ~ :not([hidden]) { margin-left: 1rem; }
+        @media (min-width: 768px) {
+            .md\:space-x-4 > :not([hidden]) ~ :not([hidden]) { margin-left: 1rem; }
+        }
         .sticky { position: sticky; }
         .top-0 { top: 0; }
         .z-10 { z-index: 10; }
@@ -137,11 +141,50 @@
         .rounded { border-radius: 0.25rem; }
         .border-collapse { border-collapse: collapse; }
         .border { border-width: 1px; }
+        .border-gray-200 { border-color: #e5e7eb; }
         .border-gray-300 { border-color: #d1d5db; }
+        .border-b { border-bottom-width: 1px; }
         .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
 
         /* Lists */
         .list-disc { list-style-type: disc; }
+
+        /* Modern Navigation Pills */
+        .nav-pill {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            margin: 0 0.125rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #475569;
+            text-decoration: none;
+            border-radius: 2rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-pill:hover {
+            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+            border-color: #0d9488;
+        }
+        
+        .nav-pill:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(13, 148, 136, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-pill {
+                padding: 0.375rem 0.875rem;
+                font-size: 0.75rem;
+                margin: 0 0.0625rem;
+            }
+        }
     </style>
     <script type="application/ld+json">
     {
@@ -168,14 +211,14 @@
         </div>
     </header>
 
-    <nav class="bg-teal-800 text-white py-2 sticky top-0 z-10">
+    <nav class="bg-white py-4 sticky top-0 z-10 border-b border-gray-200" style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
         <div class="container mx-auto px-4">
-            <ul class="flex justify-center space-x-4">
-                <li><a href="#overview" class="hover:underline">Overview</a></li>
-                <li><a href="#category-based" class="hover:underline">Category-Based</a></li>
-                <li><a href="#program-based" class="hover:underline">Program-Based</a></li>
-                <li><a href="#comparison" class="hover:underline">vs March</a></li>
-                <li><a href="#insights" class="hover:underline">Insights</a></li>
+            <ul class="flex justify-center space-x-2 md:space-x-4">
+                <li><a href="#overview" class="nav-pill">Overview</a></li>
+                <li><a href="#category-based" class="nav-pill">Category-Based</a></li>
+                <li><a href="#program-based" class="nav-pill">Program-Based</a></li>
+                <li><a href="#comparison" class="nav-pill">vs March</a></li>
+                <li><a href="#insights" class="nav-pill">Insights</a></li>
             </ul>
         </div>
     </nav>
