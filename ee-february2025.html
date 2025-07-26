@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Express Entry Canada monthly report for February 2025, powered by ImmiWatch by Lexpoint. Detailed analysis of ITAs, trends, and month-over-month changes.">
+    <meta name="keywords" content="Express Entry February 2025, Canada immigration, ImmiWatch, Lexpoint, French-speaking draws, category-based launch, CEC growth">
+    <meta name="author" content="ImmiWatch by Lexpoint">
+    <title>Express Entry February 2025 Monthly Report | ImmiWatch</title>
+    <link rel="icon" href="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/logo-fav.jpg" type="image/jpeg">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Custom styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 10;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .progress-bar {
+            transition: width 1s ease-in-out;
+        }
+        .watermark {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8em;
+            color: rgba(0, 0, 0, 0.3);
+            font-style: italic;
+        }
+
+        /* Base styles */
+        body {
+            background-color: #f3f4f6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            margin-right: auto;
+            margin-left: auto;
+            padding-right: 1rem;
+            padding-left: 1rem;
+        }
+        @media (min-width: 640px) { .container { max-width: 640px; } }
+        @media (min-width: 768px) { .container { max-width: 768px; } }
+        @media (min-width: 1024px) { .container { max-width: 1024px; } }
+        @media (min-width: 1280px) { .container { max-width: 1280px; } }
+        @media (min-width: 1536px) { .container { max-width: 1536px; } }
+
+        /* Spacing */
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .p-2 { padding: 0.5rem; }
+        .p-4 { padding: 1rem; }
+        .my-4 { margin-top: 1rem; margin-bottom: 1rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .pl-6 { padding-left: 1.5rem; }
+
+        /* Typography */
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .font-medium { font-weight: 500; }
+        .text-center { text-align: center; }
+        .italic { font-style: italic; }
+        .underline { text-decoration-line: underline; }
+
+        /* Colors */
+        .text-white { color: #ffffff; }
+        .text-teal-700 { color: #0f766e; }
+        .text-teal-600 { color: #0d9488; }
+        .text-red-600 { color: #dc2626; }
+        .text-green-600 { color: #16a34a; }
+        .text-blue-600 { color: #2563eb; }
+        .bg-white { background-color: #ffffff; }
+        .bg-gray-200 { background-color: #e5e7eb; }
+        .bg-teal-600 { background-color: #0d9488; }
+        .bg-teal-800 { background-color: #115e59; }
+        .bg-teal-100 { background-color: #ccfbf1; }
+        .bg-blue-600 { background-color: #2563eb; }
+        .bg-blue-800 { background-color: #1e40af; }
+        .bg-blue-100 { background-color: #dbeafe; }
+        .bg-gray-600 { background-color: #4b5563; }
+        .bg-red-100 { background-color: #fee2e2; }
+        .bg-green-100 { background-color: #dcfce7; }
+
+        /* Interactive */
+        .hover\:underline:hover { text-decoration-line: underline; }
+        .hover\:bg-blue-700:hover { background-color: #1d4ed8; }
+        .hover\:bg-blue-900:hover { background-color: #1e3a8a; }
+        .hover\:bg-gray-700:hover { background-color: #374151; }
+
+        /* Layout utilities */
+        .flex { display: flex; }
+        .justify-center { justify-content: center; }
+        .space-x-4 > :not([hidden]) ~ :not([hidden]) { margin-left: 1rem; }
+        .sticky { position: sticky; }
+        .top-0 { top: 0; }
+        .z-10 { z-index: 10; }
+        .relative { position: relative; }
+        .w-full { width: 100%; }
+        .h-4 { height: 1rem; }
+
+        /* Borders and shapes */
+        .rounded-lg { border-radius: 0.5rem; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded { border-radius: 0.25rem; }
+        .border-collapse { border-collapse: collapse; }
+        .border { border-width: 1px; }
+        .border-gray-300 { border-color: #d1d5db; }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+
+        /* Lists */
+        .list-disc { list-style-type: disc; }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Report",
+        "name": "Express Entry February 2025 Monthly Report",
+        "description": "Monthly analysis of Canada's Express Entry immigration system for February 2025, powered by ImmiWatch by Lexpoint. Includes ITA statistics, trends, and month-over-month changes.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "ImmiWatch by Lexpoint",
+            "url": "https://www.immigratic.com"
+        },
+        "datePublished": "2025-02-28",
+        "keywords": ["Express Entry", "February 2025", "Canada immigration", "ImmiWatch", "monthly report"],
+        "inLanguage": "en"
+    }
+    </script>
+</head>
+<body>
+    <header class="bg-teal-600 text-white py-4">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-center">Express Entry Monthly Report - February 2025</h1>
+            <p class="text-center italic">Powered by ImmiWatch, a Lexpoint Product</p>
+        </div>
+    </header>
+
+    <nav class="bg-teal-800 text-white py-2 sticky top-0 z-10">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-center space-x-4">
+                <li><a href="#overview" class="hover:underline">Overview</a></li>
+                <li><a href="#category-based" class="hover:underline">Category-Based</a></li>
+                <li><a href="#program-based" class="hover:underline">Program-Based</a></li>
+                <li><a href="#comparison" class="hover:underline">vs January</a></li>
+                <li><a href="#insights" class="hover:underline">Insights</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-6 bg-white rounded-lg shadow-lg relative">
+        <div class="watermark">© ImmiWatch by Lexpoint</div>
+
+        <section id="overview" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">February 2025 Overview</h2>
+            <div class="bg-blue-100 p-4 rounded-lg mt-4">
+                <p class="text-lg font-medium">Total ITAs Issued: <strong>11,601</strong></p>
+                <p class="mt-2">February 2025 marked the major launch of French-speaking category draws with 6,500 ITAs, combined with strong program-based activity. This represented a strategic shift toward bilingual immigration priorities. Data sourced from ImmiWatch by Lexpoint. <a href="https://www.immigratic.com" target="_blank" class="text-teal-600 hover:underline">Learn more about ImmiWatch</a>.</p>
+            </div>
+        </section>
+
+        <section id="category-based" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">Category-Based Draws - February 2025</h2>
+            <canvas id="categoryChart" class="my-4" role="img" aria-label="Pie chart showing Category-Based ITAs for February 2025: French-Speaking (6,500)"></canvas>
+            <div class="mt-4">
+                <p><strong>Total Category-Based ITAs:</strong> 6,500</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li><strong>French-Speaking:</strong> 6,500 ITAs</li>
+                    <li><strong>Healthcare:</strong> 0 ITAs</li>
+                    <li><strong>Education:</strong> 0 ITAs</li>
+                    <li><strong>STEM/Trade/Agriculture:</strong> 0 ITAs</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="program-based" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">Program-Based Draws - February 2025</h2>
+            <canvas id="programChart" class="my-4" role="img" aria-label="Pie chart showing Program-Based ITAs for February 2025: CEC (4,000), PNP (1,101)"></canvas>
+            <div class="mt-4">
+                <p><strong>Total Program-Based ITAs:</strong> 5,101</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li><strong>Canadian Experience Class (CEC):</strong> 4,000 ITAs</li>
+                    <li><strong>Provincial Nominee Program (PNP):</strong> 1,101 ITAs</li>
+                    <li><strong>Federal Skilled Worker (FSW):</strong> 0 ITAs</li>
+                    <li><strong>Federal Skilled Trades (FST):</strong> 0 ITAs</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">February vs January 2025 Comparison</h2>
+            <table class="w-full border-collapse border border-gray-300 mt-4">
+                <thead>
+                    <tr class="bg-teal-100">
+                        <th class="border border-gray-300 p-2">Program</th>
+                        <th class="border border-gray-300 p-2">January 2025</th>
+                        <th class="border border-gray-300 p-2">February 2025</th>
+                        <th class="border border-gray-300 p-2">Change</th>
+                        <th class="border border-gray-300 p-2">% Change</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border border-gray-300 p-2 font-medium">Total ITAs</td>
+                        <td class="border border-gray-300 p-2">5,821</td>
+                        <td class="border border-gray-300 p-2">11,601</td>
+                        <td class="border border-gray-300 p-2 text-green-600">+5,780</td>
+                        <td class="border border-gray-300 p-2 text-green-600">+99.3%</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2 font-medium">Category-Based Total</td>
+                        <td class="border border-gray-300 p-2">0</td>
+                        <td class="border border-gray-300 p-2">6,500</td>
+                        <td class="border border-gray-300 p-2 text-green-600">+6,500</td>
+                        <td class="border border-gray-300 p-2 text-green-600">New</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2">→ French-Speaking</td>
+                        <td class="border border-gray-300 p-2">0</td>
+                        <td class="border border-gray-300 p-2">6,500</td>
+                        <td class="border border-gray-300 p-2 text-green-600">+6,500</td>
+                        <td class="border border-gray-300 p-2 text-green-600">New</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2 font-medium">Program-Based Total</td>
+                        <td class="border border-gray-300 p-2">5,821</td>
+                        <td class="border border-gray-300 p-2">5,101</td>
+                        <td class="border border-gray-300 p-2 text-red-600">-720</td>
+                        <td class="border border-gray-300 p-2 text-red-600">-12.4%</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2">→ CEC</td>
+                        <td class="border border-gray-300 p-2">5,350</td>
+                        <td class="border border-gray-300 p-2">4,000</td>
+                        <td class="border border-gray-300 p-2 text-red-600">-1,350</td>
+                        <td class="border border-gray-300 p-2 text-red-600">-25.2%</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2">→ PNP</td>
+                        <td class="border border-gray-300 p-2">471</td>
+                        <td class="border border-gray-300 p-2">1,101</td>
+                        <td class="border border-gray-300 p-2 text-green-600">+630</td>
+                        <td class="border border-gray-300 p-2 text-green-600">+133.8%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="insights" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">February 2025 Key Insights</h2>
+            <div class="mt-4 p-4 bg-teal-100 rounded-lg">
+                <h3 class="text-lg font-medium mb-2">Major Highlights</h3>
+                <ul class="list-disc pl-6">
+                    <li><strong>French-Speaking Launch:</strong> Major debut of category-based draws with 6,500 French-speaking ITAs, representing government priority for bilingual candidates.</li>
+                    <li><strong>Near-Doubling:</strong> Total ITAs increased 99.3% from January (5,821 → 11,601), showing significant system acceleration.</li>
+                    <li><strong>Strategic Rebalancing:</strong> Shift from purely program-based (January) to balanced approach (44% category-based, 56% program-based).</li>
+                    <li><strong>PNP Surge:</strong> Provincial nominations more than doubled (+133.8%), indicating strong federal-provincial collaboration.</li>
+                    <li><strong>CEC Moderation:</strong> Slight reduction in CEC draws (-25.2%) to make room for category-based initiatives.</li>
+                </ul>
+            </div>
+            
+            <div class="mt-4 p-4 bg-blue-100 rounded-lg">
+                <h3 class="text-lg font-medium mb-2 text-blue-600">French-Speaking Impact</h3>
+                <ul class="list-disc pl-6">
+                    <li>6,500 French-speaking ITAs represent commitment to francophone immigration outside Quebec</li>
+                    <li>Supports government's official languages policy and bilingual workforce development</li>
+                    <li>Benefits candidates from France, Belgium, French Africa, and other francophone regions</li>
+                    <li>Sets foundation for continued French-speaking recruitment throughout 2025</li>
+                </ul>
+            </div>
+
+            <div class="mt-4 p-4 bg-green-100 rounded-lg">
+                <h3 class="text-lg font-medium mb-2 text-green-600">Positive Trends</h3>
+                <ul class="list-disc pl-6">
+                    <li>Strong PNP growth demonstrates effective federal-provincial partnership</li>
+                    <li>Category-based system successfully launched with immediate impact</li>
+                    <li>Maintained robust CEC activity while expanding selection criteria</li>
+                    <li>Near-doubling of total ITAs shows system capacity and commitment</li>
+                </ul>
+            </div>
+
+            <div class="mt-4 p-4 bg-red-100 rounded-lg">
+                <h3 class="text-lg font-medium mb-2 text-red-600">Considerations</h3>
+                <ul class="list-disc pl-6">
+                    <li>CEC candidates faced reduced opportunities as system diversified</li>
+                    <li>Other category-based streams (Healthcare, Education, STEM) not yet active</li>
+                    <li>FSW and FST streams remained suspended</li>
+                    <li>High volume may indicate front-loading of annual quotas</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">Related Reports</h2>
+            <div class="bg-teal-100 p-4 rounded-lg">
+                <p class="font-semibold">View More Reports:</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li><a href="ee-2025.html" class="text-teal-600 hover:underline">Express Entry Cumulative Report 2025 (Jan-July)</a></li>
+                    <li><a href="#" class="text-teal-600 hover:underline">Express Entry January 2025 Monthly Report</a></li>
+                    <li><a href="#" class="text-teal-600 hover:underline">Express Entry March 2025 Monthly Report</a></li>
+                    <li><a href="ee-april2025.html" class="text-teal-600 hover:underline">Express Entry April 2025 Monthly Report</a></li>
+                    <li><a href="ee-may2025.html" class="text-teal-600 hover:underline">Express Entry May 2025 Monthly Report</a></li>
+                    <li><a href="ee-june2025.html" class="text-teal-600 hover:underline">Express Entry June 2025 Monthly Report</a></li>
+                    <li><a href="ee-july2025.html" class="text-teal-600 hover:underline">Express Entry July 2025 Monthly Report</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">Stay Updated with ImmiWatch</h2>
+            <p>Subscribe to ImmiWatch by Lexpoint for real-time Express Entry updates and personalized alerts.</p>
+            <div class="bg-teal-100 p-4 rounded-lg">
+                <p class="font-semibold">Join ImmiWatch</p>
+                <p>Receive notifications on Express Entry draws. <a href="https://www.immigratic.com" target="_blank" class="text-teal-600 hover:underline">Sign up now</a>.</p>
+            </div>
+            <p class="mt-4"><a href="#" class="text-teal-600 hover:underline">Download PDF Report (Placeholder)</a></p>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">Share This Report</h2>
+            <div class="flex space-x-4">
+                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Share on X</a>
+                <a href="#" class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-900">Share on LinkedIn</a>
+                <a href="#" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">Share via Email</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-teal-600 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>Powered by ImmiWatch, a Lexpoint Product | <a href="https://www.immigratic.com" target="_blank" class="underline">www.immigratic.com</a></p>
+            <p>Contact: support@immigratic.com</p>
+            <p>Last Updated: <span id="currentDate"></span></p>
+        </div>
+    </footer>
+
+    <script>
+        // Data for February 2025 only
+        const februaryData = {
+            categoryBased: {
+                totalITAs: 6500,
+                breakdown: [
+                    { label: 'French-Speaking', value: 6500 }
+                ]
+            },
+            programBased: {
+                totalITAs: 5101,
+                breakdown: [
+                    { label: 'Canadian Experience Class (CEC)', value: 4000 },
+                    { label: 'Provincial Nominee Program (PNP)', value: 1101 }
+                ]
+            }
+        };
+
+        // Category-Based Draws Chart (February only)
+        new Chart(document.getElementById('categoryChart'), {
+            type: 'pie',
+            data: {
+                labels: ['French-Speaking'],
+                datasets: [{
+                    data: [6500],
+                    backgroundColor: ['#36A2EB'],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Category-Based ITAs - February 2025 (6,500 Total)' }
+                }
+            }
+        });
+
+        // Program-Based Draws Chart (February only)
+        new Chart(document.getElementById('programChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Canadian Experience Class (CEC)', 'Provincial Nominee Program (PNP)'],
+                datasets: [{
+                    data: [4000, 1101],
+                    backgroundColor: ['#4BC0C0', '#9966FF'],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Program-Based ITAs - February 2025 (5,101 Total)' }
+                }
+            }
+        });
+
+        // Dynamic Date
+        document.getElementById('currentDate').textContent = new Date('2025-02-28').toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    </script>
+</body>
+</html> 
