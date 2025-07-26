@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ImmiWatch Data Studio - Comprehensive Canada immigration analytics, Express Entry reports, OINP insights, and BCPNP analysis. Professional immigration data by Lexpoint.">
+    <meta name="keywords" content="Canada immigration, Express Entry, OINP, BCPNP, LMIA, immigration data, analytics, ImmiWatch, Lexpoint">
+    <meta name="author" content="ImmiWatch by Lexpoint">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://studio.immigratic.com/">
+    <meta property="og:title" content="ImmiWatch Data Studio | Canada Immigration Analytics">
+    <meta property="og:description" content="Professional Canada immigration analytics including Express Entry reports, OINP insights, BCPNP analysis, and comprehensive immigration data. Powered by ImmiWatch by Lexpoint.">
+    <meta property="og:image" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/logo%20banner.jpg">
+    <meta property="og:image:alt" content="ImmiWatch Data Studio - Canada Immigration Analytics">
+    <meta property="og:site_name" content="ImmiWatch by Lexpoint">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://studio.immigratic.com/">
+    <meta name="twitter:title" content="ImmiWatch Data Studio | Canada Immigration Analytics">
+    <meta name="twitter:description" content="Professional Canada immigration analytics including Express Entry reports, OINP insights, BCPNP analysis, and comprehensive immigration data. Powered by ImmiWatch by Lexpoint.">
+    <meta name="twitter:image" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/logo%20banner.jpg">
+    <meta name="twitter:image:alt" content="ImmiWatch Data Studio - Canada Immigration Analytics">
+    
+    <title>ImmiWatch Data Studio | Canada Immigration Analytics</title>
+    <link rel="icon" href="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/logo-fav.jpg" type="image/jpeg">
+    <style>
+        /* Custom styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 10;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .watermark {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 10px;
+            color: #ccc;
+            z-index: 5;
+        }
+
+        /* Container and layout */
+        .container { max-width: 1200px; }
+        @media (min-width: 640px) { .container { max-width: 640px; } }
+        @media (min-width: 768px) { .container { max-width: 768px; } }
+        @media (min-width: 1024px) { .container { max-width: 1024px; } }
+        @media (min-width: 1280px) { .container { max-width: 1280px; } }
+        @media (min-width: 1536px) { .container { max-width: 1536px; } }
+
+        /* Spacing */
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .p-4 { padding: 1rem; }
+        .p-6 { padding: 1.5rem; }
+        .my-4 { margin-top: 1rem; margin-bottom: 1rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-8 { margin-top: 2rem; }
+
+        /* Typography */
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .font-medium { font-weight: 500; }
+        .text-center { text-align: center; }
+        .italic { font-style: italic; }
+        .underline { text-decoration-line: underline; }
+
+        /* Colors */
+        .text-white { color: #ffffff; }
+        .text-gray-600 { color: #4b5563; }
+        .text-gray-700 { color: #374151; }
+        .text-teal-600 { color: #0d9488; }
+        .text-teal-700 { color: #0f766e; }
+        .text-blue-600 { color: #2563eb; }
+        .bg-white { background-color: #ffffff; }
+        .bg-gray-50 { background-color: #f9fafb; }
+        .bg-gray-800 { background-color: #1f2937; }
+        .bg-teal-600 { background-color: #0d9488; }
+        .bg-teal-700 { background-color: #0f766e; }
+        .bg-blue-50 { background-color: #eff6ff; }
+        .bg-green-50 { background-color: #f0fdf4; }
+        .bg-yellow-50 { background-color: #fefce8; }
+        .bg-purple-50 { background-color: #faf5ff; }
+
+        /* Interactions */
+        .hover\:underline:hover { text-decoration-line: underline; }
+        .hover\:bg-teal-700:hover { background-color: #0f766e; }
+        .hover\:shadow-lg:hover { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+
+        /* Layout */
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .flex { display: flex; }
+        .flex-wrap { flex-wrap: wrap; }
+        .justify-center { justify-content: center; }
+        .items-center { align-items: center; }
+        .relative { position: relative; }
+
+        /* Borders and shapes */
+        .rounded-lg { border-radius: 0.5rem; }
+        .border { border-width: 1px; }
+        .border-gray-200 { border-color: #e5e7eb; }
+        .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+
+        /* Mobile responsiveness improvements */
+        body {
+            line-height: 1.6;
+        }
+
+        /* Responsive container */
+        @media (max-width: 640px) {
+            .container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            .grid-cols-2 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+            .grid-cols-3 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        }
+        @media (min-width: 641px) and (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        /* Responsive typography */
+        @media (max-width: 640px) {
+            .text-4xl { font-size: 1.875rem; line-height: 2.25rem; }
+            .text-3xl { font-size: 1.5rem; line-height: 2rem; }
+            .text-2xl { font-size: 1.25rem; line-height: 1.75rem; }
+            .text-xl { font-size: 1.125rem; line-height: 1.75rem; }
+        }
+
+        /* Report card styles */
+        .report-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .report-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Category badges */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .badge-express { background-color: #dbeafe; color: #1e40af; }
+        .badge-oinp { background-color: #dcfce7; color: #166534; }
+        .badge-bcpnp { background-color: #fef3c7; color: #92400e; }
+        .badge-lmia { background-color: #fce7f3; color: #be185d; }
+        .badge-other { background-color: #f3e8ff; color: #7c3aed; }
+
+        /* Navigation pills */
+        .nav-pill {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            margin: 0 0.125rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #475569;
+            text-decoration: none;
+            border-radius: 2rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .nav-pill:hover {
+            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+            border-color: #0d9488;
+        }
+        .nav-pill:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(13, 148, 136, 0.3);
+        }
+        @media (max-width: 768px) {
+            .nav-pill {
+                padding: 0.375rem 0.875rem;
+                font-size: 0.75rem;
+                margin: 0 0.0625rem;
+            }
+        }
+
+        /* Hero section gradient */
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f766e 0%, #0d9488 50%, #14b8a6 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="hero-gradient text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">ImmiWatch Data Studio</h1>
+            <p class="text-xl mb-6">Professional Canada Immigration Analytics & Reports</p>
+            <p class="text-lg italic">Powered by ImmiWatch, a Lexpoint Product</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white py-4 sticky top-0 z-10 border-b border-gray-200" style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center flex-wrap" style="gap: 0.25rem;">
+                <a href="#express-entry" class="nav-pill">Express Entry</a>
+                <a href="#oinp" class="nav-pill">OINP</a>
+                <a href="#bcpnp" class="nav-pill">BCPNP</a>
+                <a href="#lmia" class="nav-pill">LMIA</a>
+                <a href="#other-reports" class="nav-pill">Other Reports</a>
+                <a href="#about" class="nav-pill">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8 bg-white rounded-lg shadow-lg relative mt-8">
+        <div class="watermark">© ImmiWatch by Lexpoint</div>
+
+        <!-- Introduction -->
+        <section class="mb-8 text-center">
+            <h2 class="text-3xl font-semibold text-teal-700 mb-4">Welcome to Canada's Premier Immigration Data Hub</h2>
+            <p class="text-lg text-gray-700 mb-6">Access comprehensive analytics, monthly reports, and strategic insights across all major Canadian immigration programs. Our data-driven approach helps you understand trends, opportunities, and strategic timing in Canadian immigration.</p>
+            <div class="bg-blue-50 p-6 rounded-lg">
+                <p class="text-gray-700">🎯 <strong>Latest Update:</strong> All reports updated with July 2025 data. Explore year-to-date insights and program-specific trends.</p>
+            </div>
+        </section>
+
+        <!-- Express Entry Reports -->
+        <section id="express-entry" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700 mb-6 flex items-center">
+                <span class="badge badge-express mr-3">EXPRESS ENTRY</span>
+                Federal Express Entry Reports
+            </h2>
+            
+            <!-- Featured Cumulative Report -->
+            <div class="bg-blue-50 p-6 rounded-lg mb-6 report-card">
+                <h3 class="text-xl font-semibold text-teal-700 mb-2">🎯 Featured: Year-to-Date Analysis</h3>
+                <h4 class="text-lg font-medium mb-2">
+                    <a href="ee-2025.html" class="text-blue-600 hover:underline">Express Entry Cumulative Report - January to July 2025</a>
+                </h4>
+                <p class="text-gray-700 mb-3">Comprehensive year-to-date analysis with 49,403 total ITAs, capacity utilization insights, and strategic immigration trends across all programs.</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="badge badge-express">Cumulative Analysis</span>
+                    <span class="badge badge-express">Year-to-Date Insights</span>
+                    <span class="badge badge-express">Strategic Trends</span>
+                </div>
+            </div>
+
+            <!-- Monthly Reports Grid -->
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">Monthly Analysis Reports</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">January 2025</h4>
+                    <p class="text-sm text-gray-600 mb-3">Foundation month with 100% program-based draws (5,821 ITAs)</p>
+                    <a href="ee-january2025.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">February 2025</h4>
+                    <p class="text-sm text-gray-600 mb-3">French-speaking draws launch (12,641 ITAs)</p>
+                    <a href="ee-february2025.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">March 2025</h4>
+                    <p class="text-sm text-gray-600 mb-3">Peak activity with STEM debut (13,261 ITAs)</p>
+                    <a href="ee-march2025.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">April 2025</h4>
+                    <p class="text-sm text-gray-600 mb-3">Consolidation period (1,246 ITAs)</p>
+                    <a href="ee-april2025.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">May 2025</h4>
+                    <p class="text-sm text-gray-600 mb-3">Education category return (5,350 ITAs)</p>
+                    <a href="ee-may2025.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">June 2025</h4>
+                    <p class="text-sm text-gray-600 mb-3">CEC surge analysis (4,234 ITAs)</p>
+                    <a href="ee-june2025.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">July 2025</h4>
+                    <p class="text-sm text-gray-600 mb-3">Strategic pause with program focus (6,850 ITAs)</p>
+                    <a href="ee-july2025.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- OINP Reports -->
+        <section id="oinp" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700 mb-6 flex items-center">
+                <span class="badge badge-oinp mr-3">OINP</span>
+                Ontario Immigrant Nominee Program
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">OINP Overview 2025</h4>
+                    <p class="text-sm text-gray-600 mb-3">Comprehensive program analysis and trends</p>
+                    <a href="oinp2025.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">Healthcare Stream</h4>
+                    <p class="text-sm text-gray-600 mb-3">Detailed healthcare nominations analysis</p>
+                    <a href="oinp-health.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">Tech Stream</h4>
+                    <p class="text-sm text-gray-600 mb-3">Technology sector nominations</p>
+                    <a href="oinp-tech.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">In-Demand Skills</h4>
+                    <p class="text-sm text-gray-600 mb-3">Priority occupation analysis</p>
+                    <a href="oinp-in-demand.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">Skilled Trades</h4>
+                    <p class="text-sm text-gray-600 mb-3">Trades occupation opportunities</p>
+                    <a href="oinp-trade.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">French-Speaking Workers</h4>
+                    <p class="text-sm text-gray-600 mb-3">French language priority stream</p>
+                    <a href="oinp-fws-fa.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- BCPNP Reports -->
+        <section id="bcpnp" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700 mb-6 flex items-center">
+                <span class="badge badge-bcpnp mr-3">BCPNP</span>
+                British Columbia Provincial Nominee Program
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">BCPNP Overview</h4>
+                    <p class="text-sm text-gray-600 mb-3">Comprehensive BC program analysis</p>
+                    <a href="bcpnp.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">Tech Stream</h4>
+                    <p class="text-sm text-gray-600 mb-3">BC technology sector analysis</p>
+                    <a href="bcpnp-tech.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">Healthcare Stream</h4>
+                    <p class="text-sm text-gray-600 mb-3">BC healthcare nominations</p>
+                    <a href="bcpnp-health.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">Construction Stream</h4>
+                    <p class="text-sm text-gray-600 mb-3">Construction sector opportunities</p>
+                    <a href="bcpnp-construction.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">Childcare Stream</h4>
+                    <p class="text-sm text-gray-600 mb-3">Early childhood education focus</p>
+                    <a href="bcpnp-childcare.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">International Graduate</h4>
+                    <p class="text-sm text-gray-600 mb-3">BC international graduate stream</p>
+                    <a href="bcpnp-international.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- LMIA Reports -->
+        <section id="lmia" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700 mb-6 flex items-center">
+                <span class="badge badge-lmia mr-3">LMIA</span>
+                Labour Market Impact Assessment
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">LMIA 2024 Analysis</h4>
+                    <p class="text-sm text-gray-600 mb-3">Comprehensive LMIA trends and approvals</p>
+                    <a href="lmia-2024.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">LMIA 2024 Overview</h4>
+                    <p class="text-sm text-gray-600 mb-3">Annual LMIA market assessment</p>
+                    <a href="lmia2024.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Reports -->
+        <section id="other-reports" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700 mb-6 flex items-center">
+                <span class="badge badge-other mr-3">OTHER</span>
+                Additional Immigration Analytics
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">PR Pathway Analysis</h4>
+                    <p class="text-sm text-gray-600 mb-3">Permanent residence route comparison</p>
+                    <a href="pr.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">FST Program</h4>
+                    <p class="text-sm text-gray-600 mb-3">Federal Skilled Trades analysis</p>
+                    <a href="fst.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">Temporary Residence</h4>
+                    <p class="text-sm text-gray-600 mb-3">Temporary residence insights</p>
+                    <a href="temporary.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">CLB Navigator</h4>
+                    <p class="text-sm text-gray-600 mb-3">Language proficiency guidance</p>
+                    <a href="clb-navigator.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">NOC Navigator</h4>
+                    <p class="text-sm text-gray-600 mb-3">Occupation classification insights</p>
+                    <a href="noc-navigator.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md report-card">
+                    <h4 class="font-semibold text-gray-700 mb-2">Wage Analysis</h4>
+                    <p class="text-sm text-gray-600 mb-3">Immigration wage requirements</p>
+                    <a href="wages.html" class="text-teal-600 hover:underline text-sm">View Report →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700 mb-6">About ImmiWatch Data Studio</h2>
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <p class="text-gray-700 mb-4">ImmiWatch Data Studio represents Canada's most comprehensive immigration analytics platform, providing professional insights across all major federal and provincial immigration programs.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div>
+                        <h3 class="font-semibold text-gray-700 mb-2">🎯 Our Mission</h3>
+                        <p class="text-sm text-gray-600">Democratize access to professional immigration data and insights, empowering informed decision-making for candidates, consultants, and policymakers.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-700 mb-2">📊 Data Quality</h3>
+                        <p class="text-sm text-gray-600">All reports are based on official government data sources with professional analysis and strategic interpretation by immigration experts.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-700 mb-2">🔄 Update Frequency</h3>
+                        <p class="text-sm text-gray-600">Reports are updated monthly following each program's draw cycles, ensuring you have access to the most current immigration trends.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-700 mb-2">🎓 Professional Use</h3>
+                        <p class="text-sm text-gray-600">Designed for immigration consultants, legal professionals, policy researchers, and serious immigration candidates.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact and Support -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700 mb-4">Get In Touch</h2>
+            <div class="bg-teal-50 p-6 rounded-lg">
+                <p class="text-gray-700 mb-4">Need specific analysis or custom reporting? Our immigration data experts are here to help.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://www.immigratic.com" target="_blank" class="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-700 transition duration-200">
+                        Visit ImmiWatch
+                    </a>
+                    <a href="mailto:support@immigratic.com" class="bg-white text-teal-600 px-6 py-2 rounded border border-teal-600 hover:bg-teal-50 transition duration-200">
+                        Contact Support
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">© 2025 ImmiWatch Data Studio - A Lexpoint Product. Professional Immigration Analytics.</p>
+            <p class="text-sm text-gray-400">
+                <a href="https://www.immigratic.com" target="_blank" class="underline hover:text-white">www.immigratic.com</a> | 
+                <a href="mailto:support@immigratic.com" class="underline hover:text-white">support@immigratic.com</a>
+            </p>
+            <p class="text-sm text-gray-400 mt-2">Last Updated: <span id="currentDate">July 31, 2025</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Dynamic date update
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    </script>
+</body>
+</html> 
