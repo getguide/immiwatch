@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Express Entry Canada monthly report for July 2025, powered by ImmiWatch by Lexpoint. Detailed analysis of ITAs, trends, and month-over-month changes.">
+    <meta name="keywords" content="Express Entry July 2025, Canada immigration, ImmiWatch, Lexpoint, Provincial Nominee Program, Canadian Experience Class, Healthcare draws">
+    <meta name="author" content="ImmiWatch by Lexpoint">
+    <title>Express Entry July 2025 Monthly Report | ImmiWatch</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 10;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .progress-bar {
+            transition: width 1s ease-in-out;
+        }
+        .watermark {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8em;
+            color: rgba(0, 0, 0, 0.3);
+            font-style: italic;
+        }
+        body {
+            --tw-bg-opacity: 1;
+            background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+        .bg-teal-600 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(13 148 136 / var(--tw-bg-opacity));
+        }
+        .text-white {
+            --tw-text-opacity: 1;
+            color: rgb(255 255 255 / var(--tw-text-opacity));
+        }
+        .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .container {
+            width: 100%;
+            margin-right: auto;
+            margin-left: auto;
+            padding-right: 1rem;
+            padding-left: 1rem;
+        }
+        @media (min-width: 640px) {
+            .container {
+                max-width: 640px;
+            }
+        }
+        @media (min-width: 768px) {
+            .container {
+                max-width: 768px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1024px;
+            }
+        }
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1280px;
+            }
+        }
+        @media (min-width: 1536px) {
+            .container {
+                max-width: 1536px;
+            }
+        }
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .text-3xl {
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+        }
+        .font-bold {
+            font-weight: 700;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .italic {
+            font-style: italic;
+        }
+        .bg-teal-800 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(17 94 89 / var(--tw-bg-opacity));
+        }
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        .sticky {
+            position: sticky;
+        }
+        .top-0 {
+            top: 0px;
+        }
+        .z-10 {
+            z-index: 10;
+        }
+        .flex {
+            display: flex;
+        }
+        .justify-center {
+            justify-content: center;
+        }
+        .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+            --tw-space-x-reverse: 0;
+            margin-right: calc(1rem * var(--tw-space-x-reverse));
+            margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+        }
+        .hover\:underline:hover {
+            text-decoration-line: underline;
+        }
+        .py-6 {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+        .bg-white {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+        }
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .relative {
+            position: relative;
+        }
+        .text-2xl {
+            font-size: 1.5rem;
+            line-height: 2rem;
+        }
+        .font-semibold {
+            font-weight: 600;
+        }
+        .text-teal-700 {
+            --tw-text-opacity: 1;
+            color: rgb(15 118 110 / var(--tw-text-opacity));
+        }
+        .my-4 {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .w-full {
+            width: 100%;
+        }
+        .bg-gray-200 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+        }
+        .rounded-full {
+            border-radius: 9999px;
+        }
+        .h-4 {
+            height: 1rem;
+        }
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+        .border-collapse {
+            border-collapse: collapse;
+        }
+        .border {
+            border-width: 1px;
+        }
+        .border-gray-300 {
+            --tw-border-opacity: 1;
+            border-color: rgb(209 213 219 / var(--tw-border-opacity));
+        }
+        .p-2 {
+            padding: 0.5rem;
+        }
+        .bg-teal-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(204 251 241 / var(--tw-bg-opacity));
+        }
+        .mt-4 {
+            margin-top: 1rem;
+        }
+        .p-4 {
+            padding: 1rem;
+        }
+        .text-lg {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+        .font-medium {
+            font-weight: 500;
+        }
+        .list-disc {
+            list-style-type: disc;
+        }
+        .pl-6 {
+            padding-left: 1.5rem;
+        }
+        .bg-blue-600 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+        }
+        .hover\:bg-blue-700:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+        }
+        .bg-blue-800 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+        }
+        .hover\:bg-blue-900:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(30 58 138 / var(--tw-bg-opacity));
+        }
+        .bg-gray-600 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(75 85 99 / var(--tw-bg-opacity));
+        }
+        .hover\:bg-gray-700:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+        }
+        .underline {
+            text-decoration-line: underline;
+        }
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+        .text-teal-600 {
+            --tw-text-opacity: 1;
+            color: rgb(13 148 136 / var(--tw-text-opacity));
+        }
+        .rounded {
+            border-radius: 0.25rem;
+        }
+        .text-red-600 {
+            --tw-text-opacity: 1;
+            color: rgb(220 38 38 / var(--tw-text-opacity));
+        }
+        .text-green-600 {
+            --tw-text-opacity: 1;
+            color: rgb(22 163 74 / var(--tw-text-opacity));
+        }
+        .bg-red-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+        }
+        .bg-green-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(220 252 231 / var(--tw-bg-opacity));
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Report",
+        "name": "Express Entry July 2025 Monthly Report",
+        "description": "Monthly analysis of Canada's Express Entry immigration system for July 2025, powered by ImmiWatch by Lexpoint. Includes ITA statistics, trends, and month-over-month changes.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "ImmiWatch by Lexpoint",
+            "url": "https://www.immigratic.com"
+        },
+        "datePublished": "2025-07-31",
+        "keywords": ["Express Entry", "July 2025", "Canada immigration", "ImmiWatch", "monthly report"],
+        "inLanguage": "en"
+    }
+    </script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-teal-600 text-white py-4">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-center">Express Entry Monthly Report - July 2025</h1>
+            <p class="text-center italic">Powered by ImmiWatch, a Lexpoint Product</p>
+        </div>
+    </header>
+
+    <nav class="bg-teal-800 text-white py-2 sticky top-0 z-10">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-center space-x-4">
+                <li><a href="#overview" class="hover:underline">Overview</a></li>
+                <li><a href="#category-based" class="hover:underline">Category-Based</a></li>
+                <li><a href="#program-based" class="hover:underline">Program-Based</a></li>
+                <li><a href="#comparison" class="hover:underline">vs June</a></li>
+                <li><a href="#insights" class="hover:underline">Insights</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-6 bg-white rounded-lg shadow-lg relative">
+        <div class="watermark">© ImmiWatch by Lexpoint</div>
+
+        <section id="overview" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">July 2025 Overview</h2>
+            <div class="bg-teal-100 p-4 rounded-lg mt-4">
+                <p class="text-lg font-medium">Total ITAs Issued: <strong>7,558</strong></p>
+                <p class="mt-2">July 2025 saw a significant shift in Express Entry priorities with healthcare draws dominating the month. Data sourced from ImmiWatch by Lexpoint. <a href="https://www.immigratic.com" target="_blank" class="text-teal-600 hover:underline">Learn more about ImmiWatch</a>.</p>
+            </div>
+        </section>
+
+        <section id="category-based" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">Category-Based Draws - July 2025</h2>
+            <canvas id="categoryChart" class="my-4" role="img" aria-label="Pie chart showing Category-Based ITAs for July 2025: Healthcare (4,000)"></canvas>
+            <div class="mt-4">
+                <p><strong>Total Category-Based ITAs:</strong> 4,000</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li><strong>Healthcare:</strong> 4,000 ITAs</li>
+                    <li><strong>French-Speaking:</strong> 0 ITAs</li>
+                    <li><strong>Education:</strong> 0 ITAs</li>
+                    <li><strong>STEM/Trade/Agriculture:</strong> 0 ITAs</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="program-based" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">Program-Based Draws - July 2025</h2>
+            <canvas id="programChart" class="my-4" role="img" aria-label="Pie chart showing Program-Based ITAs for July 2025: CEC (3,000), PNP (558)"></canvas>
+            <div class="mt-4">
+                <p><strong>Total Program-Based ITAs:</strong> 3,558</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li><strong>Canadian Experience Class (CEC):</strong> 3,000 ITAs</li>
+                    <li><strong>Provincial Nominee Program (PNP):</strong> 558 ITAs</li>
+                    <li><strong>Federal Skilled Worker (FSW):</strong> 0 ITAs</li>
+                    <li><strong>Federal Skilled Trades (FST):</strong> 0 ITAs</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">July vs June 2025 Comparison</h2>
+            <table class="w-full border-collapse border border-gray-300 mt-4">
+                <thead>
+                    <tr class="bg-teal-100">
+                        <th class="border border-gray-300 p-2">Program</th>
+                        <th class="border border-gray-300 p-2">June 2025</th>
+                        <th class="border border-gray-300 p-2">July 2025</th>
+                        <th class="border border-gray-300 p-2">Change</th>
+                        <th class="border border-gray-300 p-2">% Change</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border border-gray-300 p-2 font-medium">Total ITAs</td>
+                        <td class="border border-gray-300 p-2">7,405</td>
+                        <td class="border border-gray-300 p-2">7,558</td>
+                        <td class="border border-gray-300 p-2 text-green-600">+153</td>
+                        <td class="border border-gray-300 p-2 text-green-600">+2.1%</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2 font-medium">Category-Based Total</td>
+                        <td class="border border-gray-300 p-2">500</td>
+                        <td class="border border-gray-300 p-2">4,000</td>
+                        <td class="border border-gray-300 p-2 text-green-600">+3,500</td>
+                        <td class="border border-gray-300 p-2 text-green-600">+700%</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2">→ Healthcare</td>
+                        <td class="border border-gray-300 p-2">500</td>
+                        <td class="border border-gray-300 p-2">4,000</td>
+                        <td class="border border-gray-300 p-2 text-green-600">+3,500</td>
+                        <td class="border border-gray-300 p-2 text-green-600">+700%</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2">→ French-Speaking</td>
+                        <td class="border border-gray-300 p-2">0</td>
+                        <td class="border border-gray-300 p-2">0</td>
+                        <td class="border border-gray-300 p-2">0</td>
+                        <td class="border border-gray-300 p-2">0%</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2 font-medium">Program-Based Total</td>
+                        <td class="border border-gray-300 p-2">6,905</td>
+                        <td class="border border-gray-300 p-2">3,558</td>
+                        <td class="border border-gray-300 p-2 text-red-600">-3,347</td>
+                        <td class="border border-gray-300 p-2 text-red-600">-48.5%</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2">→ CEC</td>
+                        <td class="border border-gray-300 p-2">6,000</td>
+                        <td class="border border-gray-300 p-2">3,000</td>
+                        <td class="border border-gray-300 p-2 text-red-600">-3,000</td>
+                        <td class="border border-gray-300 p-2 text-red-600">-50%</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2">→ PNP</td>
+                        <td class="border border-gray-300 p-2">905</td>
+                        <td class="border border-gray-300 p-2">558</td>
+                        <td class="border border-gray-300 p-2 text-red-600">-347</td>
+                        <td class="border border-gray-300 p-2 text-red-600">-38.3%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="insights" class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">July 2025 Key Insights</h2>
+            <div class="mt-4 p-4 bg-teal-100 rounded-lg">
+                <h3 class="text-lg font-medium mb-2">Major Highlights</h3>
+                <ul class="list-disc pl-6">
+                    <li><strong>Healthcare Surge:</strong> Healthcare draws exploded from 500 to 4,000 ITAs (+700%), indicating urgent demand for healthcare professionals.</li>
+                    <li><strong>Program-Based Decline:</strong> Traditional program-based draws decreased by 48.5%, showing a strategic shift toward category-based selections.</li>
+                    <li><strong>CEC Reduction:</strong> Canadian Experience Class ITAs dropped by 50% (6,000 → 3,000), suggesting saturation or policy adjustment.</li>
+                    <li><strong>PNP Stability:</strong> Provincial Nominee Program maintained moderate activity with 558 ITAs, down 38.3% from June.</li>
+                </ul>
+            </div>
+            
+            <div class="mt-4 p-4 bg-green-100 rounded-lg">
+                <h3 class="text-lg font-medium mb-2 text-green-600">Positive Trends</h3>
+                <ul class="list-disc pl-6">
+                    <li>Overall ITA count increased by 2.1% (+153 ITAs) despite program-based declines</li>
+                    <li>Healthcare professionals received unprecedented opportunities</li>
+                    <li>Category-based draws showed strong government commitment to sector-specific needs</li>
+                </ul>
+            </div>
+
+            <div class="mt-4 p-4 bg-red-100 rounded-lg">
+                <h3 class="text-lg font-medium mb-2 text-red-600">Areas of Concern</h3>
+                <ul class="list-disc pl-6">
+                    <li>No French-speaking draws for the second consecutive month</li>
+                    <li>Significant reduction in general program-based opportunities</li>
+                    <li>STEM, Trade, and Agriculture categories remained inactive</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">Related Reports</h2>
+            <div class="bg-teal-100 p-4 rounded-lg">
+                <p class="font-semibold">View More Reports:</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li><a href="ee-2025.html" class="text-teal-600 hover:underline">Express Entry Cumulative Report 2025 (Jan-July)</a></li>
+                    <li><a href="#" class="text-teal-600 hover:underline">Express Entry June 2025 Monthly Report</a></li>
+                    <li><a href="#" class="text-teal-600 hover:underline">Express Entry August 2025 Monthly Report</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">Stay Updated with ImmiWatch</h2>
+            <p>Subscribe to ImmiWatch by Lexpoint for real-time Express Entry updates and personalized alerts.</p>
+            <div class="bg-teal-100 p-4 rounded-lg">
+                <p class="font-semibold">Join ImmiWatch</p>
+                <p>Receive notifications on Express Entry draws. <a href="https://www.immigratic.com" target="_blank" class="text-teal-600 hover:underline">Sign up now</a>.</p>
+            </div>
+            <p class="mt-4"><a href="#" class="text-teal-600 hover:underline">Download PDF Report (Placeholder)</a></p>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-teal-700">Share This Report</h2>
+            <div class="flex space-x-4">
+                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Share on X</a>
+                <a href="#" class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-900">Share on LinkedIn</a>
+                <a href="#" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">Share via Email</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-teal-600 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>Powered by ImmiWatch, a Lexpoint Product | <a href="https://www.immigratic.com" target="_blank" class="underline">www.immigratic.com</a></p>
+            <p>Contact: support@immigratic.com</p>
+            <p>Last Updated: <span id="currentDate"></span></p>
+        </div>
+    </footer>
+
+    <script>
+        // Data for July 2025 only
+        const julyData = {
+            categoryBased: {
+                totalITAs: 4000,
+                breakdown: [
+                    { label: 'Healthcare', value: 4000 }
+                ]
+            },
+            programBased: {
+                totalITAs: 3558,
+                breakdown: [
+                    { label: 'Canadian Experience Class (CEC)', value: 3000 },
+                    { label: 'Provincial Nominee Program (PNP)', value: 558 }
+                ]
+            }
+        };
+
+        // Category-Based Draws Chart (July only)
+        new Chart(document.getElementById('categoryChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Healthcare'],
+                datasets: [{
+                    data: [4000],
+                    backgroundColor: ['#FF6384'],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Category-Based ITAs - July 2025 (4,000 Total)' }
+                }
+            }
+        });
+
+        // Program-Based Draws Chart (July only)
+        new Chart(document.getElementById('programChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Canadian Experience Class (CEC)', 'Provincial Nominee Program (PNP)'],
+                datasets: [{
+                    data: [3000, 558],
+                    backgroundColor: ['#4BC0C0', '#9966FF'],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Program-Based ITAs - July 2025 (3,558 Total)' }
+                }
+            }
+        });
+
+        // Dynamic Date
+        document.getElementById('currentDate').textContent = new Date('2025-07-31').toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    </script>
+</body>
+</html> 
