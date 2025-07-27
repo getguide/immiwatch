@@ -53,6 +53,41 @@
     --border-radius-lg: 0.75rem;
     --border-radius-xl: 1rem;
     --border-radius-2xl: 1.5rem;
+    
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+    
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    
+    --line-height-tight: 1.25;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    --line-height-loose: 2;
+    
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
 }
 
 * {
@@ -685,3 +720,95 @@ body {
         grid-template-columns: 1fr;
     }
 } 
+
+/* =============================================================================
+   PROFESSIONAL UTILITY CLASSES
+   Universal design tokens for consistent styling across all pages
+   ============================================================================= */
+
+/* Background Colors */
+.bg-primary { background-color: var(--primary-600) !important; }
+.bg-primary-light { background-color: var(--primary-100) !important; }
+.bg-primary-dark { background-color: var(--primary-800) !important; }
+.bg-success { background-color: var(--success-500) !important; }
+.bg-warning { background-color: var(--warning-500) !important; }
+.bg-gray-light { background-color: var(--gray-100) !important; }
+
+/* Background Gradients */
+.bg-gradient-primary { background: var(--gradient-primary) !important; }
+.bg-gradient-hero { background: var(--gradient-hero) !important; }
+.bg-gradient-express { background: var(--gradient-express) !important; }
+.bg-gradient-oinp { background: var(--gradient-oinp) !important; }
+
+/* Border Colors */
+.border-primary { border-color: var(--primary-600) !important; }
+.border-success { border-color: var(--success-500) !important; }
+.border-warning { border-color: var(--warning-500) !important; }
+
+/* Border Styles */
+.border-top-primary { border-top: 4px solid var(--primary-600) !important; }
+.border-top-success { border-top: 4px solid var(--success-500) !important; }
+.border-top-warning { border-top: 4px solid var(--warning-500) !important; }
+
+/* Text Colors */
+.text-primary { color: var(--primary-600) !important; }
+.text-white { color: white !important; }
+.text-gray { color: var(--gray-600) !important; }
+.text-gray-light { color: var(--gray-400) !important; }
+
+/* Card Variants */
+.card-primary {
+    border-top: 4px solid var(--primary-600) !important;
+}
+
+.card-primary .card-icon {
+    background: var(--gradient-primary) !important;
+}
+
+.card-success {
+    border-top: 4px solid var(--success-500) !important;
+}
+
+.card-success .card-icon {
+    background: var(--gradient-oinp) !important;
+}
+
+.card-warning {
+    border-top: 4px solid var(--warning-500) !important;
+}
+
+.card-warning .card-icon {
+    background: var(--gradient-bcpnp) !important;
+}
+
+/* Section Variants */
+.section-primary {
+    background: var(--gradient-primary) !important;
+    color: white !important;
+}
+
+.section-hero {
+    background: var(--gradient-hero) !important;
+    color: white !important;
+}
+
+.section-gray {
+    background-color: var(--gray-50) !important;
+}
+
+/* Consistency Enforcement Rules */
+/* These rules prevent future inconsistencies */
+.page-header {
+    background: var(--gradient-hero) !important;
+}
+
+.content-section.cta {
+    background: var(--gradient-primary) !important;
+    color: white !important;
+}
+
+/* Future-Proof Classes */
+.immi-primary { color: var(--primary-600) !important; }
+.immi-bg-primary { background-color: var(--primary-600) !important; }
+.immi-gradient-primary { background: var(--gradient-primary) !important; }
+.immi-gradient-hero { background: var(--gradient-hero) !important; } 
