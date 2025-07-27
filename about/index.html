@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ImmiWatch Data Studio</title>
+    <meta name="description" content="Learn about ImmiWatch's mission to provide Canada's most trusted immigration intelligence. Professional analytics platform by Lexpoint.io serving immigration professionals daily.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="About ImmiWatch - Canada's Premier Immigration Analytics Platform">
+    <meta property="og:description" content="Learn about ImmiWatch's mission to provide trusted immigration intelligence. Professional analytics platform serving immigration professionals daily.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://immiwatch.ca/about/">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About ImmiWatch - Canada's Premier Immigration Analytics Platform">
+    <meta name="twitter:description" content="Learn about ImmiWatch's mission to provide trusted immigration intelligence. Professional analytics platform serving immigration professionals daily.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=3&t=1737962580">
+    <link rel="apple-touch-icon" href="../favicon.svg?v=3&t=1737962580">
+    
+    <link rel="stylesheet" href="../assets/css/shared-styles.css">
+    
+    <style>
+        .about-hero {
+            background: var(--gradient-hero);
+            color: white;
+            padding: 8rem 0 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+        
+        .about-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .about-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        
+        .about-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        .mission-section {
+            padding: 6rem 0;
+            background: var(--gray-50);
+        }
+        
+        .mission-card {
+            background: white;
+            padding: 3rem;
+            border-radius: var(--border-radius-2xl);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+        }
+        
+        .story-section {
+            padding: 6rem 0;
+        }
+        
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .story-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .story-content p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pain-points {
+            background: var(--gray-900);
+            color: white;
+            padding: 6rem 0;
+        }
+        
+        .pain-points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pain-point {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: var(--border-radius-xl);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .pain-point-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pain-point h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .pain-point p {
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        
+        .values-section {
+            padding: 6rem 0;
+            background: var(--gray-50);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: transform 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .team-section {
+            padding: 6rem 0;
+        }
+        
+        .lexpoint-card {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 3rem;
+            border-radius: var(--border-radius-2xl);
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .lexpoint-card h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .lexpoint-card p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .cta-about {
+            background: var(--gray-900);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 2.5rem;
+            }
+            
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .mission-card,
+            .lexpoint-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <div class="logo-main">ImmiWatch</div>
+                    <div class="logo-subtitle">By Lexpoint.io</div>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../" class="nav-link">Home</a></li>
+                <li><a href="../reports/" class="nav-link">Reports</a></li>
+                <li><a href="../tools/" class="nav-link">Tools</a></li>
+                <li><a href="../newsletters/" class="nav-link">Newsletter</a></li>
+                <li><a href="./" class="nav-link active">About</a></li>
+                <li><a href="mailto:support@immigratic.com" class="nav-link nav-cta">Get Started</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1 class="about-title">
+                Empowering Immigration<br>
+                <span style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Dreams with Data</span>
+            </h1>
+            <p class="about-subtitle">
+                We believe every immigration journey deserves clarity, confidence, and professional-grade intelligence. That's why we built Canada's most trusted immigration analytics platform.
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-card">
+                <div class="mission-icon">🎯</div>
+                <h2 style="font-size: 2rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1.5rem;">Our Mission</h2>
+                <p style="font-size: 1.125rem; color: var(--gray-600); line-height: 1.7; max-width: 800px; margin: 0 auto;">
+                    To democratize access to professional-grade immigration intelligence, transforming complex government data into actionable insights that help immigration professionals serve their clients better and enable individuals to make informed decisions about their Canadian immigration journey.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-content">
+                    <h2>Born from Frustration,<br>Driven by Purpose</h2>
+                    <p>
+                        ImmiWatch was born from a simple yet powerful realization: immigration professionals and candidates were making life-changing decisions based on fragmented, outdated, or inaccessible data.
+                    </p>
+                    <p>
+                        We witnessed countless talented individuals struggling to navigate Canada's complex immigration system, while dedicated professionals lacked the tools to provide the strategic guidance their clients deserved.
+                    </p>
+                    <p>
+                        That's when we decided to change the game entirely.
+                    </p>
+                </div>
+                <div style="background: var(--gradient-primary); border-radius: var(--border-radius-2xl); height: 400px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+                    🇨🇦
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="pain-points">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 1rem;">The Problems We Solve</h2>
+                <p style="font-size: 1.125rem; color: #e2e8f0; max-width: 600px; margin: 0 auto;">
+                    Every feature we build addresses real pain points experienced by immigration professionals and candidates daily.
+                </p>
+            </div>
+            
+            <div class="pain-points-grid">
+                <div class="pain-point">
+                    <div class="pain-point-icon">📊</div>
+                    <h3>Data Scattered Everywhere</h3>
+                    <p>Critical immigration data buried across multiple government websites, making strategic planning nearly impossible.</p>
+                </div>
+                
+                <div class="pain-point">
+                    <div class="pain-point-icon">⏰</div>
+                    <h3>Always Playing Catch-Up</h3>
+                    <p>By the time you found the latest draw results, program changes, or policy updates, opportunities had already passed.</p>
+                </div>
+                
+                <div class="pain-point">
+                    <div class="pain-point-icon">🤔</div>
+                    <h3>Guessing Game Strategy</h3>
+                    <p>Making critical immigration decisions based on incomplete information, hunches, or outdated analysis.</p>
+                </div>
+                
+                <div class="pain-point">
+                    <div class="pain-point-icon">💼</div>
+                    <h3>Professional Credibility at Risk</h3>
+                    <p>Immigration consultants struggling to provide clients with the sophisticated analysis they expect and deserve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1rem;">Our Values</h2>
+                <p style="font-size: 1.125rem; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
+                    These principles guide every decision we make and every feature we build.
+                </p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--gray-900); margin-bottom: 1rem;">Accuracy First</h3>
+                    <p style="color: var(--gray-600);">Every data point is verified, every analysis is fact-checked. Your decisions deserve nothing less than 100% accuracy.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🚀</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--gray-900); margin-bottom: 1rem;">Professional Grade</h3>
+                    <p style="color: var(--gray-600);">We build tools sophisticated enough for immigration lawyers, yet accessible enough for individual candidates.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--gray-900); margin-bottom: 1rem;">Transparency</h3>
+                    <p style="color: var(--gray-600);">No hidden methodologies, no black boxes. You see exactly how we arrive at our insights and recommendations.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--gray-900); margin-bottom: 1rem;">Innovation</h3>
+                    <p style="color: var(--gray-600);">We're constantly pushing the boundaries of what's possible in immigration analytics and intelligence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1rem;">Powered by Lexpoint.io</h2>
+                <p style="font-size: 1.125rem; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
+                    ImmiWatch is proudly developed and maintained by the innovation team at Lexpoint.io, a technology company dedicated to solving complex data challenges.
+                </p>
+            </div>
+            
+            <div class="lexpoint-card">
+                <h3>🌟 Technology Excellence</h3>
+                <p>
+                    Lexpoint.io brings years of experience in data analytics, platform development, and user experience design. Our team combines deep technical expertise with genuine passion for helping people achieve their immigration goals. When you use ImmiWatch, you're backed by a company that cares about both innovation and impact.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-about">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: white;">Join the ImmiWatch Community</h2>
+            <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Become part of a growing community of immigration professionals and candidates who rely on ImmiWatch for their daily intelligence needs.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="../newsletters/" class="btn btn-primary">📰 Subscribe to Newsletter</a>
+                <a href="../reports/" class="btn btn-secondary">📊 Explore Reports</a>
+                <a href="mailto:support@immigratic.com" class="btn btn-secondary">💬 Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">ImmiWatch Data Studio</div>
+                <p class="footer-description">
+                    Professional Canada immigration analytics and insights. A premium product by Lexpoint.io, delivering data-driven immigration intelligence since 2025.
+                </p>
+                
+                <div class="footer-links">
+                    <a href="../reports/" class="footer-link">Reports</a>
+                    <a href="../tools/" class="footer-link">Tools</a>
+                    <a href="../newsletters/" class="footer-link">Newsletter</a>
+                    <a href="./" class="footer-link">About</a>
+                    <a href="mailto:support@immigratic.com" class="footer-link">Contact</a>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 ImmiWatch Data Studio - Part of Lexpoint.io</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+                        Professional Immigration Analytics | 
+                        <a href="mailto:support@immigratic.com" style="color: var(--primary-400);">support@immigratic.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            const body = document.body;
+
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    mobileMenuBtn.classList.toggle('active');
+                    body.classList.toggle('menu-open');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    }
+                });
+
+                // Close menu when clicking on links
+                navMenu.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    });
+                });
+
+                // Close menu on window resize
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
