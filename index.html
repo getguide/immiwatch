@@ -131,12 +131,6 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-weight: 800;
-            font-size: 1.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
         
         .logo-icon {
@@ -150,6 +144,65 @@
             color: white;
             font-weight: bold;
             font-size: 1.25rem;
+            animation: gentleFloat 3s ease-in-out infinite;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.125rem;
+        }
+        
+        .logo-main {
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        
+        .logo-subtitle {
+            font-weight: 500;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            line-height: 1;
+            margin-top: -2px;
+        }
+        
+        @keyframes gentleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+        
+        /* Pause animation on reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .logo-icon {
+                animation: none;
+            }
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .logo-main {
+                font-size: 1.25rem;
+            }
+            
+            .logo-subtitle {
+                font-size: 0.65rem;
+            }
+            
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1.1rem;
+            }
         }
         
         .nav-menu {
@@ -834,7 +887,10 @@
         <div class="nav-content">
             <div class="logo">
                 <div class="logo-icon">IW</div>
-                <span>ImmiWatch</span>
+                <div class="logo-text">
+                    <span class="logo-main">ImmiWatch</span>
+                    <span class="logo-subtitle">By Lexpoint.io</span>
+                </div>
             </div>
             
             <ul class="nav-menu">
