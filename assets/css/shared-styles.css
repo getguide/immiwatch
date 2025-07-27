@@ -811,4 +811,13 @@ body {
 .immi-primary { color: var(--primary-600) !important; }
 .immi-bg-primary { background-color: var(--primary-600) !important; }
 .immi-gradient-primary { background: var(--gradient-primary) !important; }
-.immi-gradient-hero { background: var(--gradient-hero) !important; } 
+.immi-gradient-hero { background: var(--gradient-hero) !important; }
+
+/* Report Highlight - Standardized highlight for all executive summaries */
+.report-highlight {
+    background: var(--primary-100);
+    color: var(--primary-700);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+} 
