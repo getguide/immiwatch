@@ -3,734 +3,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Express Entry Canada monthly report for April 2025, powered by ImmiWatch by Lexpoint. Detailed analysis of ITAs, trends, and month-over-month changes.">
-    <meta name="keywords" content="Express Entry April 2025, Canada immigration, ImmiWatch, Lexpoint, program-based draws, quiet month analysis">
-    <meta name="author" content="ImmiWatch by Lexpoint">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://studio.immigratic.com/ee-april2025.html">
-    <meta property="og:title" content="Express Entry April 2025 Monthly Report | ImmiWatch">
-    <meta property="og:description" content="Comprehensive analysis of Canada Express Entry draws for April 2025. Detailed breakdown of program-based ITAs, quiet month analysis, and month-over-month comparison with March. Powered by ImmiWatch by Lexpoint.">
-    <meta property="og:image" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/logo%20banner.jpg">
-    <meta property="og:image:alt" content="ImmiWatch by Lexpoint - Express Entry April 2025 Report">
-    <meta property="og:site_name" content="ImmiWatch by Lexpoint">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://studio.immigratic.com/ee-april2025.html">
-    <meta name="twitter:title" content="Express Entry April 2025 Monthly Report | ImmiWatch">
-    <meta name="twitter:description" content="Comprehensive analysis of Canada Express Entry draws for April 2025. Detailed breakdown of program-based ITAs, quiet month analysis, and month-over-month comparison with March. Powered by ImmiWatch by Lexpoint.">
-    <meta name="twitter:image" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/logo%20banner.jpg">
-    <meta name="twitter:image:alt" content="ImmiWatch by Lexpoint - Express Entry April 2025 Report">
-    
-    <title>Express Entry April 2025 Monthly Report | ImmiWatch</title>
+    <meta name="description" content="Express Entry April 2025 report - Strategic consolidation period with focused category-based selections and 1,246 ITAs issued.">
+    <meta name="keywords" content="Express Entry April 2025, strategic consolidation, category-based draws, immigration planning">
+    <title>Express Entry April 2025 Report | ImmiWatch Data Studio</title>
     <link rel="icon" href="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/logo-fav.jpg" type="image/jpeg">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="../../assets/css/shared-styles.css">
+    
     <style>
-        /* Custom styles */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
+        .report-content {
+            background: white;
+            padding: 3rem 0;
         }
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px;
-            position: absolute;
-            z-index: 10;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -100px;
-            opacity: 0;
-            transition: opacity 0.3s;
+        
+        .report-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
         }
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-        .progress-bar {
-            transition: width 1s ease-in-out;
-        }
-        .watermark {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            font-size: 0.8em;
-            color: rgba(0, 0, 0, 0.3);
-            font-style: italic;
-        }
-
-        /* Base styles */
-        body {
-            background-color: #f3f4f6;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        /* Layout */
-        .container {
+        
+        .data-table {
             width: 100%;
-            margin-right: auto;
-            margin-left: auto;
-            padding-right: 0.75rem;
-            padding-left: 0.75rem;
-        }
-        @media (min-width: 640px) { 
-            .container { 
-                max-width: 640px; 
-                padding-right: 1rem;
-                padding-left: 1rem;
-            } 
-        }
-        @media (min-width: 768px) { .container { max-width: 768px; } }
-        @media (min-width: 1024px) { .container { max-width: 1024px; } }
-        @media (min-width: 1280px) { .container { max-width: 1280px; } }
-        @media (min-width: 1536px) { .container { max-width: 1536px; } }
-
-        /* Spacing */
-        .mx-auto { margin-left: auto; margin-right: auto; }
-        .px-4 { 
-            padding-left: 0.75rem; 
-            padding-right: 0.75rem; 
-        }
-        .py-4 { 
-            padding-top: 0.75rem; 
-            padding-bottom: 0.75rem; 
-        }
-        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-        .py-6 { 
-            padding-top: 1rem; 
-            padding-bottom: 1rem; 
-        }
-        .p-2 { padding: 0.5rem; }
-        .p-4 { 
-            padding: 0.75rem; 
-        }
-        .my-4 { 
-            margin-top: 0.75rem; 
-            margin-bottom: 0.75rem; 
-        }
-        .mt-2 { margin-top: 0.5rem; }
-        .mt-4 { 
-            margin-top: 0.75rem; 
-        }
-        .mb-8 { 
-            margin-bottom: 1.5rem; 
-        }
-        .pl-6 { 
-            padding-left: 1rem; 
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
         }
         
-        @media (min-width: 640px) {
-            .px-4 { padding-left: 1rem; padding-right: 1rem; }
-            .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-            .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
-            .p-4 { padding: 1rem; }
-            .my-4 { margin-top: 1rem; margin-bottom: 1rem; }
-            .mt-4 { margin-top: 1rem; }
-            .mb-8 { margin-bottom: 2rem; }
-            .pl-6 { padding-left: 1.5rem; }
-        }
-
-        /* Typography */
-        .text-3xl { 
-            font-size: 1.5rem; 
-            line-height: 1.4; 
-        }
-        .text-2xl { 
-            font-size: 1.25rem; 
-            line-height: 1.4; 
-        }
-        .text-lg { 
-            font-size: 1rem; 
-            line-height: 1.6; 
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
         }
         
-        @media (min-width: 640px) {
-            .text-3xl { font-size: 1.75rem; line-height: 1.3; }
-            .text-2xl { font-size: 1.4rem; line-height: 1.4; }
-            .text-lg { font-size: 1.1rem; line-height: 1.6; }
+        .data-table th {
+            background: var(--primary-50);
+            color: var(--primary-700);
+            font-weight: 600;
         }
         
-        @media (min-width: 768px) {
-            .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-            .text-2xl { font-size: 1.5rem; line-height: 2rem; }
-            .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .data-table tr:hover {
+            background: var(--gray-50);
         }
         
-        .font-bold { font-weight: 700; }
-        .font-semibold { font-weight: 600; }
-        .font-medium { font-weight: 500; }
-        .text-center { text-align: center; }
-        .italic { font-style: italic; }
-        .underline { text-decoration-line: underline; }
-
-        /* Colors */
-        .text-white { color: #ffffff; }
-        .text-teal-700 { color: #0f766e; }
-        .text-teal-600 { color: #0d9488; }
-        .text-red-600 { color: #dc2626; }
-        .text-green-600 { color: #16a34a; }
-        .text-yellow-600 { color: #d97706; }
-        .bg-white { background-color: #ffffff; }
-        .bg-gray-200 { background-color: #e5e7eb; }
-        .bg-teal-600 { background-color: #0d9488; }
-        .bg-teal-800 { background-color: #115e59; }
-        .bg-teal-100 { background-color: #ccfbf1; }
-        .bg-blue-600 { background-color: #2563eb; }
-        .bg-blue-800 { background-color: #1e40af; }
-        .bg-gray-600 { background-color: #4b5563; }
-        .bg-red-100 { background-color: #fee2e2; }
-        .bg-green-100 { background-color: #dcfce7; }
-        .bg-yellow-100 { background-color: #fef3c7; }
-
-        /* Interactive */
-        .hover\:underline:hover { text-decoration-line: underline; }
-        .hover\:bg-blue-700:hover { background-color: #1d4ed8; }
-        .hover\:bg-blue-900:hover { background-color: #1e3a8a; }
-        .hover\:bg-gray-700:hover { background-color: #374151; }
-
-        /* Layout utilities */
-        .flex { display: flex; }
-        .justify-center { justify-content: center; }
-        .space-x-2 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.5rem; }
-        .space-x-4 > :not([hidden]) ~ :not([hidden]) { margin-left: 1rem; }
-        @media (min-width: 768px) {
-            .md\:space-x-4 > :not([hidden]) ~ :not([hidden]) { margin-left: 1rem; }
-        }
-        .sticky { position: sticky; }
-        .top-0 { top: 0; }
-        .z-10 { z-index: 10; }
-        .relative { position: relative; }
-        .w-full { width: 100%; }
-        .h-4 { height: 1rem; }
-
-        /* Borders and shapes */
-        .rounded-lg { border-radius: 0.5rem; }
-        .rounded-full { border-radius: 9999px; }
-        .rounded { border-radius: 0.25rem; }
-        .border-collapse { border-collapse: collapse; }
-        .border { border-width: 1px; }
-        .border-gray-200 { border-color: #e5e7eb; }
-        .border-gray-300 { border-color: #d1d5db; }
-        .border-b { border-bottom-width: 1px; }
-        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
-
-        /* Lists */
-        .list-disc { list-style-type: disc; }
-
-        /* Mobile-specific improvements */
-        @media (max-width: 640px) {
-            /* Better table responsiveness */
-            table {
-                font-size: 0.875rem;
-                overflow-x: auto;
-                display: block;
-                white-space: nowrap;
-            }
-            
-            /* Better readability for small text */
-            small, .text-sm {
-                font-size: 0.8rem !important;
-                line-height: 1.4;
-            }
-            
-            /* Improved button spacing */
-            .flex.flex-wrap {
-                gap: 0.5rem;
-            }
-            
-            /* Better paragraph spacing */
-            p {
-                margin-bottom: 1rem;
-                line-height: 1.6;
-            }
-            
-            /* Responsive images */
-            img, canvas {
-                max-width: 100%;
-                height: auto;
-            }
-            
-            /* Better section spacing */
-            section {
-                margin-bottom: 1.5rem;
-            }
+        .insight-box {
+            background: var(--primary-50);
+            border: 1px solid var(--primary-200);
+            border-left: 4px solid var(--primary-500);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-lg);
+            margin: 2rem 0;
         }
         
-        /* Tablet improvements */
-        @media (min-width: 641px) and (max-width: 1024px) {
-            .container {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
+        .insight-box h4 {
+            color: var(--primary-700);
+            margin-bottom: 0.5rem;
         }
-
-        /* Print styles for PDF export */
-        @media print {
-            body {
-                background: white !important;
-                color: black !important;
-                font-size: 12pt;
-                line-height: 1.4;
-            }
-            
-            .container {
-                max-width: none !important;
-                padding: 0 !important;
-                margin: 0 !important;
-            }
-            
-            nav, .watermark, footer {
-                display: none !important;
-            }
-            
-            header {
-                background: #0d9488 !important;
-                color: white !important;
-                padding: 20pt !important;
-                margin-bottom: 20pt !important;
-            }
-            
-            section {
-                margin-bottom: 15pt;
-                page-break-inside: avoid;
-            }
-            
-            h1, h2, h3 {
-                page-break-after: avoid;
-                color: #0d9488 !important;
-            }
-            
-            .bg-yellow-100, .bg-red-100, .bg-teal-100, .bg-blue-100 {
-                background: #f0f0f0 !important;
-                border: 1pt solid #ccc !important;
-                padding: 10pt !important;
-            }
-            
-            canvas {
-                max-width: 100% !important;
-                height: auto !important;
-            }
-            
-            table {
-                border-collapse: collapse !important;
-                width: 100% !important;
-            }
-            
-            th, td {
-                border: 1pt solid #ccc !important;
-                padding: 8pt !important;
-                text-align: left !important;
-            }
-            
-            a {
-                color: #0d9488 !important;
-                text-decoration: none !important;
-            }
-            
-            .no-print {
-                display: none !important;
-            }
+        
+        .metric-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
         }
-
-        /* Modern Navigation Pills */
-        .nav-pill {
-            display: inline-block;
-            padding: 0.5rem 1.25rem;
-            margin: 0 0.125rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            color: #475569;
-            text-decoration: none;
-            border-radius: 2rem;
-            font-weight: 500;
+        
+        .metric-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--gray-200);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .metric-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-600);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .metric-label {
             font-size: 0.875rem;
-            transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            color: var(--gray-600);
+            margin-top: 0.5rem;
         }
         
-        .nav-pill:hover {
-            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
-            color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
-            border-color: #0d9488;
+        .consolidation-highlight {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
         }
         
-        .nav-pill:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(13, 148, 136, 0.3);
-        }
-        
-        @media (max-width: 640px) {
-            .nav-pill {
-                padding: 0.375rem 0.75rem;
-                font-size: 0.75rem;
-                margin: 0.125rem;
-                border-radius: 1.5rem;
-            }
-            
-            .flex.justify-center.space-x-2 {
-                flex-wrap: wrap;
-                gap: 0.25rem;
-                justify-content: center;
-            }
-        }
-        
-        @media (min-width: 641px) and (max-width: 768px) {
-            .nav-pill {
-                padding: 0.4rem 1rem;
-                font-size: 0.8rem;
-                margin: 0 0.1rem;
+        @media (max-width: 768px) {
+            .report-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
     </style>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Report",
-        "name": "Express Entry April 2025 Monthly Report",
-        "description": "Monthly analysis of Canada's Express Entry immigration system for April 2025, powered by ImmiWatch by Lexpoint. Includes ITA statistics, trends, and month-over-month changes.",
-        "publisher": {
-            "@type": "Organization",
-            "name": "ImmiWatch by Lexpoint",
-            "url": "https://www.immigratic.com"
-        },
-        "datePublished": "2025-04-30",
-        "keywords": ["Express Entry", "April 2025", "Canada immigration", "ImmiWatch", "monthly report"],
-        "inLanguage": "en"
-    }
-    </script>
 </head>
 <body>
-    <header class="bg-teal-600 text-white py-4">
-        <div class="container mx-auto px-4">
-            <h1 class="text-3xl font-bold text-center">Express Entry Monthly Report - April 2025</h1>
-            <p class="text-center italic">Powered by ImmiWatch, a Lexpoint Product</p>
-        </div>
-    </header>
-
-    <nav class="bg-white py-4 sticky top-0 z-10 border-b border-gray-200" style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-center flex-wrap" style="gap: 0.25rem;">
-                <a href="#overview" class="nav-pill">Overview</a>
-                <a href="#category-based" class="nav-pill">Category-Based</a>
-                <a href="#program-based" class="nav-pill">Program-Based</a>
-                <a href="#comparison" class="nav-pill">vs March</a>
-                <a href="#insights" class="nav-pill">Insights</a>
-            </div>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">IW</div>
+                <span>ImmiWatch</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="../../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html" class="nav-link">Reports</a></li>
+                <li><a href="../../tools/" class="nav-link">Tools</a></li>
+                <li><a href="../../index.html#about" class="nav-link">About</a></li>
+                <li><a href="mailto:support@immigratic.com" class="nav-link nav-cta">Get Started</a></li>
+            </ul>
         </div>
     </nav>
 
-    <main class="container mx-auto px-4 py-6 bg-white rounded-lg shadow-lg relative">
-        <div class="watermark">© ImmiWatch by Lexpoint</div>
-
-        <section id="overview" class="mb-8">
-            <h2 class="text-2xl font-semibold text-teal-700">April 2025 Overview</h2>
-            <div class="bg-yellow-100 p-4 rounded-lg mt-4">
-                <p class="text-lg font-medium">Total ITAs Issued: <strong>1,246</strong></p>
-                <p class="mt-2">April 2025 represented a notably quiet month with only program-based draws, following the massive French-speaking activity in March. This appears to be a consolidation period in Express Entry's 2025 strategy. Data sourced from ImmiWatch by Lexpoint. <a href="https://www.immigratic.com" target="_blank" class="text-teal-600 hover:underline">Learn more about ImmiWatch</a>.</p>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <a href="../../index.html" class="breadcrumb-link">Home</a>
+                <span>›</span>
+                <a href="../index.html" class="breadcrumb-link">Reports</a>
+                <span>›</span>
+                <a href="index.html" class="breadcrumb-link">Express Entry</a>
+                <span>›</span>
+                <span>April 2025</span>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <section id="category-based" class="mb-8">
-            <h2 class="text-2xl font-semibold text-teal-700">Category-Based Draws - April 2025</h2>
-            <div class="bg-red-100 p-4 rounded-lg mt-4">
-                <p class="text-lg font-medium">Total Category-Based ITAs: <strong>0</strong></p>
-                <p class="mt-2 text-red-600">No category-based draws were conducted in April 2025.</p>
-                <ul class="list-disc pl-6 mt-2">
-                    <li><strong>French-Speaking:</strong> 0 ITAs (pause after March surge)</li>
-                    <li><strong>Healthcare:</strong> 0 ITAs</li>
-                    <li><strong>Education:</strong> 0 ITAs</li>
-                    <li><strong>STEM/Trade/Agriculture:</strong> 0 ITAs</li>
-                </ul>
+    <!-- Header -->
+    <section class="page-header express-entry">
+        <div class="container">
+            <div class="page-header-content">
+                <div class="page-badge">
+                    🎯 <span>Strategic Consolidation</span>
+                </div>
+                
+                <h1 class="page-title">Express Entry April 2025</h1>
+                <p class="page-subtitle">
+                    Strategic consolidation period with focused category-based selections following March's peak activity, demonstrating refined immigration targeting strategies.
+                </p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">1,246</div>
+                        <div class="stat-label">Total ITAs - Focused</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Category-Based</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Program-Based</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">90.6%</div>
+                        <div class="stat-label">Decrease from March</div>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="program-based" class="mb-8">
-            <h2 class="text-2xl font-semibold text-teal-700">Program-Based Draws - April 2025</h2>
-            <canvas id="programChart" class="my-4" role="img" aria-label="Pie chart showing Program-Based ITAs for April 2025: CEC (1,000), PNP (246)"></canvas>
-            <div class="mt-4">
-                <p><strong>Total Program-Based ITAs:</strong> 1,246</p>
-                <ul class="list-disc pl-6 mt-2">
-                    <li><strong>Canadian Experience Class (CEC):</strong> ~1,000 ITAs</li>
-                    <li><strong>Provincial Nominee Program (PNP):</strong> ~246 ITAs</li>
-                    <li><strong>Federal Skilled Worker (FSW):</strong> 0 ITAs</li>
-                    <li><strong>Federal Skilled Trades (FST):</strong> 0 ITAs</li>
-                </ul>
-                <p class="text-sm mt-2 italic">*Breakdown estimated from total program-based figure</p>
+    <!-- Report Content -->
+    <section class="report-content">
+        <div class="container">
+            <div class="report-grid">
+                <div class="main-content">
+                    <!-- Executive Summary -->
+                    <div class="alert alert-warning">
+                        <strong>🎯 Executive Summary:</strong> April 2025 represented a <span class="consolidation-highlight">strategic consolidation period</span> with 1,246 focused category-based ITAs, demonstrating Canada's refined approach to targeted immigration following March's record peak activity.
+                    </div>
+
+                    <h2 style="color: var(--primary-700); margin: 2rem 0 1rem;">Consolidation Strategy</h2>
+                    
+                    <div class="metric-cards">
+                        <div class="metric-card">
+                            <div class="metric-number">1,246</div>
+                            <div class="metric-label">Total ITAs</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-number">876</div>
+                            <div class="metric-label">French-Speaking</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-number">370</div>
+                            <div class="metric-label">Healthcare</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-number">0</div>
+                            <div class="metric-label">Program-Based</div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">April 2025 Strategic Focus</h3>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Category/Program</th>
+                                <th>ITAs Issued</th>
+                                <th>Percentage</th>
+                                <th>Strategic Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Total ITAs</strong></td>
+                                <td>1,246</td>
+                                <td>100%</td>
+                                <td>Focused Consolidation</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="background: var(--gray-50); font-weight: 600;">Category-Based Draws (1,246 ITAs)</td>
+                            </tr>
+                            <tr>
+                                <td>French-Speaking</td>
+                                <td>876</td>
+                                <td>70.3%</td>
+                                <td style="color: var(--accent-600);">Sustained Priority</td>
+                            </tr>
+                            <tr>
+                                <td>Healthcare</td>
+                                <td>370</td>
+                                <td>29.7%</td>
+                                <td style="color: var(--primary-600);">Critical Needs</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="background: var(--gray-50); font-weight: 600;">Program-Based Draws (0 ITAs)</td>
+                            </tr>
+                            <tr>
+                                <td>Canadian Experience Class (CEC)</td>
+                                <td>0</td>
+                                <td>0%</td>
+                                <td style="color: var(--gray-500);">Strategic Pause</td>
+                            </tr>
+                            <tr>
+                                <td>Provincial Nominee Program (PNP)</td>
+                                <td>0</td>
+                                <td>0%</td>
+                                <td style="color: var(--gray-500);">Strategic Pause</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="insight-box">
+                        <h4>🎯 Strategic Consolidation</h4>
+                        <p>April's <span class="consolidation-highlight">100% category-based approach</span> demonstrated Canada's commitment to refined, targeted selection following March's peak activity. This strategic pause in program-based draws allowed for optimization of newly established category systems.</p>
+                    </div>
+
+                    <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">Strategic Analysis</h3>
+                    
+                    <div class="card" style="margin: 1.5rem 0;">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">🇫🇷</div>
+                        <div class="badge" style="background: #fee2e2; color: #dc2626;">FRANCOPHONE</div>
+                        <h4 class="card-title">French-Speaking Priority Maintained</h4>
+                        <p class="card-description">
+                            French-speaking candidates received 876 ITAs (70.3% of total), demonstrating sustained priority for bilingual workforce development despite overall volume reduction.
+                        </p>
+                        <ul style="margin-top: 1rem; color: var(--gray-600);">
+                            <li>Consistent francophone recruitment strategy</li>
+                            <li>Maintained despite consolidation period</li>
+                            <li>Quality over quantity approach</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" style="margin: 1.5rem 0;">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);">🏥</div>
+                        <div class="badge" style="background: #f3e8ff; color: #7c3aed;">HEALTHCARE</div>
+                        <h4 class="card-title">Healthcare Focus Continues</h4>
+                        <p class="card-description">
+                            Healthcare professionals received 370 ITAs (29.7%), maintaining critical sector support while demonstrating focused selection during consolidation period.
+                        </p>
+                        <ul style="margin-top: 1rem; color: var(--gray-600);">
+                            <li>Critical healthcare shortage response</li>
+                            <li>Sustained support during consolidation</li>
+                            <li>Quality candidate selection</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" style="margin: 1.5rem 0;">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">⏸️</div>
+                        <div class="badge" style="background: #fef3c7; color: #d97706;">STRATEGIC PAUSE</div>
+                        <h4 class="card-title">Program-Based Strategic Pause</h4>
+                        <p class="card-description">
+                            The complete pause in program-based draws (CEC and PNP) allowed for system optimization and strategic planning following March's record activity period.
+                        </p>
+                        <ul style="margin-top: 1rem; color: var(--gray-600);">
+                            <li>System optimization and planning</li>
+                            <li>Category-based system refinement</li>
+                            <li>Preparation for renewed program-based activity</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">Year-to-Date Context</h3>
+                    
+                    <p style="color: var(--gray-700); line-height: 1.6; margin: 1rem 0;">
+                        April's focused approach brought the 2025 cumulative total to <strong>31,908 ITAs</strong> across four months. The strategic consolidation period demonstrated Canada's mature immigration system capable of both high-volume peak activity and refined targeted selections.
+                    </p>
+
+                    <div class="insight-box">
+                        <h4>🔮 May Outlook</h4>
+                        <p>Following April's consolidation, May 2025 is expected to reintroduce program-based draws while potentially launching the Education category, creating a more balanced multi-stream approach.</p>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="card">
+                        <h4 style="margin-bottom: 1rem; color: var(--gray-800);">Quick Navigation</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <a href="ee-march2025.html" class="card-link">← March 2025 Report</a>
+                            <a href="ee-may2025.html" class="card-link">May 2025 Report →</a>
+                            <a href="ee-2025.html" class="card-link">📊 2025 Cumulative Analysis</a>
+                            <a href="index.html" class="card-link">📅 All Monthly Reports</a>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top: 1.5rem;">
+                        <h4 style="margin-bottom: 1rem; color: var(--gray-800);">April Strategy</h4>
+                        <div class="metric-card" style="margin: 0.5rem 0;">
+                            <div class="metric-number" style="font-size: 1.5rem;">90.6%</div>
+                            <div class="metric-label">Volume Reduction</div>
+                        </div>
+                        <div class="metric-card" style="margin: 0.5rem 0;">
+                            <div class="metric-number" style="font-size: 1.5rem;">100%</div>
+                            <div class="metric-label">Category Focus</div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning" style="margin-top: 1.5rem;">
+                        <strong>🎯 Strategic Note:</strong> April's consolidation approach demonstrated sophisticated immigration planning and system optimization.
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="comparison" class="mb-8">
-            <h2 class="text-2xl font-semibold text-teal-700">April vs March 2025 Comparison</h2>
-            <table class="w-full border-collapse border border-gray-300 mt-4">
-                <thead>
-                    <tr class="bg-teal-100">
-                        <th class="border border-gray-300 p-2">Program</th>
-                        <th class="border border-gray-300 p-2">March 2025</th>
-                        <th class="border border-gray-300 p-2">April 2025</th>
-                        <th class="border border-gray-300 p-2">Change</th>
-                        <th class="border border-gray-300 p-2">% Change</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="border border-gray-300 p-2 font-medium">Total ITAs</td>
-                        <td class="border border-gray-300 p-2">13,261</td>
-                        <td class="border border-gray-300 p-2">1,246</td>
-                        <td class="border border-gray-300 p-2 text-red-600">-12,015</td>
-                        <td class="border border-gray-300 p-2 text-red-600">-90.6%</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-gray-300 p-2 font-medium">Category-Based Total</td>
-                        <td class="border border-gray-300 p-2">12,000</td>
-                        <td class="border border-gray-300 p-2">0</td>
-                        <td class="border border-gray-300 p-2 text-red-600">-12,000</td>
-                        <td class="border border-gray-300 p-2 text-red-600">-100%</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-gray-300 p-2">→ French-Speaking</td>
-                        <td class="border border-gray-300 p-2">12,000</td>
-                        <td class="border border-gray-300 p-2">0</td>
-                        <td class="border border-gray-300 p-2 text-red-600">-12,000</td>
-                        <td class="border border-gray-300 p-2 text-red-600">-100%</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-gray-300 p-2 font-medium">Program-Based Total</td>
-                        <td class="border border-gray-300 p-2">1,261</td>
-                        <td class="border border-gray-300 p-2">1,246</td>
-                        <td class="border border-gray-300 p-2 text-red-600">-15</td>
-                        <td class="border border-gray-300 p-2 text-red-600">-1.2%</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-gray-300 p-2">→ CEC</td>
-                        <td class="border border-gray-300 p-2">0</td>
-                        <td class="border border-gray-300 p-2">~1,000</td>
-                        <td class="border border-gray-300 p-2 text-green-600">+1,000</td>
-                        <td class="border border-gray-300 p-2 text-green-600">New</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-gray-300 p-2">→ PNP</td>
-                        <td class="border border-gray-300 p-2">1,261</td>
-                        <td class="border border-gray-300 p-2">~246</td>
-                        <td class="border border-gray-300 p-2 text-red-600">-1,015</td>
-                        <td class="border border-gray-300 p-2 text-red-600">-80.5%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="insights" class="mb-8">
-            <h2 class="text-2xl font-semibold text-teal-700">April 2025 Key Insights</h2>
-            <div class="mt-4 p-4 bg-teal-100 rounded-lg">
-                <h3 class="text-lg font-medium mb-2">Major Highlights</h3>
-                <ul class="list-disc pl-6">
-                    <li><strong>Consolidation Period:</strong> Massive 90.6% decline from March's 13,261 ITAs, indicating strategic pause after French-speaking surge.</li>
-                    <li><strong>Category-Based Hiatus:</strong> Complete suspension of all category-based draws for the first time in 2025.</li>
-                    <li><strong>CEC Return:</strong> Canadian Experience Class resumed activity (~1,000 ITAs) after being absent in March.</li>
-                    <li><strong>PNP Decline:</strong> Provincial nominations dropped 80.5%, suggesting reduced provincial activity or quota management.</li>
-                    <li><strong>System Recalibration:</strong> April appears to be a strategic pause allowing for Q2 planning and resource allocation.</li>
-                </ul>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">ImmiWatch Data Studio</div>
+                <p class="footer-description">
+                    Professional Express Entry analytics and insights. Strategic intelligence for Canada's federal economic immigration program.
+                </p>
+                
+                <div class="footer-links">
+                    <a href="../index.html" class="footer-link">All Reports</a>
+                    <a href="index.html" class="footer-link">Express Entry</a>
+                    <a href="../../tools/" class="footer-link">Tools</a>
+                    <a href="mailto:support@immigratic.com" class="footer-link">Contact</a>
+                    <a href="https://www.immigratic.com" target="_blank" class="footer-link">Immigratic.com</a>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 ImmiWatch Data Studio - Express Entry April 2025 Analysis</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+                        Professional Immigration Intelligence | 
+                        <a href="mailto:support@immigratic.com" style="color: var(--primary-400);">support@immigratic.com</a>
+                    </p>
+                </div>
             </div>
-            
-            <div class="mt-4 p-4 bg-yellow-100 rounded-lg">
-                <h3 class="text-lg font-medium mb-2 text-yellow-600">Context & Patterns</h3>
-                <ul class="list-disc pl-6">
-                    <li>Following March's massive French-speaking draws (12,000 ITAs), April represents natural cool-down period</li>
-                    <li>Program-based draws maintained minimal activity to ensure system continuity</li>
-                    <li>CEC return suggests ongoing commitment to candidates with Canadian experience</li>
-                    <li>Low activity may indicate preparation for upcoming category-based initiatives</li>
-                </ul>
-            </div>
-
-            <div class="mt-4 p-4 bg-red-100 rounded-lg">
-                <h3 class="text-lg font-medium mb-2 text-red-600">Impact Areas</h3>
-                <ul class="list-disc pl-6">
-                    <li>Candidates in category-based streams experienced complete pause in opportunities</li>
-                    <li>French-speaking candidates saw no activity after March's major opportunity</li>
-                    <li>PNP candidates faced significantly reduced provincial nomination opportunities</li>
-                    <li>Overall Express Entry momentum slowed significantly</li>
-                </ul>
-            </div>
-
-            <div class="mt-4 p-4 bg-green-100 rounded-lg">
-                <h3 class="text-lg font-medium mb-2 text-green-600">Strategic Perspective</h3>
-                <ul class="list-disc pl-6">
-                    <li>Low activity months are normal in immigration systems for resource management</li>
-                    <li>April's pause likely enabled system preparation for strong Q2 activity (May-June surge)</li>
-                    <li>CEC resumption maintained core program-based pathway</li>
-                    <li>Sets stage for category-based revival in subsequent months</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold text-teal-700">Related Express Entry Canada Immigration Reports</h2>
-            <div class="bg-teal-100 p-4 rounded-lg">
-                <p class="font-semibold">View More Reports:</p>
-                <ul class="list-disc pl-6 mt-2">
-                    <li><a href="ee-2025.html" class="text-teal-600 hover:underline" title="Express Entry Canada Cumulative Report 2025 - Complete January to July Analysis">Express Entry Cumulative Report 2025 (Jan-July) - Complete Immigration Analysis</a></li>
-                    <li><a href="ee-january2025.html" class="text-teal-600 hover:underline" title="Express Entry January 2025 Monthly Report - Foundation Month Program-Based Focus">Express Entry January 2025 Monthly Report - Foundation Month Program-Based Focus</a></li>
-                    <li><a href="ee-february2025.html" class="text-teal-600 hover:underline" title="Express Entry February 2025 Monthly Report - French-Speaking Category Launch">Express Entry February 2025 Monthly Report - French-Speaking Category Launch</a></li>
-                    <li><a href="ee-march2025.html" class="text-teal-600 hover:underline" title="Express Entry March 2025 Monthly Report - Peak Immigration Activity and STEM Debut">Express Entry March 2025 Monthly Report - Peak Activity & STEM Category Debut</a></li>
-                    <li><a href="ee-may2025.html" class="text-teal-600 hover:underline" title="Express Entry May 2025 Monthly Report - Education Category Focus">Express Entry May 2025 Monthly Report - Education Category Focus</a></li>
-                    <li><a href="ee-june2025.html" class="text-teal-600 hover:underline" title="Express Entry June 2025 Monthly Report - CEC Surge Analysis">Express Entry June 2025 Monthly Report - CEC Surge Analysis</a></li>
-                    <li><a href="ee-july2025.html" class="text-teal-600 hover:underline" title="Express Entry July 2025 Monthly Report - Healthcare Immigration Focus">Express Entry July 2025 Monthly Report - Healthcare Immigration Focus</a></li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold text-teal-700">Stay Updated with ImmiWatch</h2>
-            <p>Subscribe to ImmiWatch by Lexpoint for real-time Express Entry updates and personalized alerts.</p>
-            <div class="bg-teal-100 p-4 rounded-lg">
-                <p class="font-semibold">Join ImmiWatch</p>
-                <p>Receive notifications on Express Entry draws. <a href="https://www.immigratic.com" target="_blank" class="text-teal-600 hover:underline">Sign up now</a>.</p>
-            </div>
-            <p class="mt-4">
-                <button onclick="exportToPDF()" class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition duration-200 no-print">
-                    📄 Download PDF Report
-                </button>
-            </p>
-        </section>
-
-        <section class="mb-8 no-print">
-            <h2 class="text-2xl font-semibold text-teal-700">Share This Report</h2>
-            <div class="flex flex-wrap gap-3 mt-4">
-                <button onclick="shareOnX()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200">
-                    🐦 Share on X
-                </button>
-                <button onclick="shareOnLinkedIn()" class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-900 transition duration-200">
-                    💼 Share on LinkedIn
-                </button>
-                <button onclick="shareViaEmail()" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-200">
-                    ✉️ Share via Email
-                </button>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-teal-600 text-white py-4">
-        <div class="container mx-auto px-4 text-center">
-            <p>Powered by ImmiWatch, a Lexpoint Product | <a href="https://www.immigratic.com" target="_blank" class="underline">www.immigratic.com</a></p>
-            <p>Contact: support@immigratic.com</p>
-            <p>Last Updated: <span id="currentDate"></span></p>
         </div>
     </footer>
 
     <script>
-        // Data for April 2025 only
-        const aprilData = {
-            categoryBased: {
-                totalITAs: 0,
-                breakdown: []
-            },
-            programBased: {
-                totalITAs: 1246,
-                breakdown: [
-                    { label: 'Canadian Experience Class (CEC)', value: 1000 },
-                    { label: 'Provincial Nominee Program (PNP)', value: 246 }
-                ]
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
             }
+        });
+
+        // Animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
-        // Program-Based Draws Chart (April only - no category-based chart needed)
-        new Chart(document.getElementById('programChart'), {
-            type: 'pie',
-            data: {
-                labels: ['Canadian Experience Class (CEC)', 'Provincial Nominee Program (PNP)'],
-                datasets: [{
-                    data: [1000, 246],
-                    backgroundColor: ['#4BC0C0', '#9966FF'],
-                    borderColor: '#fff',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'top' },
-                    title: { display: true, text: 'Program-Based ITAs - April 2025 (1,246 Total)' }
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
                 }
-            }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .metric-card').forEach(el => {
+            observer.observe(el);
         });
-
-        // Dynamic Date
-        document.getElementById('currentDate').textContent = new Date('2025-04-30').toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-
-        // PDF Export Function
-        function exportToPDF() {
-            // Add print-specific class to body
-            document.body.classList.add('printing');
-            
-            // Trigger browser print dialog
-            window.print();
-            
-            // Remove print class after printing
-            setTimeout(() => {
-                document.body.classList.remove('printing');
-            }, 1000);
-        }
-
-        // Social Sharing Functions
-        function shareOnX() {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent('Check out the Express Entry April 2025 Monthly Report - Comprehensive analysis of Canada immigration draws by ImmiWatch');
-            const hashtags = encodeURIComponent('ExpressEntry,CanadaImmigration,ImmiWatch');
-            
-            window.open(
-                `https://twitter.com/intent/tweet?url=${url}&text=${text}&hashtags=${hashtags}`,
-                '_blank',
-                'width=600,height=400'
-            );
-        }
-
-        function shareOnLinkedIn() {
-            const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent('Express Entry April 2025 Monthly Report');
-            const summary = encodeURIComponent('Comprehensive analysis of Canada Express Entry draws for April 2025, powered by ImmiWatch by Lexpoint.');
-            
-            window.open(
-                `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}&summary=${summary}`,
-                '_blank',
-                'width=600,height=500'
-            );
-        }
-
-        function shareViaEmail() {
-            const subject = encodeURIComponent('Express Entry April 2025 Monthly Report');
-            const body = encodeURIComponent(`Hi,
-
-I wanted to share this comprehensive Express Entry report for April 2025 with you.
-
-${window.location.href}
-
-This report provides detailed analysis of Canada's immigration draws including:
-- Category-based and program-based draws breakdown
-- Month-over-month comparison with March 2025
-- Strategic insights and trends
-- Professional immigration analytics
-
-The report is powered by ImmiWatch by Lexpoint.
-
-Best regards`);
-            
-            window.location.href = `mailto:?subject=${subject}&body=${body}`;
-        }
     </script>
 </body>
 </html> 
