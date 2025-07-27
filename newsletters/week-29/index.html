@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ImmiWatch Weekly Week 29 2025 - Express Entry draw, Ontario PNP updates, federal court ruling on study permits, and IRCC portal maintenance notices.">
+    <meta name="keywords" content="Express Entry Week 29 2025, Ontario PNP updates, study permit ruling, IRCC portal, immigration news">
+    <title>Week 29 • July 15-21, 2025 | ImmiWatch Weekly</title>
+    
+    <!-- Favicon - Aggressive cache busting -->
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg?v=3&t=1737962580">
+    <link rel="shortcut icon" href="../../favicon.svg?v=3&t=1737962580">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../favicon.svg?v=3&t=1737962580">
+    <meta name="msapplication-TileColor" content="#4338ca">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="../../assets/css/shared-styles.css">
+    
+    <style>
+        /* Newsletter-specific styles */
+        .newsletter-nav {
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 0;
+            position: sticky;
+            top: 70px;
+            z-index: 40;
+        }
+        
+        .newsletter-nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .newsletter-nav a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-md);
+            transition: var(--transition-normal);
+        }
+        
+        .newsletter-nav a:hover {
+            background: var(--primary-100);
+            color: var(--primary-600);
+        }
+        
+        .newsletter-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            border-left: 6px solid var(--primary-600);
+        }
+        
+        .newsletter-section.policy { border-left-color: var(--primary-600); }
+        .newsletter-section.invitation { border-left-color: var(--success-500); }
+        .newsletter-section.legal { border-left-color: var(--accent-500); }
+        .newsletter-section.program { border-left-color: var(--warning-500); }
+        .newsletter-section.portal { border-left-color: var(--gray-600); }
+        .newsletter-section.forms { border-left-color: var(--primary-400); }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--border-radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .section-icon.policy { background: var(--primary-100); color: var(--primary-600); }
+        .section-icon.invitation { background: var(--success-100); color: var(--success-600); }
+        .section-icon.legal { background: var(--accent-100); color: var(--accent-600); }
+        .section-icon.program { background: var(--warning-100); color: var(--warning-600); }
+        .section-icon.portal { background: var(--gray-100); color: var(--gray-600); }
+        .section-icon.forms { background: var(--primary-100); color: var(--primary-400); }
+        
+        .news-item {
+            padding: 1.5rem;
+            margin: 1rem 0;
+            background: var(--gray-50);
+            border-radius: var(--border-radius-md);
+            border-left: 4px solid var(--primary-200);
+        }
+        
+        .news-item h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--gray-900);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .news-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+        
+        .impact-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .impact-high { background: var(--accent-100); color: var(--accent-600); }
+        .impact-medium { background: var(--warning-100); color: var(--warning-600); }
+        .impact-low { background: var(--success-100); color: var(--success-600); }
+        
+        .share-section {
+            background: var(--primary-50);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .week-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--gray-50);
+            border-radius: var(--border-radius-lg);
+        }
+        
+        .week-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border-radius: var(--border-radius-md);
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-normal);
+        }
+        
+        .week-nav-link:hover {
+            background: var(--primary-600);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        @media (max-width: 768px) {
+            .newsletter-nav ul {
+                gap: 1rem;
+            }
+            
+            .newsletter-nav a {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .newsletter-section {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+            
+            .week-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <a href="../../" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <span class="logo-main">ImmiWatch</span>
+                    <span class="logo-subtitle">By Lexpoint.io</span>
+                </div>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="../../" class="nav-link">Home</a></li>
+                <li><a href="../../reports/" class="nav-link">Reports</a></li>
+                <li><a href="../../tools/" class="nav-link">Tools</a></li>
+                <li><a href="../" class="nav-link active">Newsletter</a></li>
+                <li><a href="../../#about" class="nav-link">About</a></li>
+                <li><a href="mailto:support@immigratic.com" class="nav-link nav-cta">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <a href="../../" class="breadcrumb-link">Home</a>
+                <span>›</span>
+                <a href="../" class="breadcrumb-link">Newsletter</a>
+                <span>›</span>
+                <span>Week 29</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <section class="page-header section-hero">
+        <div class="container">
+            <div class="page-header-content">
+                <div class="page-badge">
+                    📰 <span>ImmiWatch Weekly • Issue #29</span>
+                </div>
+                
+                <h1 class="page-title">Week 29 • July 15-21, 2025</h1>
+                <p class="page-subtitle">
+                    Major Express Entry draw with 4,750 ITAs, Ontario PNP expands eligible occupations, Federal Court ruling affects study permit renewals, and critical IRCC portal maintenance scheduled.
+                </p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Major Updates</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4,750</div>
+                        <div class="stat-label">Express Entry ITAs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Court Rulings</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Navigation -->
+    <div class="newsletter-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#invitation-rounds">🎯 Invitation Rounds</a></li>
+                <li><a href="#policy-announcements">📢 Policy Updates</a></li>
+                <li><a href="#legal-decisions">⚖️ Legal Decisions</a></li>
+                <li><a href="#portal-notices">🌐 Portal Notices</a></li>
+                <li><a href="#program-updates">🔄 Program Updates</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Summary Section -->
+        <section class="newsletter-section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--primary-100); color: var(--primary-600);">📊</div>
+                <div>
+                    <h2>Week in Review</h2>
+                    <p style="margin: 0; color: var(--gray-600);">Key developments across Canadian immigration this week</p>
+                </div>
+            </div>
+            
+            <div style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div style="padding: 1rem; background: var(--success-50); border-radius: var(--border-radius-md); border: 1px solid var(--success-200);">
+                    <h4 style="margin: 0 0 0.5rem 0; color: var(--success-600);">✅ Positive Developments</h4>
+                    <ul style="margin: 0; padding-left: 1.2rem; color: var(--gray-600);">
+                        <li>Major Express Entry draw (4,750 ITAs)</li>
+                        <li>Ontario PNP occupation expansion</li>
+                        <li>Processing time improvements</li>
+                    </ul>
+                </div>
+                
+                <div style="padding: 1rem; background: var(--warning-50); border-radius: var(--border-radius-md); border: 1px solid var(--warning-200);">
+                    <h4 style="margin: 0 0 0.5rem 0; color: var(--warning-600);">⚠️ Important Changes</h4>
+                    <ul style="margin: 0; padding-left: 1.2rem; color: var(--gray-600);">
+                        <li>Study permit renewal requirements</li>
+                        <li>IRCC portal maintenance window</li>
+                        <li>New form versions released</li>
+                    </ul>
+                </div>
+                
+                <div style="padding: 1rem; background: var(--accent-50); border-radius: var(--border-radius-md); border: 1px solid var(--accent-200);">
+                    <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-600);">🚨 Critical Alerts</h4>
+                    <ul style="margin: 0; padding-left: 1.2rem; color: var(--gray-600);">
+                        <li>Federal Court ruling impacts</li>
+                        <li>Portal downtime: July 26-27</li>
+                        <li>Urgent form updates required</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Invitation Rounds -->
+        <section id="invitation-rounds" class="newsletter-section invitation">
+            <div class="section-header">
+                <div class="section-icon invitation">🎯</div>
+                <div>
+                    <h2>Invitation Rounds</h2>
+                    <p style="margin: 0; color: var(--gray-600);">Express Entry and Provincial Nominee Program draws</p>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-meta">
+                    <span>📅 July 17, 2025</span>
+                    <span class="impact-badge impact-high">High Impact</span>
+                    <span>🇨🇦 Federal</span>
+                </div>
+                <h4>Express Entry General Draw #267 - 4,750 ITAs Issued</h4>
+                <p>Immigration, Refugees and Citizenship Canada (IRCC) conducted a significant Express Entry draw, issuing 4,750 Invitations to Apply (ITAs) with a minimum Comprehensive Ranking System (CRS) score of 491.</p>
+                
+                <div style="background: var(--gray-100); padding: 1rem; border-radius: var(--border-radius-md); margin: 1rem 0;">
+                    <h5 style="margin: 0 0 0.5rem 0;">Draw Details:</h5>
+                    <ul style="margin: 0; padding-left: 1.2rem;">
+                        <li><strong>ITAs Issued:</strong> 4,750</li>
+                        <li><strong>Minimum CRS Score:</strong> 491 points</li>
+                        <li><strong>Draw Date:</strong> July 17, 2025</li>
+                        <li><strong>Tie-breaking Rule:</strong> June 8, 2025 at 14:32:15 UTC</li>
+                    </ul>
+                </div>
+                
+                <p><strong>Strategic Impact:</strong> This large draw indicates continued high demand for skilled immigrants and maintains the recent trend of sub-500 CRS scores, providing opportunities for well-prepared candidates.</p>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-meta">
+                    <span>📅 July 19, 2025</span>
+                    <span class="impact-badge impact-medium">Medium Impact</span>
+                    <span>🏢 Ontario PNP</span>
+                </div>
+                <h4>Ontario PNP Expands In-Demand Skills Stream Eligible Occupations</h4>
+                <p>Ontario Immigrant Nominee Program (OINP) announced the addition of 12 new eligible occupations to the In-Demand Skills Stream, particularly focusing on healthcare support and skilled trades.</p>
+                
+                <p><strong>Professional Insight:</strong> This expansion reflects Ontario's targeted approach to addressing specific labor market needs, particularly in sectors experiencing acute shortages.</p>
+            </div>
+        </section>
+
+        <!-- Policy Announcements -->
+        <section id="policy-announcements" class="newsletter-section policy">
+            <div class="section-header">
+                <div class="section-icon policy">📢</div>
+                <div>
+                    <h2>Policy Announcements</h2>
+                    <p style="margin: 0; color: var(--gray-600);">Government policy changes and program updates</p>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-meta">
+                    <span>📅 July 16, 2025</span>
+                    <span class="impact-badge impact-high">High Impact</span>
+                    <span>🇨🇦 IRCC</span>
+                </div>
+                <h4>Enhanced Processing Standards for Study Permit Renewals</h4>
+                <p>IRCC announced updated processing standards for study permit renewals, introducing new documentation requirements and expedited processing for certain categories of students.</p>
+                
+                <p><strong>Key Changes:</strong> Students must now provide enhanced proof of enrollment and financial support. Processing times reduced to 14 days for students in designated learning institutions with clean compliance records.</p>
+            </div>
+        </section>
+
+        <!-- Legal Decisions -->
+        <section id="legal-decisions" class="newsletter-section legal">
+            <div class="section-header">
+                <div class="section-icon legal">⚖️</div>
+                <div>
+                    <h2>Legal Decisions</h2>
+                    <p style="margin: 0; color: var(--gray-600);">Court rulings and tribunal decisions affecting immigration</p>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-meta">
+                    <span>📅 July 18, 2025</span>
+                    <span class="impact-badge impact-high">High Impact</span>
+                    <span>⚖️ Federal Court</span>
+                </div>
+                <h4>Federal Court Rules on Study Permit Renewal Documentation Requirements</h4>
+                <p>In <em>Chen v. Canada (IRCC)</em>, the Federal Court ruled that students have the right to submit additional documentation during study permit renewal reviews, even after initial submission.</p>
+                
+                <p><strong>Legal Precedent:</strong> This ruling establishes procedural fairness requirements for study permit renewals and may impact future application processing protocols.</p>
+            </div>
+        </section>
+
+        <!-- Portal Notices -->
+        <section id="portal-notices" class="newsletter-section portal">
+            <div class="section-header">
+                <div class="section-icon portal">🌐</div>
+                <div>
+                    <h2>System Portal Notices</h2>
+                    <p style="margin: 0; color: var(--gray-600);">Technical updates and maintenance announcements</p>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-meta">
+                    <span>📅 July 20, 2025</span>
+                    <span class="impact-badge impact-high">High Impact</span>
+                    <span>💻 IRCC Portal</span>
+                </div>
+                <h4>Critical IRCC Portal Maintenance: July 26-27, 2025</h4>
+                <p>IRCC announced a major system maintenance window that will affect all online services, including application submissions and status checking.</p>
+                
+                <div style="background: var(--accent-50); padding: 1rem; border-radius: var(--border-radius-md); margin: 1rem 0; border: 1px solid var(--accent-200);">
+                    <h5 style="margin: 0 0 0.5rem 0; color: var(--accent-600);">⚠️ Important Advisory:</h5>
+                    <p style="margin: 0;"><strong>Downtime:</strong> Saturday, July 26, 2025 (6:00 PM EST) to Sunday, July 27, 2025 (11:59 PM EST)</p>
+                    <p style="margin: 0.5rem 0 0 0;"><strong>Affected Services:</strong> All IRCC online applications, Express Entry profile management, and application status tracking.</p>
+                </div>
+                
+                <p><strong>Strategic Recommendation:</strong> Clients should complete any urgent submissions before the maintenance window and plan accordingly for the 30-hour service interruption.</p>
+            </div>
+        </section>
+
+        <!-- Program Updates -->
+        <section id="program-updates" class="newsletter-section program">
+            <div class="section-header">
+                <div class="section-icon program">🔄</div>
+                <div>
+                    <h2>Program Delivery Updates</h2>
+                    <p style="margin: 0; color: var(--gray-600);">Processing improvements and operational changes</p>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-meta">
+                    <span>📅 July 21, 2025</span>
+                    <span class="impact-badge impact-medium">Medium Impact</span>
+                    <span>⚡ Processing</span>
+                </div>
+                <h4>Express Entry Processing Time Improvement</h4>
+                <p>IRCC reported a 15% improvement in Express Entry processing times, with 80% of complete applications now processed within 5 months.</p>
+                
+                <p><strong>Operational Impact:</strong> This improvement reflects enhanced digital processing capabilities and may indicate sustained capacity for higher invitation volumes.</p>
+            </div>
+        </section>
+
+        <!-- Share Section -->
+        <div class="share-section">
+            <h3 style="margin: 0 0 1rem 0; color: var(--primary-600);">📤 Share This Newsletter</h3>
+            <p style="margin: 0 0 1.5rem 0; color: var(--gray-600);">Help your colleagues stay informed about Canadian immigration updates</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="mailto:?subject=ImmiWatch Weekly - Week 29&body=Check out this comprehensive immigration update: https://immiwatch.ca/newsletters/week-29/" style="background: var(--primary-600); color: white; padding: 0.75rem 1.5rem; border-radius: var(--border-radius-md); text-decoration: none; font-weight: 500;">
+                    📧 Email
+                </a>
+                <a href="#" onclick="navigator.share({title: 'ImmiWatch Weekly - Week 29', url: window.location.href})" style="background: var(--success-500); color: white; padding: 0.75rem 1.5rem; border-radius: var(--border-radius-md); text-decoration: none; font-weight: 500;">
+                    📱 Share
+                </a>
+                <a href="javascript:window.print()" style="background: var(--gray-600); color: white; padding: 0.75rem 1.5rem; border-radius: var(--border-radius-md); text-decoration: none; font-weight: 500;">
+                    🖨️ Print
+                </a>
+            </div>
+        </div>
+
+        <!-- Week Navigation -->
+        <div class="week-navigation">
+            <a href="../week-28/" class="week-nav-link">
+                <span>←</span>
+                <div>
+                    <div style="font-weight: 600;">Previous Week</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">Week 28 • July 8-14</div>
+                </div>
+            </a>
+            
+            <a href="../" style="color: var(--primary-600); text-decoration: none; font-weight: 600;">
+                📰 All Newsletters
+            </a>
+            
+            <div style="color: var(--gray-400); font-weight: 500;">
+                <div>Next Week</div>
+                <div style="font-size: 0.9rem;">Week 30 • Coming Soon</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon"></div>
+                        <div class="logo-text">
+                            <span class="logo-main">ImmiWatch</span>
+                            <span class="logo-subtitle">By Lexpoint.io</span>
+                        </div>
+                    </div>
+                    <p>Canada's most comprehensive immigration intelligence platform.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="../../" class="footer-link">Home</a>
+                    <a href="../../reports/" class="footer-link">Reports</a>
+                    <a href="../../tools/" class="footer-link">Tools</a>
+                    <a href="../" class="footer-link">Newsletter</a>
+                    <a href="mailto:support@immigratic.com" class="footer-link">Contact</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ImmiWatch. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
