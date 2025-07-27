@@ -649,7 +649,7 @@
         
         /* Simple, Reliable Mobile Menu */
         .nav-menu.mobile-open {
-            display: block !important;
+            display: flex !important;
             position: fixed;
             top: 0;
             left: 0;
@@ -661,17 +661,20 @@
                 rgba(55, 48, 163, 0.98) 100%);
             backdrop-filter: blur(30px);
             z-index: 50;
-            padding: 6rem 2rem 2rem;
+            padding: 2rem;
             overflow-y: auto;
             list-style: none;
             margin: 0;
-            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         
         .nav-menu.mobile-open li {
             display: block !important;
-            width: 100%;
-            margin: 2rem 0;
+            width: auto;
+            margin: 1rem 0;
             opacity: 1 !important;
             transform: none !important;
         }
@@ -757,7 +760,7 @@
             }
             
             .nav-menu.mobile-open {
-                display: block !important;
+                display: flex !important;
             }
             
             .mobile-menu-btn {
