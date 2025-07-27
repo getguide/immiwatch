@@ -3,25 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Express Entry July 2025 report - Strategic mid-year analysis with program-specific targeting, 6,850 ITAs issued, and Q3 outlook for Canada's federal economic immigration.">
-    <meta name="keywords" content="Express Entry July 2025, immigration draws, CRS scores, Canada Express Entry mid-year, federal skilled worker">
-    <title>Express Entry July 2025 Report | ImmiWatch Data Studio</title>
+    <title>Express Entry July 2025 - Monthly Analysis | ImmiWatch</title>
+    <meta name="description" content="Comprehensive analysis of Express Entry draws in July 2025 with detailed insights and professional immigration intelligence.">
     
-    <!-- Favicon - Aggressive cache busting -->
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../../../favicon.svg?v=3&t=1737962580">
-    <link rel="shortcut icon" href="../../../favicon.svg?v=3&t=1737962580">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon.svg?v=3&t=1737962580">
     <link rel="apple-touch-icon" sizes="180x180" href="../../../favicon.svg?v=3&t=1737962580">
-    <meta name="msapplication-TileColor" content="#4338ca">
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Shared Styles -->
+    <!-- CSS -->
     <link rel="stylesheet" href="../../../assets/css/shared-styles.css">
     
     <style>
-        .report-content {
+        /* Monthly Report Specific - Lighter Design */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--primary-200);
+        }
+        
+        .page-badge {
+            background: var(--primary-600);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-800);
+            margin: 0.5rem 0;
+        }
+        
+        .page-subtitle {
+            font-size: 1.125rem;
+            color: var(--primary-700);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .stat-card {
             background: white;
+            padding: 1.25rem;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            border: 1px solid var(--primary-200);
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.05);
+        }
+        
+        .stat-number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-600);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-top: 0.25rem;
+        }
+        
+        .report-content {
             padding: 3rem 0;
         }
         
@@ -29,91 +85,124 @@
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 3rem;
-            margin-top: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .main-content {
-            /* Main content styles */
-        }
-        
-        .sidebar {
-            /* Sidebar styles */
-        }
-        
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
             background: white;
+            padding: 2rem;
             border-radius: var(--border-radius-lg);
-            overflow: hidden;
+            border: 1px solid var(--gray-200);
             box-shadow: var(--shadow-sm);
         }
         
-        .data-table th,
-        .data-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--gray-200);
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
         
-        .data-table th {
-            background: var(--primary-50);
-            color: var(--primary-700);
-            font-weight: 600;
-        }
-        
-        .data-table tr:hover {
-            background: var(--gray-50);
-        }
-        
-        .insight-box {
-            background: var(--primary-50);
-            border: 1px solid var(--primary-200);
-            border-left: 4px solid var(--primary-500);
+        .sidebar .card {
+            background: white;
             padding: 1.5rem;
             border-radius: var(--border-radius-lg);
-            margin: 2rem 0;
-        }
-        
-        .insight-box h4 {
-            color: var(--primary-700);
-            margin-bottom: 0.5rem;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
         }
         
         .metric-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 1rem;
             margin: 2rem 0;
         }
         
         .metric-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius-lg);
-            border: 1px solid var(--gray-200);
+            background: var(--gray-50);
+            padding: 1.25rem;
+            border-radius: var(--border-radius-md);
             text-align: center;
-            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
         }
         
         .metric-number {
-            font-size: 2rem;
-            font-weight: 800;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--primary-600);
             font-family: 'JetBrains Mono', monospace;
         }
         
         .metric-label {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: var(--gray-600);
-            margin-top: 0.5rem;
+            margin-top: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .simple-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+        }
+        
+        .simple-table th,
+        .simple-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        
+        .simple-table th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-700);
+            font-size: 0.875rem;
+        }
+        
+        .simple-table td {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            border-left: 4px solid var(--primary-500);
+            margin: 2rem 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--primary-700);
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .highlight-box p {
+            color: var(--primary-600);
+            margin: 0;
+            line-height: 1.5;
         }
         
         @media (max-width: 768px) {
             .report-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -157,39 +246,39 @@
     </div>
 
     <!-- Header -->
-    <section class="page-header express-entry">
+    <section class="page-header">
         <div class="container">
             <div class="page-header-content">
                 <div class="page-badge">
-                    🌞 <span>Mid-Year Strategic Focus</span>
+                    🌞 <span>Mid-Year Analysis</span>
                 </div>
                 
                 <h1 class="page-title">Express Entry July 2025</h1>
                 <p class="page-subtitle">
-                    Strategic mid-year analysis with sustained program-specific targeting, comprehensive Q2 review, and strategic outlook for Q3 2025.
+                    Mid-year analysis with balanced approach across program and category-based selections, featuring consistent healthcare prioritization and strategic workforce targeting.
                 </p>
                 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-number">6,850</div>
+                        <div class="stat-number">7,402</div>
                         <div class="stat-label">Total ITAs Issued</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">3</div>
+                        <div class="stat-number">4,000</div>
+                        <div class="stat-label">Healthcare ITAs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3,402</div>
+                        <div class="stat-label">Program-Based ITAs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4</div>
                         <div class="stat-label">Draw Events</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">491</div>
-                        <div class="stat-label">Lowest CRS Score</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Program-Based</div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Report Content -->
     <section class="report-content">
@@ -198,111 +287,99 @@
                 <div class="main-content">
                     <!-- Executive Summary -->
                     <div class="alert alert-info">
-                        <strong>📊 Executive Summary:</strong> July 2025 demonstrated continued strategic focus with 100% program-based selections across 3 targeted draws, maintaining Canada's deliberate approach to economic immigration while addressing specific labor market needs.
+                        <strong>📊 Executive Summary:</strong> July 2025 demonstrated balanced immigration strategy with 7,402 ITAs across 4 targeted draws, featuring significant healthcare allocation and continued program-based selections for CEC and PNP candidates.
                     </div>
 
-                    <h2 style="color: var(--primary-700); margin: 2rem 0 1rem;">Key Highlights</h2>
+                    <h2 style="color: var(--primary-700); margin: 2rem 0 1rem;">Monthly Overview</h2>
                     
                     <div class="metric-cards">
                         <div class="metric-card">
-                            <div class="metric-number">6,850</div>
+                            <div class="metric-number">7,402</div>
                             <div class="metric-label">Total ITAs</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-number">2,850</div>
+                            <div class="metric-number">4,000</div>
                             <div class="metric-label">Healthcare</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-number">2,500</div>
-                            <div class="metric-label">STEM</div>
+                            <div class="metric-number">3,000</div>
+                            <div class="metric-label">CEC</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-number">1,500</div>
-                            <div class="metric-label">Trades</div>
+                            <div class="metric-number">402</div>
+                            <div class="metric-label">PNP</div>
                         </div>
                     </div>
 
                     <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">July 2025 Draw Summary</h3>
                     
-                    <table class="data-table">
+                    <table class="simple-table">
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Program Category</th>
-                                <th>ITAs Issued</th>
+                                <th>Program/Category</th>
+                                <th>ITAs</th>
                                 <th>CRS Score</th>
-                                <th>Tie-Breaking Rule</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>July 9, 2025</td>
-                                <td>Healthcare occupations</td>
-                                <td>2,850</td>
-                                <td>491</td>
-                                <td>June 12, 2025 at 14:32:18 UTC</td>
+                                <td>July 8</td>
+                                <td>Canadian Experience Class</td>
+                                <td>3,000</td>
+                                <td>518</td>
                             </tr>
                             <tr>
-                                <td>July 16, 2025</td>
-                                <td>STEM occupations</td>
-                                <td>2,500</td>
-                                <td>524</td>
-                                <td>May 28, 2025 at 09:15:27 UTC</td>
+                                <td>July 21</td>
+                                <td>Provincial Nominee Program</td>
+                                <td>202</td>
+                                <td>788</td>
                             </tr>
                             <tr>
-                                <td>July 23, 2025</td>
-                                <td>Trade occupations</td>
-                                <td>1,500</td>
-                                <td>503</td>
-                                <td>June 18, 2025 at 16:45:12 UTC</td>
+                                <td>July 22</td>
+                                <td>Healthcare Occupations</td>
+                                <td>4,000</td>
+                                <td>475</td>
+                            </tr>
+                            <tr>
+                                <td>July 30</td>
+                                <td>Provincial Nominee Program</td>
+                                <td>200</td>
+                                <td>780</td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <div class="insight-box">
-                        <h4>🎯 Strategic Insight</h4>
-                        <p>July's draw pattern reinforces Canada's commitment to targeted economic immigration. The healthcare sector received the largest allocation (2,850 ITAs), reflecting ongoing labor shortages in critical healthcare roles. STEM and trades sectors also received substantial allocations, demonstrating balanced approach to economic priorities.</p>
+                    <div class="highlight-box">
+                        <h4>🏥 Healthcare Priority</h4>
+                        <p>Healthcare professionals received the largest allocation with 4,000 ITAs (54% of monthly total), reflecting Canada's continued focus on addressing critical healthcare worker shortages across all provinces.</p>
                     </div>
 
-                    <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">Program Analysis</h3>
+                    <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">Key Insights</h3>
                     
-                    <div class="card" style="margin: 1.5rem 0;">
-                        <div class="card-icon express-entry">🏥</div>
-                        <div class="badge badge-express">HEALTHCARE</div>
-                        <h4 class="card-title">Healthcare Occupations Lead</h4>
-                        <p class="card-description">
-                            Healthcare professionals dominated July selections with 2,850 ITAs (41.6% of total). The sector continues to receive priority treatment due to critical labor shortages across Canada's healthcare system.
+                    <div style="background: white; padding: 1.5rem; border-radius: var(--border-radius-md); border: 1px solid var(--gray-200); margin: 1.5rem 0;">
+                        <h4 style="color: var(--primary-600); margin: 0 0 1rem 0; font-size: 1rem;">🇨🇦 Canadian Experience Class</h4>
+                        <p style="color: var(--gray-700); margin: 0; line-height: 1.5;">
+                            CEC draw on July 8th issued 3,000 ITAs with a CRS requirement of 518 points, maintaining the pattern of consistent CEC selections for candidates with Canadian work experience.
                         </p>
-                        <ul style="margin-top: 1rem; color: var(--gray-600);">
-                            <li>Lowest CRS requirement at 491 points</li>
-                            <li>Largest single-draw allocation of the month</li>
-                            <li>Strong tie-breaking timestamp indicates high demand</li>
-                        </ul>
                     </div>
 
-                    <div class="card" style="margin: 1.5rem 0;">
-                        <div class="card-icon express-entry">🔬</div>
-                        <div class="badge badge-express">STEM</div>
-                        <h4 class="card-title">STEM Maintains Strong Position</h4>
-                        <p class="card-description">
-                            STEM occupations secured 2,500 ITAs with a CRS requirement of 524 points, demonstrating Canada's continued focus on technology and innovation sectors.
+                    <div style="background: white; padding: 1.5rem; border-radius: var(--border-radius-md); border: 1px solid var(--gray-200); margin: 1.5rem 0;">
+                        <h4 style="color: var(--primary-600); margin: 0 0 1rem 0; font-size: 1rem;">🍁 Provincial Nominee Program</h4>
+                        <p style="color: var(--gray-700); margin: 0; line-height: 1.5;">
+                            Two PNP draws totaling 402 ITAs with high CRS requirements (780-788 points), demonstrating the competitive nature of provincial nominations.
                         </p>
-                        <ul style="margin-top: 1rem; color: var(--gray-600);">
-                            <li>Second-largest allocation of the month</li>
-                            <li>Highest CRS requirement among July draws</li>
-                            <li>Reflects competitive nature of tech sector</li>
-                        </ul>
                     </div>
 
                     <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">Year-to-Date Context</h3>
                     
                     <p style="color: var(--gray-700); line-height: 1.6; margin: 1rem 0;">
-                        July's performance brings the 2025 year-to-date total to <strong>49,403 ITAs</strong> across 15 draws. The month's strategic focus on healthcare, STEM, and trades aligns with Canada's broader economic immigration objectives while maintaining the deliberate, program-based approach established earlier in 2025.
+                        July's performance brings the 2025 year-to-date total to <strong>49,403 ITAs</strong> across multiple draws. The month's balanced approach between healthcare category-based draws and traditional program-based selections demonstrates Canada's strategic immigration management.
                     </p>
 
-                    <div class="insight-box">
-                        <h4>📈 Q3 Outlook</h4>
-                        <p>Based on July's patterns, we anticipate continued program-based selections in Q3 2025. Healthcare will likely remain the priority sector, with STEM and trades receiving regular attention. The strategic pause in general draws appears set to continue as Canada fine-tunes its economic immigration approach.</p>
+                    <div class="highlight-box">
+                        <h4>📈 August Outlook</h4>
+                        <p>Based on historical patterns, August is expected to continue the bi-weekly PNP cycle with potential healthcare and CEC draws. The government's balanced approach between targeted categories and traditional programs appears set to continue.</p>
                     </div>
                 </div>
 
@@ -310,56 +387,52 @@
                     <div class="card">
                         <h4 style="margin-bottom: 1rem; color: var(--gray-800);">Quick Navigation</h4>
                         <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            <a href="../ee-june-2025/" class="card-link">← June 2025 Report</a>
-                            <a href="../ee-2025/" class="card-link">📊 2025 Cumulative Analysis</a>
-                            <a href="./" class="card-link">📅 All Monthly Reports</a>
+                            <a href="../ee-june-2025/" class="card-link">← June 2025</a>
+                            <a href="../ee-2025/" class="card-link">📊 2025 Analysis</a>
+                            <a href="../" class="card-link">All Reports</a>
                         </div>
                     </div>
 
-                    <div class="card" style="margin-top: 1.5rem;">
-                        <h4 style="margin-bottom: 1rem; color: var(--gray-800);">Related Reports</h4>
+                    <div class="card">
+                        <h4 style="margin-bottom: 1rem; color: var(--gray-800);">Key Statistics</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--gray-600);">Healthcare:</span>
+                                <strong style="color: var(--primary-600);">54%</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--gray-600);">CEC:</span>
+                                <strong style="color: var(--primary-600);">40.5%</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--gray-600);">PNP:</span>
+                                <strong style="color: var(--primary-600);">5.5%</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h4 style="margin-bottom: 1rem; color: var(--gray-800);">Related</h4>
                         <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            <a href="../ee-health/" class="card-link">🏥 Healthcare Category Analysis</a>
-                            <a href="../ee-stem/" class="card-link">🔬 STEM Category Report</a>
-                            <a href="../ee-trade/" class="card-link">🔧 Trades Category Insights</a>
+                            <a href="../../../newsletters/" class="card-link">📬 Weekly Newsletter</a>
+                            <a href="../../../tools/" class="card-link">🛠️ Immigration Tools</a>
                         </div>
-                    </div>
-
-                    <div class="alert alert-info" style="margin-top: 1.5rem;">
-                        <strong>💡 Pro Tip:</strong> Healthcare professionals should prioritize language scores and credential recognition to maximize their chances in upcoming draws.
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Footer CTA -->
+    <section class="cta-section">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">ImmiWatch Data Studio</div>
-                <p class="footer-description">
-                    Professional Express Entry analytics and insights. Strategic intelligence for Canada's federal economic immigration program.
-                </p>
-                
-                <div class="footer-links">
-                    <a href="../" class="footer-link">All Reports</a>
-                    <a href="./" class="footer-link">Express Entry</a>
-                    <a href="../../../tools/" class="footer-link">Tools</a>
-                    <a href="mailto:support@immigratic.com" class="footer-link">Contact</a>
-                    <a href="https://www.immigratic.com" target="_blank" class="footer-link">Immigratic.com</a>
-                </div>
-                
-                <div class="footer-bottom">
-                    <p>&copy; 2025 ImmiWatch Data Studio - Express Entry July 2025 Analysis</p>
-                    <p style="margin-top: 0.5rem; font-size: 0.875rem;">
-                        Professional Immigration Intelligence | 
-                        <a href="mailto:support@immigratic.com" style="color: var(--primary-400);">support@immigratic.com</a>
-                    </p>
-                </div>
+            <div class="cta-content">
+                <h2>Stay Updated on Express Entry</h2>
+                <p>Get professional immigration insights and analysis delivered to your inbox</p>
+                <a href="mailto:support@immigratic.com" class="btn btn-primary">Professional Consultation</a>
             </div>
         </div>
-    </footer>
+    </section>
 
     <script>
         // Navbar scroll effect
