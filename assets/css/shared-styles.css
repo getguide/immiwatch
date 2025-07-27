@@ -423,14 +423,66 @@ body {
     transition: transform 0.3s ease;
 }
 
+/* Card Hover Effects */
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--primary-200);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
-.card:hover::before {
-    transform: scaleX(1);
+/* Newsletter Navigation */
+.newsletter-nav {
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 1rem 0;
+    position: sticky;
+    top: 70px;
+    z-index: 40;
+}
+
+.newsletter-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.newsletter-nav a {
+    color: var(--gray-600);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-md);
+    transition: var(--transition-normal);
+}
+
+.newsletter-nav a:hover {
+    background: var(--primary-100);
+    color: var(--primary-600);
+}
+
+/* Responsive adjustments for newsletter navigation */
+@media (max-width: 768px) {
+    .newsletter-nav ul {
+        gap: 1rem;
+    }
+    
+    .newsletter-nav a {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+/* Report Highlight - Standardized highlight for all executive summaries */
+.report-highlight {
+    background: var(--primary-100);
+    color: var(--primary-700);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
 }
 
 .card.express-entry::before {
