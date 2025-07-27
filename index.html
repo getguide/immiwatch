@@ -585,14 +585,64 @@
             animation: fadeInUp 0.6s ease-out;
         }
         
+        /* Mobile Menu Styles */
+        .nav-menu.mobile-open {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-xl);
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+            gap: 1rem;
+            z-index: 45;
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        .nav-menu.mobile-open .nav-link {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-100);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .nav-menu.mobile-open .nav-cta {
+            margin-top: 1rem;
+            align-self: center;
+            border-bottom: none;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         /* Responsive Design */
         @media (max-width: 1024px) {
             .nav-menu {
                 display: none;
             }
             
+            .nav-menu.mobile-open {
+                display: flex;
+            }
+            
             .mobile-menu-btn {
                 display: block;
+                transition: transform 0.3s ease;
+            }
+            
+            .mobile-menu-btn.active {
+                transform: rotate(90deg);
             }
             
             .hero-title {
@@ -914,10 +964,51 @@
             observer.observe(el);
         });
 
-        // Mobile menu toggle (placeholder for future implementation)
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            // Mobile menu functionality can be added here
-            console.log('Mobile menu clicked');
+        // Mobile menu toggle functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        let isMobileMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+
+        function toggleMobileMenu() {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            
+            if (isMobileMenuOpen) {
+                navMenu.classList.add('mobile-open');
+                mobileMenuBtn.classList.add('active');
+                mobileMenuBtn.innerHTML = '✕';
+            } else {
+                navMenu.classList.remove('mobile-open');
+                mobileMenuBtn.classList.remove('active');
+                mobileMenuBtn.innerHTML = '☰';
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (isMobileMenuOpen && !navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Close mobile menu when clicking on nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                if (isMobileMenuOpen) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // Close mobile menu on window resize to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024 && isMobileMenuOpen) {
+                toggleMobileMenu();
+            }
         });
     </script>
 </body>
