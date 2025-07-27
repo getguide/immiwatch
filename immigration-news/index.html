@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immigration News | ImmiWatch Professional Intelligence</title>
+    <meta name="description" content="Comprehensive coverage of Canadian immigration news. Professional analysis of policy changes, invitation rounds, legal decisions, and system updates.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Immigration News | ImmiWatch Professional Intelligence">
+    <meta property="og:description" content="Comprehensive coverage of Canadian immigration news. Professional analysis of policy changes, invitation rounds, legal decisions, and system updates.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://immiwatch.ca/immigration-news/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=3&t=1737962580">
+    <link rel="apple-touch-icon" href="../favicon.svg?v=3&t=1737962580">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/shared-styles.css">
+    
+    <style>
+        .hero-news {
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition-normal);
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-description {
+            color: var(--gray-600);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .category-count {
+            background: var(--primary-100);
+            color: var(--primary-700);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--border-radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition-normal);
+        }
+        
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .news-category-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: var(--border-radius-full);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .category-policy {
+            background: var(--red-100);
+            color: var(--red-700);
+        }
+        
+        .category-draws {
+            background: var(--blue-100);
+            color: var(--blue-700);
+        }
+        
+        .category-systems {
+            background: var(--yellow-100);
+            color: var(--yellow-700);
+        }
+        
+        .news-card-header {
+            padding: 1.5rem 1.5rem 0;
+        }
+        
+        .news-card-content {
+            padding: 0 1.5rem 1.5rem;
+        }
+        
+        .news-card h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin: 0.75rem 0 0.5rem;
+            line-height: 1.4;
+        }
+        
+        .news-card h3 a {
+            color: var(--gray-900);
+            text-decoration: none;
+        }
+        
+        .news-card h3 a:hover {
+            color: var(--primary-600);
+        }
+        
+        .news-card .summary {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+        }
+        
+        .impact-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.25rem;
+        }
+        
+        .impact-high {
+            background: var(--red-500);
+        }
+        
+        .news-card-footer {
+            padding: 0 1.5rem 1.5rem;
+            border-top: 1px solid var(--gray-100);
+            margin-top: 1rem;
+            padding-top: 1rem;
+        }
+        
+        .read-more-btn {
+            color: var(--primary-600);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        .read-more-btn:hover {
+            color: var(--primary-700);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <div class="logo-main">ImmiWatch</div>
+                    <div class="logo-subtitle">By Lexpoint.io</div>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../" class="nav-link">Home</a></li>
+                <li><a href="../reports/" class="nav-link">Reports</a></li>
+                <li><a href="../tools/" class="nav-link">Tools</a></li>
+                <li><a href="../newsletters/" class="nav-link">Newsletter</a></li>
+                <li><a href="#" class="nav-link active">Immigration News</a></li>
+                <li><a href="../about/" class="nav-link">About</a></li>
+                <li><a href="mailto:hi@lexpoint.io" class="nav-link nav-cta">Get Started</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-news">
+        <div class="container">
+            <h1 class="hero-title">
+                Immigration <span style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">News</span>
+            </h1>
+            <p class="hero-subtitle">
+                Professional coverage of every Canadian immigration development. In-depth analysis you can reference, share, and trust.
+            </p>
+        </div>
+    </section>
+
+    <!-- News Categories -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1rem;">News Categories</h2>
+                <p style="font-size: 1.125rem; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
+                    Comprehensive coverage across all aspects of Canadian immigration. Each article provides professional analysis and strategic insights.
+                </p>
+            </div>
+
+            <div class="categories-grid">
+                <a href="policy/" class="category-card">
+                    <span class="category-icon">📢</span>
+                    <h3 class="category-title">Policy Announcements</h3>
+                    <p class="category-description">
+                        Government policy changes, program updates, and regulatory modifications from IRCC and provincial authorities.
+                    </p>
+                    <span class="category-count">2 Articles</span>
+                </a>
+
+                <a href="draws/" class="category-card">
+                    <span class="category-icon">🎯</span>
+                    <h3 class="category-title">Invitation Rounds</h3>
+                    <p class="category-description">
+                        Express Entry draws, PNP invitations, and program-specific selection updates with detailed analysis.
+                    </p>
+                    <span class="category-count">1 Article</span>
+                </a>
+
+                <a href="programs/" class="category-card">
+                    <span class="category-icon">🏛️</span>
+                    <h3 class="category-title">Program Updates</h3>
+                    <p class="category-description">
+                        Provincial nominee program changes, federal program modifications, and new pathway announcements.
+                    </p>
+                    <span class="category-count">Coming Soon</span>
+                </a>
+
+                <a href="legal/" class="category-card">
+                    <span class="category-icon">⚖️</span>
+                    <h3 class="category-title">Legal Decisions</h3>
+                    <p class="category-description">
+                        Federal Court rulings, tribunal decisions, and legal precedents affecting immigration practice.
+                    </p>
+                    <span class="category-count">Coming Soon</span>
+                </a>
+
+                <a href="systems/" class="category-card">
+                    <span class="category-icon">🔧</span>
+                    <h3 class="category-title">System Updates</h3>
+                    <p class="category-description">
+                        Portal maintenance, technical updates, and system enhancement notifications from IRCC.
+                    </p>
+                    <span class="category-count">1 Article</span>
+                </a>
+
+                <a href="documents/" class="category-card">
+                    <span class="category-icon">📄</span>
+                    <h3 class="category-title">Forms & Documents</h3>
+                    <p class="category-description">
+                        New forms, document updates, and requirement changes across all immigration programs.
+                    </p>
+                    <span class="category-count">Coming Soon</span>
+                </a>
+
+                <a href="analysis/" class="category-card">
+                    <span class="category-icon">📊</span>
+                    <h3 class="category-title">Analysis & Insights</h3>
+                    <p class="category-description">
+                        Data analysis, trend reports, and strategic insights based on ATIP research and market intelligence.
+                    </p>
+                    <span class="category-count">Coming Soon</span>
+                </a>
+
+                <a href="other/" class="category-card">
+                    <span class="category-icon">📋</span>
+                    <h3 class="category-title">Other Updates</h3>
+                    <p class="category-description">
+                        Miscellaneous immigration news, industry developments, and professional community updates.
+                    </p>
+                    <span class="category-count">Coming Soon</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News -->
+    <section class="content-section" style="background: var(--gray-50);">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1rem;">Latest News</h2>
+                <p style="font-size: 1.125rem; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
+                    Recent immigration developments with professional analysis and strategic implications.
+                </p>
+            </div>
+
+            <div class="news-grid">
+                <!-- Express Entry Draw -->
+                <article class="news-card">
+                    <div class="news-card-header">
+                        <span class="news-category-badge category-draws">🎯 Draws</span>
+                        <h3><a href="draws/2025-07-17/express-entry-draw-267-4750-itas/">Express Entry Draw #267: 4,750 ITAs Issued at CRS 491</a></h3>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span>July 17, 2025</span>
+                            <span>•</span>
+                            <span><span class="impact-indicator impact-high"></span>High Impact</span>
+                        </div>
+                        <p class="summary">
+                            Express Entry General Draw #267 issued 4,750 ITAs with minimum CRS score of 491. Analysis of sub-500 CRS trend and strategic implications for immigration practitioners.
+                        </p>
+                    </div>
+                    <div class="news-card-footer">
+                        <a href="draws/2025-07-17/express-entry-draw-267-4750-itas/" class="read-more-btn">Read Full Analysis →</a>
+                    </div>
+                </article>
+
+                <!-- IRCC Portal Maintenance -->
+                <article class="news-card">
+                    <div class="news-card-header">
+                        <span class="news-category-badge category-systems">🔧 Systems</span>
+                        <h3><a href="systems/2025-07-20/ircc-portal-maintenance-july-26-27/">Critical IRCC Portal Maintenance: July 26-27, 2025</a></h3>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span>July 20, 2025</span>
+                            <span>•</span>
+                            <span><span class="impact-indicator impact-high"></span>High Impact</span>
+                        </div>
+                        <p class="summary">
+                            IRCC announces 30-hour system maintenance affecting all online services including application submissions and status checking. Strategic planning required.
+                        </p>
+                    </div>
+                    <div class="news-card-footer">
+                        <a href="systems/2025-07-20/ircc-portal-maintenance-july-26-27/" class="read-more-btn">Read Full Alert →</a>
+                    </div>
+                </article>
+
+                <!-- BCPNP Expansion -->
+                <article class="news-card">
+                    <div class="news-card-header">
+                        <span class="news-category-badge category-policy">📢 Policy</span>
+                        <h3><a href="policy/2025-07-10/bcpnp-major-program-expansion/">BCPNP Major Program Expansion: 30% Increase in Nominations</a></h3>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span>July 10, 2025</span>
+                            <span>•</span>
+                            <span><span class="impact-indicator impact-high"></span>High Impact</span>
+                        </div>
+                        <p class="summary">
+                            British Columbia PNP announces comprehensive expansion targeting healthcare workers, skilled trades, and technology professionals with 30% increased nominations.
+                        </p>
+                    </div>
+                    <div class="news-card-footer">
+                        <a href="policy/2025-07-10/bcpnp-major-program-expansion/" class="read-more-btn">Read Full Analysis →</a>
+                    </div>
+                </article>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="../newsletters/" class="btn btn-primary">📧 Subscribe to Weekly Newsletter</a>
+                <p style="margin-top: 1rem; color: var(--gray-600);">Get all immigration news delivered weekly with comprehensive analysis</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">ImmiWatch Data Studio</div>
+                <p class="footer-description">
+                    Professional Canada immigration analytics and insights. A premium product by Lexpoint.io, delivering data-driven immigration intelligence since 2025.
+                </p>
+                
+                <div class="footer-links">
+                    <a href="../reports/" class="footer-link">Reports</a>
+                    <a href="../tools/" class="footer-link">Tools</a>
+                    <a href="../newsletters/" class="footer-link">Newsletter</a>
+                    <a href="#" class="footer-link">Immigration News</a>
+                    <a href="../about/" class="footer-link">About</a>
+                    <a href="mailto:hi@lexpoint.io" class="footer-link">Contact</a>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 ImmiWatch Data Studio - Part of Lexpoint.io</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+                        Professional Immigration Analytics | 
+                        <a href="mailto:hi@lexpoint.io" style="color: var(--primary-400);">hi@lexpoint.io</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            const body = document.body;
+
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    mobileMenuBtn.classList.toggle('active');
+                    body.classList.toggle('menu-open');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    }
+                });
+
+                // Close menu when clicking on links
+                navMenu.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    });
+                });
+
+                // Close menu on window resize
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

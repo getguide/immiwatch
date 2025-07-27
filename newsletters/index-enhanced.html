@@ -159,15 +159,6 @@
             line-height: 1.4;
         }
         
-        .news-card h3 a {
-            color: var(--gray-900);
-            text-decoration: none;
-        }
-        
-        .news-card h3 a:hover {
-            color: var(--primary-600);
-        }
-        
         .news-card .summary {
             color: var(--gray-600);
             font-size: 0.875rem;
@@ -300,18 +291,43 @@
             color: var(--primary-600);
         }
         
-        .newsletter-highlights a {
-            color: var(--primary-600);
-            text-decoration: none;
-        }
-        
-        .newsletter-highlights a:hover {
-            text-decoration: underline;
-        }
-        
         .newsletter-actions {
             display: flex;
             gap: 1rem;
+        }
+        
+        .browse-news-section {
+            background: var(--gray-50);
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        
+        .filter-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray-300);
+            background: white;
+            color: var(--gray-600);
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: var(--transition-normal);
+        }
+        
+        .filter-btn.active {
+            background: var(--primary-600);
+            color: white;
+            border-color: var(--primary-600);
+        }
+        
+        .filter-btn:hover {
+            border-color: var(--primary-400);
         }
         
         @media (max-width: 768px) {
@@ -384,6 +400,7 @@
             <div class="tabs-container">
                 <button class="tab-btn active" data-tab="newsletters">📧 Weekly Newsletters</button>
                 <button class="tab-btn" data-tab="news">📰 Immigration News</button>
+                <button class="tab-btn" data-tab="archive">📚 News Archive</button>
             </div>
         </div>
     </section>
@@ -403,7 +420,7 @@
                 <div class="newsletter-header">
                     <div>
                         <h3 class="newsletter-title">ImmiWatch Weekly - Week 29</h3>
-                        <div class="newsletter-date">July 15-21, 2025</div>
+                        <div class="newsletter-date">January 20-26, 2025</div>
                     </div>
                     <div class="newsletter-badge">Latest</div>
                 </div>
@@ -413,13 +430,12 @@
                 </p>
                 
                 <div class="newsletter-highlights">
-                    <h4>Week 29 Highlights with Individual Analysis:</h4>
+                    <h4>Week 29 Highlights:</h4>
                     <ul>
-                        <li><a href="../immigration-news/draws/2025-07-17/express-entry-draw-267-4750-itas/">Express Entry Draw #267: 4,750 ITAs at CRS 491</a></li>
-                        <li><a href="../immigration-news/systems/2025-07-20/ircc-portal-maintenance-july-26-27/">Critical IRCC Portal Maintenance: July 26-27</a></li>
-                        <li>Ontario PNP expands in-demand skills stream</li>
-                        <li>Federal Court ruling on study permit renewals</li>
-                        <li>Express Entry processing time improvements</li>
+                        <li><a href="../immigration-news/policy/2025-01-27/express-entry-changes-sample/">Express Entry CRS minimum increased to 475</a></li>
+                        <li><a href="../immigration-news/draws/2025-01-25/ontario-pnp-tech-draw/">Ontario PNP Tech Stream: 1,200 ITAs issued</a></li>
+                        <li><a href="../immigration-news/systems/2025-01-24/ircc-portal-updates/">IRCC portal maintenance scheduled for February</a></li>
+                        <li><a href="../immigration-news/legal/2025-01-23/federal-court-decision/">Federal Court ruling on CEC processing delays</a></li>
                     </ul>
                 </div>
                 
@@ -433,7 +449,7 @@
                 <div class="newsletter-header">
                     <div>
                         <h3 class="newsletter-title">ImmiWatch Weekly - Week 28</h3>
-                        <div class="newsletter-date">July 8-14, 2025</div>
+                        <div class="newsletter-date">January 13-19, 2025</div>
                     </div>
                 </div>
                 
@@ -442,11 +458,11 @@
                 </p>
                 
                 <div class="newsletter-highlights">
-                    <h4>Week 28 Highlights with Individual Analysis:</h4>
+                    <h4>Week 28 Highlights:</h4>
                     <ul>
-                        <li><a href="../immigration-news/policy/2025-07-10/bcpnp-major-program-expansion/">BCPNP Major Program Expansion: 30% Increase</a></li>
-                        <li>Federal processing times show continued improvement</li>
-                        <li>NOC classification updates implemented</li>
+                        <li><a href="../immigration-news/policy/2025-01-18/immigration-levels-confirmation/">2025 Immigration Levels Plan confirmed at 485k</a></li>
+                        <li><a href="../immigration-news/programs/2025-01-16/bc-pnp-healthcare-expansion/">BC PNP expands healthcare worker categories</a></li>
+                        <li><a href="../immigration-news/documents/2025-01-15/medical-exam-updates/">Updated medical examination requirements</a></li>
                     </ul>
                 </div>
                 
@@ -468,111 +484,166 @@
                 </p>
             </div>
 
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All News</button>
+                <button class="filter-btn" data-filter="policy">📢 Policy</button>
+                <button class="filter-btn" data-filter="draws">🎯 Draws</button>
+                <button class="filter-btn" data-filter="programs">🏛️ Programs</button>
+                <button class="filter-btn" data-filter="legal">⚖️ Legal</button>
+                <button class="filter-btn" data-filter="systems">🔧 Systems</button>
+            </div>
+
             <!-- News Grid -->
             <div class="news-grid">
-                <!-- Express Entry Draw -->
-                <article class="news-card">
-                    <div class="news-card-header">
-                        <span class="news-category-badge category-draws">🎯 Draws</span>
-                        <h3><a href="../immigration-news/draws/2025-07-17/express-entry-draw-267-4750-itas/">Express Entry Draw #267: 4,750 ITAs Issued at CRS 491</a></h3>
-                    </div>
-                    <div class="news-card-content">
-                        <div class="news-meta">
-                            <span>July 17, 2025</span>
-                            <span>•</span>
-                            <span><span class="impact-indicator impact-high"></span>High Impact</span>
-                        </div>
-                        <p class="summary">
-                            Express Entry General Draw #267 issued 4,750 ITAs with minimum CRS score of 491. Analysis of sub-500 CRS trend and strategic implications for immigration practitioners.
-                        </p>
-                    </div>
-                    <div class="news-card-footer">
-                        <a href="../immigration-news/draws/2025-07-17/express-entry-draw-267-4750-itas/" class="read-more-btn">Read Full Analysis →</a>
-                    </div>
-                </article>
-
-                <!-- IRCC Portal Maintenance -->
-                <article class="news-card">
-                    <div class="news-card-header">
-                        <span class="news-category-badge category-systems">🔧 Systems</span>
-                        <h3><a href="../immigration-news/systems/2025-07-20/ircc-portal-maintenance-july-26-27/">Critical IRCC Portal Maintenance: July 26-27, 2025</a></h3>
-                    </div>
-                    <div class="news-card-content">
-                        <div class="news-meta">
-                            <span>July 20, 2025</span>
-                            <span>•</span>
-                            <span><span class="impact-indicator impact-high"></span>High Impact</span>
-                        </div>
-                        <p class="summary">
-                            IRCC announces 30-hour system maintenance affecting all online services including application submissions and status checking. Strategic planning required.
-                        </p>
-                    </div>
-                    <div class="news-card-footer">
-                        <a href="../immigration-news/systems/2025-07-20/ircc-portal-maintenance-july-26-27/" class="read-more-btn">Read Full Alert →</a>
-                    </div>
-                </article>
-
-                <!-- BCPNP Expansion -->
-                <article class="news-card">
+                <!-- Policy News -->
+                <article class="news-card" data-category="policy">
                     <div class="news-card-header">
                         <span class="news-category-badge category-policy">📢 Policy</span>
-                        <h3><a href="../immigration-news/policy/2025-07-10/bcpnp-major-program-expansion/">BCPNP Major Program Expansion: 30% Increase in Nominations</a></h3>
+                        <h3>Express Entry Changes: New CRS Minimum 475 Announced</h3>
                     </div>
                     <div class="news-card-content">
                         <div class="news-meta">
-                            <span>July 10, 2025</span>
+                            <span>January 27, 2025</span>
                             <span>•</span>
                             <span><span class="impact-indicator impact-high"></span>High Impact</span>
                         </div>
                         <p class="summary">
-                            British Columbia PNP announces comprehensive expansion targeting healthcare workers, skilled trades, and technology professionals with 30% increased nominations.
+                            IRCC announces significant Express Entry changes effective February 1, 2025. New CRS minimum of 475, expanded healthcare categories, and simplified documentation requirements affect 45,000+ candidates.
                         </p>
                     </div>
                     <div class="news-card-footer">
-                        <a href="../immigration-news/policy/2025-07-10/bcpnp-major-program-expansion/" class="read-more-btn">Read Full Analysis →</a>
+                        <a href="../immigration-news/policy/2025-01-27/express-entry-changes-sample/" class="read-more-btn">Read Full Analysis →</a>
                     </div>
                 </article>
 
-                <!-- Coming Soon Articles -->
-                <article class="news-card" style="opacity: 0.7;">
+                <!-- Draws News -->
+                <article class="news-card" data-category="draws">
                     <div class="news-card-header">
-                        <span class="news-category-badge category-legal">⚖️ Legal</span>
-                        <h3>Federal Court Rules on Study Permit Renewal Documentation</h3>
+                        <span class="news-category-badge category-draws">🎯 Draws</span>
+                        <h3>Ontario PNP Tech Stream: 1,200 ITAs Issued</h3>
                     </div>
                     <div class="news-card-content">
                         <div class="news-meta">
-                            <span>July 18, 2025</span>
-                            <span>•</span>
-                            <span><span class="impact-indicator impact-high"></span>High Impact</span>
-                        </div>
-                        <p class="summary">
-                            Federal Court establishes procedural fairness requirements for study permit renewals in Chen v. Canada (IRCC), affecting future application processing.
-                        </p>
-                    </div>
-                    <div class="news-card-footer">
-                        <span style="color: var(--gray-500); font-size: 0.875rem;">📝 Article Coming Soon</span>
-                    </div>
-                </article>
-
-                <article class="news-card" style="opacity: 0.7;">
-                    <div class="news-card-header">
-                        <span class="news-category-badge category-programs">🏛️ Programs</span>
-                        <h3>Ontario PNP Expands In-Demand Skills Stream</h3>
-                    </div>
-                    <div class="news-card-content">
-                        <div class="news-meta">
-                            <span>July 19, 2025</span>
+                            <span>January 25, 2025</span>
                             <span>•</span>
                             <span><span class="impact-indicator impact-medium"></span>Medium Impact</span>
                         </div>
                         <p class="summary">
-                            OINP adds 12 new eligible occupations to In-Demand Skills Stream, particularly focusing on healthcare support and skilled trades sectors.
+                            Ontario's latest tech stream draw targets in-demand occupations with minimum CRS of 450. Strong focus on AI, cybersecurity, and software development professionals.
                         </p>
                     </div>
                     <div class="news-card-footer">
-                        <span style="color: var(--gray-500); font-size: 0.875rem;">📝 Article Coming Soon</span>
+                        <a href="#" class="read-more-btn">Read Full Analysis →</a>
                     </div>
                 </article>
+
+                <!-- Programs News -->
+                <article class="news-card" data-category="programs">
+                    <div class="news-card-header">
+                        <span class="news-category-badge category-programs">🏛️ Programs</span>
+                        <h3>BC PNP Expands Healthcare Worker Categories</h3>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span>January 24, 2025</span>
+                            <span>•</span>
+                            <span><span class="impact-indicator impact-medium"></span>Medium Impact</span>
+                        </div>
+                        <p class="summary">
+                            British Columbia adds pharmacy technicians and home care workers to priority healthcare stream. Streamlined application process and reduced documentation requirements.
+                        </p>
+                    </div>
+                    <div class="news-card-footer">
+                        <a href="#" class="read-more-btn">Read Full Analysis →</a>
+                    </div>
+                </article>
+
+                <!-- Legal News -->
+                <article class="news-card" data-category="legal">
+                    <div class="news-card-header">
+                        <span class="news-category-badge category-legal">⚖️ Legal</span>
+                        <h3>Federal Court Rules on CEC Processing Delays</h3>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span>January 23, 2025</span>
+                            <span>•</span>
+                            <span><span class="impact-indicator impact-high"></span>High Impact</span>
+                        </div>
+                        <p class="summary">
+                            Federal Court mandates IRCC to process CEC applications within standard timeframes. Decision affects 12,000+ pending applications with implications for future processing standards.
+                        </p>
+                    </div>
+                    <div class="news-card-footer">
+                        <a href="#" class="read-more-btn">Read Full Analysis →</a>
+                    </div>
+                </article>
+
+                <!-- Systems News -->
+                <article class="news-card" data-category="systems">
+                    <div class="news-card-header">
+                        <span class="news-category-badge category-systems">🔧 Systems</span>
+                        <h3>IRCC Portal Maintenance Scheduled for February</h3>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span>January 22, 2025</span>
+                            <span>•</span>
+                            <span><span class="impact-indicator impact-low"></span>Low Impact</span>
+                        </div>
+                        <p class="summary">
+                            Planned system maintenance February 5-7 to improve portal performance and add new features. Application submissions temporarily unavailable during maintenance window.
+                        </p>
+                    </div>
+                    <div class="news-card-footer">
+                        <a href="#" class="read-more-btn">Read Full Analysis →</a>
+                    </div>
+                </article>
+
+                <!-- Policy News -->
+                <article class="news-card" data-category="policy">
+                    <div class="news-card-header">
+                        <span class="news-category-badge category-policy">📢 Policy</span>
+                        <h3>2025 Immigration Levels Plan Confirmed</h3>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span>January 20, 2025</span>
+                            <span>•</span>
+                            <span><span class="impact-indicator impact-high"></span>High Impact</span>
+                        </div>
+                        <p class="summary">
+                            Minister confirms 485,000 new permanent residents target for 2025. Emphasis on economic immigration (58%) and continued focus on French-speaking candidates.
+                        </p>
+                    </div>
+                    <div class="news-card-footer">
+                        <a href="#" class="read-more-btn">Read Full Analysis →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Archive Tab -->
+    <section class="tab-content" id="archive">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1rem;">Immigration News Archive</h2>
+                <p style="font-size: 1.125rem; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
+                    Comprehensive searchable database of Canadian immigration news and analysis.
+                </p>
+            </div>
+
+            <!-- Coming Soon for Archive -->
+            <div style="text-align: center; padding: 3rem; background: var(--gray-50); border-radius: var(--border-radius-xl);">
+                <h3 style="color: var(--gray-700); margin-bottom: 1rem;">📚 Advanced Archive Coming Soon</h3>
+                <p style="color: var(--gray-600); margin-bottom: 2rem;">
+                    Searchable database with advanced filtering by date, category, impact level, and keywords. Access historical immigration developments with professional analysis.
+                </p>
+                <div style="background: var(--blue-50); padding: 1.5rem; border-radius: var(--border-radius-lg); display: inline-block;">
+                    <strong style="color: var(--blue-700);">Launch Date: February 15, 2025</strong>
+                </div>
             </div>
         </div>
     </section>
@@ -644,6 +715,29 @@
                     document.getElementById(targetTab).classList.add('active');
                 });
             });
+
+            // Filter functionality for news
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const newsCards = document.querySelectorAll('.news-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active filter button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter news cards
+                    newsCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
         });
 
         // Navbar scroll effect
@@ -656,7 +750,7 @@
             }
         });
 
-        // Mobile menu functionality
+        // Mobile menu functionality (same as other pages)
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const navMenu = document.querySelector('.nav-menu');
