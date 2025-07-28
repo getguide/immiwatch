@@ -468,7 +468,7 @@
                         </div>
                         <div class="newsletter-actions">
                             <a href="week-30-2025/" class="btn-primary">Read Full Edition</a>
-                            <a href="https://twitter.com/intent/tweet?text=📊%20ImmiWatch%20Week%2030%20Digest%3A%20Historic%20Express%20Entry%20Health%20Draw%20with%204%2C000%20ITAs.%20Professional%20immigration%20intelligence%20you%20can%20trust.%20&url=https%3A//immiwatch.ca/news/digest/week-30-2025/&hashtags=ExpressEntry%2CImmigration%2CCanada%2CImmiWatch" target="_blank" class="btn-secondary">Share Newsletter</a>
+                            <a href="#" onclick="shareNewsletter('Week 30', 'Historic Express Entry Health Draw with 4,000 ITAs', 'https://immiwatch.ca/news/digest/week-30-2025/'); return false;" class="btn-secondary">Share Newsletter</a>
                         </div>
                     </div>
                 </article>
@@ -495,7 +495,7 @@
                         </div>
                         <div class="newsletter-actions">
                             <a href="week-29-2025/" class="btn-primary">Read Full Edition</a>
-                            <a href="https://twitter.com/intent/tweet?text=📊%20ImmiWatch%20Week%2029%20Digest%3A%20Express%20Entry%20Draw%20%23267%20with%204%2C750%20ITAs.%20Professional%20immigration%20intelligence%20and%20strategic%20insights.%20&url=https%3A//immiwatch.ca/news/digest/week-29-2025/&hashtags=ExpressEntry%2CImmigration%2CCanada%2CImmiWatch" target="_blank" class="btn-secondary">Share Newsletter</a>
+                            <a href="#" onclick="shareNewsletter('Week 29', 'Express Entry Draw #267 with 4,750 ITAs. Professional immigration intelligence and strategic insights.', 'https://immiwatch.ca/news/digest/week-29-2025/'); return false;" class="btn-secondary">Share Newsletter</a>
                         </div>
                     </div>
                 </article>
@@ -522,7 +522,7 @@
                         </div>
                         <div class="newsletter-actions">
                             <a href="week-28-2025/" class="btn-primary">Read Full Edition</a>
-                            <a href="https://twitter.com/intent/tweet?text=📊%20ImmiWatch%20Week%2028%20Digest%3A%20BCPNP%20Major%20Program%20Expansion%20with%20new%20priority%20occupations.%20Professional%20immigration%20intelligence%20for%20practitioners.%20&url=https%3A//immiwatch.ca/news/digest/week-28-2025/&hashtags=BCPNP%2CImmigration%2CCanada%2CImmiWatch" target="_blank" class="btn-secondary">Share Newsletter</a>
+                            <a href="#" onclick="shareNewsletter('Week 28', 'BCPNP Major Program Expansion with new priority occupations. Professional immigration intelligence for practitioners.', 'https://immiwatch.ca/news/digest/week-28-2025/'); return false;" class="btn-secondary">Share Newsletter</a>
                         </div>
                     </div>
                 </article>
@@ -639,6 +639,22 @@
                 });
             }
         });
+
+        // Function to share newsletter
+        function shareNewsletter(title, summary, url) {
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: summary,
+                    url: url
+                })
+                .then(() => console.log('Newsletter shared successfully'))
+                .catch((error) => console.error('Error sharing newsletter:', error));
+            } else {
+                // Fallback for browsers that do not support the Web Share API
+                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(summary)}%20${encodeURIComponent(url)}&hashtags=ExpressEntry,Immigration,Canada,ImmiWatch`, '_blank');
+            }
+        }
     </script>
 </body>
 </html> 
