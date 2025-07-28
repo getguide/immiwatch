@@ -1,1 +1,32 @@
- 
+# 🎯 **BREADCRUMB NAVIGATION FIXED!**
+
+## 🚨 **PROBLEM IDENTIFIED & SOLVED:**
+
+### **🐛 The Bug:**
+The breadcrumb links in **Policy** and **Systems** articles were using `href="../"` (one level up) instead of `href="../../"` (two levels up), so clicking category names in breadcrumbs took users to **date directories** instead of **category landing pages**.
+
+### **📂 Path Structure Issue:**
+```
+<code_block_to_apply_changes_from>
+```
+
+---
+
+## 🛠️ **FIXES APPLIED:**
+
+### **✅ BREADCRUMB LINKS CORRECTED:**
+
+| **Article** | **Category** | **Before** | **After** | **Status** |
+|-------------|--------------|------------|-----------|------------|
+| BCPNP Program Expansion | Policy | `href="../"` ❌ | `href="../../"` ✅ | **Fixed** |
+| Express Entry Changes | Policy | `href="../"` ❌ | `href="../../"` ✅ | **Fixed** |
+| IRCC Portal Maintenance | Systems | `href="../"` ❌ | `href="../../"` ✅ | **Fixed** |
+| Express Entry Draw #267 | Draws | `href="../../"` ✅ | `href="../../"` ✅ | **Already Correct** |
+
+---
+
+## 🧭 **NAVIGATION NOW WORKS PERFECTLY:**
+
+### **✅ TEST THE COMPLETE FLOW:**
+
+**Available on: ` 

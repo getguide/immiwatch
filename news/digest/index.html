@@ -3,310 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImmiWatch Weekly Newsletter & Immigration News | Professional Intelligence</title>
-    <meta name="description" content="Stay informed with ImmiWatch's weekly immigration newsletter and comprehensive individual news coverage. Professional-grade analysis of Canadian immigration updates.">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="ImmiWatch Weekly Newsletter & Immigration News">
-    <meta property="og:description" content="Professional immigration intelligence delivered weekly, plus comprehensive individual news coverage for Canadian immigration updates.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://immiwatch.ca/news/digest/">
+    <title>Weekly Digest | ImmiWatch</title>
+    <meta name="description" content="ImmiWatch Weekly Digest - Comprehensive weekly analysis of Canadian immigration developments, policy updates, and strategic insights delivered every Monday.">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg?v=3&t=1737962580">
-    <link rel="apple-touch-icon" href="../../../favicon.svg?v=3&t=1737962580">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg?v=3">
+    <link rel="apple-touch-icon" href="../../favicon.svg?v=3">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/shared-styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="../../assets/css/shared-styles.css">
     
     <style>
-        .hero-newsletter {
+        /* Newsletter Hub Specific Styles */
+        .newsletter-hero {
             background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
             color: white;
             padding: 6rem 0 4rem;
             text-align: center;
         }
         
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+        
         .hero-title {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
         }
         
         .hero-subtitle {
             font-size: 1.25rem;
             opacity: 0.9;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto 2rem;
+            line-height: 1.6;
         }
         
-        .newsletter-tabs {
-            background: white;
-            border-bottom: 1px solid var(--gray-200);
-            position: sticky;
-            top: 70px;
-            z-index: 40;
-        }
-        
-        .tabs-container {
+        .hero-stats {
             display: flex;
             justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+        
+        /* What We Cover Section */
+        .coverage-section {
+            padding: 4rem 0;
+            background: var(--gray-50);
+        }
+        
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            padding: 1rem 0;
+            margin-top: 3rem;
         }
         
-        .tab-btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            background: none;
-            color: var(--gray-600);
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: var(--border-radius-md);
-            transition: var(--transition-normal);
+        .coverage-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-xl);
+            border: 1px solid var(--gray-200);
+            text-align: center;
+            transition: all 0.3s ease;
         }
         
-        .tab-btn.active {
-            background: var(--primary-100);
-            color: var(--primary-700);
+        .coverage-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-300);
         }
         
-        .tab-btn:hover {
-            background: var(--gray-100);
-        }
-        
-        .tab-content {
-            display: none;
-            padding: 3rem 0;
-        }
-        
-        .tab-content.active {
+        .coverage-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             display: block;
         }
         
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .news-card {
-            background: white;
-            border-radius: var(--border-radius-xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--gray-200);
-            transition: var(--transition-normal);
-        }
-        
-        .news-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .news-category-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            border-radius: var(--border-radius-full);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .category-policy {
-            background: var(--red-100);
-            color: var(--red-700);
-        }
-        
-        .category-draws {
-            background: var(--blue-100);
-            color: var(--blue-700);
-        }
-        
-        .category-programs {
-            background: var(--green-100);
-            color: var(--green-700);
-        }
-        
-        .category-legal {
-            background: var(--purple-100);
-            color: var(--purple-700);
-        }
-        
-        .category-systems {
-            background: var(--yellow-100);
-            color: var(--yellow-700);
-        }
-        
-        .news-card-header {
-            padding: 1.5rem 1.5rem 0;
-        }
-        
-        .news-card-content {
-            padding: 0 1.5rem 1.5rem;
-        }
-        
-        .news-card h3 {
-            font-size: 1.125rem;
+        .coverage-card h3 {
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--gray-900);
-            margin: 0.75rem 0 0.5rem;
-            line-height: 1.4;
+            margin-bottom: 1rem;
         }
         
-        .news-card h3 a {
-            color: var(--gray-900);
-            text-decoration: none;
-        }
-        
-        .news-card h3 a:hover {
-            color: var(--primary-600);
-        }
-        
-        .news-card .summary {
+        .coverage-card p {
             color: var(--gray-600);
-            font-size: 0.875rem;
-            line-height: 1.5;
-            margin-bottom: 1rem;
+            line-height: 1.6;
         }
         
-        .news-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 0.75rem;
-            color: var(--gray-500);
-            margin-bottom: 1rem;
+        /* Newsletter Grid */
+        .newsletter-section {
+            padding: 4rem 0;
         }
         
-        .impact-indicator {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-right: 0.25rem;
-        }
-        
-        .impact-high {
-            background: var(--red-500);
-        }
-        
-        .impact-medium {
-            background: var(--yellow-500);
-        }
-        
-        .impact-low {
-            background: var(--green-500);
-        }
-        
-        .news-card-footer {
-            padding: 0 1.5rem 1.5rem;
-            border-top: 1px solid var(--gray-100);
-            margin-top: 1rem;
-            padding-top: 1rem;
-        }
-        
-        .read-more-btn {
-            color: var(--primary-600);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.875rem;
-        }
-        
-        .read-more-btn:hover {
-            color: var(--primary-700);
+        .newsletter-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
         }
         
         .newsletter-card {
             background: white;
             border-radius: var(--border-radius-xl);
-            padding: 2rem;
-            box-shadow: var(--shadow-md);
             border: 1px solid var(--gray-200);
-            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
         
-        .newsletter-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
+        .newsletter-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-300);
+        }
+        
+        .newsletter-card-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .newsletter-week {
+            font-size: 0.875rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
         }
         
         .newsletter-title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
         }
         
         .newsletter-date {
-            color: var(--gray-500);
             font-size: 0.875rem;
+            opacity: 0.8;
         }
         
-        .newsletter-badge {
-            background: var(--primary-100);
-            color: var(--primary-700);
-            padding: 0.25rem 0.75rem;
-            border-radius: var(--border-radius-full);
-            font-size: 0.75rem;
-            font-weight: 600;
+        .newsletter-card-content {
+            padding: 1.5rem;
         }
         
-        .newsletter-preview {
+        .newsletter-summary {
             color: var(--gray-600);
             line-height: 1.6;
             margin-bottom: 1.5rem;
         }
         
         .newsletter-highlights {
-            background: var(--gray-50);
-            padding: 1rem;
-            border-radius: var(--border-radius-md);
             margin-bottom: 1.5rem;
         }
         
         .newsletter-highlights h4 {
             font-size: 0.875rem;
             font-weight: 600;
-            color: var(--gray-700);
-            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        .newsletter-highlights ul {
+        .highlight-list {
             list-style: none;
             padding: 0;
-            margin: 0;
         }
         
-        .newsletter-highlights li {
+        .highlight-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--gray-100);
+            color: var(--gray-700);
             font-size: 0.875rem;
-            color: var(--gray-600);
-            margin-bottom: 0.25rem;
-            padding-left: 1rem;
-            position: relative;
         }
         
-        .newsletter-highlights li:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--primary-600);
+        .highlight-list li:last-child {
+            border-bottom: none;
         }
         
-        .newsletter-highlights a {
-            color: var(--primary-600);
-            text-decoration: none;
-        }
-        
-        .newsletter-highlights a:hover {
-            text-decoration: underline;
+        .highlight-list li::before {
+            content: "📌";
+            margin-right: 0.5rem;
         }
         
         .newsletter-actions {
@@ -314,20 +221,94 @@
             gap: 1rem;
         }
         
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--gray-700);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--gray-200);
+            border-color: var(--gray-400);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            background: white;
+            color: var(--primary-600);
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
-            .tabs-container {
+            .hero-stats {
                 flex-direction: column;
-                gap: 1rem;
-                align-items: center;
+                gap: 1.5rem;
             }
             
-            .newsletter-header {
-                flex-direction: column;
-                gap: 1rem;
+            .coverage-grid {
+                grid-template-columns: 1fr;
             }
             
             .newsletter-actions {
@@ -379,30 +360,83 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="hero-newsletter">
+    <section class="newsletter-hero">
         <div class="container">
-            <h1 class="hero-title">
-                Professional Immigration<br>
-                <span style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Intelligence</span>
-            </h1>
+            <div class="hero-badge">📧 Professional Intelligence</div>
+            <h1 class="hero-title">ImmiWatch Weekly Digest</h1>
             <p class="hero-subtitle">
-                Comprehensive weekly newsletters plus individual news coverage. Stay ahead with Canada's most trusted immigration intelligence platform.
+                Comprehensive weekly analysis of Canadian immigration developments, policy updates, and strategic insights. 
+                Professional intelligence you can reference, share, and build your practice on.
             </p>
-        </div>
-    </section>
-
-    <!-- Navigation Tabs -->
-    <section class="newsletter-tabs">
-        <div class="container">
-            <div class="tabs-container">
-                <button class="tab-btn active" data-tab="newsletters">📧 Weekly Newsletters</button>
-                <button class="tab-btn" data-tab="news">📰 Immigration News</button>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Newsletters Published</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Stories Covered</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Professional Focus</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Weekly Newsletters Tab -->
-    <section class="tab-content active" id="newsletters">
+    <!-- What We Cover -->
+    <section class="coverage-section">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1rem;">What We Cover</h2>
+                <p style="font-size: 1.125rem; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
+                    Every Monday, we deliver comprehensive coverage across all immigration developments that matter to your practice.
+                </p>
+            </div>
+            
+            <div class="coverage-grid">
+                <div class="coverage-card">
+                    <span class="coverage-icon">📋</span>
+                    <h3>Policy Announcements</h3>
+                    <p>Federal and provincial policy changes, program updates, and regulatory modifications with professional analysis of implications.</p>
+                </div>
+                
+                <div class="coverage-card">
+                    <span class="coverage-icon">🎯</span>
+                    <h3>Invitation Rounds</h3>
+                    <p>Complete coverage of Express Entry draws, PNP selections, and all invitation activities with strategic context.</p>
+                </div>
+                
+                <div class="coverage-card">
+                    <span class="coverage-icon">🏛️</span>
+                    <h3>Program Delivery Updates</h3>
+                    <p>Processing times, operational changes, service delivery modifications, and system updates across all programs.</p>
+                </div>
+                
+                <div class="coverage-card">
+                    <span class="coverage-icon">⚖️</span>
+                    <h3>Legal Decisions</h3>
+                    <p>Federal Court decisions, AAT rulings, and other legal developments affecting immigration practice and precedent.</p>
+                </div>
+                
+                <div class="coverage-card">
+                    <span class="coverage-icon">💻</span>
+                    <h3>System Portal Notices</h3>
+                    <p>IRCC portal updates, technical changes, system maintenance, and digital service modifications.</p>
+                </div>
+                
+                <div class="coverage-card">
+                    <span class="coverage-icon">📊</span>
+                    <h3>ATIP Insights</h3>
+                    <p>Access to Information releases, government internal communications, and transparency disclosures with analysis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weekly Newsletters -->
+    <section class="newsletter-section">
         <div class="container">
             <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
                 <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1rem;">Weekly Intelligence Reports</h2>
@@ -411,202 +445,72 @@
                 </p>
             </div>
 
-            <!-- Newsletter Cards -->
-            <div class="newsletter-card">
-                <div class="newsletter-header">
-                    <div>
-                        <h3 class="newsletter-title">ImmiWatch Weekly - Week 29</h3>
-                        <div class="newsletter-date">July 15-21, 2025</div>
+            <div class="newsletter-grid">
+                <!-- Week 29 Newsletter -->
+                <article class="newsletter-card">
+                    <div class="newsletter-card-header">
+                        <div class="newsletter-week">Week 29, 2025</div>
+                        <h3 class="newsletter-title">Immigration Intelligence Weekly</h3>
+                        <div class="newsletter-date">July 21, 2025</div>
                     </div>
-                    <div class="newsletter-badge">Latest</div>
-                </div>
-                
-                <p class="newsletter-preview">
-                    Major Express Entry changes announced this week alongside significant PNP updates from Ontario and British Columbia. Healthcare worker priorities continue to shape federal immigration strategy.
-                </p>
-                
-                <div class="newsletter-highlights">
-                    <h4>Week 29 Highlights with Individual Analysis:</h4>
-                    <ul>
-                        <li><a href="../../../daily/draws/2025-07-17/express-entry-draw-267-4750-itas/">Express Entry Draw #267: 4,750 ITAs at CRS 491</a></li>
-                        <li><a href="../../../daily/systems/2025-07-20/ircc-portal-maintenance-july-26-27/">Critical IRCC Portal Maintenance: July 26-27</a></li>
-                        <li>Ontario PNP expands in-demand skills stream</li>
-                        <li>Federal Court ruling on study permit renewals</li>
-                        <li>Express Entry processing time improvements</li>
-                    </ul>
-                </div>
-                
-                <div class="newsletter-actions">
-                    <a href="week-29-2025/" class="btn btn-primary">📖 Read Full Newsletter</a>
-                    <a href="mailto:?subject=ImmiWatch Weekly - Week 29&body=Check out this week's immigration intelligence: https://immiwatch.ca/news/digest/week-29-2025/" class="btn btn-secondary">📤 Share</a>
-                </div>
-            </div>
+                    <div class="newsletter-card-content">
+                        <p class="newsletter-summary">
+                            This week's edition covers Express Entry Draw #267 with 4,750 ITAs at CRS 491, IRCC portal maintenance affecting all digital services, and strategic analysis of emerging invitation patterns.
+                        </p>
+                        <div class="newsletter-highlights">
+                            <h4>Key Highlights</h4>
+                            <ul class="highlight-list">
+                                <li>Express Entry Draw #267: 4,750 ITAs at CRS 491</li>
+                                <li>Critical IRCC Portal Maintenance July 26-27</li>
+                                <li>Draw frequency analysis and future predictions</li>
+                                <li>Professional practice implications and opportunities</li>
+                            </ul>
+                        </div>
+                        <div class="newsletter-actions">
+                            <a href="week-29-2025/" class="btn-primary">Read Full Edition</a>
+                            <a href="#" class="btn-secondary">Share Newsletter</a>
+                        </div>
+                    </div>
+                </article>
 
-            <div class="newsletter-card">
-                <div class="newsletter-header">
-                    <div>
-                        <h3 class="newsletter-title">ImmiWatch Weekly - Week 28</h3>
-                        <div class="newsletter-date">July 8-14, 2025</div>
+                <!-- Week 28 Newsletter -->
+                <article class="newsletter-card">
+                    <div class="newsletter-card-header">
+                        <div class="newsletter-week">Week 28, 2025</div>
+                        <h3 class="newsletter-title">Immigration Intelligence Weekly</h3>
+                        <div class="newsletter-date">July 14, 2025</div>
                     </div>
-                </div>
-                
-                <p class="newsletter-preview">
-                    Policy announcements from IRCC regarding 2025 immigration levels, plus significant updates to provincial nominee programs and processing timeline improvements.
-                </p>
-                
-                <div class="newsletter-highlights">
-                    <h4>Week 28 Highlights with Individual Analysis:</h4>
-                    <ul>
-                        <li><a href="../../../daily/policy/2025-07-10/bcpnp-major-program-expansion/">BCPNP Major Program Expansion: 30% Increase</a></li>
-                        <li>Federal processing times show continued improvement</li>
-                        <li>NOC classification updates implemented</li>
-                    </ul>
-                </div>
-                
-                <div class="newsletter-actions">
-                    <a href="week-28-2025/" class="btn btn-primary">📖 Read Full Newsletter</a>
-                    <a href="mailto:?subject=ImmiWatch Weekly - Week 28&body=Check out this week's immigration intelligence: https://immiwatch.ca/news/digest/week-28-2025/" class="btn btn-secondary">📤 Share</a>
-                </div>
+                    <div class="newsletter-card-content">
+                        <p class="newsletter-summary">
+                            Major BCPNP program expansion with new priority occupations, enhanced pathways for skilled workers and international graduates, plus comprehensive program delivery updates.
+                        </p>
+                        <div class="newsletter-highlights">
+                            <h4>Key Highlights</h4>
+                            <ul class="highlight-list">
+                                <li>BCPNP announces major program expansion</li>
+                                <li>New priority occupations and enhanced pathways</li>
+                                <li>Strategic opportunities for practitioners</li>
+                                <li>Program delivery and operational updates</li>
+                            </ul>
+                        </div>
+                        <div class="newsletter-actions">
+                            <a href="week-28-2025/" class="btn-primary">Read Full Edition</a>
+                            <a href="#" class="btn-secondary">Share Newsletter</a>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Immigration News Tab -->
-    <section class="tab-content" id="news">
+    <!-- CTA Section -->
+    <section class="cta-section">
         <div class="container">
-            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-                <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1rem;">Latest Immigration News</h2>
-                <p style="font-size: 1.125rem; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
-                    Individual coverage of every immigration development. Professional analysis you can reference and share.
-                </p>
-            </div>
-
-            <!-- News Grid -->
-            <div class="news-grid">
-                <!-- Express Entry Draw -->
-                <article class="news-card">
-                    <div class="news-card-header">
-                        <span class="news-category-badge category-draws">🎯 Draws</span>
-                        <h3><a href="../../../daily/draws/2025-07-17/express-entry-draw-267-4750-itas/">Express Entry Draw #267: 4,750 ITAs Issued at CRS 491</a></h3>
-                    </div>
-                    <div class="news-card-content">
-                        <div class="news-meta">
-                            <span>July 17, 2025</span>
-                            <span>•</span>
-                            <span><span class="impact-indicator impact-high"></span>High Impact</span>
-                        </div>
-                        <p class="summary">
-                            Express Entry General Draw #267 issued 4,750 ITAs with minimum CRS score of 491. Analysis of sub-500 CRS trend and strategic implications for immigration practitioners.
-                        </p>
-                    </div>
-                    <div class="news-card-footer">
-                        <a href="../../../daily/draws/2025-07-17/express-entry-draw-267-4750-itas/" class="read-more-btn">Read Full Analysis →</a>
-                    </div>
-                </article>
-
-                <!-- IRCC Portal Maintenance -->
-                <article class="news-card">
-                    <div class="news-card-header">
-                        <span class="news-category-badge category-systems">🔧 Systems</span>
-                        <h3><a href="../../../daily/systems/2025-07-20/ircc-portal-maintenance-july-26-27/">Critical IRCC Portal Maintenance: July 26-27, 2025</a></h3>
-                    </div>
-                    <div class="news-card-content">
-                        <div class="news-meta">
-                            <span>July 20, 2025</span>
-                            <span>•</span>
-                            <span><span class="impact-indicator impact-high"></span>High Impact</span>
-                        </div>
-                        <p class="summary">
-                            IRCC announces 30-hour system maintenance affecting all online services including application submissions and status checking. Strategic planning required.
-                        </p>
-                    </div>
-                    <div class="news-card-footer">
-                        <a href="../../../daily/systems/2025-07-20/ircc-portal-maintenance-july-26-27/" class="read-more-btn">Read Full Alert →</a>
-                    </div>
-                </article>
-
-                <!-- BCPNP Expansion -->
-                <article class="news-card">
-                    <div class="news-card-header">
-                        <span class="news-category-badge category-policy">📢 Policy</span>
-                        <h3><a href="../../../daily/policy/2025-07-10/bcpnp-major-program-expansion/">BCPNP Major Program Expansion: 30% Increase in Nominations</a></h3>
-                    </div>
-                    <div class="news-card-content">
-                        <div class="news-meta">
-                            <span>July 10, 2025</span>
-                            <span>•</span>
-                            <span><span class="impact-indicator impact-high"></span>High Impact</span>
-                        </div>
-                        <p class="summary">
-                            British Columbia PNP announces comprehensive expansion targeting healthcare workers, skilled trades, and technology professionals with 30% increased nominations.
-                        </p>
-                    </div>
-                    <div class="news-card-footer">
-                        <a href="../../../daily/policy/2025-07-10/bcpnp-major-program-expansion/" class="read-more-btn">Read Full Analysis →</a>
-                    </div>
-                </article>
-
-                <!-- Coming Soon Articles -->
-                <article class="news-card" style="opacity: 0.7;">
-                    <div class="news-card-header">
-                        <span class="news-category-badge category-legal">⚖️ Legal</span>
-                        <h3>Federal Court Rules on Study Permit Renewal Documentation</h3>
-                    </div>
-                    <div class="news-card-content">
-                        <div class="news-meta">
-                            <span>July 18, 2025</span>
-                            <span>•</span>
-                            <span><span class="impact-indicator impact-high"></span>High Impact</span>
-                        </div>
-                        <p class="summary">
-                            Federal Court establishes procedural fairness requirements for study permit renewals in Chen v. Canada (IRCC), affecting future application processing.
-                        </p>
-                    </div>
-                    <div class="news-card-footer">
-                        <span style="color: var(--gray-500); font-size: 0.875rem;">📝 Article Coming Soon</span>
-                    </div>
-                </article>
-
-                <article class="news-card" style="opacity: 0.7;">
-                    <div class="news-card-header">
-                        <span class="news-category-badge category-programs">🏛️ Programs</span>
-                        <h3>Ontario PNP Expands In-Demand Skills Stream</h3>
-                    </div>
-                    <div class="news-card-content">
-                        <div class="news-meta">
-                            <span>July 19, 2025</span>
-                            <span>•</span>
-                            <span><span class="impact-indicator impact-medium"></span>Medium Impact</span>
-                        </div>
-                        <p class="summary">
-                            OINP adds 12 new eligible occupations to In-Demand Skills Stream, particularly focusing on healthcare support and skilled trades sectors.
-                        </p>
-                    </div>
-                    <div class="news-card-footer">
-                        <span style="color: var(--gray-500); font-size: 0.875rem;">📝 Article Coming Soon</span>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter CTA -->
-    <section class="content-section" style="background: var(--gradient-primary); color: white; padding: 6rem 0; margin-top: 4rem;">
-        <div class="container" style="text-align: center;">
-            <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: white;">
-                Join Canada's Leading Immigration Intelligence Network
-            </h2>
-            <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Get weekly newsletters plus instant access to individual news analysis. Professional-grade intelligence for immigration practitioners and informed candidates.
+            <h2 class="cta-title">Never Miss an Update</h2>
+            <p class="cta-subtitle">
+                Get the ImmiWatch Weekly Digest delivered to your inbox every Monday. Professional intelligence for immigration practitioners.
             </p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="mailto:newsletter@immiwatch.ca?subject=Newsletter Subscription" style="background: white; color: var(--primary-600); padding: 1rem 2rem; border-radius: var(--border-radius-lg); text-decoration: none; font-weight: 600; transition: var(--transition-normal);">
-                    📧 Subscribe to Weekly Newsletter
-                </a>
-                <a href="../../../about/" style="border: 2px solid white; color: white; padding: 1rem 2rem; border-radius: var(--border-radius-lg); text-decoration: none; font-weight: 600; transition: var(--transition-normal);">
-                    Learn More About ImmiWatch
-                </a>
-            </div>
+            <a href="mailto:hi@lexpoint.io?subject=Weekly%20Digest%20Subscription" class="cta-button">Subscribe to Weekly Digest</a>
         </div>
     </section>
 
@@ -614,51 +518,49 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">ImmiWatch Data Studio</div>
-                <p class="footer-description">
-                    Professional Canada immigration analytics and insights. A premium product by Lexpoint.io, delivering data-driven immigration intelligence since 2025.
-                </p>
-                
-                <div class="footer-links">
-                    <a href="../../../reports/" class="footer-link">Reports</a>
-                    <a href="../../../tools/" class="footer-link">Tools</a>
-                    <a href="#" class="footer-link">Newsletter</a>
-                    <a href="../../../about/" class="footer-link">About</a>
-                    <a href="mailto:hi@lexpoint.io" class="footer-link">Contact</a>
-                </div>
-                
-                <div class="footer-bottom">
-                    <p>&copy; 2025 ImmiWatch Data Studio - Part of Lexpoint.io</p>
-                    <p style="margin-top: 0.5rem; font-size: 0.875rem;">
-                        Professional Immigration Analytics | 
-                        <a href="mailto:hi@lexpoint.io" style="color: var(--primary-400);">hi@lexpoint.io</a>
+                <div class="footer-section">
+                    <h3 class="footer-title">ImmiWatch</h3>
+                    <p class="footer-description">
+                        Professional immigration intelligence and analytics platform providing comprehensive insights into Canadian immigration programs.
                     </p>
                 </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../../reports/">Reports</a></li>
+                        <li><a href="../../tools/">Tools</a></li>
+                        <li><a href="../">News</a></li>
+                        <li><a href="../../about/">About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="../../tools/noc-navigator.html">NOC Navigator</a></li>
+                        <li><a href="../../tools/clb-navigator.html">CLB Navigator</a></li>
+                        <li><a href="../digest/">Weekly Digest</a></li>
+                        <li><a href="../daily/">Daily News</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">Contact</h4>
+                    <p class="footer-contact">
+                        Email: <a href="mailto:hi@lexpoint.io">hi@lexpoint.io</a><br>
+                        Website: <a href="https://immiwatch.ca">immiwatch.ca</a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ImmiWatch by Lexpoint.io. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Tab functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const targetTab = this.getAttribute('data-tab');
-                    
-                    // Remove active class from all tabs and contents
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-                    
-                    // Add active class to clicked tab and corresponding content
-                    this.classList.add('active');
-                    document.getElementById(targetTab).classList.add('active');
-                });
-            });
-        });
-
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
