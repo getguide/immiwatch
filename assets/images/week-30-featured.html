@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImmiWatch Week 30 Featured Image</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .featured-image {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 0%, transparent 50%);
+        }
+        
+        .logo-section {
+            margin-bottom: 2rem;
+        }
+        
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .brand-name {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .brand-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .content-section {
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .week-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+        
+        .highlights {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .highlight-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .highlight-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .date-info {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(0,0,0,0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="featured-image">
+        <div class="background-pattern"></div>
+        
+        <div class="logo-section">
+            <div class="logo-icon">📊</div>
+            <div class="brand-name">ImmiWatch</div>
+            <div class="brand-subtitle">Professional Immigration Analytics</div>
+        </div>
+        
+        <div class="content-section">
+            <div class="week-badge">📰 Week 30 • July 22-28, 2025</div>
+            <h1 class="main-title">Historic Express Entry Health Draw</h1>
+            <p class="subtitle">4,000 ITAs issued with 475 CRS cutoff • Ontario work permits • Saskatchewan PNP case • Strategic analysis</p>
+            
+            <div class="highlights">
+                <div class="highlight-item">
+                    <div class="highlight-icon">🏥</div>
+                    <div class="highlight-text">Health Draw</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">📋</div>
+                    <div class="highlight-text">Work Permits</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">⚖️</div>
+                    <div class="highlight-text">Legal Case</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="date-info">
+            July 28, 2025
+        </div>
+    </div>
+</body>
+</html> 
