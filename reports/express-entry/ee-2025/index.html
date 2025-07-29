@@ -109,6 +109,78 @@
             background-clip: text;
             font-weight: 800;
         }
+
+        /* Animated Progress Bar Styles */
+        .progress-bar-container {
+            background: #e5e7eb;
+            border-radius: 10px;
+            height: 20px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            position: relative;
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0%;
+        }
+
+        .progress-bar-fill.category-based {
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+
+        .progress-bar-fill.program-based {
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+        }
+
+        .progress-bar-fill.elite {
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+
+        .progress-bar-fill.strong {
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+        }
+
+        .progress-bar-fill.competitive {
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+        }
+
+        .progress-bar-fill.challenging {
+            background: linear-gradient(90deg, #ef4444, #dc2626);
+        }
+
+        .progress-bar-fill.limited {
+            background: linear-gradient(90deg, #6b7280, #4b5563);
+        }
+
+        .progress-bar-text {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .progress-bar-fill.animated .progress-bar-text {
+            opacity: 1;
+        }
+
+        /* Animation for progress bars */
+        @keyframes progressFill {
+            from { width: 0%; }
+            to { width: var(--target-width); }
+        }
+
+        .progress-bar-fill.animate {
+            animation: progressFill 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
         
         @media (max-width: 768px) {
             .report-grid {
@@ -242,9 +314,9 @@
                             </div>
                             
                             <!-- Progress Bar -->
-                            <div style="background: #e5e7eb; border-radius: 10px; height: 20px; margin-bottom: 1rem; overflow: hidden;">
-                                <div style="background: linear-gradient(90deg, #10b981, #059669); height: 100%; width: 63%; border-radius: 10px; position: relative; transition: width 0.3s ease;">
-                                    <div style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: white; font-weight: 600; font-size: 0.8rem;">63% Used</div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill category-based" data-target-width="63%">
+                                    <div class="progress-bar-text">63% Used</div>
                                 </div>
                             </div>
                             
@@ -275,9 +347,9 @@
                             </div>
                             
                             <!-- Progress Bar -->
-                            <div style="background: #e5e7eb; border-radius: 10px; height: 20px; margin-bottom: 1rem; overflow: hidden;">
-                                <div style="background: linear-gradient(90deg, #3b82f6, #1d4ed8); height: 100%; width: 45%; border-radius: 10px; position: relative; transition: width 0.3s ease;">
-                                    <div style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: white; font-weight: 600; font-size: 0.8rem;">45% Used</div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill program-based" data-target-width="45%">
+                                    <div class="progress-bar-text">45% Used</div>
                                 </div>
                             </div>
                             
@@ -334,8 +406,8 @@
                                     <span style="font-weight: 600; color: var(--gray-700);">601-1200 (Elite)</span>
                                     <span style="font-weight: 600; color: var(--success-600);">200 candidates</span>
                                 </div>
-                                <div style="background: #e5e7eb; border-radius: 4px; height: 8px; overflow: hidden;">
-                                    <div style="background: linear-gradient(90deg, #10b981, #059669); height: 100%; width: 0.08%; border-radius: 4px;"></div>
+                                <div class="progress-bar-container" style="height: 8px;">
+                                    <div class="progress-bar-fill elite" data-target-width="0.08%"></div>
                                 </div>
                                 <div style="font-size: 0.8rem; color: var(--success-600); margin-top: 0.25rem;">🟢 Virtually Guaranteed ITAs</div>
                             </div>
@@ -346,8 +418,8 @@
                                     <span style="font-weight: 600; color: var(--gray-700);">501-600 (Strong)</span>
                                     <span style="font-weight: 600; color: var(--primary-600);">21,348 candidates</span>
                                 </div>
-                                <div style="background: #e5e7eb; border-radius: 4px; height: 12px; overflow: hidden;">
-                                    <div style="background: linear-gradient(90deg, #3b82f6, #1d4ed8); height: 100%; width: 8.3%; border-radius: 4px;"></div>
+                                <div class="progress-bar-container" style="height: 12px;">
+                                    <div class="progress-bar-fill strong" data-target-width="8.3%"></div>
                                 </div>
                                 <div style="font-size: 0.8rem; color: var(--primary-600); margin-top: 0.25rem;">🔵 High Probability for Most Programs</div>
                             </div>
@@ -358,8 +430,8 @@
                                     <span style="font-weight: 600; color: var(--gray-700);">451-500 (Competitive)</span>
                                     <span style="font-weight: 600; color: var(--warning-600);">78,339 candidates</span>
                                 </div>
-                                <div style="background: #e5e7eb; border-radius: 4px; height: 20px; overflow: hidden;">
-                                    <div style="background: linear-gradient(90deg, #f59e0b, #d97706); height: 100%; width: 30.5%; border-radius: 4px;"></div>
+                                <div class="progress-bar-container" style="height: 20px;">
+                                    <div class="progress-bar-fill competitive" data-target-width="30.5%"></div>
                                 </div>
                                 <div style="font-size: 0.8rem; color: var(--warning-600); margin-top: 0.25rem;">🟡 Highest Competition Zone</div>
                             </div>
@@ -370,8 +442,8 @@
                                     <span style="font-weight: 600; color: var(--gray-700);">401-450 (Challenging)</span>
                                     <span style="font-weight: 600; color: var(--error-600);">73,409 candidates</span>
                                 </div>
-                                <div style="background: #e5e7eb; border-radius: 4px; height: 18px; overflow: hidden;">
-                                    <div style="background: linear-gradient(90deg, #ef4444, #dc2626); height: 100%; width: 28.6%; border-radius: 4px;"></div>
+                                <div class="progress-bar-container" style="height: 18px;">
+                                    <div class="progress-bar-fill challenging" data-target-width="28.6%"></div>
                                 </div>
                                 <div style="font-size: 0.8rem; color: var(--error-600); margin-top: 0.25rem;">🔴 Category-Based Only</div>
                             </div>
@@ -382,8 +454,8 @@
                                     <span style="font-weight: 600; color: var(--gray-700);">Below 400</span>
                                     <span style="font-weight: 600; color: var(--gray-500);">83,618 candidates</span>
                                 </div>
-                                <div style="background: #e5e7eb; border-radius: 4px; height: 14px; overflow: hidden;">
-                                    <div style="background: linear-gradient(90deg, #6b7280, #4b5563); height: 100%; width: 32.5%; border-radius: 4px;"></div>
+                                <div class="progress-bar-container" style="height: 14px;">
+                                    <div class="progress-bar-fill limited" data-target-width="32.5%"></div>
                                 </div>
                                 <div style="font-size: 0.8rem; color: var(--gray-500); margin-top: 0.25rem;">⚫ Very Limited Opportunities</div>
                             </div>
@@ -969,7 +1041,7 @@
             }
         });
 
-        // Animation observer
+        // Animation observer for general elements
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -985,6 +1057,38 @@
 
         document.querySelectorAll('.card, .metric-card').forEach(el => {
             observer.observe(el);
+        });
+
+        // Progress bar animation observer
+        const progressBarObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBar = entry.target;
+                    const targetWidth = progressBar.getAttribute('data-target-width');
+                    
+                    // Set the target width as CSS custom property
+                    progressBar.style.setProperty('--target-width', targetWidth);
+                    
+                    // Add animation class
+                    progressBar.classList.add('animate');
+                    
+                    // Add animated class to show text
+                    setTimeout(() => {
+                        progressBar.classList.add('animated');
+                    }, 500);
+                    
+                    // Stop observing this element
+                    progressBarObserver.unobserve(progressBar);
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        // Observe all progress bars
+        document.querySelectorAll('.progress-bar-fill').forEach(progressBar => {
+            progressBarObserver.observe(progressBar);
         });
     </script>
 </body>
