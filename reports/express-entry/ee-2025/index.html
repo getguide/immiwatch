@@ -276,7 +276,7 @@
                         <div class="stat-label">Overall Capacity Used</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number" data-target="38000" data-prefix="" data-suffix="k">0k</div>
+                        <div class="stat-number" data-target="38" data-prefix="" data-suffix="k">0k</div>
                         <div class="stat-label">Projected Remaining ITAs</div>
                     </div>
                     <div class="stat-card">
@@ -1130,9 +1130,9 @@
                 const easeOutQuart = 1 - Math.pow(1 - progress, 4);
                 const currentValue = Math.floor(startValue + (target - startValue) * easeOutQuart);
                 
-                // Format the number with commas for large numbers
+                // Format the number with commas for large numbers (but not for k suffix)
                 let displayValue = currentValue;
-                if (target >= 1000) {
+                if (target >= 1000 && suffix !== 'k') {
                     displayValue = currentValue.toLocaleString();
                 }
                 
