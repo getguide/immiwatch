@@ -206,6 +206,15 @@
         .counter {
             display: inline-block;
         }
+
+        /* Pool stat number animations */
+        .pool-stat-number {
+            transition: all 0.3s ease;
+        }
+
+        .pool-stat-number.animate {
+            animation: numberCount 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
         
         @media (max-width: 768px) {
             .report-grid {
@@ -404,19 +413,19 @@
                         <!-- Pool Distribution Overview -->
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
                             <div style="text-align: center; padding: 1rem; background: white; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm);">
-                                <div style="font-size: 1.8rem; font-weight: 700; color: var(--primary-600);">256,914</div>
+                                <div class="pool-stat-number" style="font-size: 1.8rem; font-weight: 700; color: var(--primary-600);" data-target="256914" data-prefix="" data-suffix="">0</div>
                                 <div style="font-size: 0.9rem; color: var(--gray-600);">Total Pool Size</div>
                             </div>
                             <div style="text-align: center; padding: 1rem; background: white; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm);">
-                                <div style="font-size: 1.8rem; font-weight: 700; color: var(--warning-600);">78,339</div>
+                                <div class="pool-stat-number" style="font-size: 1.8rem; font-weight: 700; color: var(--warning-600);" data-target="78339" data-prefix="" data-suffix="">0</div>
                                 <div style="font-size: 0.9rem; color: var(--gray-600);">High Competition (451-500)</div>
                             </div>
                             <div style="text-align: center; padding: 1rem; background: white; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm);">
-                                <div style="font-size: 1.8rem; font-weight: 700; color: var(--success-600);">21,348</div>
+                                <div class="pool-stat-number" style="font-size: 1.8rem; font-weight: 700; color: var(--success-600);" data-target="21348" data-prefix="" data-suffix="">0</div>
                                 <div style="font-size: 0.9rem; color: var(--gray-600);">Sweet Spot (501-600)</div>
                             </div>
                             <div style="text-align: center; padding: 1rem; background: white; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm);">
-                                <div style="font-size: 1.8rem; font-weight: 700; color: var(--accent-600);">200</div>
+                                <div class="pool-stat-number" style="font-size: 1.8rem; font-weight: 700; color: var(--accent-600);" data-target="200" data-prefix="" data-suffix="">0</div>
                                 <div style="font-size: 0.9rem; color: var(--gray-600);">Elite Tier (601+)</div>
                             </div>
                         </div>
@@ -1164,6 +1173,35 @@
                     animateCounter(statNumber, target, prefix, suffix);
                 }, index * 200); // 200ms delay between each stat
             });
+        });
+
+        // Pool stat number animation observer
+        const poolStatObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const poolStatNumber = entry.target;
+                    const target = parseInt(poolStatNumber.getAttribute('data-target'));
+                    const prefix = poolStatNumber.getAttribute('data-prefix') || '';
+                    const suffix = poolStatNumber.getAttribute('data-suffix') || '';
+                    
+                    // Add animation class
+                    poolStatNumber.classList.add('animate');
+                    
+                    // Start the counter animation
+                    animateCounter(poolStatNumber, target, prefix, suffix);
+                    
+                    // Stop observing this element
+                    poolStatObserver.unobserve(poolStatNumber);
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        // Observe all pool stat numbers
+        document.querySelectorAll('.pool-stat-number').forEach(poolStatNumber => {
+            poolStatObserver.observe(poolStatNumber);
         });
     </script>
 </body>
