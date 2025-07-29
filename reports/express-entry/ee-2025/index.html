@@ -181,6 +181,31 @@
         .progress-bar-fill.animate {
             animation: progressFill 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
+
+        /* Animated Number Counter Styles */
+        .stat-number {
+            transition: all 0.3s ease;
+        }
+
+        .stat-number.animate {
+            animation: numberCount 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes numberCount {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Counter animation for numbers */
+        .counter {
+            display: inline-block;
+        }
         
         @media (max-width: 768px) {
             .report-grid {
@@ -243,19 +268,19 @@
                 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-number">49,403</div>
+                        <div class="stat-number" data-target="49403" data-prefix="" data-suffix="">0</div>
                         <div class="stat-label">Total ITAs Year-to-Date</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">57%</div>
+                        <div class="stat-number" data-target="57" data-prefix="" data-suffix="%">0%</div>
                         <div class="stat-label">Overall Capacity Used</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">38-40k</div>
+                        <div class="stat-number" data-target="38000" data-prefix="" data-suffix="k">0k</div>
                         <div class="stat-label">Projected Remaining ITAs</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">515</div>
+                        <div class="stat-number" data-target="515" data-prefix="" data-suffix="">0</div>
                         <div class="stat-label">Weighted Average CRS</div>
                     </div>
                 </div>
@@ -1089,6 +1114,56 @@
         // Observe all progress bars
         document.querySelectorAll('.progress-bar-fill').forEach(progressBar => {
             progressBarObserver.observe(progressBar);
+        });
+
+        // Number counter animation function
+        function animateCounter(element, target, prefix = '', suffix = '') {
+            const duration = 2500; // 2.5 seconds
+            const startTime = performance.now();
+            const startValue = 0;
+            
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function for smooth animation
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const currentValue = Math.floor(startValue + (target - startValue) * easeOutQuart);
+                
+                // Format the number with commas for large numbers
+                let displayValue = currentValue;
+                if (target >= 1000) {
+                    displayValue = currentValue.toLocaleString();
+                }
+                
+                element.textContent = prefix + displayValue + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+
+        // Animate header stats when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const statNumbers = document.querySelectorAll('.stats-grid .stat-number');
+            
+            statNumbers.forEach((statNumber, index) => {
+                // Stagger the animations
+                setTimeout(() => {
+                    const target = parseInt(statNumber.getAttribute('data-target'));
+                    const prefix = statNumber.getAttribute('data-prefix') || '';
+                    const suffix = statNumber.getAttribute('data-suffix') || '';
+                    
+                    // Add animation class
+                    statNumber.classList.add('animate');
+                    
+                    // Start the counter animation
+                    animateCounter(statNumber, target, prefix, suffix);
+                }, index * 200); // 200ms delay between each stat
+            });
         });
     </script>
 </body>
