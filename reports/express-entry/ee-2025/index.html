@@ -226,6 +226,84 @@
         .program-stat-number.animate {
             animation: numberCount 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
+
+        /* Draw Frequency & Prediction Engine Animations */
+        .prediction-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .prediction-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .prediction-alert {
+            animation: pulseAlert 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseAlert {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+                transform: scale(1.02);
+            }
+        }
+
+        .warning-alert {
+            animation: pulseWarning 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseWarning {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
+                transform: scale(1.02);
+            }
+        }
+
+        .error-alert {
+            animation: pulseError 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseError {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+                transform: scale(1.02);
+            }
+        }
+
+        /* Table row animations */
+        .draw-history-row {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .draw-history-row.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Icon animations */
+        .animated-icon {
+            transition: all 0.3s ease;
+        }
+
+        .animated-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
         
         @media (max-width: 768px) {
             .report-grid {
@@ -516,9 +594,9 @@
                         <!-- Program Analysis -->
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
                             <!-- PNP Analysis -->
-                            <div style="background: white; padding: 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm);">
+                            <div class="prediction-card" style="background: white; padding: 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm);">
                                 <h3 style="color: #7c3aed; margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
-                                    🍁 <span>Provincial Nominee Program</span>
+                                    <span class="animated-icon">🍁</span> <span>Provincial Nominee Program</span>
                                 </h3>
                                 <div style="margin-bottom: 0.75rem;">
                                     <div style="font-weight: 600; color: var(--gray-700);">Pattern:</div>
@@ -536,16 +614,16 @@
                                     <div style="font-weight: 600; color: var(--gray-700);">CRS Range:</div>
                                     <div style="color: var(--warning-600);">667 - 802 (Very High)</div>
                                 </div>
-                                <div style="padding: 0.75rem; background: var(--success-50); border-radius: var(--border-radius-sm); border-left: 3px solid var(--success-500);">
+                                <div class="prediction-alert" style="padding: 0.75rem; background: var(--success-50); border-radius: var(--border-radius-sm); border-left: 3px solid var(--success-500);">
                                     <strong style="color: var(--success-700);">Next Prediction:</strong><br/>
                                     <span style="color: var(--success-600);">Aug 4-5 (14 days from July 21)</span>
                                 </div>
                             </div>
 
                             <!-- CEC Analysis -->
-                            <div style="background: white; padding: 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm);">
+                            <div class="prediction-card" style="background: white; padding: 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm);">
                                 <h3 style="color: #7c3aed; margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
-                                    🇨🇦 <span>Canadian Experience Class</span>
+                                    <span class="animated-icon">🇨🇦</span> <span>Canadian Experience Class</span>
                                 </h3>
                                 <div style="margin-bottom: 0.75rem;">
                                     <div style="font-weight: 600; color: var(--gray-700);">Pattern:</div>
@@ -563,16 +641,16 @@
                                     <div style="font-weight: 600; color: var(--gray-700);">CRS Trend:</div>
                                     <div style="color: var(--success-600);">518-529 (Stable)</div>
                                 </div>
-                                <div style="padding: 0.75rem; background: var(--warning-50); border-radius: var(--border-radius-sm); border-left: 3px solid var(--warning-500);">
+                                <div class="warning-alert" style="padding: 0.75rem; background: var(--warning-50); border-radius: var(--border-radius-sm); border-left: 3px solid var(--warning-500);">
                                     <strong style="color: var(--warning-700);">Status Alert:</strong><br/>
                                     <span style="color: var(--warning-600);">18 days since last CEC (July 8)</span>
                                 </div>
                             </div>
 
                             <!-- Category-Based Analysis -->
-                            <div style="background: white; padding: 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm);">
+                            <div class="prediction-card" style="background: white; padding: 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm);">
                                 <h3 style="color: #7c3aed; margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
-                                    🎯 <span>Category-Based Reality</span>
+                                    <span class="animated-icon">🎯</span> <span>Category-Based Reality</span>
                                 </h3>
                                 <div style="margin-bottom: 0.75rem;">
                                     <div style="font-weight: 600; color: var(--gray-700);">🇫🇷 French Priority:</div>
@@ -586,7 +664,7 @@
                                     <div style="font-weight: 600; color: var(--gray-700);">🎓 Education:</div>
                                     <div style="color: var(--warning-600);">1 draw only (May 1)</div>
                                 </div>
-                                <div style="padding: 0.75rem; background: var(--error-50); border-radius: var(--border-radius-sm); border-left: 3px solid var(--error-500);">
+                                <div class="error-alert" style="padding: 0.75rem; background: var(--error-50); border-radius: var(--border-radius-sm); border-left: 3px solid var(--error-500);">
                                     <strong style="color: var(--error-700);">🔧 STEM/Trade/Agri:</strong><br/>
                                     <span style="color: var(--error-600);">ZERO draws - Major gap!</span>
                                 </div>
@@ -607,43 +685,43 @@
                             </tr>
                         </thead>
                         <tbody>
-                                        <tr style="border-bottom: 1px solid var(--gray-100);">
+                                        <tr class="draw-history-row" style="border-bottom: 1px solid var(--gray-100);">
                                             <td style="padding: 0.75rem; color: var(--gray-600);">July 22</td>
                                             <td style="padding: 0.75rem; color: var(--success-600); font-weight: 600;">Healthcare</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">4,000</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">475</td>
                                         </tr>
-                                        <tr style="border-bottom: 1px solid var(--gray-100);">
+                                        <tr class="draw-history-row" style="border-bottom: 1px solid var(--gray-100);">
                                             <td style="padding: 0.75rem; color: var(--gray-600);">July 21</td>
                                             <td style="padding: 0.75rem; color: var(--primary-600); font-weight: 600;">PNP</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">202</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">788</td>
                                         </tr>
-                                        <tr style="border-bottom: 1px solid var(--gray-100);">
+                                        <tr class="draw-history-row" style="border-bottom: 1px solid var(--gray-100);">
                                             <td style="padding: 0.75rem; color: var(--gray-600);">July 8</td>
                                             <td style="padding: 0.75rem; color: var(--accent-600); font-weight: 600;">CEC</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">3,000</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">518</td>
                                         </tr>
-                                        <tr style="border-bottom: 1px solid var(--gray-100);">
+                                        <tr class="draw-history-row" style="border-bottom: 1px solid var(--gray-100);">
                                             <td style="padding: 0.75rem; color: var(--gray-600);">July 7</td>
                                             <td style="padding: 0.75rem; color: var(--primary-600); font-weight: 600;">PNP</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">356</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">750</td>
                             </tr>
-                                        <tr style="border-bottom: 1px solid var(--gray-100);">
+                                        <tr class="draw-history-row" style="border-bottom: 1px solid var(--gray-100);">
                                             <td style="padding: 0.75rem; color: var(--gray-600);">June 26</td>
                                             <td style="padding: 0.75rem; color: var(--accent-600); font-weight: 600;">CEC</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">3,000</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">521</td>
                             </tr>
-                                        <tr style="border-bottom: 1px solid var(--gray-100);">
+                                        <tr class="draw-history-row" style="border-bottom: 1px solid var(--gray-100);">
                                             <td style="padding: 0.75rem; color: var(--gray-600);">June 23</td>
                                             <td style="padding: 0.75rem; color: var(--primary-600); font-weight: 600;">PNP</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">503</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">742</td>
                             </tr>
-                                        <tr style="border-bottom: 1px solid var(--gray-100);">
+                                        <tr class="draw-history-row" style="border-bottom: 1px solid var(--gray-100);">
                                             <td style="padding: 0.75rem; color: var(--gray-600);">June 12</td>
                                             <td style="padding: 0.75rem; color: var(--accent-600); font-weight: 600;">CEC</td>
                                             <td style="padding: 0.75rem; text-align: center; font-weight: 600;">3,000</td>
@@ -1271,6 +1349,42 @@
         document.querySelectorAll('.program-stat-number').forEach(programStatNumber => {
             programStatObserver.observe(programStatNumber);
         });
+
+        // Animate prediction cards (staggered entrance)
+        const predictionCards = document.querySelectorAll('.prediction-card');
+        if (predictionCards.length) {
+            const predictionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        predictionCards.forEach((card, idx) => {
+                            setTimeout(() => {
+                                card.classList.add('animate');
+                            }, idx * 200);
+                        });
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.2 });
+            predictionObserver.observe(predictionCards[0]);
+        }
+
+        // Animate draw history table rows (sequential fade-in)
+        const drawRows = document.querySelectorAll('.draw-history-row');
+        if (drawRows.length) {
+            const rowObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        drawRows.forEach((row, idx) => {
+                            setTimeout(() => {
+                                row.classList.add('animate');
+                            }, idx * 100);
+                        });
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.2 });
+            rowObserver.observe(drawRows[0]);
+        }
     </script>
 </body>
 </html> 
