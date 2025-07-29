@@ -215,6 +215,17 @@
         .pool-stat-number.animate {
             animation: numberCount 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
+
+        /* Category and Program stat number animations */
+        .category-stat-number,
+        .program-stat-number {
+            transition: all 0.3s ease;
+        }
+
+        .category-stat-number.animate,
+        .program-stat-number.animate {
+            animation: numberCount 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
         
         @media (max-width: 768px) {
             .report-grid {
@@ -669,28 +680,28 @@
                     
                     <div class="metric-cards" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
                         <div class="metric-card" style="border-left: 4px solid var(--primary-600);">
-                            <div class="metric-number">18,500</div>
+                            <div class="metric-number category-stat-number" data-target="18500" data-prefix="" data-suffix="">0</div>
                             <div class="metric-label">French-Speaking ITAs</div>
                             <div style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray-600);">
                                 Avg CRS: <strong style="color: var(--primary-600);">406</strong> • 75% of category-based
                             </div>
                         </div>
                         <div class="metric-card" style="border-left: 4px solid var(--accent-600);">
-                            <div class="metric-number">5,000</div>
+                            <div class="metric-number category-stat-number" data-target="5000" data-prefix="" data-suffix="">0</div>
                             <div class="metric-label">Healthcare ITAs</div>
                             <div style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray-600);">
                                 Avg CRS: <strong style="color: var(--accent-600);">496</strong> • High-demand sector
                             </div>
                         </div>
                         <div class="metric-card" style="border-left: 4px solid var(--success-600);">
-                            <div class="metric-number">1,000</div>
+                            <div class="metric-number category-stat-number" data-target="1000" data-prefix="" data-suffix="">0</div>
                             <div class="metric-label">Education ITAs</div>
                             <div style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray-600);">
                                 Avg CRS: <strong style="color: var(--success-600);">479</strong> • Limited allocation
                             </div>
                         </div>
                         <div class="metric-card" style="border-left: 4px solid var(--warning-600);">
-                            <div class="metric-number">0</div>
+                            <div class="metric-number category-stat-number" data-target="0" data-prefix="" data-suffix="">0</div>
                             <div class="metric-label">STEM/Trade/Agriculture</div>
                             <div style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--warning-600);">
                                 <strong>Huge Opportunity!</strong> • No draws yet
@@ -705,28 +716,28 @@
                     
                     <div class="metric-cards" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
                         <div class="metric-card" style="border-left: 4px solid var(--success-600);">
-                            <div class="metric-number">18,850</div>
+                            <div class="metric-number program-stat-number" data-target="18850" data-prefix="" data-suffix="">0</div>
                             <div class="metric-label">Canadian Experience Class</div>
                             <div style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray-600);">
                                 Avg CRS: <strong style="color: var(--success-600);">529</strong> • 76% of program-based
                             </div>
                         </div>
                         <div class="metric-card" style="border-left: 4px solid var(--primary-600);">
-                            <div class="metric-number">6,053</div>
+                            <div class="metric-number program-stat-number" data-target="6053" data-prefix="" data-suffix="">0</div>
                             <div class="metric-label">Provincial Nominee Program</div>
                             <div style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray-600);">
                                 Avg CRS: <strong style="color: var(--primary-600);">749</strong> • High CRS requirement
                             </div>
                         </div>
                         <div class="metric-card" style="border-left: 4px solid var(--warning-600);">
-                            <div class="metric-number">0</div>
+                            <div class="metric-number program-stat-number" data-target="0" data-prefix="" data-suffix="">0</div>
                             <div class="metric-label">Federal Skilled Worker</div>
                             <div style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--warning-600);">
                                 <strong>Major Opportunity!</strong> • No general draws
                             </div>
                         </div>
                         <div class="metric-card" style="border-left: 4px solid var(--gray-500);">
-                            <div class="metric-number">0</div>
+                            <div class="metric-number program-stat-number" data-target="0" data-prefix="" data-suffix="">0</div>
                             <div class="metric-label">Federal Skilled Trades</div>
                             <div style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray-600);">
                                 No draws • Potential future activation
@@ -1202,6 +1213,63 @@
         // Observe all pool stat numbers
         document.querySelectorAll('.pool-stat-number').forEach(poolStatNumber => {
             poolStatObserver.observe(poolStatNumber);
+        });
+
+        // Category stat number animation observer
+        const categoryStatObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const categoryStatNumber = entry.target;
+                    const target = parseInt(categoryStatNumber.getAttribute('data-target'));
+                    const prefix = categoryStatNumber.getAttribute('data-prefix') || '';
+                    const suffix = categoryStatNumber.getAttribute('data-suffix') || '';
+                    
+                    // Add animation class
+                    categoryStatNumber.classList.add('animate');
+                    
+                    // Start the counter animation
+                    animateCounter(categoryStatNumber, target, prefix, suffix);
+                    
+                    // Stop observing this element
+                    categoryStatObserver.unobserve(categoryStatNumber);
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        // Program stat number animation observer
+        const programStatObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const programStatNumber = entry.target;
+                    const target = parseInt(programStatNumber.getAttribute('data-target'));
+                    const prefix = programStatNumber.getAttribute('data-prefix') || '';
+                    const suffix = programStatNumber.getAttribute('data-suffix') || '';
+                    
+                    // Add animation class
+                    programStatNumber.classList.add('animate');
+                    
+                    // Start the counter animation
+                    animateCounter(programStatNumber, target, prefix, suffix);
+                    
+                    // Stop observing this element
+                    programStatObserver.unobserve(programStatNumber);
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        // Observe all category and program stat numbers
+        document.querySelectorAll('.category-stat-number').forEach(categoryStatNumber => {
+            categoryStatObserver.observe(categoryStatNumber);
+        });
+
+        document.querySelectorAll('.program-stat-number').forEach(programStatNumber => {
+            programStatObserver.observe(programStatNumber);
         });
     </script>
 </body>
