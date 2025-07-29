@@ -249,8 +249,8 @@
                 transform: scale(1);
             }
             50% { 
-                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
-                transform: scale(1.02);
+                box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+                transform: scale(1.05);
             }
         }
 
@@ -264,8 +264,8 @@
                 transform: scale(1);
             }
             50% { 
-                box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
-                transform: scale(1.02);
+                box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+                transform: scale(1.05);
             }
         }
 
@@ -279,8 +279,8 @@
                 transform: scale(1);
             }
             50% { 
-                box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
-                transform: scale(1.02);
+                box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+                transform: scale(1.05);
             }
         }
 
@@ -311,6 +311,408 @@
                 gap: 2rem;
             }
         }
+
+        /* Next Critical Windows Animations */
+        .critical-windows-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .critical-windows-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(99, 102, 241, 0.05) 50%, transparent 100%);
+            animation: timeFlow 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes timeFlow {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .clock-icon {
+            animation: clockPulse 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes clockPulse {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                filter: drop-shadow(0 0 0 rgba(99, 102, 241, 0));
+            }
+            50% { 
+                transform: scale(1.1) rotate(5deg);
+                filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6));
+            }
+        }
+
+        .timeline-entry {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .timeline-entry.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            background: var(--accent-500);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-entry.animate::before {
+            opacity: 1;
+            animation: timelineDot 0.6s ease forwards;
+        }
+
+        @keyframes timelineDot {
+            0% { 
+                transform: translateY(-50%) scale(0);
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+            }
+            50% { 
+                transform: translateY(-50%) scale(1.2);
+                box-shadow: 0 0 0 8px rgba(99, 102, 241, 0);
+            }
+            100% { 
+                transform: translateY(-50%) scale(1);
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
+        }
+
+        .urgency-immediate {
+            border-left: 4px solid #ef4444;
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+
+        .urgency-soon {
+            border-left: 4px solid #f59e0b;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        }
+
+        .urgency-later {
+            border-left: 4px solid #10b981;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+
+        .urgency-overdue {
+            border-left: 4px solid #7c3aed;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            animation: overduePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes overduePulse {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4);
+            }
+            50% { 
+                box-shadow: 0 0 0 8px rgba(124, 58, 237, 0);
+            }
+        }
+
+        /* Share This Analysis Animations */
+        .share-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .share-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 0%, rgba(99, 102, 241, 0.03) 25%, rgba(139, 92, 246, 0.03) 50%, rgba(99, 102, 241, 0.03) 75%, transparent 100%);
+            animation: shareGradientFlow 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shareGradientFlow {
+            0%, 100% { transform: translateX(-100%) translateY(-100%); }
+            25% { transform: translateX(100%) translateY(-50%); }
+            50% { transform: translateX(50%) translateY(100%); }
+            75% { transform: translateX(-50%) translateY(50%); }
+        }
+
+        .chart-icon {
+            animation: chartBounce 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes chartBounce {
+            0%, 100% { 
+                transform: scale(1) translateY(0);
+                filter: drop-shadow(0 0 0 rgba(99, 102, 241, 0));
+            }
+            50% { 
+                transform: scale(1.1) translateY(-3px);
+                filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6));
+            }
+        }
+
+        .share-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .share-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .share-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .share-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-button.twitter:hover {
+            box-shadow: 0 10px 25px rgba(29, 161, 242, 0.4);
+        }
+
+        .share-button.linkedin:hover {
+            box-shadow: 0 10px 25px rgba(0, 119, 181, 0.4);
+        }
+
+        .share-button.email:hover {
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .value-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .value-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .value-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .value-card:hover::after {
+            opacity: 1;
+        }
+
+        .social-proof-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(99, 102, 241, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 6s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .cta-pulse {
+            animation: ctaPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes ctaPulse {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+            }
+            50% { 
+                box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+            }
+        }
+
+        /* Category-Based Draw Animations */
+        .category-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 0%, rgba(99, 102, 241, 0.02) 25%, rgba(139, 92, 246, 0.02) 50%, rgba(99, 102, 241, 0.02) 75%, transparent 100%);
+            animation: categoryGradientFlow 12s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes categoryGradientFlow {
+            0%, 100% { transform: translateX(-100%) translateY(-100%); }
+            25% { transform: translateX(100%) translateY(-50%); }
+            50% { transform: translateX(50%) translateY(100%); }
+            75% { transform: translateX(-50%) translateY(50%); }
+        }
+
+        .category-card {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+            transition: left 0.6s ease;
+        }
+
+        .category-card:hover::before {
+            left: 100%;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-icon {
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .category-icon.animate {
+            animation: iconGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes iconGlow {
+            0%, 100% { 
+                transform: scale(1);
+                filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+            }
+            50% { 
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+            }
+        }
+
+        .category-badge {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .category-badge.animate {
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
+            50% { 
+                transform: scale(1.02);
+                box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+            }
+        }
+
+        .category-title {
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-title {
+            color: var(--primary-600);
+            transform: translateX(5px);
+        }
+
+        .category-description {
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-description {
+            color: var(--gray-700);
+        }
+
+        .category-list {
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-list li {
+            transform: translateX(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover .category-list li:nth-child(1) { transition-delay: 0.1s; }
+        .category-card:hover .category-list li:nth-child(2) { transition-delay: 0.2s; }
+        .category-card:hover .category-list li:nth-child(3) { transition-delay: 0.3s; }
     </style>
 </head>
 <body>
@@ -919,13 +1321,13 @@
 
                         <!-- Critical Timing Windows -->
                         <div>
-                            <h4 style="color: var(--accent-700); margin: 0 0 0.75rem 0; font-size: 1rem;">⏰ Next Critical Windows</h4>
-                            <div style="background: var(--accent-50); padding: 1rem; border-radius: var(--border-radius-sm); border-left: 3px solid var(--accent-500);">
+                            <h4 style="color: var(--accent-700); margin: 0 0 0.75rem 0; font-size: 1rem;"><span class="clock-icon">⏰</span> Next Critical Windows</h4>
+                            <div class="critical-windows-container" style="background: var(--accent-50); padding: 1rem; border-radius: var(--border-radius-sm); border-left: 3px solid var(--accent-500);">
                                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; color: var(--accent-700);">
-                                    <div><strong>Aug 4-5:</strong> PNP Draw Expected</div>
-                                    <div><strong>Aug 6-7:</strong> Possible CEC Follow-up</div>
-                                    <div><strong>Aug 18-19:</strong> Second PNP Cycle</div>
-                                    <div><strong>Late Aug:</strong> Overdue STEM/Trade?</div>
+                                    <div class="timeline-entry urgency-immediate"><strong>Aug 4-5:</strong> PNP Draw Expected</div>
+                                    <div class="timeline-entry urgency-soon"><strong>Aug 6-7:</strong> Possible CEC Follow-up</div>
+                                    <div class="timeline-entry urgency-later"><strong>Aug 18-19:</strong> Second PNP Cycle</div>
+                                    <div class="timeline-entry urgency-overdue"><strong>Late Aug:</strong> Overdue STEM/Trade?</div>
                                 </div>
                             </div>
                         </div>
@@ -979,48 +1381,50 @@
                         <p>2025 represents Express Entry's <span class="report-highlight">most significant evolution</span> since its 2015 launch. The introduction of six distinct categories (French-speaking, STEM, Healthcare, Education, Trades, Agriculture) alongside traditional program-based draws creates a sophisticated, targeted approach to economic immigration.</p>
                     </div>
 
-                    <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">Category-Based Innovation</h3>
+                    <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">Category-Based Draw</h3>
                     
-                    <div class="card" style="margin: 1.5rem 0;">
-                        <div class="card-icon" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">🇫🇷</div>
-                        <div class="badge" style="background: #fee2e2; color: #dc2626;">FRANCOPHONE</div>
-                        <h4 class="card-title">French-Speaking Leadership</h4>
-                        <p class="card-description">
-                            French-speaking candidates received 15,200+ ITAs across multiple draws, establishing bilingual workforce development as a cornerstone of Canada's immigration strategy.
-                        </p>
-                        <ul style="margin-top: 1rem; color: var(--gray-600);">
-                            <li>Largest category by total allocation</li>
-                            <li>Consistent multi-month recruitment</li>
-                            <li>Official languages policy implementation</li>
-                        </ul>
-                    </div>
+                    <div class="category-section">
+                        <div class="card category-card" style="margin: 1.5rem 0;">
+                            <div class="card-icon category-icon" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">🇫🇷</div>
+                            <div class="badge category-badge" style="background: #fee2e2; color: #dc2626;">FRANCOPHONE</div>
+                            <h4 class="card-title category-title">French-Speaking Leadership</h4>
+                            <p class="card-description category-description">
+                                French-speaking candidates received 15,200+ ITAs across multiple draws, establishing bilingual workforce development as a cornerstone of Canada's immigration strategy.
+                            </p>
+                            <ul class="category-list" style="margin-top: 1rem; color: var(--gray-600);">
+                                <li>Largest category by total allocation</li>
+                                <li>Consistent multi-month recruitment</li>
+                                <li>Official languages policy implementation</li>
+                            </ul>
+                        </div>
 
-                    <div class="card" style="margin: 1.5rem 0;">
-                        <div class="card-icon" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">🔬</div>
-                        <div class="badge" style="background: #dcfce7; color: #166534;">STEM</div>
-                        <h4 class="card-title">Innovation Sector Priority</h4>
-                        <p class="card-description">
-                            STEM category allocation exceeded 8,500+ ITAs, demonstrating Canada's strategic focus on Science, Technology, Engineering, and Mathematics professionals to drive economic innovation.
-                        </p>
-                        <ul style="margin-top: 1rem; color: var(--gray-600);">
-                            <li>Technology sector leadership strategy</li>
-                            <li>Innovation economy development</li>
-                            <li>Critical skills shortage mitigation</li>
-                        </ul>
-                    </div>
+                        <div class="card category-card" style="margin: 1.5rem 0;">
+                            <div class="card-icon category-icon" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">🔬</div>
+                            <div class="badge category-badge" style="background: #dcfce7; color: #166534;">STEM</div>
+                            <h4 class="card-title category-title">Innovation Sector Priority</h4>
+                            <p class="card-description category-description">
+                                STEM category allocation exceeded 8,500+ ITAs, demonstrating Canada's strategic focus on Science, Technology, Engineering, and Mathematics professionals to drive economic innovation.
+                            </p>
+                            <ul class="category-list" style="margin-top: 1rem; color: var(--gray-600);">
+                                <li>Technology sector leadership strategy</li>
+                                <li>Innovation economy development</li>
+                                <li>Critical skills shortage mitigation</li>
+                            </ul>
+                        </div>
 
-                    <div class="card" style="margin: 1.5rem 0;">
-                        <div class="card-icon" style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);">🏥</div>
-                        <div class="badge" style="background: #f3e8ff; color: #7c3aed;">HEALTHCARE</div>
-                        <h4 class="card-title">Healthcare System Support</h4>
-                        <p class="card-description">
-                            Healthcare professionals received targeted support with 7,000+ ITAs, addressing critical shortages across Canada's healthcare system with priority allocation strategies.
-                        </p>
-                        <ul style="margin-top: 1rem; color: var(--gray-600);">
-                            <li>Critical healthcare shortage response</li>
-                            <li>Multi-provincial healthcare needs</li>
-                            <li>Priority allocation methodology</li>
-                        </ul>
+                        <div class="card category-card" style="margin: 1.5rem 0;">
+                            <div class="card-icon category-icon" style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);">🏥</div>
+                            <div class="badge category-badge" style="background: #f3e8ff; color: #7c3aed;">HEALTHCARE</div>
+                            <h4 class="card-title category-title">Healthcare System Support</h4>
+                            <p class="card-description category-description">
+                                Healthcare professionals received targeted support with 7,000+ ITAs, addressing critical shortages across Canada's healthcare system with priority allocation strategies.
+                            </p>
+                            <ul class="category-list" style="margin-top: 1rem; color: var(--gray-600);">
+                                <li>Critical healthcare shortage response</li>
+                                <li>Multi-provincial healthcare needs</li>
+                                <li>Priority allocation methodology</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">Strategic Insights & Trends</h3>
@@ -1070,10 +1474,11 @@
     </section>
 
     <!-- Social Sharing Section -->
-    <section style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 3rem 0; margin-top: 2rem;">
+    <section class="share-section" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 3rem 0; margin-top: 2rem;">
+        <div class="social-proof-particles"></div>
         <div class="container">
             <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-                <h3 style="color: var(--primary-700); margin-bottom: 1rem; font-size: 1.5rem;">📊 Share This Analysis</h3>
+                <h3 style="color: var(--primary-700); margin-bottom: 1rem; font-size: 1.5rem;"><span class="chart-icon">📊</span> Share This Dashboard</h3>
                 <p style="color: var(--gray-600); margin-bottom: 2rem; line-height: 1.6;">
                     Help immigration professionals and candidates access this comprehensive Express Entry 2025 analysis. 
                     Share strategic insights and capacity intelligence with your network.
@@ -1083,6 +1488,7 @@
                     <!-- Twitter Share -->
                     <a href="https://twitter.com/intent/tweet?text=📊%20Express%20Entry%202025%20Analysis%3A%2049%2C403%20ITAs%20issued%20with%2057%25%20capacity%20utilization.%20Strategic%20insights%20for%20immigration%20professionals.%20&url=https%3A//immiwatch.ca/reports/express-entry/ee-2025/&hashtags=ExpressEntry%2CImmigration%2CCanada%2CImmiWatch" 
                        target="_blank" 
+                       class="share-button twitter cta-pulse"
                        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #1da1f2; color: white; text-decoration: none; border-radius: var(--border-radius-md); font-weight: 600; transition: all 0.3s ease;">
                         <span style="font-size: 1.2rem;">🐦</span>
                         Share on Twitter
@@ -1091,6 +1497,7 @@
                     <!-- LinkedIn Share -->
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//immiwatch.ca/reports/express-entry/ee-2025/" 
                        target="_blank" 
+                       class="share-button linkedin cta-pulse"
                        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #0077b5; color: white; text-decoration: none; border-radius: var(--border-radius-md); font-weight: 600; transition: all 0.3s ease;">
                         <span style="font-size: 1.2rem;">💼</span>
                         Share on LinkedIn
@@ -1098,6 +1505,7 @@
                     
                     <!-- Email Share -->
                     <a href="mailto:?subject=Express%20Entry%202025%20Analysis%20-%20Strategic%20Insights&body=Hi%2C%0A%0AI%20found%20this%20comprehensive%20Express%20Entry%202025%20analysis%20that%20might%20interest%20you%3A%0A%0A📊%20Key%20Highlights%3A%0A%E2%80%A2%2049%2C403%20ITAs%20issued%20year-to-date%0A%E2%80%A2%2057%25%20overall%20capacity%20utilization%0A%E2%80%A2%2038-40k%20projected%20remaining%20ITAs%0A%E2%80%A2%20Strategic%20forecasting%20and%20opportunity%20analysis%0A%0A🔗%20Full%20Analysis%3A%20https%3A//immiwatch.ca/reports/express-entry/ee-2025/%0A%0ABest%20regards" 
+                       class="share-button email cta-pulse"
                        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--primary-600); color: white; text-decoration: none; border-radius: var(--border-radius-md); font-weight: 600; transition: all 0.3s ease;">
                         <span style="font-size: 1.2rem;">📧</span>
                         Share via Email
@@ -1107,15 +1515,15 @@
                 <div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm);">
                     <h4 style="color: var(--primary-700); margin-bottom: 1rem;">🎯 Why Share This Analysis?</h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: left;">
-                        <div>
+                        <div class="value-card">
                             <div style="font-weight: 600; color: var(--primary-600); margin-bottom: 0.5rem;">📈 Professional Value</div>
                             <div style="font-size: 0.9rem; color: var(--gray-600);">Strategic insights for immigration practitioners and consultants</div>
                         </div>
-                        <div>
+                        <div class="value-card">
                             <div style="font-weight: 600; color: var(--success-600); margin-bottom: 0.5rem;">🎯 Candidate Guidance</div>
                             <div style="font-size: 0.9rem; color: var(--gray-600);">Help candidates understand opportunities and timing</div>
                         </div>
-                        <div>
+                        <div class="value-card">
                             <div style="font-weight: 600; color: var(--accent-600); margin-bottom: 0.5rem;">📊 Data Intelligence</div>
                             <div style="font-size: 0.9rem; color: var(--gray-600);">Comprehensive analytics and forecasting</div>
                         </div>
@@ -1384,6 +1792,97 @@
                 });
             }, { threshold: 0.2 });
             rowObserver.observe(drawRows[0]);
+        }
+
+        // Next Critical Windows Animations
+        const criticalWindows = document.querySelectorAll('.critical-windows-container');
+        if (criticalWindows.length) {
+            const criticalWindowsObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const timelineEntries = entry.target.querySelectorAll('.timeline-entry');
+                        timelineEntries.forEach((entry, index) => {
+                            setTimeout(() => {
+                                entry.classList.add('animate');
+                            }, index * 300); // 300ms delay between each timeline entry
+                        });
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.3 });
+            criticalWindowsObserver.observe(criticalWindows[0]);
+        }
+
+        // Share This Analysis Animations
+        const shareSection = document.querySelector('.share-section');
+        if (shareSection) {
+            const shareObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animate value cards with staggered delay
+                        const valueCards = entry.target.querySelectorAll('.value-card');
+                        valueCards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('animate');
+                            }, index * 400); // 400ms delay between each card
+                        });
+
+                        // Create floating particles
+                        const particlesContainer = entry.target.querySelector('.social-proof-particles');
+                        if (particlesContainer) {
+                            for (let i = 0; i < 8; i++) {
+                                setTimeout(() => {
+                                    const particle = document.createElement('div');
+                                    particle.className = 'particle';
+                                    particle.style.left = Math.random() * 100 + '%';
+                                    particle.style.animationDelay = Math.random() * 6 + 's';
+                                    particlesContainer.appendChild(particle);
+                                    
+                                    // Remove particle after animation
+                                    setTimeout(() => {
+                                        if (particle.parentNode) {
+                                            particle.parentNode.removeChild(particle);
+                                        }
+                                    }, 6000);
+                                }, i * 800);
+                            }
+                        }
+
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.3 });
+            shareObserver.observe(shareSection);
+        }
+
+        // Category-Based Draw Animations
+        const categorySection = document.querySelector('.category-section');
+        if (categorySection) {
+            const categoryObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animate category cards with staggered delay
+                        const categoryCards = entry.target.querySelectorAll('.category-card');
+                        categoryCards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('animate');
+                                
+                                // Animate icons and badges within each card
+                                const icon = card.querySelector('.category-icon');
+                                const badge = card.querySelector('.category-badge');
+                                
+                                setTimeout(() => {
+                                    if (icon) icon.classList.add('animate');
+                                    if (badge) badge.classList.add('animate');
+                                }, 200);
+                            }, index * 500); // 500ms delay between each card
+                        });
+
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.3 });
+            categoryObserver.observe(categorySection);
         }
     </script>
 </body>
