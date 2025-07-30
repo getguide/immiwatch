@@ -1,0 +1,115 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f8fafc;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="50" fill="url(#accentGradient)" opacity="0.1"/>
+  <circle cx="1100" cy="500" r="80" fill="url(#accentGradient)" opacity="0.1"/>
+  <circle cx="200" cy="550" r="40" fill="url(#accentGradient)" opacity="0.1"/>
+  
+  <!-- Main content area -->
+  <rect x="100" y="80" width="1000" height="470" rx="20" fill="url(#cardGradient)" stroke="url(#accentGradient)" stroke-width="2"/>
+  
+  <!-- Header -->
+  <text x="600" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="48" font-weight="700" fill="#1e293b">
+    Express Entry 2025
+  </text>
+  <text x="600" y="180" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" font-weight="400" fill="#64748b">
+    Complete Year-to-Date Report
+  </text>
+  
+  <!-- Stats Grid -->
+  <!-- ITA Count -->
+  <rect x="150" y="220" width="200" height="120" rx="12" fill="url(#accentGradient)" opacity="0.1"/>
+  <text x="250" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="32" font-weight="800" fill="#6366f1">
+    49,403+
+  </text>
+  <text x="250" y="285" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#64748b">
+    Total ITAs
+  </text>
+  <text x="250" y="305" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#94a3b8">
+    Year-to-Date
+  </text>
+  
+  <!-- Capacity -->
+  <rect x="380" y="220" width="200" height="120" rx="12" fill="#10b981" opacity="0.1"/>
+  <text x="480" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="32" font-weight="800" fill="#059669">
+    57%
+  </text>
+  <text x="480" y="285" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#64748b">
+    Capacity Used
+  </text>
+  <text x="480" y="305" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#94a3b8">
+    Strategic Target
+  </text>
+  
+  <!-- Categories -->
+  <rect x="610" y="220" width="200" height="120" rx="12" fill="#f59e0b" opacity="0.1"/>
+  <text x="710" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="32" font-weight="800" fill="#d97706">
+    6
+  </text>
+  <text x="710" y="285" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#64748b">
+    Categories
+  </text>
+  <text x="710" y="305" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#94a3b8">
+    Introduced
+  </text>
+  
+  <!-- CRS Average -->
+  <rect x="840" y="220" width="200" height="120" rx="12" fill="#ef4444" opacity="0.1"/>
+  <text x="940" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="32" font-weight="800" fill="#dc2626">
+    524
+  </text>
+  <text x="940" y="285" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#64748b">
+    Average CRS
+  </text>
+  <text x="940" y="305" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#94a3b8">
+    Competitive Range
+  </text>
+  
+  <!-- Progress Bars -->
+  <rect x="150" y="380" width="400" height="8" rx="4" fill="#e2e8f0"/>
+  <rect x="150" y="380" width="240" height="8" rx="4" fill="url(#accentGradient)"/>
+  <text x="150" y="405" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#64748b">
+    Category-Based: 63%
+  </text>
+  
+  <rect x="150" y="420" width="400" height="8" rx="4" fill="#e2e8f0"/>
+  <rect x="150" y="420" width="180" height="8" rx="4" fill="#10b981"/>
+  <text x="150" y="445" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#64748b">
+    Program-Based: 45%
+  </text>
+  
+  <!-- Icons -->
+  <text x="600" y="480" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" fill="#6366f1">
+    📊 🎯 📈 🔍
+  </text>
+  
+  <!-- Footer -->
+  <text x="600" y="520" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#64748b">
+    ImmiWatch Data Studio
+  </text>
+  <text x="600" y="540" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#94a3b8">
+    Professional Immigration Intelligence
+  </text>
+  
+  <!-- Decorative lines -->
+  <line x1="150" y1="360" x2="1050" y2="360" stroke="url(#accentGradient)" stroke-width="1" opacity="0.3"/>
+  <line x1="150" y1="500" x2="1050" y2="500" stroke="url(#accentGradient)" stroke-width="1" opacity="0.3"/>
+</svg> 
