@@ -127,7 +127,7 @@ class WebhookHandler:
         return filepath
     
     def process_webhook(self, webhook_data):
-        """Process webhook data and update monthly report"""
+        """Process webhook data and update current monthly report"""
         try:
             self.logger.info("🔄 Processing webhook data...")
             
@@ -135,76 +135,36 @@ class WebhookHandler:
             self.logger.info("✅ Validating webhook data...")
             self.validate_webhook_data(webhook_data)
             
-            # Extract month
-            month_str = self.extract_month_from_date(webhook_data["draw_date"])
-            self.logger.info(f"📅 Processing for month: {month_str}")
+            # Use current monthly report manager
+            from current_monthly_report_manager import CurrentMonthlyReportManager
+            manager = CurrentMonthlyReportManager()
             
-            # Check if monthly report exists
-            month_info = self.updater.get_month_info(month_str)
-            report_file = self.base_dir / month_info["directory"] / "index.html"
+            # Get current report info
+            current_info = manager.get_current_report_info()
+            if not current_info:
+                self.logger.error("❌ No current monthly report found")
+                return {"success": False, "error": "No current monthly report found"}
             
-            if not report_file.exists():
-                self.logger.warning(f"⚠️ Monthly report not found: {report_file}")
-                self.logger.info("🔄 Creating initial monthly report...")
-                
-                # Create initial report
-                initial_data = {
-                    "total_itas": 0,
-                    "cec_itas": 0,
-                    "pnp_itas": 0,
-                    "fsw_itas": 0,
-                    "fst_itas": 0,
-                    "category_based_total": 0,
-                    "french_speaking": 0,
-                    "healthcare": 0,
-                    "stem": 0,
-                    "trade": 0,
-                    "education": 0,
-                    "agriculture": 0,
-                    "executive_summary": f"{month_info['month_name']} {month_info['year']} begins with automated draw processing...",
-                    "strategic_insights": [
-                        "Month initialized via webhook",
-                        "Automated processing enabled",
-                        "Real-time updates active"
-                    ],
-                    "key_highlights": [
-                        "0 Total ITAs",
-                        "0 CEC",
-                        "0 PNP",
-                        "Automated Processing"
-                    ]
-                }
-                
-                # Create initial data file
-                initial_file = Path("scripts") / f"webhook_initial_{month_str}.json"
-                with open(initial_file, 'w', encoding='utf-8') as f:
-                    json.dump(initial_data, f, indent=2)
-                
-                # Generate initial report
-                from generate_monthly_report import MonthlyReportGenerator
-                generator = MonthlyReportGenerator()
-                generator.generate_report(month_str, str(initial_file))
-                
-                self.logger.info(f"✅ Created initial report for {month_str}")
+            self.logger.info(f"📅 Processing for current month: {current_info['month_str']}")
             
-            # Create draw data file
-            self.logger.info("📄 Creating draw data file...")
-            draw_data_file = self.create_draw_data_file(webhook_data)
+            # Update current report with draw data
+            self.logger.info("🔄 Updating current monthly report...")
+            result = manager.update_current_report_with_draw(webhook_data)
             
-            # Update monthly report
-            self.logger.info("🔄 Updating monthly report...")
-            updated_file = self.updater.update_report(month_str, str(draw_data_file))
+            if not result["success"]:
+                self.logger.error(f"❌ Failed to update current report: {result['error']}")
+                return result
             
             # Create git commit
-            self.create_git_commit(webhook_data, month_str)
+            self.create_git_commit(webhook_data, current_info['month_str'])
             
             self.logger.info("✅ Webhook processing complete!")
             return {
                 "success": True,
-                "month": month_str,
+                "month": current_info['month_str'],
                 "draw_number": webhook_data["draw_number"],
-                "updated_file": str(updated_file),
-                "draw_data_file": str(draw_data_file)
+                "updated_file": result["updated_file"],
+                "draw_count": result["draw_count"]
             }
             
         except Exception as e:

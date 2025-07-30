@@ -1,0 +1,16 @@
+{
+  "month_str": "2025-07",
+  "month_info": {
+    "year": 2025,
+    "month": 7,
+    "month_name": "July",
+    "month_short": "Jul",
+    "directory": "ee-july-2025",
+    "url_path": "reports/express-entry/ee-july-2025/",
+    "is_current_month": true
+  },
+  "designated_at": "2025-07-30T10:20:44.719834",
+  "report_url": "https://immiwatch.ca/reports/express-entry/ee-july-2025/",
+  "local_path": "reports/express-entry/ee-july-2025/index.html",
+  "status": "current"
+}
