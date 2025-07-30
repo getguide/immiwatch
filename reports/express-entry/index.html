@@ -7,6 +7,69 @@
     <meta name="keywords" content="Express Entry, CRS scores, immigration draws, Canada Express Entry 2025, federal skilled worker, Canadian Experience Class">
     <title>Express Entry Reports | ImmiWatch Data Studio</title>
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://immiwatch.ca/reports/express-entry/">
+    <meta property="og:title" content="Express Entry Reports & Analytics | ImmiWatch Data Studio">
+    <meta property="og:description" content="📊 Comprehensive Express Entry reports: Monthly draws, CRS trends, category-based analysis. Strategic insights for Canada's federal economic immigration program.">
+    <meta property="og:image" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Express Entry Reports Dashboard - Comprehensive analytics and strategic insights">
+    <meta property="og:site_name" content="ImmiWatch Data Studio">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image:secure_url" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    
+    <!-- LinkedIn Specific -->
+    <meta property="og:image:url" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Additional LinkedIn -->
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://immiwatch.ca/reports/express-entry/">
+    <meta name="twitter:title" content="Express Entry Reports & Analytics">
+    <meta name="twitter:description" content="📊 Comprehensive Express Entry reports: Monthly draws, CRS trends, category-based analysis. Strategic insights for immigration professionals.">
+    <meta name="twitter:image" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
+    <meta name="twitter:image:alt" content="Express Entry Reports Dashboard - Comprehensive analytics and strategic insights">
+    <meta name="twitter:site" content="@immiwatch">
+    <meta name="twitter:creator" content="@immiwatch">
+    
+    <!-- WhatsApp -->
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Telegram -->
+    <meta property="og:image:url" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
+    
+    <!-- Additional SEO -->
+    <meta name="author" content="ImmiWatch Data Studio">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Additional Social Media -->
+    <meta property="article:author" content="ImmiWatch Data Studio">
+    <meta property="article:section" content="Immigration Analysis">
+    <meta property="article:tag" content="Express Entry, Immigration, Canada, ITA, CRS">
+    
+    <!-- Additional Open Graph -->
+    <meta property="og:updated_time" content="2025-07-30T00:30:00Z">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Force Social Media Refresh -->
+    <meta property="og:image:url" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
+    <meta name="twitter:image:src" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
+    <meta name="twitter:image:alt" content="Express Entry Reports Dashboard - Comprehensive analytics and strategic insights">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
     <link rel="icon" type="image/png" href="../../favicon.svg">
@@ -18,6 +81,92 @@
     
     <!-- Shared Styles -->
     <link rel="stylesheet" href="../../assets/css/shared-styles.css">
+    
+    <style>
+        /* Enhanced card animations */
+        .card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .card:hover::before {
+            left: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Stat number animations */
+        .stat-number {
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover .stat-number {
+            transform: scale(1.1);
+            color: var(--primary-600);
+        }
+        
+        /* Enhanced fade-in animation */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Pulse animation for featured cards */
+        .card.express-entry {
+            animation: subtlePulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes subtlePulse {
+            0%, 100% {
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            50% {
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            }
+        }
+        
+        /* Gradient border effect */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover::after {
+            transform: scaleX(1);
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -70,19 +219,19 @@
                 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-number">49,403+</div>
+                        <div class="stat-number" data-target="49403" data-prefix="" data-suffix="+">0</div>
                         <div class="stat-label">ITAs Analyzed YTD</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">524</div>
+                        <div class="stat-number" data-target="524" data-prefix="" data-suffix="">0</div>
                         <div class="stat-label">Average CRS Score</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">15</div>
+                        <div class="stat-number" data-target="15" data-prefix="" data-suffix="">0</div>
                         <div class="stat-label">Total Draws YTD</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">6</div>
+                        <div class="stat-number" data-target="6" data-prefix="" data-suffix="">0</div>
                         <div class="stat-label">Program Categories</div>
                     </div>
                 </div>
@@ -394,33 +543,143 @@
         </div>
     </footer>
 
+    <!-- Go to Top Button -->
+    <button id="goToTop" class="go-to-top-btn" style="
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateY(20px);
+    ">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
     <script>
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
+            const goToTopBtn = document.getElementById('goToTop');
+            
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+            
+            // Show/hide go to top button
+            if (window.scrollY > 300) {
+                goToTopBtn.style.display = 'flex';
+                setTimeout(() => {
+                    goToTopBtn.style.opacity = '1';
+                    goToTopBtn.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                goToTopBtn.style.opacity = '0';
+                goToTopBtn.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    goToTopBtn.style.display = 'none';
+                }, 300);
+            }
+        });
+        
+        // Go to top functionality
+        document.getElementById('goToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
 
-        // Animation observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Number counter animation function
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const prefix = element.getAttribute('data-prefix') || '';
+            const suffix = element.getAttribute('data-suffix') || '';
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const current = Math.floor(progress * target);
+                
+                // Format number with commas
+                let formattedNumber = current.toString();
+                if (target >= 1000 && suffix !== 'k') {
+                    formattedNumber = current.toLocaleString();
+                }
+                
+                element.textContent = prefix + formattedNumber + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
 
-        const observer = new IntersectionObserver(function(entries) {
+        // Animation observer for stats
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number[data-target]');
+                    statNumbers.forEach((number, index) => {
+                        setTimeout(() => {
+                            animateCounter(number);
+                        }, index * 200);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observe the stats grid
+        const statsGrid = document.querySelector('.stats-grid');
+        if (statsGrid) {
+            statsObserver.observe(statsGrid);
+        }
+
+        // Enhanced card animations
+        const cardObserver = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate-fade-in-up');
+                    
+                    // Add hover effects for cards
+                    entry.target.addEventListener('mouseenter', function() {
+                        this.style.transform = 'translateY(-5px) scale(1.02)';
+                        this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
+                    });
+                    
+                    entry.target.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateY(0) scale(1)';
+                        this.style.boxShadow = '';
+                    });
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
+        // Observe all cards
         document.querySelectorAll('.card').forEach(el => {
-            observer.observe(el);
+            cardObserver.observe(el);
         });
     </script>
 </body>
