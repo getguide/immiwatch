@@ -1,0 +1,50 @@
+name: Webhook Handler for Express Entry Draws
+
+on:
+  repository_dispatch:
+    types: [express_entry_draw]
+
+jobs:
+  process-webhook:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+    
+    - name: Process webhook data
+      run: |
+        echo "🔄 Processing webhook data..."
+        
+        # Extract webhook data from event
+        WEBHOOK_DATA='${{ toJSON(github.event.client_payload) }}'
+        
+        # Save webhook data to file
+        echo "$WEBHOOK_DATA" > webhook_data.json
+        
+        # Process the webhook
+        python3 scripts/webhook_handler.py --webhook-data webhook_data.json
+        
+        echo "✅ Webhook processing complete!"
+    
+    - name: Create summary
+      run: |
+        echo "## 🤖 Express Entry Draw Update" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Status**: ✅ Processed successfully" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Details**: Monthly report updated with new draw data" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Next Steps**: Report is live and ready for review" >> $GITHUB_STEP_SUMMARY 
