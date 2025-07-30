@@ -1,0 +1,24 @@
+{
+  "draw_date": "2025-08-01",
+  "draw_number": 1,
+  "itas": 3000,
+  "crs": 475,
+  "cec_itas": 2000,
+  "pnp_itas": 800,
+  "fsw_itas": 0,
+  "fst_itas": 0,
+  "category_based_total": 200,
+  "french_speaking": 100,
+  "healthcare": 50,
+  "stem": 0,
+  "trade": 0,
+  "education": 50,
+  "agriculture": 0,
+  "draw_type": "program-based",
+  "notes": "First August draw with strong CEC focus",
+  "strategic_insights": [
+    "CEC continues to dominate with 66.7% of ITAs",
+    "PNP maintains steady presence at 26.7%",
+    "Category-based draws represent 6.7% of total"
+  ]
+} 

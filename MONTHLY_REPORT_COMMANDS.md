@@ -14,6 +14,15 @@ python3 scripts/generate_monthly_report.py 2025-08 --data-file august_data.json
 python3 scripts/generate_monthly_report.py 2025-08 --template reports/express-entry/ee-july-2025/index.html
 ```
 
+### **Update Existing Monthly Report**
+```bash
+# Update with new draw data
+python3 scripts/update_monthly_report.py 2025-08 --draw-data august_draw_1.json
+
+# Update with second draw
+python3 scripts/update_monthly_report.py 2025-08 --draw-data august_draw_2.json
+```
+
 ### **Complete Workflow Example**
 ```bash
 # 1. Create data file from template
@@ -56,11 +65,15 @@ git push origin main
 
 ## 📚 **Full Documentation**
 - **Complete Guide**: [docs/MONTHLY_REPORT_GENERATOR_GUIDE.md](docs/MONTHLY_REPORT_GENERATOR_GUIDE.md)
+- **Workflow Guide**: [docs/MONTHLY_REPORT_WORKFLOW_GUIDE.md](docs/MONTHLY_REPORT_WORKFLOW_GUIDE.md)
 - **Data Template**: [scripts/monthly_report_data_template.json](scripts/monthly_report_data_template.json)
+- **Draw Template**: [scripts/draw_data_template.json](scripts/draw_data_template.json)
 - **Generator Script**: [scripts/generate_monthly_report.py](scripts/generate_monthly_report.py)
+- **Updater Script**: [scripts/update_monthly_report.py](scripts/update_monthly_report.py)
 
 ## ⚠️ **IMPORTANT**
 - **Always use the generator** for new monthly reports
+- **Use the updater** for draw-by-draw updates
 - **Never manually copy** existing reports
 - **Test thoroughly** before deployment
 - **Use official data sources** for accuracy
