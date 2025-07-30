@@ -1621,20 +1621,39 @@
                     </a>
                 </div>
                 
-                <div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm);">
-                    <h4 style="color: var(--primary-700); margin-bottom: 1rem;">🎯 Why Share This Analysis?</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: left;">
-                        <div class="value-card">
-                            <div style="font-weight: 600; color: var(--primary-600); margin-bottom: 0.5rem;">📈 Professional Value</div>
-                            <div style="font-size: 0.9rem; color: var(--gray-600);">Strategic insights for immigration practitioners and consultants</div>
+                <div style="margin-top: 2rem; padding: 2rem; background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); border: 1px solid #e2e8f0;">
+                    <h4 style="color: var(--primary-700); margin-bottom: 1.5rem; font-size: 1.3rem; text-align: center;">🎯 Why Share This Analysis?</h4>
+                    
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <p style="color: var(--gray-700); font-size: 1.1rem; line-height: 1.6; margin-bottom: 1rem;">
+                            <strong>💝 This comprehensive analysis is provided completely FREE</strong> to help immigration professionals and candidates make informed decisions.
+                        </p>
+                        <p style="color: var(--gray-600); font-size: 1rem; line-height: 1.5;">
+                            By sharing, you help spread valuable insights to more people who need this information. 
+                            <strong>Your share could help someone make a life-changing decision.</strong>
+                        </p>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; text-align: left;">
+                        <div class="value-card" style="background: white; padding: 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm); border-left: 4px solid var(--primary-600);">
+                            <div style="font-weight: 600; color: var(--primary-600); margin-bottom: 0.5rem; font-size: 1.1rem;">📈 Professional Value</div>
+                            <div style="font-size: 0.95rem; color: var(--gray-600); line-height: 1.5;">Strategic insights for immigration practitioners and consultants to better serve their clients</div>
                         </div>
-                        <div class="value-card">
-                            <div style="font-weight: 600; color: var(--success-600); margin-bottom: 0.5rem;">🎯 Candidate Guidance</div>
-                            <div style="font-size: 0.9rem; color: var(--gray-600);">Help candidates understand opportunities and timing</div>
+                        <div class="value-card" style="background: white; padding: 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm); border-left: 4px solid var(--success-600);">
+                            <div style="font-weight: 600; color: var(--success-600); margin-bottom: 0.5rem; font-size: 1.1rem;">🎯 Candidate Guidance</div>
+                            <div style="font-size: 0.95rem; color: var(--gray-600); line-height: 1.5;">Help candidates understand opportunities and timing for their immigration journey</div>
                         </div>
-                        <div class="value-card">
-                            <div style="font-weight: 600; color: var(--accent-600); margin-bottom: 0.5rem;">📊 Data Intelligence</div>
-                            <div style="font-size: 0.9rem; color: var(--gray-600);">Comprehensive analytics and forecasting</div>
+                        <div class="value-card" style="background: white; padding: 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm); border-left: 4px solid var(--accent-600);">
+                            <div style="font-weight: 600; color: var(--accent-600); margin-bottom: 0.5rem; font-size: 1.1rem;">📊 Data Intelligence</div>
+                            <div style="font-size: 0.95rem; color: var(--gray-600); line-height: 1.5;">Comprehensive analytics and forecasting to support evidence-based decisions</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: var(--border-radius-md); border: 2px dashed var(--primary-400); text-align: center;">
+                        <div style="font-weight: 600; color: var(--primary-700); margin-bottom: 0.5rem; font-size: 1.1rem;">🌟 Community Impact</div>
+                        <div style="font-size: 0.95rem; color: var(--gray-600); line-height: 1.5;">
+                            Every share helps reach more people who need this information. 
+                            <strong>Together, we can make immigration intelligence accessible to everyone.</strong>
                         </div>
                     </div>
                 </div>
@@ -1670,15 +1689,67 @@
         </div>
     </footer>
 
+    <!-- Go to Top Button -->
+    <button id="goToTop" class="go-to-top-btn" style="
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateY(20px);
+    ">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
     <script>
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
+            const goToTopBtn = document.getElementById('goToTop');
+            
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+            
+            // Show/hide go to top button
+            if (window.scrollY > 300) {
+                goToTopBtn.style.display = 'flex';
+                setTimeout(() => {
+                    goToTopBtn.style.opacity = '1';
+                    goToTopBtn.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                goToTopBtn.style.opacity = '0';
+                goToTopBtn.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    goToTopBtn.style.display = 'none';
+                }, 300);
+            }
+        });
+        
+        // Go to top functionality
+        document.getElementById('goToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
 
         // Animation observer for general elements
