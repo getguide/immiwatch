@@ -1,0 +1,46 @@
+{
+  "total_itas": 0,
+  "cec_itas": 0,
+  "pnp_itas": 0,
+  "fsw_itas": 0,
+  "fst_itas": 0,
+  "category_based_total": 0,
+  "french_speaking": 0,
+  "healthcare": 0,
+  "stem": 0,
+  "trade": 0,
+  "education": 0,
+  "agriculture": 0,
+  "executive_summary": "Monthly summary placeholder - replace with actual summary",
+  "strategic_insights": [
+    "Strategic insight 1",
+    "Strategic insight 2",
+    "Strategic insight 3"
+  ],
+  "key_highlights": [
+    "Key highlight 1",
+    "Key highlight 2",
+    "Key highlight 3"
+  ],
+  "month_comparison": {
+    "previous_month": "2025-07",
+    "growth_percentage": 0,
+    "key_changes": [
+      "Change 1",
+      "Change 2"
+    ]
+  },
+  "category_analysis": {
+    "french_speaking_impact": "Analysis of French-speaking category performance",
+    "healthcare_focus": "Healthcare category analysis",
+    "stem_trade_status": "STEM and Trade category status"
+  },
+  "predictions": {
+    "next_month_outlook": "Prediction for next month",
+    "trend_analysis": "Trend analysis for the month",
+    "strategic_recommendations": [
+      "Recommendation 1",
+      "Recommendation 2"
+    ]
+  }
+} 

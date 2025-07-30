@@ -23,7 +23,10 @@ python3 scripts/template_generator.py
 **Full Guide**: [Navigation Management Guide](docs/NAVIGATION_MANAGEMENT_GUIDE.md)
 
 ### **Data Updates**
-- **Express Entry Reports**: Update monthly data in `reports/express-entry/ee-YYYY-MM/`
+- **Express Entry Reports**: Use automated generator for new monthly reports
+  ```bash
+  python3 scripts/generate_monthly_report.py 2025-08 --data-file august_data.json
+  ```
 - **News Articles**: Add to `news/daily/` with proper categorization
 - **Newsletters**: Create in `news/digest/week-XX-YYYY/`
 
@@ -61,9 +64,10 @@ python3 scripts/template_generator.py
 - `scripts/template_generator.py` - Template-based generation
 
 ### **Content Management**
-- Automated data validation scripts
-- Template-based page generation
-- Error handling and rollback procedures
+- **Monthly Report Generator**: `scripts/generate_monthly_report.py`
+- **Data Templates**: `scripts/monthly_report_data_template.json`
+- **Template-based page generation**
+- **Error handling and rollback procedures**
 
 ### **Quality Assurance**
 - HTML validation tools
@@ -75,6 +79,7 @@ python3 scripts/template_generator.py
 ```
 docs/
 ├── NAVIGATION_MANAGEMENT_GUIDE.md    # Navigation automation
+├── MONTHLY_REPORT_GENERATOR_GUIDE.md # Monthly report generation
 ├── EXPRESS_ENTRY_UPDATE_GUIDE.md     # Data update procedures
 ├── DATA_FORMATS.md                   # Data structure standards
 ├── ANALYSIS_METHODOLOGY.md           # Analysis procedures
@@ -95,10 +100,10 @@ docs/
 3. **Test Branding**: Verify consistent appearance
 
 ### **Adding New Report**
-1. **Create Directory**: `reports/express-entry/ee-YYYY-MM/`
-2. **Copy Template**: Use existing report as template
-3. **Update Data**: Replace with new month's data
-4. **Update Navigation**: Add to reports index if needed
+1. **Use Generator**: `python3 scripts/generate_monthly_report.py 2025-08 --data-file august_data.json`
+2. **Create Data File**: Copy template and edit with actual data
+3. **Generate Report**: Run the generator script
+4. **Test & Deploy**: Review and commit changes
 
 ### **Content Updates**
 1. **Backup First**: Always commit current state
