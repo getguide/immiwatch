@@ -89,6 +89,12 @@ immiwatch/
 - **Components**: Modular cards, progress bars, alert systems
 - **Responsive**: Mobile-first design approach
 
+### **Navigation Management**
+- **Automated Updates**: Script-based navigation management across 30+ pages
+- **Template System**: Consistent navigation and footer generation
+- **Safety Protocols**: Backup procedures and error handling
+- **Documentation**: [Navigation Management Guide](docs/NAVIGATION_MANAGEMENT_GUIDE.md)
+
 ### **Update Procedures**
 1. **Data Collection**: Gather latest draw and pool data
 2. **Analysis**: Apply pattern recognition methodology
