@@ -218,7 +218,7 @@ class WebhookHandler:
             return {
                 "success": True,
                 "month": current_info['month_str'],
-                "draw_number": webhook_data["draw_number"],
+                "draw_number": webhook_data["body"]["Draw Number"],
                 "updated_file": result["updated_file"],
                 "draw_count": result["draw_count"]
             }

@@ -20,3 +20,16 @@
 2025-07-30 12:51:42,547 - INFO - 📋 Current report: 2025-07
 2025-07-30 12:51:42,550 - INFO - ✅ Saved current report info: 2025-07
 2025-07-30 12:51:42,550 - INFO - ✅ Updated current report with draw data: reports/express-entry/ee-july-2025/index.html
+2025-07-30 12:51:43,695 - INFO - ✅ Git commit created: 🤖 Auto-update: 2025-07 Draw #348 (EE-PNP) - 277 ITAs (CRS: 726)
+2025-07-30 12:51:43,696 - INFO - ✅ Webhook processing complete!
+2025-07-30 12:51:43,696 - ERROR - ❌ Error processing webhook: 'draw_number'
+2025-07-30 12:51:43,696 - ERROR - ❌ Test webhook failed: 'draw_number'
+2025-07-30 12:52:32,296 - INFO - 🧪 Testing webhook with sample Lambda data...
+2025-07-30 12:52:32,296 - INFO - 🔄 Processing webhook data...
+2025-07-30 12:52:32,296 - INFO - ✅ Validating webhook data...
+2025-07-30 12:52:32,299 - INFO - 📋 Current report: 2025-07
+2025-07-30 12:52:32,299 - INFO - 📅 Processing for current month: 2025-07
+2025-07-30 12:52:32,300 - INFO - 🔄 Updating current monthly report...
+2025-07-30 12:52:32,300 - INFO - 📋 Current report: 2025-07
+2025-07-30 12:52:32,302 - INFO - ✅ Saved current report info: 2025-07
+2025-07-30 12:52:32,302 - INFO - ✅ Updated current report with draw data: reports/express-entry/ee-july-2025/index.html
