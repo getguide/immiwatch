@@ -295,6 +295,13 @@ class CurrentMonthlyReportManager:
                 self.update_current_report_designation(next_month_str, next_month_info)
                 
                 self.logger.info(f"✅ Created and designated new month report: {next_month_str}")
+                
+                # Output results for GitHub Actions
+                print(f"::set-output name=status::month_transition")
+                print(f"::set-output name=new_month::{next_month_str}")
+                print(f"::set-output name=report_file::{generated_file}")
+                print(f"::set-output name=new_month_directory::{next_month_info['directory']}")
+                
                 return {
                     "success": True,
                     "new_month": next_month_str,
@@ -302,10 +309,19 @@ class CurrentMonthlyReportManager:
                     "status": "month_transition"
                 }
             
+            # Output results for GitHub Actions
+            print(f"::set-output name=status::no_transition_needed")
+            print(f"::set-output name=current_month::{current_month_str}")
+            
             return {"success": True, "status": "no_transition_needed"}
             
         except Exception as e:
             self.logger.error(f"❌ Error checking month transition: {e}")
+            
+            # Output error for GitHub Actions
+            print(f"::set-output name=status::error")
+            print(f"::set-output name=error::{str(e)}")
+            
             return {"success": False, "error": str(e)}
     
     def get_report_status_summary(self):

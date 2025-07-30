@@ -214,17 +214,30 @@ class WebhookHandler:
             # Create git commit
             self.create_git_commit(webhook_data, current_info['month_str'])
             
-            self.logger.info("✅ Webhook processing complete!")
-            return {
-                "success": True,
-                "month": current_info['month_str'],
-                "draw_number": webhook_data["body"]["Draw Number"],
-                "updated_file": result["updated_file"],
-                "draw_count": result["draw_count"]
-            }
+                    self.logger.info("✅ Webhook processing complete!")
+        
+        # Output results for GitHub Actions
+        print(f"::set-output name=success::true")
+        print(f"::set-output name=month::{current_info['month_str']}")
+        print(f"::set-output name=draw_number::{webhook_data['body']['Draw Number']}")
+        print(f"::set-output name=updated_file::{result['updated_file']}")
+        print(f"::set-output name=draw_count::{result['draw_count']}")
+        
+        return {
+            "success": True,
+            "month": current_info['month_str'],
+            "draw_number": webhook_data["body"]["Draw Number"],
+            "updated_file": result["updated_file"],
+            "draw_count": result["draw_count"]
+        }
             
         except Exception as e:
             self.logger.error(f"❌ Error processing webhook: {e}")
+            
+            # Output error for GitHub Actions
+            print(f"::set-output name=success::false")
+            print(f"::set-output name=error::{str(e)}")
+            
             return {
                 "success": False,
                 "error": str(e)

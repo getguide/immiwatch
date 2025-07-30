@@ -2,10 +2,9 @@ name: Monthly Report Scheduler
 
 on:
   schedule:
-    # Run daily at 2 AM UTC (to catch month transitions)
+    # Run daily at 2 AM UTC to check for month transitions
     - cron: '0 2 * * *'
-  workflow_dispatch:
-    # Allow manual triggering
+  workflow_dispatch: # Allow manual triggering
 
 jobs:
   check-month-transition:
@@ -14,45 +13,40 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-    
+      
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-    
+        
     - name: Check month transition
+      id: transition
       run: |
-        echo "🔄 Checking for month transition..."
+        python3 scripts/current_monthly_report_manager.py --check-transition
         
-        # Check if it's the first day of the month
-        CURRENT_DAY=$(date +%d)
-        CURRENT_HOUR=$(date +%H)
-        
-        echo "📅 Current day: $CURRENT_DAY"
-        echo "🕐 Current hour: $CURRENT_HOUR"
-        
-        if [ "$CURRENT_DAY" = "01" ] && [ "$CURRENT_HOUR" -lt 6 ]; then
-          echo "✅ First day of month detected - creating new monthly report"
-          
-          # Run the current monthly report manager
-          python3 scripts/current_monthly_report_manager.py --check-transition
-          
-          # Get current report status
-          python3 scripts/current_monthly_report_manager.py --status
-          
-          echo "✅ Month transition check completed"
-        else
-          echo "ℹ️ Not first day of month or too early - no action needed"
-        fi
-    
-    - name: Create summary
+    - name: Notify Slack - New Month Created
+      if: steps.transition.outputs.status == 'month_transition'
       run: |
-        echo "## 📅 Monthly Report Scheduler" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "**Status**: ✅ Daily check completed" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "**Next Check**: Tomorrow at 2 AM UTC" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "**Current Month**: $(date +%B %Y)" >> $GITHUB_STEP_SUMMARY 
+        curl -X POST -H 'Content-type: application/json' \
+        --data '{
+          "text": "📅 *New Monthly Report Created!*\n\n🎯 **New Month:** ${{ steps.transition.outputs.new_month }}\n📁 **Report File:** ${{ steps.transition.outputs.report_file }}\n🔗 **View Report:** https://immiwatch.ca/reports/express-entry/${{ steps.transition.outputs.new_month_directory }}/\n\n✅ **Status:** New month report created and designated as current\n\n📊 **Ready for:** Express Entry draws for ${{ steps.transition.outputs.new_month }}"
+        }' \
+        https://hooks.slack.com/services/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
+        
+    - name: Notify Slack - No Transition
+      if: steps.transition.outputs.status == 'no_transition_needed'
+      run: |
+        curl -X POST -H 'Content-type: application/json' \
+        --data '{
+          "text": "✅ *Monthly Report Check Complete*\n\n📅 **Current Month:** ${{ steps.transition.outputs.current_month }}\n📊 **Status:** No month transition needed\n\n🔄 **Next Check:** Tomorrow at 2 AM UTC"
+        }' \
+        https://hooks.slack.com/services/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
+        
+    - name: Notify Slack - Error
+      if: steps.transition.outputs.status == 'error'
+      run: |
+        curl -X POST -H 'Content-type: application/json' \
+        --data '{
+          "text": "❌ *Monthly Report Check Failed!*\n\n🚨 **Error:** ${{ steps.transition.outputs.error }}\n\n⚠️ **Action Required:** Manual intervention needed to check monthly report system"
+        }' \
+        https://hooks.slack.com/services/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 
