@@ -1,15 +1,15 @@
-name: Webhook Handler for Express Entry Draws
+name: Webhook Handler
 
 on:
   repository_dispatch:
     types: [express_entry_draw]
 
 jobs:
-  process-webhook:
+  process_webhook:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v4
       
     - name: Set up Python
@@ -17,30 +17,25 @@ jobs:
       with:
         python-version: '3.11'
         
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests
-        
     - name: Process webhook
       id: webhook
       run: |
-        python3 scripts/webhook_handler.py --webhook-data ${{ toJSON(github.event.client_payload) }}
+        python3 scripts/webhook_handler.py
         
     - name: Notify Slack - Success
       if: steps.webhook.outputs.success == 'true'
       run: |
         curl -X POST -H 'Content-type: application/json' \
         --data '{
-          "text": "🎉 *Express Entry Draw Processed Successfully!*\n\n📊 *Draw Details:*\n• **Program:** ${{ github.event.client_payload.Program }}\n• **ITAs:** ${{ github.event.client_payload.Invitation }}\n• **CRS Score:** ${{ github.event.client_payload.Score }}\n• **Draw Number:** ${{ github.event.client_payload.Draw_Number }}\n• **Date:** ${{ github.event.client_payload.draw.date.most.recent }}\n\n📈 **Updated Report:** ${{ steps.webhook.outputs.updated_file }}\n🔗 **View Report:** https://immiwatch.ca/reports/express-entry/ee-july-2025/\n\n✅ **Status:** Report updated and committed to GitHub"
+          "text": "🎉 *Express Entry Draw Processed Successfully!*\n\n📊 *Draw Details:*\n• **Program:** ${{ github.event.client_payload.Program }}\n• **ITAs:** ${{ github.event.client_payload.Invitation }}\n• **CRS Score:** ${{ github.event.client_payload.Score }}\n• **Draw Number:** ${{ github.event.client_payload.Draw_Number }}\n• **Date:** ${{ github.event.client_payload.draw.date.most.recent }}\n• **Category:** ${{ github.event.client_payload.Category }}\n• **Region:** ${{ github.event.client_payload.Region }}\n\n📈 **Updated Report:** ${{ steps.webhook.outputs.updated_file }}\n🔗 **View Report:** https://immiwatch.ca/reports/express-entry/${{ steps.webhook.outputs.month_directory }}/\n\n✅ **Status:** Report updated and committed to GitHub\n\n📊 **Summary:** Added ${{ github.event.client_payload.Invitation }} ITAs to ${{ github.event.client_payload.Program }} program\n\n🔗 **GitHub Commit:** https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
         }' \
-        https://hooks.slack.com/services/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
-        
+        ${{ secrets.SLACK_WEBHOOK_URL }}
+    
     - name: Notify Slack - Failure
       if: steps.webhook.outputs.success == 'false'
       run: |
         curl -X POST -H 'Content-type: application/json' \
         --data '{
-          "text": "❌ *Express Entry Draw Processing Failed!*\n\n📊 *Draw Details:*\n• **Program:** ${{ github.event.client_payload.Program }}\n• **ITAs:** ${{ github.event.client_payload.Invitation }}\n• **CRS Score:** ${{ github.event.client_payload.Score }}\n• **Draw Number:** ${{ github.event.client_payload.Draw_Number }}\n\n🚨 **Error:** ${{ steps.webhook.outputs.error }}\n\n⚠️ **Action Required:** Manual intervention needed"
+          "text": "❌ *Express Entry Draw Processing Failed!*\n\n📊 *Draw Details:*\n• **Program:** ${{ github.event.client_payload.Program }}\n• **ITAs:** ${{ github.event.client_payload.Invitation }}\n• **CRS Score:** ${{ github.event.client_payload.Score }}\n• **Draw Number:** ${{ github.event.client_payload.Draw_Number }}\n• **Date:** ${{ github.event.client_payload.draw.date.most.recent }}\n• **Category:** ${{ github.event.client_payload.Category }}\n• **Region:** ${{ github.event.client_payload.Region }}\n\n🚨 **Error Details:**\n${{ steps.webhook.outputs.error }}\n\n🔍 **Debug Info:**\n• **GitHub Run:** ${{ github.run_id }}\n• **Workflow:** ${{ github.workflow }}\n• **Repository:** ${{ github.repository }}\n• **Branch:** ${{ github.ref }}\n\n⚠️ **Action Required:** Manual intervention needed\n\n🔗 **View Logs:** https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         }' \
-        https://hooks.slack.com/services/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 
+        ${{ secrets.SLACK_WEBHOOK_URL }} 

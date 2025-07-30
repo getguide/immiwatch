@@ -7,11 +7,11 @@ on:
   workflow_dispatch: # Allow manual triggering
 
 jobs:
-  check-month-transition:
+  check_monthly_transition:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v4
       
     - name: Set up Python
@@ -19,7 +19,7 @@ jobs:
       with:
         python-version: '3.11'
         
-    - name: Check month transition
+    - name: Check monthly transition
       id: transition
       run: |
         python3 scripts/current_monthly_report_manager.py --check-transition
@@ -29,24 +29,24 @@ jobs:
       run: |
         curl -X POST -H 'Content-type: application/json' \
         --data '{
-          "text": "📅 *New Monthly Report Created!*\n\n🎯 **New Month:** ${{ steps.transition.outputs.new_month }}\n📁 **Report File:** ${{ steps.transition.outputs.report_file }}\n🔗 **View Report:** https://immiwatch.ca/reports/express-entry/${{ steps.transition.outputs.new_month_directory }}/\n\n✅ **Status:** New month report created and designated as current\n\n📊 **Ready for:** Express Entry draws for ${{ steps.transition.outputs.new_month }}"
+          "text": "📅 *New Monthly Report Created!*\n\n🎯 **New Month:** ${{ steps.transition.outputs.new_month }}\n📁 **Report File:** ${{ steps.transition.outputs.report_file }}\n🔗 **View Report:** https://immiwatch.ca/reports/express-entry/${{ steps.transition.outputs.new_month_directory }}/\n\n✅ **Status:** New month report created and designated as current\n\n📊 **Ready for:** Express Entry draws for ${{ steps.transition.outputs.new_month }}\n\n📋 **Summary:** Created fresh monthly report template for ${{ steps.transition.outputs.new_month }} with 0 ITAs baseline"
         }' \
-        https://hooks.slack.com/services/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
-        
+        ${{ secrets.SLACK_WEBHOOK_URL }}
+    
     - name: Notify Slack - No Transition
       if: steps.transition.outputs.status == 'no_transition_needed'
       run: |
         curl -X POST -H 'Content-type: application/json' \
         --data '{
-          "text": "✅ *Monthly Report Check Complete*\n\n📅 **Current Month:** ${{ steps.transition.outputs.current_month }}\n📊 **Status:** No month transition needed\n\n🔄 **Next Check:** Tomorrow at 2 AM UTC"
+          "text": "✅ *Monthly Report Check Complete*\n\n📅 **Current Month:** ${{ steps.transition.outputs.current_month }}\n📊 **Status:** No month transition needed\n\n🔄 **Next Check:** Tomorrow at 2 AM UTC\n\n📋 **Summary:** Daily check completed - current month report is active and ready for draws"
         }' \
-        https://hooks.slack.com/services/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
-        
+        ${{ secrets.SLACK_WEBHOOK_URL }}
+    
     - name: Notify Slack - Error
       if: steps.transition.outputs.status == 'error'
       run: |
         curl -X POST -H 'Content-type: application/json' \
         --data '{
-          "text": "❌ *Monthly Report Check Failed!*\n\n🚨 **Error:** ${{ steps.transition.outputs.error }}\n\n⚠️ **Action Required:** Manual intervention needed to check monthly report system"
+          "text": "❌ *Monthly Report Check Failed!*\n\n🚨 **Error Details:**\n${{ steps.transition.outputs.error }}\n\n🔍 **Debug Info:**\n• **GitHub Run:** ${{ github.run_id }}\n• **Workflow:** ${{ github.workflow }}\n• **Repository:** ${{ github.repository }}\n• **Branch:** ${{ github.ref }}\n\n⚠️ **Action Required:** Manual intervention needed to check monthly report system\n\n🔗 **View Logs:** https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         }' \
-        https://hooks.slack.com/services/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 
+        ${{ secrets.SLACK_WEBHOOK_URL }} 
