@@ -56,25 +56,30 @@ class WebhookHandler:
         self.logger = logging.getLogger(__name__)
     
     def validate_webhook_data(self, data):
-        """Validate webhook data structure"""
+        """Validate webhook data structure from Lambda function"""
+        # Check if data has the expected structure
+        if "body" not in data:
+            raise ValueError("Missing 'body' field in webhook data")
+        
+        body = data["body"]
         required_fields = [
-            "draw_date", "draw_number", "itas", "crs"
+            "Program", "draw.date.most.recent", "Score", "Invitation", "Draw Number"
         ]
         
         for field in required_fields:
-            if field not in data:
-                raise ValueError(f"Missing required field: {field}")
+            if field not in body:
+                raise ValueError(f"Missing required field in body: {field}")
         
         # Validate date format
         try:
-            datetime.strptime(data["draw_date"], "%Y-%m-%d")
+            datetime.strptime(body["draw.date.most.recent"], "%Y-%m-%d")
         except ValueError:
-            raise ValueError(f"Invalid date format: {data['draw_date']}. Use YYYY-MM-DD")
+            raise ValueError(f"Invalid date format: {body['draw.date.most.recent']}. Use YYYY-MM-DD")
         
         # Validate numeric fields
-        numeric_fields = ["draw_number", "itas", "crs"]
+        numeric_fields = ["Score", "Invitation", "Draw Number"]
         for field in numeric_fields:
-            if not isinstance(data[field], (int, float)):
+            if not isinstance(body[field], (int, float)):
                 raise ValueError(f"Field {field} must be numeric")
         
         return True
@@ -84,40 +89,91 @@ class WebhookHandler:
         date_obj = datetime.strptime(draw_date, "%Y-%m-%d")
         return f"{date_obj.year}-{date_obj.month:02d}"
     
+    def parse_program_category(self, program):
+        """Parse program/category from Lambda data"""
+        program_mapping = {
+            # Program-based draws
+            "EE-PNP": {"type": "program-based", "program": "pnp", "category": None},
+            "EE-CEC": {"type": "program-based", "program": "cec", "category": None},
+            "EE-FSW": {"type": "program-based", "program": "fsw", "category": None},
+            "EE-FST": {"type": "program-based", "program": "fst", "category": None},
+            
+            # Category-based draws
+            "EE-Health": {"type": "category-based", "program": None, "category": "healthcare"},
+            "EE-French": {"type": "category-based", "program": None, "category": "french_speaking"},
+            "EE-Trade": {"type": "category-based", "program": None, "category": "trade"},
+            "EE-Education": {"type": "category-based", "program": None, "category": "education"},
+            "EE-Agriculture": {"type": "category-based", "program": None, "category": "agriculture"},
+            "EE-STEM": {"type": "category-based", "program": None, "category": "stem"}
+        }
+        
+        return program_mapping.get(program, {"type": "unknown", "program": None, "category": None})
+    
     def create_draw_data_file(self, webhook_data):
-        """Create draw data file from webhook data"""
+        """Create draw data file from Lambda webhook data"""
+        body = webhook_data["body"]
+        
+        # Parse program/category
+        program_info = self.parse_program_category(body["Program"])
+        
         # Extract month
-        month_str = self.extract_month_from_date(webhook_data["draw_date"])
+        month_str = self.extract_month_from_date(body["draw.date.most.recent"])
         month_info = self.updater.get_month_info(month_str)
         
-        # Create draw data structure
+        # Initialize draw data with zeros
         draw_data = {
-            "draw_date": webhook_data["draw_date"],
-            "draw_number": webhook_data["draw_number"],
-            "itas": webhook_data["itas"],
-            "crs": webhook_data["crs"],
-            "cec_itas": webhook_data.get("cec_itas", 0),
-            "pnp_itas": webhook_data.get("pnp_itas", 0),
-            "fsw_itas": webhook_data.get("fsw_itas", 0),
-            "fst_itas": webhook_data.get("fst_itas", 0),
-            "category_based_total": webhook_data.get("category_based_total", 0),
-            "french_speaking": webhook_data.get("french_speaking", 0),
-            "healthcare": webhook_data.get("healthcare", 0),
-            "stem": webhook_data.get("stem", 0),
-            "trade": webhook_data.get("trade", 0),
-            "education": webhook_data.get("education", 0),
-            "agriculture": webhook_data.get("agriculture", 0),
-            "draw_type": webhook_data.get("draw_type", "program-based"),
-            "notes": f"Automated update from webhook - Draw #{webhook_data['draw_number']}",
+            "draw_date": body["draw.date.most.recent"],
+            "draw_number": body["Draw Number"],
+            "itas": body["Invitation"],
+            "crs": body["Score"],
+            "cec_itas": 0,
+            "pnp_itas": 0,
+            "fsw_itas": 0,
+            "fst_itas": 0,
+            "category_based_total": 0,
+            "french_speaking": 0,
+            "healthcare": 0,
+            "stem": 0,
+            "trade": 0,
+            "education": 0,
+            "agriculture": 0,
+            "draw_type": program_info["type"],
+            "notes": f"Automated update from Lambda webhook - Draw #{body['Draw Number']} ({body['Program']})",
             "strategic_insights": [
-                f"Draw #{webhook_data['draw_number']} with {webhook_data['itas']} ITAs",
-                f"CRS score: {webhook_data['crs']}",
-                f"Draw type: {webhook_data.get('draw_type', 'program-based')}"
+                f"Draw #{body['Draw Number']} with {body['Invitation']} ITAs",
+                f"CRS score: {body['Score']}",
+                f"Draw type: {program_info['type']}",
+                f"Program/Category: {body['Program']}"
             ]
         }
         
+        # Set the appropriate field based on program/category
+        if program_info["type"] == "program-based":
+            if program_info["program"] == "cec":
+                draw_data["cec_itas"] = body["Invitation"]
+            elif program_info["program"] == "pnp":
+                draw_data["pnp_itas"] = body["Invitation"]
+            elif program_info["program"] == "fsw":
+                draw_data["fsw_itas"] = body["Invitation"]
+            elif program_info["program"] == "fst":
+                draw_data["fst_itas"] = body["Invitation"]
+        elif program_info["type"] == "category-based":
+            draw_data["category_based_total"] = body["Invitation"]
+            if program_info["category"] == "healthcare":
+                draw_data["healthcare"] = body["Invitation"]
+            elif program_info["category"] == "french_speaking":
+                draw_data["french_speaking"] = body["Invitation"]
+            elif program_info["category"] == "trade":
+                draw_data["trade"] = body["Invitation"]
+            elif program_info["category"] == "education":
+                draw_data["education"] = body["Invitation"]
+            elif program_info["category"] == "agriculture":
+                draw_data["agriculture"] = body["Invitation"]
+            elif program_info["category"] == "stem":
+                draw_data["stem"] = body["Invitation"]
+        
         # Create filename
-        filename = f"webhook_draw_{webhook_data['draw_number']}_{webhook_data['draw_date']}.json"
+        filename = f"lambda_draw_{body['Draw Number']}_{body['draw.date.most.recent']}.json"
         filepath = Path("scripts") / filename
         
         # Write draw data file
@@ -182,8 +238,15 @@ class WebhookHandler:
             # Add all changes
             subprocess.run(["git", "add", "."], check=True)
             
+            # Extract data from Lambda format
+            body = webhook_data["body"]
+            draw_number = body["Draw Number"]
+            invitations = body["Invitation"]
+            crs_score = body["Score"]
+            program = body["Program"]
+            
             # Create commit message
-            commit_msg = f"🤖 Auto-update: {month_str} Draw #{webhook_data['draw_number']} - {webhook_data['itas']} ITAs (CRS: {webhook_data['crs']})"
+            commit_msg = f"🤖 Auto-update: {month_str} Draw #{draw_number} ({program}) - {invitations} ITAs (CRS: {crs_score})"
             
             # Commit changes
             subprocess.run(["git", "commit", "-m", commit_msg], check=True)
@@ -197,27 +260,23 @@ class WebhookHandler:
             self.logger.error(f"❌ Git commit failed: {e}")
     
     def test_webhook(self):
-        """Test webhook with sample data"""
+        """Test webhook with sample Lambda data"""
         test_data = {
-            "draw_date": "2025-08-05",
-            "draw_number": 1,
-            "itas": 3000,
-            "crs": 475,
-            "cec_itas": 2000,
-            "pnp_itas": 800,
-            "fsw_itas": 0,
-            "fst_itas": 0,
-            "category_based_total": 200,
-            "french_speaking": 100,
-            "healthcare": 50,
-            "stem": 0,
-            "trade": 0,
-            "education": 50,
-            "agriculture": 0,
-            "draw_type": "program-based"
+            "body": {
+                "Program": "EE-PNP",
+                "Category": "General",
+                "Region": "All",
+                "draw.date.most.recent": "2025-08-05",
+                "Score": 726,
+                "Scoring System": "CRS",
+                "Filter by program": "Express Entry",
+                "Invitation": 277,
+                "Last Checked": "2025-08-05T13:25:51.846699",
+                "Draw Number": 348
+            }
         }
         
-        self.logger.info("🧪 Testing webhook with sample data...")
+        self.logger.info("🧪 Testing webhook with sample Lambda data...")
         result = self.process_webhook(test_data)
         
         if result["success"]:

@@ -84,40 +84,50 @@ python3 scripts/webhook_handler.py --test-webhook
 
 ## 📊 **Webhook Data Format**
 
-### **Expected Webhook Payload**
+### **Expected Webhook Payload (Lambda Format)**
 ```json
 {
-  "draw_date": "2025-08-05",
-  "draw_number": 1,
-  "itas": 3000,
-  "crs": 475,
-  "cec_itas": 2000,
-  "pnp_itas": 800,
-  "fsw_itas": 0,
-  "fst_itas": 0,
-  "category_based_total": 200,
-  "french_speaking": 100,
-  "healthcare": 50,
-  "stem": 0,
-  "trade": 0,
-  "education": 50,
-  "agriculture": 0,
-  "draw_type": "program-based",
-  "detected_at": "2025-08-05T14:30:00Z"
+  "body": {
+    "Program": "EE-PNP",
+    "Category": "General",
+    "Region": "All",
+    "draw.date.most.recent": "2025-08-05",
+    "Score": 726,
+    "Scoring System": "CRS",
+    "Filter by program": "Express Entry",
+    "Invitation": 277,
+    "Last Checked": "2025-08-05T13:25:51.846699",
+    "Draw Number": 348
+  }
 }
 ```
 
 ### **Required Fields**
-- `draw_date`: Date of the draw (YYYY-MM-DD)
-- `draw_number`: Sequential draw number for the month
-- `itas`: Total ITAs issued
-- `crs`: CRS score cutoff
+- `body.Program`: Program/Category type (EE-PNP, EE-CEC, EE-Health, etc.)
+- `body.draw.date.most.recent`: Date of the draw (YYYY-MM-DD)
+- `body.Score`: CRS score cutoff
+- `body.Invitation`: Total ITAs issued
+- `body.Draw Number`: Express Entry draw number
 
-### **Optional Fields**
-- `cec_itas`, `pnp_itas`, `fsw_itas`, `fst_itas`: Program-specific ITAs
-- `category_based_total`: Total category-based ITAs
-- `french_speaking`, `healthcare`, `stem`, `trade`, `education`, `agriculture`: Category-specific ITAs
-- `draw_type`: Type of draw (program-based, category-based, etc.)
+### **Program/Category Mapping**
+**Program-Based Draws:**
+- `EE-PNP` → PNP ITAs
+- `EE-CEC` → CEC ITAs  
+- `EE-FSW` → FSW ITAs
+- `EE-FST` → FST ITAs
+
+**Category-Based Draws:**
+- `EE-Health` → Healthcare ITAs
+- `EE-French` → French-Speaking ITAs
+- `EE-Trade` → Trade ITAs
+- `EE-Education` → Education ITAs
+- `EE-Agriculture` → Agriculture ITAs
+- `EE-STEM` → STEM ITAs
+
+### **Ignored Fields**
+- `body.Category`, `body.Region`: Internal fields
+- `body.Scoring System`, `body.Filter by program`: Internal fields
+- `body.Last Checked`: Function timestamp
 
 ## 🔧 **System Components**
 
