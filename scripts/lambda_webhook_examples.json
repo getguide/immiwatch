@@ -1,0 +1,267 @@
+{
+  "examples": {
+    "program_based_draws": {
+      "ee_pnp_example": {
+        "body": {
+          "Program": "EE-PNP",
+          "Category": "General",
+          "Region": "All",
+          "draw.date.most.recent": "2025-08-05",
+          "Score": 726,
+          "Scoring System": "CRS",
+          "Filter by program": "Express Entry",
+          "Invitation": 277,
+          "Last Checked": "2025-08-05T13:25:51.846699",
+          "Draw Number": 348
+        },
+        "expected_result": {
+          "pnp_itas": 277,
+          "cec_itas": 0,
+          "fsw_itas": 0,
+          "fst_itas": 0,
+          "category_based_total": 0,
+          "draw_type": "program-based"
+        }
+      },
+      "ee_cec_example": {
+        "body": {
+          "Program": "EE-CEC",
+          "Category": "General",
+          "Region": "All",
+          "draw.date.most.recent": "2025-08-07",
+          "Score": 475,
+          "Scoring System": "CRS",
+          "Filter by program": "Express Entry",
+          "Invitation": 3000,
+          "Last Checked": "2025-08-07T14:30:00.000000",
+          "Draw Number": 349
+        },
+        "expected_result": {
+          "pnp_itas": 0,
+          "cec_itas": 3000,
+          "fsw_itas": 0,
+          "fst_itas": 0,
+          "category_based_total": 0,
+          "draw_type": "program-based"
+        }
+      },
+      "ee_fsw_example": {
+        "body": {
+          "Program": "EE-FSW",
+          "Category": "General",
+          "Region": "All",
+          "draw.date.most.recent": "2025-08-10",
+          "Score": 500,
+          "Scoring System": "CRS",
+          "Filter by program": "Express Entry",
+          "Invitation": 1500,
+          "Last Checked": "2025-08-10T15:45:00.000000",
+          "Draw Number": 350
+        },
+        "expected_result": {
+          "pnp_itas": 0,
+          "cec_itas": 0,
+          "fsw_itas": 1500,
+          "fst_itas": 0,
+          "category_based_total": 0,
+          "draw_type": "program-based"
+        }
+      },
+      "ee_fst_example": {
+        "body": {
+          "Program": "EE-FST",
+          "Category": "General",
+          "Region": "All",
+          "draw.date.most.recent": "2025-08-12",
+          "Score": 350,
+          "Scoring System": "CRS",
+          "Filter by program": "Express Entry",
+          "Invitation": 500,
+          "Last Checked": "2025-08-12T16:20:00.000000",
+          "Draw Number": 351
+        },
+        "expected_result": {
+          "pnp_itas": 0,
+          "cec_itas": 0,
+          "fsw_itas": 0,
+          "fst_itas": 500,
+          "category_based_total": 0,
+          "draw_type": "program-based"
+        }
+      }
+    },
+    "category_based_draws": {
+      "ee_health_example": {
+        "body": {
+          "Program": "EE-Health",
+          "Category": "General",
+          "Region": "All",
+          "draw.date.most.recent": "2025-08-15",
+          "Score": 450,
+          "Scoring System": "CRS",
+          "Filter by program": "Express Entry",
+          "Invitation": 1000,
+          "Last Checked": "2025-08-15T17:10:00.000000",
+          "Draw Number": 352
+        },
+        "expected_result": {
+          "pnp_itas": 0,
+          "cec_itas": 0,
+          "fsw_itas": 0,
+          "fst_itas": 0,
+          "category_based_total": 1000,
+          "healthcare": 1000,
+          "draw_type": "category-based"
+        }
+      },
+      "ee_french_example": {
+        "body": {
+          "Program": "EE-French",
+          "Category": "General",
+          "Region": "All",
+          "draw.date.most.recent": "2025-08-18",
+          "Score": 400,
+          "Scoring System": "CRS",
+          "Filter by program": "Express Entry",
+          "Invitation": 800,
+          "Last Checked": "2025-08-18T18:30:00.000000",
+          "Draw Number": 353
+        },
+        "expected_result": {
+          "pnp_itas": 0,
+          "cec_itas": 0,
+          "fsw_itas": 0,
+          "fst_itas": 0,
+          "category_based_total": 800,
+          "french_speaking": 800,
+          "draw_type": "category-based"
+        }
+      },
+      "ee_trade_example": {
+        "body": {
+          "Program": "EE-Trade",
+          "Category": "General",
+          "Region": "All",
+          "draw.date.most.recent": "2025-08-20",
+          "Score": 380,
+          "Scoring System": "CRS",
+          "Filter by program": "Express Entry",
+          "Invitation": 600,
+          "Last Checked": "2025-08-20T19:15:00.000000",
+          "Draw Number": 354
+        },
+        "expected_result": {
+          "pnp_itas": 0,
+          "cec_itas": 0,
+          "fsw_itas": 0,
+          "fst_itas": 0,
+          "category_based_total": 600,
+          "trade": 600,
+          "draw_type": "category-based"
+        }
+      },
+      "ee_education_example": {
+        "body": {
+          "Program": "EE-Education",
+          "Category": "General",
+          "Region": "All",
+          "draw.date.most.recent": "2025-08-22",
+          "Score": 420,
+          "Scoring System": "CRS",
+          "Filter by program": "Express Entry",
+          "Invitation": 750,
+          "Last Checked": "2025-08-22T20:00:00.000000",
+          "Draw Number": 355
+        },
+        "expected_result": {
+          "pnp_itas": 0,
+          "cec_itas": 0,
+          "fsw_itas": 0,
+          "fst_itas": 0,
+          "category_based_total": 750,
+          "education": 750,
+          "draw_type": "category-based"
+        }
+      },
+      "ee_agriculture_example": {
+        "body": {
+          "Program": "EE-Agriculture",
+          "Category": "General",
+          "Region": "All",
+          "draw.date.most.recent": "2025-08-25",
+          "Score": 350,
+          "Scoring System": "CRS",
+          "Filter by program": "Express Entry",
+          "Invitation": 400,
+          "Last Checked": "2025-08-25T21:45:00.000000",
+          "Draw Number": 356
+        },
+        "expected_result": {
+          "pnp_itas": 0,
+          "cec_itas": 0,
+          "fsw_itas": 0,
+          "fst_itas": 0,
+          "category_based_total": 400,
+          "agriculture": 400,
+          "draw_type": "category-based"
+        }
+      },
+      "ee_stem_example": {
+        "body": {
+          "Program": "EE-STEM",
+          "Category": "General",
+          "Region": "All",
+          "draw.date.most.recent": "2025-08-28",
+          "Score": 480,
+          "Scoring System": "CRS",
+          "Filter by program": "Express Entry",
+          "Invitation": 1200,
+          "Last Checked": "2025-08-28T22:30:00.000000",
+          "Draw Number": 357
+        },
+        "expected_result": {
+          "pnp_itas": 0,
+          "cec_itas": 0,
+          "fsw_itas": 0,
+          "fst_itas": 0,
+          "category_based_total": 1200,
+          "stem": 1200,
+          "draw_type": "category-based"
+        }
+      }
+    }
+  },
+  "mapping_summary": {
+    "program_based": {
+      "EE-PNP": "Updates pnp_itas field",
+      "EE-CEC": "Updates cec_itas field", 
+      "EE-FSW": "Updates fsw_itas field",
+      "EE-FST": "Updates fst_itas field"
+    },
+    "category_based": {
+      "EE-Health": "Updates healthcare field and category_based_total",
+      "EE-French": "Updates french_speaking field and category_based_total",
+      "EE-Trade": "Updates trade field and category_based_total",
+      "EE-Education": "Updates education field and category_based_total",
+      "EE-Agriculture": "Updates agriculture field and category_based_total",
+      "EE-STEM": "Updates stem field and category_based_total"
+    }
+  },
+  "notes": {
+    "ignored_fields": [
+      "Category",
+      "Region", 
+      "Scoring System",
+      "Filter by program",
+      "Last Checked"
+    ],
+    "required_fields": [
+      "Program",
+      "draw.date.most.recent",
+      "Score", 
+      "Invitation",
+      "Draw Number"
+    ],
+    "processing": "The webhook handler automatically maps Program values to the appropriate fields in the monthly report system"
+  }
+} 

@@ -33,3 +33,6 @@
 2025-07-30 12:52:32,300 - INFO - 📋 Current report: 2025-07
 2025-07-30 12:52:32,302 - INFO - ✅ Saved current report info: 2025-07
 2025-07-30 12:52:32,302 - INFO - ✅ Updated current report with draw data: reports/express-entry/ee-july-2025/index.html
+2025-07-30 12:52:33,237 - INFO - ✅ Git commit created: 🤖 Auto-update: 2025-07 Draw #348 (EE-PNP) - 277 ITAs (CRS: 726)
+2025-07-30 12:52:33,237 - INFO - ✅ Webhook processing complete!
+2025-07-30 12:52:33,237 - INFO - ✅ Test webhook successful!
