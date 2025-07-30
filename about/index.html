@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../assets/css/shared-styles.css">
     
     <style>
+        /* Enhanced About Page Styles */
         .about-hero {
             background: var(--gradient-hero);
             color: white;
@@ -57,6 +58,7 @@
             font-weight: 800;
             margin-bottom: 1.5rem;
             line-height: 1.1;
+            animation: fadeInUp 1s ease-out;
         }
         
         .about-subtitle {
@@ -65,6 +67,7 @@
             max-width: 600px;
             margin: 0 auto 2rem;
             line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
         
         .mission-section {
@@ -79,6 +82,50 @@
             box-shadow: var(--shadow-lg);
             text-align: center;
             border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .mission-card:hover::before {
+            left: 100%;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border-color: var(--primary-300);
+        }
+        
+        .mission-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: var(--border-radius-2xl);
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary-400), var(--primary-600));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mission-card:hover::after {
+            opacity: 1;
         }
         
         .mission-icon {
@@ -91,6 +138,14 @@
             justify-content: center;
             margin: 0 auto 2rem;
             font-size: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .mission-card:hover .mission-icon {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
         }
         
         .story-section {
@@ -110,6 +165,7 @@
             color: var(--gray-900);
             margin-bottom: 1.5rem;
             line-height: 1.2;
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
         
         .story-content p {
@@ -117,6 +173,42 @@
             color: var(--gray-600);
             line-height: 1.7;
             margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        .story-visual {
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius-2xl);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .story-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .story-visual:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .story-visual:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
         }
         
         .pain-points {
@@ -137,11 +229,43 @@
             padding: 2rem;
             border-radius: var(--border-radius-xl);
             border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pain-point::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .pain-point:hover::before {
+            opacity: 1;
+        }
+        
+        .pain-point:hover {
+            transform: translateY(-8px);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
         .pain-point-icon {
             font-size: 2rem;
             margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pain-point:hover .pain-point-icon {
+            transform: scale(1.2);
         }
         
         .pain-point h3 {
@@ -149,11 +273,15 @@
             font-weight: 700;
             margin-bottom: 1rem;
             color: white;
+            position: relative;
+            z-index: 1;
         }
         
         .pain-point p {
             color: #e2e8f0;
             line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
         
         .values-section {
@@ -175,11 +303,50 @@
             box-shadow: var(--shadow-md);
             text-align: center;
             border: 1px solid var(--gray-200);
-            transition: transform 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .value-card:hover::before {
+            left: 100%;
         }
         
         .value-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-300);
+        }
+        
+        .value-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: var(--border-radius-xl);
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary-400), var(--primary-600));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .value-card:hover::after {
+            opacity: 1;
         }
         
         .value-icon {
@@ -193,6 +360,14 @@
             margin: 0 auto 1.5rem;
             font-size: 1.5rem;
             color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .value-card:hover .value-icon {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
         }
         
         .team-section {
@@ -206,6 +381,30 @@
             border-radius: var(--border-radius-2xl);
             text-align: center;
             margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .lexpoint-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .lexpoint-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .lexpoint-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.4);
         }
         
         .lexpoint-card h3 {
@@ -213,12 +412,16 @@
             font-weight: 800;
             margin-bottom: 1rem;
             color: white;
+            position: relative;
+            z-index: 1;
         }
         
         .lexpoint-card p {
             font-size: 1.125rem;
             opacity: 0.9;
             line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
         
         .cta-about {
@@ -226,6 +429,91 @@
             color: white;
             padding: 6rem 0;
             text-align: center;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-lg);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+        
+        .cta-btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            border: 2px solid transparent;
+        }
+        
+        .cta-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        .cta-btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .cta-btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        /* Intersection Observer animations */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out both;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
         }
         
         @media (max-width: 768px) {
@@ -241,6 +529,11 @@
             .mission-card,
             .lexpoint-card {
                 padding: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -327,7 +620,7 @@
                         That's when we decided to change the game entirely.
                     </p>
                 </div>
-                <div style="background: var(--gradient-primary); border-radius: var(--border-radius-2xl); height: 400px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+                <div class="story-visual">
                     🇨🇦
                 </div>
             </div>
@@ -436,10 +729,10 @@
             <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">
                 Become part of a growing community of immigration professionals and candidates who rely on ImmiWatch for their daily intelligence needs.
             </p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="https://intake.immigratic.com/t/eELGpk1aGhus" target="_blank" class="btn btn-primary">📰 Subscribe to Newsletter</a>
-                <a href="../reports/" class="btn btn-secondary">📊 Explore Reports</a>
-                <a href="mailto:hi@lexpoint.io" class="btn btn-secondary">💬 Contact Us</a>
+            <div class="cta-buttons">
+                <a href="https://intake.immigratic.com/t/eELGpk1aGhus" target="_blank" class="cta-btn cta-btn-primary">📰 Subscribe to Newsletter</a>
+                <a href="../reports/" class="cta-btn cta-btn-secondary">📊 Explore Reports</a>
+                <a href="mailto:hi@lexpoint.io" class="cta-btn cta-btn-secondary">💬 Contact Us</a>
             </div>
         </div>
     </section>
@@ -528,6 +821,36 @@
             if (window.innerWidth > 1024 && isMobileMenuOpen) {
                 toggleMobileMenu();
             }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.mission-card, .pain-point, .value-card, .lexpoint-card, .story-content, .story-visual').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced hover effects for cards
+        document.querySelectorAll('.pain-point, .value-card, .mission-card, .lexpoint-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
         });
     </script>
 </body>
