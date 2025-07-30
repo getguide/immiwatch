@@ -94,10 +94,16 @@ class MonthlyReportUpdater:
         
         # Extract numbers from stat-number elements
         stat_matches = re.findall(r'data-target="(\d+)"', report_content)
-        if len(stat_matches) >= 3:
-            current_data["total_itas"] = int(stat_matches[0])
-            current_data["cec_itas"] = int(stat_matches[1])
-            current_data["pnp_itas"] = int(stat_matches[2])
+        if len(stat_matches) >= 4:
+            # Based on the July report structure:
+            # First: Total ITAs (should be 7558)
+            # Second: Healthcare (4000)
+            # Third: PNP (3558)
+            # Fourth: CEC (3000)
+            current_data["total_itas"] = int(stat_matches[0])  # First stat-number is total
+            current_data["healthcare"] = int(stat_matches[1])  # Second is healthcare
+            current_data["pnp_itas"] = int(stat_matches[2])    # Third is PNP
+            current_data["cec_itas"] = int(stat_matches[3])    # Fourth is CEC
         
         return current_data
     
@@ -105,26 +111,78 @@ class MonthlyReportUpdater:
         """Merge new draw data with existing data"""
         updated_data = current_data.copy()
         
-        # Add new draw numbers
-        updated_data["total_itas"] += new_draw_data.get("itas", 0)
-        updated_data["cec_itas"] += new_draw_data.get("cec_itas", 0)
-        updated_data["pnp_itas"] += new_draw_data.get("pnp_itas", 0)
-        updated_data["fsw_itas"] += new_draw_data.get("fsw_itas", 0)
-        updated_data["fst_itas"] += new_draw_data.get("fst_itas", 0)
-        
-        # Category-based draws
-        updated_data["category_based_total"] += new_draw_data.get("category_based_total", 0)
-        updated_data["french_speaking"] += new_draw_data.get("french_speaking", 0)
-        updated_data["healthcare"] += new_draw_data.get("healthcare", 0)
-        updated_data["stem"] += new_draw_data.get("stem", 0)
-        updated_data["trade"] += new_draw_data.get("trade", 0)
-        updated_data["education"] += new_draw_data.get("education", 0)
-        updated_data["agriculture"] += new_draw_data.get("agriculture", 0)
-        
-        # Update draw count and latest info
-        updated_data["draw_count"] += 1
-        updated_data["latest_draw_date"] = new_draw_data.get("draw_date", "")
-        updated_data["latest_crs"] = new_draw_data.get("crs", 0)
+        # Handle Lambda webhook format
+        if "body" in new_draw_data:
+            # Lambda format
+            body = new_draw_data["body"]
+            program = body.get("Program", "")
+            invitations = body.get("Invitation", 0)
+            crs_score = body.get("Score", 0)
+            draw_date = body.get("draw.date.most.recent", "")
+            
+            # Map program to the correct field
+            if program == "EE-PNP":
+                updated_data["pnp_itas"] += invitations
+                updated_data["total_itas"] += invitations
+            elif program == "EE-CEC":
+                updated_data["cec_itas"] += invitations
+                updated_data["total_itas"] += invitations
+            elif program == "EE-FSW":
+                updated_data["fsw_itas"] += invitations
+                updated_data["total_itas"] += invitations
+            elif program == "EE-FST":
+                updated_data["fst_itas"] += invitations
+                updated_data["total_itas"] += invitations
+            elif program == "EE-Health":
+                updated_data["healthcare"] += invitations
+                updated_data["category_based_total"] += invitations
+                updated_data["total_itas"] += invitations
+            elif program == "EE-French":
+                updated_data["french_speaking"] += invitations
+                updated_data["category_based_total"] += invitations
+                updated_data["total_itas"] += invitations
+            elif program == "EE-Trade":
+                updated_data["trade"] += invitations
+                updated_data["category_based_total"] += invitations
+                updated_data["total_itas"] += invitations
+            elif program == "EE-Education":
+                updated_data["education"] += invitations
+                updated_data["category_based_total"] += invitations
+                updated_data["total_itas"] += invitations
+            elif program == "EE-Agriculture":
+                updated_data["agriculture"] += invitations
+                updated_data["category_based_total"] += invitations
+                updated_data["total_itas"] += invitations
+            elif program == "EE-STEM":
+                updated_data["stem"] += invitations
+                updated_data["category_based_total"] += invitations
+                updated_data["total_itas"] += invitations
+            
+            # Update draw count and latest info
+            updated_data["draw_count"] += 1
+            updated_data["latest_draw_date"] = draw_date
+            updated_data["latest_crs"] = crs_score
+        else:
+            # Old format (fallback)
+            updated_data["total_itas"] += new_draw_data.get("itas", 0)
+            updated_data["cec_itas"] += new_draw_data.get("cec_itas", 0)
+            updated_data["pnp_itas"] += new_draw_data.get("pnp_itas", 0)
+            updated_data["fsw_itas"] += new_draw_data.get("fsw_itas", 0)
+            updated_data["fst_itas"] += new_draw_data.get("fst_itas", 0)
+            
+            # Category-based draws
+            updated_data["category_based_total"] += new_draw_data.get("category_based_total", 0)
+            updated_data["french_speaking"] += new_draw_data.get("french_speaking", 0)
+            updated_data["healthcare"] += new_draw_data.get("healthcare", 0)
+            updated_data["stem"] += new_draw_data.get("stem", 0)
+            updated_data["trade"] += new_draw_data.get("trade", 0)
+            updated_data["education"] += new_draw_data.get("education", 0)
+            updated_data["agriculture"] += new_draw_data.get("agriculture", 0)
+            
+            # Update draw count and latest info
+            updated_data["draw_count"] += 1
+            updated_data["latest_draw_date"] = new_draw_data.get("draw_date", "")
+            updated_data["latest_crs"] = new_draw_data.get("crs", 0)
         
         return updated_data
     
@@ -225,26 +283,34 @@ class MonthlyReportUpdater:
     
     def update_statistics(self, content, updated_data):
         """Update the main statistics cards"""
-        # Update total ITAs
+        # Update total ITAs (first stat-number)
         content = re.sub(
-            r'<span class="stat-number" data-target="\d+">\d+</span>',
-            f'<span class="stat-number" data-target="{updated_data["total_itas"]}">{updated_data["total_itas"]}</span>',
+            r'<div class="stat-number" data-target="\d+" data-prefix="" data-suffix="">\d+</div>',
+            f'<div class="stat-number" data-target="{updated_data["total_itas"]}" data-prefix="" data-suffix="">{updated_data["total_itas"]}</div>',
             content,
             count=1
         )
         
-        # Update CEC ITAs
+        # Update healthcare (second stat-number)
         content = re.sub(
-            r'<span class="stat-number" data-target="\d+">\d+</span>',
-            f'<span class="stat-number" data-target="{updated_data["cec_itas"]}">{updated_data["cec_itas"]}</span>',
+            r'<div class="stat-number" data-target="\d+" data-prefix="" data-suffix="">\d+</div>',
+            f'<div class="stat-number" data-target="{updated_data["healthcare"]}" data-prefix="" data-suffix="">{updated_data["healthcare"]}</div>',
             content,
             count=1
         )
         
-        # Update PNP ITAs
+        # Update PNP ITAs (third stat-number)
         content = re.sub(
-            r'<span class="stat-number" data-target="\d+">\d+</span>',
-            f'<span class="stat-number" data-target="{updated_data["pnp_itas"]}">{updated_data["pnp_itas"]}</span>',
+            r'<div class="stat-number" data-target="\d+" data-prefix="" data-suffix="">\d+</div>',
+            f'<div class="stat-number" data-target="{updated_data["pnp_itas"]}" data-prefix="" data-suffix="">{updated_data["pnp_itas"]}</div>',
+            content,
+            count=1
+        )
+        
+        # Update CEC ITAs (fourth stat-number)
+        content = re.sub(
+            r'<div class="stat-number" data-target="\d+" data-prefix="" data-suffix="">\d+</div>',
+            f'<div class="stat-number" data-target="{updated_data["cec_itas"]}" data-prefix="" data-suffix="">{updated_data["cec_itas"]}</div>',
             content,
             count=1
         )
