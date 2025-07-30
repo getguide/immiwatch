@@ -64,8 +64,7 @@ git push origin main
 ```
 
 ## 📚 **Full Documentation**
-- **Complete Guide**: [docs/MONTHLY_REPORT_GENERATOR_GUIDE.md](docs/MONTHLY_REPORT_GENERATOR_GUIDE.md)
-- **Workflow Guide**: [docs/MONTHLY_REPORT_WORKFLOW_GUIDE.md](docs/MONTHLY_REPORT_WORKFLOW_GUIDE.md)
+- **Complete Guide**: [docs/MONTHLY_REPORT_COMPLETE_GUIDE.md](docs/MONTHLY_REPORT_COMPLETE_GUIDE.md)
 - **Data Template**: [scripts/monthly_report_data_template.json](scripts/monthly_report_data_template.json)
 - **Draw Template**: [scripts/draw_data_template.json](scripts/draw_data_template.json)
 - **Generator Script**: [scripts/generate_monthly_report.py](scripts/generate_monthly_report.py)

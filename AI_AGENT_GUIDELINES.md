@@ -79,7 +79,7 @@ python3 scripts/template_generator.py
 ```
 docs/
 ├── NAVIGATION_MANAGEMENT_GUIDE.md    # Navigation automation
-├── MONTHLY_REPORT_GENERATOR_GUIDE.md # Monthly report generation
+├── MONTHLY_REPORT_COMPLETE_GUIDE.md # Monthly report generation & workflow
 ├── EXPRESS_ENTRY_UPDATE_GUIDE.md     # Data update procedures
 ├── DATA_FORMATS.md                   # Data structure standards
 ├── ANALYSIS_METHODOLOGY.md           # Analysis procedures
