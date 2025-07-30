@@ -219,7 +219,6 @@ class WebhookHandler:
         # Output results for GitHub Actions
         print(f"::set-output name=success::true")
         print(f"::set-output name=month::{current_info['month_str']}")
-        print(f"::set-output name=month_directory::{current_info['month_info']['directory']}")
         print(f"::set-output name=draw_number::{webhook_data['body']['Draw Number']}")
         print(f"::set-output name=updated_file::{result['updated_file']}")
         print(f"::set-output name=draw_count::{result['draw_count']}")

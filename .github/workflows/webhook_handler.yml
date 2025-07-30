@@ -32,15 +32,15 @@ jobs:
       run: |
         curl -X POST -H 'Content-type: application/json' \
         --data '{
-          "text": "🎉 *Express Entry Draw Processed Successfully!*\n\n📊 *Draw Details:*\n• **Program:** ${{ github.event.client_payload.Program }}\n• **ITAs:** ${{ github.event.client_payload.Invitation }}\n• **CRS Score:** ${{ github.event.client_payload.Score }}\n• **Draw Number:** ${{ github.event.client_payload.Draw_Number }}\n• **Date:** ${{ github.event.client_payload.draw.date.most.recent }}\n• **Category:** ${{ github.event.client_payload.Category }}\n• **Region:** ${{ github.event.client_payload.Region }}\n\n📈 **Updated Report:** ${{ steps.webhook.outputs.updated_file }}\n🔗 **View Report:** https://immiwatch.ca/reports/express-entry/${{ steps.webhook.outputs.month_directory }}/\n\n✅ **Status:** Report updated and committed to GitHub\n\n📊 **Summary:** Added ${{ github.event.client_payload.Invitation }} ITAs to ${{ github.event.client_payload.Program }} program\n\n🔗 **GitHub Commit:** https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+          "text": "🎉 *Express Entry Draw Processed Successfully!*\n\n📊 *Draw Details:*\n• **Program:** ${{ github.event.client_payload.Program }}\n• **ITAs:** ${{ github.event.client_payload.Invitation }}\n• **CRS Score:** ${{ github.event.client_payload.Score }}\n• **Draw Number:** ${{ github.event.client_payload.Draw_Number }}\n• **Date:** ${{ github.event.client_payload.draw.date.most.recent }}\n\n📈 **Updated Report:** ${{ steps.webhook.outputs.updated_file }}\n🔗 **View Report:** https://immiwatch.ca/reports/express-entry/ee-july-2025/\n\n✅ **Status:** Report updated and committed to GitHub"
         }' \
-        https://hooks.slack.com/services/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
+        https://hooks.slack.com/services/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
         
     - name: Notify Slack - Failure
       if: steps.webhook.outputs.success == 'false'
       run: |
         curl -X POST -H 'Content-type: application/json' \
         --data '{
-          "text": "❌ *Express Entry Draw Processing Failed!*\n\n📊 *Draw Details:*\n• **Program:** ${{ github.event.client_payload.Program }}\n• **ITAs:** ${{ github.event.client_payload.Invitation }}\n• **CRS Score:** ${{ github.event.client_payload.Score }}\n• **Draw Number:** ${{ github.event.client_payload.Draw_Number }}\n• **Date:** ${{ github.event.client_payload.draw.date.most.recent }}\n• **Category:** ${{ github.event.client_payload.Category }}\n• **Region:** ${{ github.event.client_payload.Region }}\n\n🚨 **Error Details:**\n${{ steps.webhook.outputs.error }}\n\n🔍 **Debug Info:**\n• **GitHub Run:** ${{ github.run_id }}\n• **Workflow:** ${{ github.workflow }}\n• **Repository:** ${{ github.repository }}\n• **Branch:** ${{ github.ref }}\n\n⚠️ **Action Required:** Manual intervention needed\n\n🔗 **View Logs:** https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          "text": "❌ *Express Entry Draw Processing Failed!*\n\n📊 *Draw Details:*\n• **Program:** ${{ github.event.client_payload.Program }}\n• **ITAs:** ${{ github.event.client_payload.Invitation }}\n• **CRS Score:** ${{ github.event.client_payload.Score }}\n• **Draw Number:** ${{ github.event.client_payload.Draw_Number }}\n\n🚨 **Error:** ${{ steps.webhook.outputs.error }}\n\n⚠️ **Action Required:** Manual intervention needed"
         }' \
-        https://hooks.slack.com/services/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 
+        https://hooks.slack.com/services/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 
