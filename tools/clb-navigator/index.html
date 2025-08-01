@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced CLB Navigator for Canadian immigration - Comprehensive language score comparison and CLB level analysis.">
+    <meta name="keywords" content="CLB navigator, Canadian Language Benchmark, IELTS, CELPIP, TEF, TCF, language scores, immigration">
     <title>CLB Navigator | ImmiWatch Data Studio</title>
-    <meta name="description" content="Compare language exam scores easily with our CLB Navigator. Convert IELTS, CELPIP, TEF, and TCF scores to Canadian Language Benchmark (CLB) levels for immigration applications.">
-    <meta name="keywords" content="CLB Navigator, Canadian Language Benchmark, IELTS, CELPIP, TEF, TCF, language scores, immigration, Canada">
-    
-    <!-- Social Media Meta Tags -->
     <meta property="og:title" content="CLB Navigator | ImmiWatch Data Studio">
     <meta property="og:description" content="Compare language exam scores easily with our CLB Navigator. Convert IELTS, CELPIP, TEF, and TCF scores to Canadian Language Benchmark (CLB) levels for immigration applications.">
     <meta property="og:image" content="https://immiwatch.ca/assets/images/clb-navigator-featured.png">
@@ -30,7 +28,28 @@
     <!-- Shared Styles -->
     <link rel="stylesheet" href="../../assets/css/shared-styles.css">
     
+    <!-- Custom Styles for CLB Navigator -->
     <style>
+        .iframe-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 100vh; /* Adjust this value to control height */
+            margin: 2rem 0;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @media (max-width: 768px) {
+            .iframe-container {
+                padding-top: 60vh;
+            }
+        }
         /* Mobile Overlay Styles */
         .mobile-overlay {
             display: none;
@@ -81,27 +100,13 @@
         @media (max-width: 768px) {
             .mobile-overlay { display: flex; }
         }
-        
-        /* Iframe Loading Styles */
-        .iframe-container {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            padding-top: 100vh; /* Adjust this value to control height */
-            margin: 2rem 0;
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
         }
-        .iframe-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        @media (max-width: 768px) {
-            .iframe-container {
-                padding-top: 60vh;
-            }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(5, 150, 105, 0.2);
+            border: 2px solid #059669;
         }
         .loader {
             position: absolute;
@@ -126,26 +131,9 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .iframe-container.loaded .loader {
-            display: none;
-        }
-        .iframe-container:not(.loaded) iframe {
-            opacity: 0;
-        }
-        .iframe-container.loaded iframe {
-            opacity: 1;
-            transition: opacity 0.5s ease-in;
-        }
-        
-        /* Card Hover Effects */
-        .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-        }
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 24px rgba(5, 150, 105, 0.2);
-            border: 2px solid #059669;
-        }
+        .iframe-container.loaded .loader { display: none; }
+        .iframe-container:not(.loaded) iframe { opacity: 0; }
+        .iframe-container.loaded iframe { opacity: 1; transition: opacity 0.5s ease-in; }
     </style>
 </head>
 <body>
@@ -159,118 +147,138 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="../../">
-                    <img src="../../assets/images/logo.svg" alt="ImmiWatch" class="logo">
-                </a>
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <span class="logo-main">ImmiWatch</span>
+                    <span class="logo-subtitle">By Lexpoint.io</span>
+                </div>
             </div>
-            <div class="nav-menu">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="../../reports/" class="nav-link">Reports</a>
-                <a href="../../news/" class="nav-link">News</a>
-                <a href="../" class="nav-link active">Tools</a>
-                <a href="../../about/" class="nav-link">About</a>
-            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../" class="nav-link">Home</a></li>
+                <li><a href="../../reports/" class="nav-link">Reports</a></li>
+                <li><a href="../" class="nav-link active">Navigators</a></li>
+                <li><a href="../../news/" class="nav-link">News</a></li>
+                <li><a href="../../about/" class="nav-link">About</a></li>
+                <li><a href="https://intake.immigratic.com/t/eELGpk1aGhus" target="_blank" class="nav-link nav-cta">Get Started</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </nav>
 
     <!-- Breadcrumb -->
     <div class="breadcrumb">
         <div class="container">
-            <a href="../../">Home</a> / 
-            <a href="../">Tools</a> / 
-            <span>CLB Navigator</span>
+            <div class="breadcrumb-content">
+                <a href="../../" class="breadcrumb-link">Home</a>
+                <span>›</span>
+                <a href="../" class="breadcrumb-link">Navigators</a>
+                <span>›</span>
+                <span>CLB Navigator</span>
+            </div>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Header -->
+    <section class="page-header" style="background: var(--gradient-hero);">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="chart-icon">📊</span>
-                    CLB Navigator
-                </h1>
-                <p class="hero-description">
-                    Compare language exam scores easily with our advanced CLB Navigator. Convert IELTS, CELPIP, TEF, and TCF scores to Canadian Language Benchmark (CLB) levels for immigration applications.
+            <div class="page-header-content">
+                <div class="page-badge">
+                    🗣️ <span>LANGUAGE ASSESSMENT</span>
+                </div>
+                
+                <h1 class="page-title">CLB Navigator</h1>
+                <p class="page-subtitle">
+                    Advanced Canadian Language Benchmark navigator with comprehensive score comparison, IELTS, CELPIP, TEF, and TCF analysis for immigration applications.
                 </p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">4</span>
-                        <span class="stat-label">Language Tests</span>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Language Tests</div>
                     </div>
-                    <div class="stat">
-                        <span class="stat-number">12</span>
-                        <span class="stat-label">CLB Levels</span>
+                    <div class="stat-card">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">CLB Levels</div>
                     </div>
-                    <div class="stat">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Accuracy</span>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Accuracy</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="main-content">
+    <!-- Main Content with Iframe -->
+    <section class="content-section">
         <div class="container">
-            <!-- Launch Navigator Section -->
-            <section class="launch-section">
-                <div class="section-header">
-                    <h2>Launch CLB Navigator</h2>
-                    <p>Access our comprehensive language score comparison tool powered by Airtable</p>
+            <div class="section-header">
+                <h2 class="section-title">Launch Navigator</h2>
+                <p class="section-description">
+                    Use the interactive CLB Navigator below to compare language scores and analyze CLB levels.
+                </p>
+            </div>
+            <div class="iframe-container" id="iframeContainer">
+                <div class="loader">
+                    <div class="loader-spinner"></div>
+                    <p>Launching CLB Navigator... Please wait</p>
                 </div>
-                
-                <div class="iframe-container" id="iframeContainer">
-                    <div class="loader">
-                        <div class="loader-spinner"></div>
-                        <p>Launching CLB Navigator... Please wait</p>
-                    </div>
-                    <iframe class="airtable-embed" src="https://airtable.com/embed/app5hWVKPlStkpYKs/shr0g1AalTaridqKs" frameborder="0" allowfullscreen onload="document.getElementById('iframeContainer').classList.add('loaded');"></iframe>
-                </div>
-            </section>
-
-            <!-- How to Use Section -->
-            <section class="how-to-use">
-                <div class="section-header">
-                    <h2>How to Use CLB Navigator</h2>
-                    <p>Get the most out of our language score comparison tool</p>
-                </div>
-                
-                <div class="cards-grid">
-                    <div class="card">
-                        <div class="card-icon">🔍</div>
-                        <h3>Select Your Test</h3>
-                        <p>Choose from IELTS, CELPIP, TEF, or TCF to begin your comparison</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">📈</div>
-                        <h3>Enter Your Scores</h3>
-                        <p>Input your individual component scores (Reading, Writing, Speaking, Listening)</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🎯</div>
-                        <h3>Get CLB Levels</h3>
-                        <p>Instantly see your equivalent CLB levels for immigration applications</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA Section -->
-            <section class="cta-section">
-                <div class="cta-content">
-                    <h2>Need Immigration Guidance?</h2>
-                    <p>Our team of experts can help you understand your language requirements and guide you through the immigration process.</p>
-                    <a href="https://calendly.com/immigratic/initial-consultation" class="cta-button">
-                        Book Free Consultation
-                    </a>
-                </div>
-            </section>
+                <iframe class="airtable-embed" src="https://airtable.com/embed/app5hWVKPlStkpYKs/shr0g1AalTaridqKs" frameborder="0" allowfullscreen onload="document.getElementById('iframeContainer').classList.add('loaded');"></iframe>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="content-section gray">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How to Use CLB Navigator</h2>
+                <p class="section-description">
+                    Get the most out of our language score comparison tool
+                </p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">🔍</div>
+                    <h3>Select Your Test</h3>
+                    <p>Choose from IELTS, CELPIP, TEF, or TCF to begin your comparison</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3>Enter Your Scores</h3>
+                    <p>Input your individual component scores (Reading, Writing, Speaking, Listening)</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Get CLB Levels</h3>
+                    <p>Instantly see your equivalent CLB levels for immigration applications</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Need Immigration Guidance?</h2>
+                <p>Our team of experts can help you understand your language requirements and guide you through the immigration process.</p>
+                <a href="https://calendly.com/immigratic/initial-consultation" class="cta-button">
+                    Book Free Consultation
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Social Sharing Section -->
     <section class="share-section" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 3rem 0; margin-top: 2rem;">
