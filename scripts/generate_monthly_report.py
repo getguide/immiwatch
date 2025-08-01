@@ -117,6 +117,7 @@ class MonthlyReportGenerator:
             "MONTH_EMOJI": self.get_month_emoji(month_info["month_num"]),
             "MONTH_STRATEGY": self.get_month_strategy(month_info["month_num"]),
             "MONTH_DESCRIPTION": self.get_month_description(month_info["month_num"]),
+            "MONTH_KEYWORDS": f"{self.get_month_strategy(month_info['month_num'])}, immigration planning, Express Entry draws",
             "MONTH_FOCUS": self.get_month_focus(month_info["month_num"]),
             "CHANGE_LABEL": self.get_change_label(month_info["month_num"]),
             "EXECUTIVE_SUMMARY": self.get_executive_summary(month_info["month_num"]),
