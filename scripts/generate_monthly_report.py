@@ -173,18 +173,33 @@ class MonthlyReportGenerator:
             # Data targets (will be updated with actual data)
             "TOTAL_ITAS": "0",
             "CATEGORY_BASED": "0", 
+            "CATEGORY_TOTAL": "0",
             "PROGRAM_BASED": "0",
+            "PROGRAM_TOTAL": "0",
             "CHANGE_FROM_PREVIOUS": "0",
+            "CHANGE_PERCENT": "0",
+            "TOTAL_LABEL": "Total ITAs - New Month",
             "CEC_ITAS": "0",
-            "PNP_ITAS": "0",
+            "CEC_PERCENT": "0",
+            "PNP_ITAS": "0", 
+            "PNP_PERCENT": "0",
             "FRENCH_ITAS": "0",
+            "FRENCH_PERCENT": "0",
             "HEALTHCARE_ITAS": "0",
+            "HEALTHCARE_PERCENT": "0",
             "STEM_ITAS": "0",
+            "STEM_PERCENT": "0",
             "TRADE_ITAS": "0",
+            "TRADE_PERCENT": "0",
             "EDUCATION_ITAS": "0",
+            "EDUCATION_PERCENT": "0",
             "AGRICULTURE_ITAS": "0",
+            "AGRICULTURE_PERCENT": "0",
             "FSW_ITAS": "0",
-            "FST_ITAS": "0"
+            "FSW_PERCENT": "0",
+            "FST_ITAS": "0",
+            "FST_PERCENT": "0",
+            "STRATEGY_PURPOSE": f"{month_name} Strategic Focus"
         }
         
         return month_content

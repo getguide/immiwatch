@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Express Entry {{MONTH_NAME}} {{YEAR}} report - {{MONTH_DESCRIPTION}}">
-    <meta name="keywords" content="Express Entry {{MONTH_NAME}} {{YEAR}}, immigration analysis, ITAs, CRS score">
+    <meta name="keywords" content="Express Entry {{MONTH_NAME}} {{YEAR}}, {{MONTH_KEYWORDS}}">
     <title>Express Entry {{MONTH_NAME}} {{YEAR}} Report | ImmiWatch Data Studio</title>
     
     <!-- Open Graph / Facebook -->
@@ -15,9 +15,16 @@
     <meta property="og:image" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Express Entry {{MONTH_NAME}} {{YEAR}} Report">
+    <meta property="og:image:alt" content="Express Entry April 2025 Report - Strategic consolidation analysis">
     <meta property="og:site_name" content="ImmiWatch Data Studio">
     <meta property="og:locale" content="en_US">
+    <meta property="og:image:secure_url" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    
+    <!-- LinkedIn Specific -->
+    <meta property="og:image:url" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -25,7 +32,7 @@
     <meta name="twitter:title" content="Express Entry {{MONTH_NAME}} {{YEAR}} Report">
     <meta name="twitter:description" content="{{MONTH_EMOJI}} {{MONTH_STRATEGY}} - {{MONTH_DESCRIPTION}}">
     <meta name="twitter:image" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
-    <meta name="twitter:image:alt" content="Express Entry {{MONTH_NAME}} {{YEAR}} Report">
+    <meta name="twitter:image:alt" content="Express Entry April 2025 Report - Strategic consolidation analysis">
     <meta name="twitter:site" content="@immiwatch">
     <meta name="twitter:creator" content="@immiwatch">
     
@@ -35,10 +42,26 @@
     <meta name="language" content="English">
     <meta name="revisit-after" content="7 days">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-    <link rel="shortcut icon" href="../../../favicon.svg">
-    <link rel="apple-touch-icon" sizes="180x180" href="../../../favicon.svg">
+    <!-- Additional Social Media -->
+    <meta property="article:author" content="ImmiWatch Data Studio">
+    <meta property="article:section" content="Immigration Analysis">
+    <meta property="article:tag" content="Express Entry, Immigration, Canada, ITA, CRS, {{MONTH_NAME}} {{YEAR}}">
+    
+    <!-- Additional Open Graph -->
+    <meta property="og:updated_time" content="2025-07-30T00:30:00Z">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Force Social Media Refresh -->
+    <meta property="og:image:url" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
+    <meta name="twitter:image:src" content="https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/AI-Generated%20Media/Images/express-entry-2025-dashboard-preview.jpg">
+    <meta name="twitter:image:alt" content="Express Entry April 2025 Report - Strategic consolidation analysis">
+    
+    <!-- Favicon - Aggressive cache busting -->
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg?v=3&t=1737962580">
+    <link rel="shortcut icon" href="../../../favicon.svg?v=3&t=1737962580">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../favicon.svg?v=3&t=1737962580">
     <meta name="msapplication-TileColor" content="#4338ca">
     
     <!-- Google Fonts -->
@@ -177,27 +200,115 @@
             transition: all 0.3s ease;
         }
         
-        /* Go to top button */
-        .go-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--primary-600);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 3rem;
-            height: 3rem;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: none;
-            z-index: 1000;
-            transition: all 0.2s;
+        .stat-card:hover .stat-number {
+            transform: scale(1.1);
+            color: var(--primary-600);
         }
         
-        .go-to-top:hover {
-            background: var(--primary-700);
+        /* Enhanced fade-in animation */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Gradient border effect */
+        .card::after, .metric-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover::after, .metric-card:hover::after {
+            transform: scaleX(1);
+        }
+        
+        /* Social share section styling */
+        .share-section {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .share-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .share-btn.twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+        
+        .share-btn.linkedin {
+            background: #0077B5;
+            color: white;
+        }
+        
+        .share-btn.facebook {
+            background: #4267B2;
+            color: white;
+        }
+        
+        .share-btn.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        
+        .share-btn.telegram {
+            background: #0088cc;
+            color: white;
+        }
+        
+        .share-btn.email {
+            background: var(--primary-600);
+            color: white;
+        }
+        
+        .share-btn svg {
+            width: 16px;
+            height: 16px;
         }
     </style>
 </head>
@@ -244,7 +355,7 @@
         <div class="container">
             <div class="page-header-content">
                 <div class="page-badge">
-                    {{MONTH_EMOJI}} <span>{{MONTH_STRATEGY}}</span>
+                    {{MONTH_EMOJI}} <span>{{MONTH_FOCUS}}</span>
                 </div>
                 
                 <h1 class="page-title">Express Entry {{MONTH_NAME}} {{YEAR}}</h1>
@@ -255,18 +366,18 @@
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-number" data-target="{{TOTAL_ITAS}}" data-prefix="" data-suffix="">0</div>
-                        <div class="stat-label">Total ITAs - {{MONTH_FOCUS}}</div>
+                        <div class="stat-label">{{TOTAL_LABEL}}</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number" data-target="{{CATEGORY_BASED}}" data-prefix="" data-suffix="">0</div>
+                        <div class="stat-number" data-target="{{CATEGORY_TOTAL}}" data-prefix="" data-suffix="">0</div>
                         <div class="stat-label">Category-Based</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number" data-target="{{PROGRAM_BASED}}" data-prefix="" data-suffix="">0</div>
+                        <div class="stat-number" data-target="{{PROGRAM_TOTAL}}" data-prefix="" data-suffix="">0</div>
                         <div class="stat-label">Program-Based</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number" data-target="{{CHANGE_FROM_PREVIOUS}}" data-prefix="" data-suffix="%">0</div>
+                        <div class="stat-number" data-target="{{CHANGE_PERCENT}}" data-prefix="" data-suffix="%">0</div>
                         <div class="stat-label">{{CHANGE_LABEL}}</div>
                     </div>
                 </div>
@@ -281,31 +392,31 @@
                 <div class="main-content">
                     <!-- Executive Summary -->
                     <div class="alert alert-info">
-                        <strong>🎯 Executive Summary:</strong> {{EXECUTIVE_SUMMARY}}
+                        <strong>{{MONTH_EMOJI}} Executive Summary:</strong> {{EXECUTIVE_SUMMARY}}
                     </div>
 
-                    <h2 style="color: var(--primary-700); margin: 2rem 0 1rem;">{{MONTH_NAME}} {{YEAR}} Strategic Focus</h2>
+                    <h2 style="color: var(--primary-700); margin: 2rem 0 1rem;">{{MONTH_STRATEGY_TITLE}}</h2>
                     
                     <div class="metric-cards">
                         <div class="metric-card">
-                            <div class="metric-number" data-target="{{TOTAL_ITAS}}">0</div>
+                            <div class="metric-number">{{TOTAL_ITAS}}</div>
                             <div class="metric-label">Total ITAs</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-number" data-target="{{CEC_ITAS}}">0</div>
+                            <div class="metric-number">{{CEC_ITAS}}</div>
                             <div class="metric-label">CEC</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-number" data-target="{{PNP_ITAS}}">0</div>
+                            <div class="metric-number">{{PNP_ITAS}}</div>
                             <div class="metric-label">PNP</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-number" data-target="{{CATEGORY_BASED}}">0</div>
+                            <div class="metric-number">{{CATEGORY_TOTAL}}</div>
                             <div class="metric-label">Category-Based</div>
                         </div>
                     </div>
 
-                    <h3>{{MONTH_NAME}} {{YEAR}} Strategic Focus</h3>
+                    <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">{{MONTH_NAME}} {{YEAR}} Strategic Focus</h3>
                     
                     <table class="data-table">
                         <thead>
@@ -317,253 +428,400 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="total-row">
+                            <tr>
                                 <td><strong>Total ITAs</strong></td>
-                                <td data-target="{{TOTAL_ITAS}}">0</td>
+                                <td>{{TOTAL_ITAS}}</td>
                                 <td>100%</td>
-                                <td>{{MONTH_STRATEGY_PURPOSE}}</td>
+                                <td>{{STRATEGY_PURPOSE}}</td>
                             </tr>
-                            <tr class="category-header">
-                                <td colspan="4">Category-Based Draws (0 ITAs)</td>
+                            <tr>
+                                <td colspan="4" style="background: var(--gray-50); font-weight: 600;">Category-Based Draws ({{CATEGORY_TOTAL}} ITAs)</td>
                             </tr>
                             <tr>
                                 <td>French-Speaking</td>
-                                <td data-target="{{FRENCH_ITAS}}">0</td>
-                                <td>0%</td>
-                                <td>{{FRENCH_STATUS}}</td>
+                                <td>{{FRENCH_ITAS}}</td>
+                                <td>{{FRENCH_PERCENT}}%</td>
+                                <td style="color: var(--gray-500);">{{FRENCH_STATUS}}</td>
                             </tr>
                             <tr>
                                 <td>Healthcare</td>
-                                <td data-target="{{HEALTHCARE_ITAS}}">0</td>
-                                <td>0%</td>
-                                <td>{{HEALTHCARE_STATUS}}</td>
+                                <td>{{HEALTHCARE_ITAS}}</td>
+                                <td>{{HEALTHCARE_PERCENT}}%</td>
+                                <td style="color: var(--gray-500);">{{HEALTHCARE_STATUS}}</td>
                             </tr>
                             <tr>
                                 <td>STEM</td>
-                                <td data-target="{{STEM_ITAS}}">0</td>
+                                <td>0</td>
                                 <td>0%</td>
-                                <td>{{STEM_STATUS}}</td>
+                                <td style="color: var(--gray-500);">Suspended</td>
                             </tr>
                             <tr>
                                 <td>Trade</td>
-                                <td data-target="{{TRADE_ITAS}}">0</td>
+                                <td>0</td>
                                 <td>0%</td>
-                                <td>{{TRADE_STATUS}}</td>
+                                <td style="color: var(--gray-500);">Suspended</td>
                             </tr>
                             <tr>
                                 <td>Education</td>
-                                <td data-target="{{EDUCATION_ITAS}}">0</td>
+                                <td>0</td>
                                 <td>0%</td>
-                                <td>{{EDUCATION_STATUS}}</td>
+                                <td style="color: var(--gray-500);">Suspended</td>
                             </tr>
                             <tr>
                                 <td>Agriculture</td>
-                                <td data-target="{{AGRICULTURE_ITAS}}">0</td>
+                                <td>0</td>
                                 <td>0%</td>
-                                <td>{{AGRICULTURE_STATUS}}</td>
+                                <td style="color: var(--gray-500);">Suspended</td>
                             </tr>
-                            <tr class="program-header">
-                                <td colspan="4">Program-Based Draws (0 ITAs)</td>
+                            <tr>
+                                <td colspan="4" style="background: var(--gray-50); font-weight: 600;">Program-Based Draws ({{PROGRAM_TOTAL}} ITAs)</td>
                             </tr>
                             <tr>
                                 <td>Canadian Experience Class (CEC)</td>
-                                <td data-target="{{CEC_ITAS}}">0</td>
-                                <td>0%</td>
-                                <td>{{CEC_STATUS}}</td>
+                                <td>{{CEC_ITAS}}</td>
+                                <td>{{CEC_PERCENT}}%</td>
+                                <td style="color: var(--success-600);">{{CEC_STATUS}}</td>
                             </tr>
                             <tr>
                                 <td>Provincial Nominee Program (PNP)</td>
-                                <td data-target="{{PNP_ITAS}}">0</td>
-                                <td>0%</td>
-                                <td>{{PNP_STATUS}}</td>
+                                <td>{{PNP_ITAS}}</td>
+                                <td>{{PNP_PERCENT}}%</td>
+                                <td style="color: var(--primary-600);">{{PNP_STATUS}}</td>
                             </tr>
                             <tr>
                                 <td>Federal Skilled Worker (FSW)</td>
-                                <td data-target="{{FSW_ITAS}}">0</td>
-                                <td>0%</td>
-                                <td>{{FSW_STATUS}}</td>
+                                <td>{{FSW_ITAS}}</td>
+                                <td>{{FSW_PERCENT}}%</td>
+                                <td style="color: var(--gray-500);">{{FSW_STATUS}}</td>
                             </tr>
                             <tr>
                                 <td>Federal Skilled Trades (FST)</td>
-                                <td data-target="{{FST_ITAS}}">0</td>
-                                <td>0%</td>
-                                <td>{{FST_STATUS}}</td>
+                                <td>{{FST_ITAS}}</td>
+                                <td>{{FST_PERCENT}}%</td>
+                                <td style="color: var(--gray-500);">{{FST_STATUS}}</td>
                             </tr>
                         </tbody>
                     </table>
 
                     <div class="insight-box">
-                        <h4>🎯 {{MONTH_STRATEGY_TITLE}}</h4>
+                        <h4>{{MONTH_EMOJI}} {{MONTH_FOCUS}}</h4>
                         <p>{{MONTH_STRATEGY_DESCRIPTION}}</p>
                     </div>
 
-                    <h3>Strategic Analysis</h3>
+                    <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">Strategic Analysis</h3>
                     
-                    <div class="metric-cards">
-                        <div class="metric-card">
-                            <div class="card-icon">🎓</div>
-                            <h4>CEC FOCUS</h4>
-                            <h5>Canadian Experience Class Dominance</h5>
-                            <p>{{CEC_ANALYSIS}}</p>
-                            <ul>
-                                <li>{{CEC_POINT_1}}</li>
-                                <li>{{CEC_POINT_2}}</li>
-                                <li>{{CEC_POINT_3}}</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="metric-card">
-                            <div class="card-icon">🤝</div>
-                            <h4>PNP FOCUS</h4>
-                            <h5>Provincial Nominee Program Activity</h5>
-                            <p>{{PNP_ANALYSIS}}</p>
-                            <ul>
-                                <li>{{PNP_POINT_1}}</li>
-                                <li>{{PNP_POINT_2}}</li>
-                                <li>{{PNP_POINT_3}}</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="metric-card">
-                            <div class="card-icon">⏸️</div>
-                            <h4>CATEGORY PAUSE</h4>
-                            <h5>Category-Based Strategic Pause</h5>
-                            <p>{{CATEGORY_ANALYSIS}}</p>
-                            <ul>
-                                <li>{{CATEGORY_POINT_1}}</li>
-                                <li>{{CATEGORY_POINT_2}}</li>
-                                <li>{{CATEGORY_POINT_3}}</li>
-                            </ul>
-                        </div>
+                    <div class="card" style="margin: 1.5rem 0;">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">🎓</div>
+                        <div class="badge" style="background: #dcfce7; color: #166534;">CEC FOCUS</div>
+                        <h4 class="card-title">Canadian Experience Class Analysis</h4>
+                        <p class="card-description">
+                            {{CEC_ANALYSIS}}
+                        </p>
+                        <ul style="margin-top: 1rem; color: var(--gray-600);">
+                            <li>{{CEC_POINT_1}}</li>
+                            <li>{{CEC_POINT_2}}</li>
+                            <li>{{CEC_POINT_3}}</li>
+                        </ul>
                     </div>
 
-                    <h3>Year-to-Date Context</h3>
-                    <p>{{YTD_CONTEXT}}</p>
+                    <div class="card" style="margin: 1.5rem 0;">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);">🤝</div>
+                        <div class="badge" style="background: #dbeafe; color: #1e40af;">PNP FOCUS</div>
+                        <h4 class="card-title">Provincial Nominee Program Analysis</h4>
+                        <p class="card-description">
+                            {{PNP_ANALYSIS}}
+                        </p>
+                        <ul style="margin-top: 1rem; color: var(--gray-600);">
+                            <li>{{PNP_POINT_1}}</li>
+                            <li>{{PNP_POINT_2}}</li>
+                            <li>{{PNP_POINT_3}}</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" style="margin: 1.5rem 0;">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">⏸️</div>
+                        <div class="badge" style="background: #fef3c7; color: #d97706;">CATEGORY ANALYSIS</div>
+                        <h4 class="card-title">Category-Based Analysis</h4>
+                        <p class="card-description">
+                            {{CATEGORY_ANALYSIS}}
+                        </p>
+                        <ul style="margin-top: 1rem; color: var(--gray-600);">
+                            <li>{{CATEGORY_POINT_1}}</li>
+                            <li>{{CATEGORY_POINT_2}}</li>
+                            <li>{{CATEGORY_POINT_3}}</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: var(--gray-800); margin: 2rem 0 1rem;">Year-to-Date Context</h3>
                     
+                    <p style="color: var(--gray-700); line-height: 1.6; margin: 1rem 0;">
+                        {{YTD_CONTEXT}}
+                    </p>
+
                     <div class="insight-box">
                         <h4>🔮 {{NEXT_MONTH}} Outlook</h4>
                         <p>{{NEXT_MONTH_OUTLOOK}}</p>
                     </div>
                 </div>
-                
+
                 <div class="sidebar">
                     <div class="card">
-                        <h3>Quick Navigation</h3>
-                        <div class="nav-links">
-                            <a href="../ee-{{PREVIOUS_MONTH_LOWER}}-{{YEAR}}/" class="nav-link">← {{PREVIOUS_MONTH}} {{YEAR}} Report</a>
-                            <a href="../ee-{{NEXT_MONTH_LOWER}}-{{YEAR}}/" class="nav-link">{{NEXT_MONTH}} {{YEAR}} Report →</a>
-                        </div>
-                        <div class="additional-links">
-                            <a href="../ee-2025/" class="nav-link">📊 {{YEAR}} Cumulative Analysis</a>
-                            <a href="../index.html" class="nav-link">📅 All Monthly Reports</a>
+                        <h4 style="margin-bottom: 1rem; color: var(--gray-800);">Quick Navigation</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <a href="../ee-{{PREVIOUS_MONTH_LOWER}}-{{YEAR}}/" class="card-link">← {{PREVIOUS_MONTH}} {{YEAR}} Report</a>
+                            <a href="../ee-{{NEXT_MONTH_LOWER}}-{{YEAR}}/" class="card-link">{{NEXT_MONTH}} {{YEAR}} Report →</a>
+                            <a href="../ee-{{YEAR}}/" class="card-link">📊 {{YEAR}} Cumulative Analysis</a>
+                            <a href="../" class="card-link">📅 All Monthly Reports</a>
                         </div>
                     </div>
-                    
-                    <div class="card">
-                        <h3>{{MONTH_NAME}} Strategy</h3>
-                        <div class="strategy-metrics">
-                            <div class="strategy-metric">
-                                <div class="metric-value">{{MONTH_VOLUME_REDUCTION}}%</div>
-                                <div class="metric-label">Volume Reduction</div>
-                            </div>
-                            <div class="strategy-metric">
-                                <div class="metric-value">{{MONTH_PROGRAM_FOCUS}}%</div>
-                                <div class="metric-label">Program Focus</div>
-                            </div>
+
+                    <div class="card" style="margin-top: 1.5rem;">
+                        <h4 style="margin-bottom: 1rem; color: var(--gray-800);">{{MONTH_NAME}} Strategy</h4>
+                        <div class="metric-card" style="margin: 0.5rem 0;">
+                            <div class="metric-number" style="font-size: 1.5rem;">{{MONTH_VOLUME_REDUCTION}}%</div>
+                            <div class="metric-label">Volume Change</div>
                         </div>
-                        <p class="strategy-note"><strong>🎯 Strategic Note:</strong> {{MONTH_STRATEGIC_NOTE}}</p>
+                        <div class="metric-card" style="margin: 0.5rem 0;">
+                            <div class="metric-number" style="font-size: 1.5rem;">{{MONTH_PROGRAM_FOCUS}}%</div>
+                            <div class="metric-label">Program Focus</div>
+                        </div>
                     </div>
-                    
-                    <div class="card">
-                        <h3>📊 Share {{MONTH_NAME}} {{YEAR}} Report</h3>
-                        <p>Help spread valuable immigration insights to professionals and candidates who need this information.</p>
-                        
-                        <div class="share-buttons">
-                            <a href="https://twitter.com/intent/tweet?text={{SHARE_TEXT}}" target="_blank" class="share-button twitter">Share on X</a>
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{SHARE_URL}}" target="_blank" class="share-button linkedin">Share on LinkedIn</a>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u={{SHARE_URL}}" target="_blank" class="share-button facebook">Share on Facebook</a>
-                            <a href="https://wa.me/?text={{SHARE_TEXT}}%20{{SHARE_URL}}" target="_blank" class="share-button whatsapp">Share on WhatsApp</a>
-                            <a href="https://t.me/share/url?url={{SHARE_URL}}&text={{SHARE_TEXT}}" target="_blank" class="share-button telegram">Share on Telegram</a>
-                            <a href="mailto:?subject={{SHARE_SUBJECT}}&body={{SHARE_TEXT}}%20{{SHARE_URL}}" class="share-button email">Share via Email</a>
-                        </div>
-                        
-                        <div class="community-impact">
-                            <h4>🌟 Community Impact</h4>
-                            <p>Every share helps reach more people who need this information. <strong>Together, we can make immigration intelligence accessible to everyone.</strong></p>
-                        </div>
+
+                    <div class="alert alert-info" style="margin-top: 1.5rem;">
+                        <strong>🎯 Strategic Note:</strong> {{MONTH_STRATEGIC_NOTE}}
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Social Share Section -->
+    <section class="share-section">
+        <div class="container">
+            <h3 style="color: var(--primary-700); margin-bottom: 1rem; font-size: 1.5rem;">📊 Share This Report</h3>
+            <p style="color: var(--gray-600); margin-bottom: 1.5rem; font-size: 1rem;">
+                Help spread valuable immigration insights to professionals and candidates who need this information.
+            </p>
+            
+            <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?text=🎯%20Express%20Entry%20April%202025%20Report%3A%20Strategic%20consolidation%20with%20program-based%20focus%2C%201%2C246%20ITAs%20issued.%20Return%20to%20traditional%20immigration%20selection%20following%20March's%20peak%20activity.%20%23ExpressEntry%20%23Immigration%20%23Canada&url=https%3A//immiwatch.ca/reports/express-entry/ee-april-2025/" target="_blank" class="share-btn twitter">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    Share on X
+                </a>
+                
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//immiwatch.ca/reports/express-entry/ee-april-2025/" target="_blank" class="share-btn linkedin">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    Share on LinkedIn
+                </a>
+                
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//immiwatch.ca/reports/express-entry/ee-april-2025/" target="_blank" class="share-btn facebook">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    Share on Facebook
+                </a>
+                
+                <a href="https://wa.me/?text=🎯%20Express%20Entry%20April%202025%20Report%3A%20Strategic%20consolidation%20with%20program-based%20focus%2C%201%2C246%20ITAs%20issued.%20Return%20to%20traditional%20immigration%20selection%20following%20March's%20peak%20activity.%20https%3A//immiwatch.ca/reports/express-entry/ee-april-2025/" target="_blank" class="share-btn whatsapp">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                    </svg>
+                    Share on WhatsApp
+                </a>
+                
+                <a href="https://t.me/share/url?url=https%3A//immiwatch.ca/reports/express-entry/ee-april-2025/&text=🎯%20Express%20Entry%20April%202025%20Report%3A%20Strategic%20consolidation%20with%20program-based%20focus%2C%201%2C246%20ITAs%20issued.%20Return%20to%20traditional%20immigration%20selection%20following%20March's%20peak%20activity." target="_blank" class="share-btn telegram">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                    Share on Telegram
+                </a>
+                
+                <a href="mailto:?subject=Express%20Entry%20April%202025%20Report&body=🎯%20Express%20Entry%20April%202025%20Report%3A%20Strategic%20consolidation%20with%20program-based%20focus%2C%201%2C246%20ITAs%20issued.%20Return%20to%20traditional%20immigration%20selection%20following%20March's%20peak%20activity.%20https%3A//immiwatch.ca/reports/express-entry/ee-april-2025/" class="share-btn email">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    Share via Email
+                </a>
+            </div>
+            
+            <div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: var(--border-radius-md); border: 2px dashed var(--primary-400); text-align: center;">
+                <div style="font-weight: 600; color: var(--primary-700); margin-bottom: 0.5rem; font-size: 1.1rem;">🌟 Community Impact</div>
+                <div style="font-size: 0.95rem; color: var(--gray-600); line-height: 1.5;">
+                    Every share helps reach more people who need this information. 
+                    <strong>Together, we can make immigration intelligence accessible to everyone.</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Go to Top Button -->
+    <button id="goToTop" class="go-to-top-btn" style="
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateY(20px);
+    ">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>ImmiWatch Data Studio</h3>
-                    <p>Professional Express Entry analytics and insights. Strategic intelligence for Canada's federal economic immigration program.</p>
-                </div>
+                <div class="footer-logo">ImmiWatch Data Studio</div>
+                <p class="footer-description">
+                    Professional Express Entry analytics and insights. Strategic intelligence for Canada's federal economic immigration program.
+                </p>
+                
                 <div class="footer-links">
-                    <a href="../../../reports.html">All Reports</a>
-                    <a href="../index.html">Express Entry</a>
-                    <a href="../../../tools/index.html">Navigators</a>
-                    <a href="mailto:hi@lexpoint.io">Contact</a>
-                    <a href="../../../index.html">immwatch.ca</a>
+                    <a href="../" class="footer-link">All Reports</a>
+                    <a href="./" class="footer-link">Express Entry</a>
+                    <a href="../../../tools/" class="footer-link">Navigators</a>
+                    <a href="mailto:hi@lexpoint.io" class="footer-link">Contact</a>
+                    <a href="https://immiwatch.ca" target="_blank" class="footer-link">immiwatch.ca</a>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© {{YEAR}} ImmiWatch Data Studio - Express Entry {{MONTH_NAME}} {{YEAR}} Analysis</p>
-                <p>Professional Immigration Intelligence | hi@lexpoint.io</p>
+                
+                <div class="footer-bottom">
+                    <p>&copy; {{YEAR}} ImmiWatch Data Studio - Express Entry {{MONTH_NAME}} {{YEAR}} Analysis</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+                        Professional Immigration Intelligence | 
+                        <a href="mailto:hi@lexpoint.io" style="color: var(--primary-400);">hi@lexpoint.io</a>
+                    </p>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Go to Top Button -->
-    <button id="goToTop" class="go-to-top" title="Go to top">↑</button>
-
-    <!-- JavaScript -->
     <script>
-        // Number counter animations
-        function animateNumbers() {
-            const counters = document.querySelectorAll('[data-target]');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const increment = target / 100;
-                let current = 0;
-                
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += increment;
-                        counter.textContent = Math.ceil(current).toLocaleString();
-                        setTimeout(updateCounter, 20);
-                    } else {
-                        counter.textContent = target.toLocaleString();
-                    }
-                };
-                
-                updateCounter();
-            });
-        }
-        
-        // Go to top functionality
-        const goToTopBtn = document.getElementById('goToTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                goToTopBtn.style.display = 'block';
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const goToTopBtn = document.getElementById('goToTop');
+            
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
             } else {
-                goToTopBtn.style.display = 'none';
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Show/hide go to top button
+            if (window.scrollY > 300) {
+                goToTopBtn.style.display = 'flex';
+                setTimeout(() => {
+                    goToTopBtn.style.opacity = '1';
+                    goToTopBtn.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                goToTopBtn.style.opacity = '0';
+                goToTopBtn.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    goToTopBtn.style.display = 'none';
+                }, 300);
             }
         });
         
-        goToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Go to top functionality
+        document.getElementById('goToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
-        
-        // Initialize animations
-        document.addEventListener('DOMContentLoaded', () => {
-            animateNumbers();
+
+        // Number counter animation function
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const prefix = element.getAttribute('data-prefix') || '';
+            const suffix = element.getAttribute('data-suffix') || '';
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const current = Math.floor(progress * target);
+                
+                // Format number with commas
+                let formattedNumber = current.toString();
+                if (target >= 1000 && suffix !== 'k') {
+                    formattedNumber = current.toLocaleString();
+                }
+                
+                element.textContent = prefix + formattedNumber + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+
+        // Animation observer for stats
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number[data-target]');
+                    statNumbers.forEach((number, index) => {
+                        setTimeout(() => {
+                            animateCounter(number);
+                        }, index * 200);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observe the stats grid
+        const statsGrid = document.querySelector('.stats-grid');
+        if (statsGrid) {
+            statsObserver.observe(statsGrid);
+        }
+
+        // Enhanced card animations
+        const cardObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                    
+                    // Add hover effects for cards
+                    entry.target.addEventListener('mouseenter', function() {
+                        this.style.transform = 'translateY(-5px) scale(1.02)';
+                        this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
+                    });
+                    
+                    entry.target.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateY(0) scale(1)';
+                        this.style.boxShadow = '';
+                    });
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        // Observe all cards
+        document.querySelectorAll('.card, .metric-card').forEach(el => {
+            cardObserver.observe(el);
         });
     </script>
 </body>
