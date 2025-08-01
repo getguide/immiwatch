@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Express Entry August 2025 - ImmiWatch</title>
+    <title>Express Entry {{MONTH_NAME}} {{YEAR}} - ImmiWatch</title>
     
     <!-- Social Media Meta Tags -->
-    <meta property="og:title" content="Express Entry August 2025 Analysis - ImmiWatch">
-    <meta property="og:description" content="Comprehensive analysis of Express Entry draws for August 2025. Track ITAs, CRS scores, and immigration trends.">
-    <meta property="og:image" content="https://immiwatch.ca/assets/images/express-entry-august-2025.svg">
-    <meta property="og:url" content="https://immiwatch.ca/reports/express-entry/ee-august-2025/">
+    <meta property="og:title" content="Express Entry {{MONTH_NAME}} {{YEAR}} Analysis - ImmiWatch">
+    <meta property="og:description" content="Comprehensive analysis of Express Entry draws for {{MONTH_NAME}} {{YEAR}}. Track ITAs, CRS scores, and immigration trends.">
+    <meta property="og:image" content="https://immiwatch.ca/assets/images/express-entry-{{MONTH_LOWER}}-{{YEAR}}.svg">
+    <meta property="og:url" content="https://immiwatch.ca/reports/express-entry/ee-{{MONTH_LOWER}}-{{YEAR}}/">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Express Entry August 2025 Analysis">
-    <meta name="twitter:description" content="Track Express Entry draws and immigration trends for August 2025.">
+    <meta name="twitter:title" content="Express Entry {{MONTH_NAME}} {{YEAR}} Analysis">
+    <meta name="twitter:description" content="Track Express Entry draws and immigration trends for {{MONTH_NAME}} {{YEAR}}.">
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Express Entry August 2025 analysis: ITAs issued, CRS scores, program breakdown, and immigration insights.">
-    <meta name="keywords" content="Express Entry, August 2025, ITAs, CRS score, immigration, Canada">
+    <meta name="description" content="Express Entry {{MONTH_NAME}} {{YEAR}} analysis: ITAs issued, CRS scores, program breakdown, and immigration insights.">
+    <meta name="keywords" content="Express Entry, {{MONTH_NAME}} {{YEAR}}, ITAs, CRS score, immigration, Canada">
     
     <link rel="stylesheet" href="../../assets/css/styles.css">
     <link rel="stylesheet" href="../../assets/css/shared-styles.css">
@@ -45,35 +45,35 @@
         <a href="../../index.html">Home</a> › 
         <a href="../../reports.html">Reports</a> › 
         <a href="../index.html">Express Entry</a> › 
-        <span>August 2025</span>
+        <span>{{MONTH_NAME}} {{YEAR}}</span>
     </div>
 
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge">🍂 Late Summer Push</div>
-                <h1>Express Entry August 2025</h1>
-                <p class="hero-description">Late summer push with focused program-based selections and strategic planning.</p>
+                <div class="hero-badge">{{MONTH_EMOJI}} {{MONTH_STRATEGY}}</div>
+                <h1>Express Entry {{MONTH_NAME}} {{YEAR}}</h1>
+                <p class="hero-description">{{MONTH_DESCRIPTION}}</p>
             </div>
             
             <!-- Key Metrics -->
             <div class="metrics-grid">
-                <div class="metric-card" data-target="0">
+                <div class="metric-card" data-target="{{TOTAL_ITAS}}">
                     <div class="metric-number">0</div>
-                    <div class="metric-label">Total ITAs - Planning</div>
+                    <div class="metric-label">Total ITAs - {{MONTH_FOCUS}}</div>
                 </div>
-                <div class="metric-card" data-target="0">
+                <div class="metric-card" data-target="{{CATEGORY_BASED}}">
                     <div class="metric-number">0</div>
                     <div class="metric-label">Category-Based</div>
                 </div>
-                <div class="metric-card" data-target="0">
+                <div class="metric-card" data-target="{{PROGRAM_BASED}}">
                     <div class="metric-number">0</div>
                     <div class="metric-label">Program-Based</div>
                 </div>
-                <div class="metric-card" data-target="0">
+                <div class="metric-card" data-target="{{CHANGE_FROM_PREVIOUS}}">
                     <div class="metric-number">0</div>
-                    <div class="metric-label">Initial Month</div>
+                    <div class="metric-label">{{CHANGE_LABEL}}</div>
                 </div>
             </div>
         </div>
@@ -83,30 +83,30 @@
     <section class="executive-summary">
         <div class="container">
             <h2>🎯 Executive Summary</h2>
-            <p>August 8 implements late summer strategic planning with focused program-based selections and system optimization.</p>
+            <p>{{EXECUTIVE_SUMMARY}}</p>
         </div>
     </section>
 
     <!-- Strategic Overview -->
     <section class="strategic-overview">
         <div class="container">
-            <h2>August 2025 Strategic Focus</h2>
+            <h2>{{MONTH_NAME}} {{YEAR}} Strategic Focus</h2>
             
             <div class="strategy-cards">
                 <div class="strategy-card">
-                    <div class="strategy-number" data-target="0">0</div>
+                    <div class="strategy-number" data-target="{{TOTAL_ITAS}}">0</div>
                     <div class="strategy-label">Total ITAs</div>
                 </div>
                 <div class="strategy-card">
-                    <div class="strategy-number" data-target="0">0</div>
+                    <div class="strategy-number" data-target="{{CEC_ITAS}}">0</div>
                     <div class="strategy-label">CEC</div>
                 </div>
                 <div class="strategy-card">
-                    <div class="strategy-number" data-target="0">0</div>
+                    <div class="strategy-number" data-target="{{PNP_ITAS}}">0</div>
                     <div class="strategy-label">PNP</div>
                 </div>
                 <div class="strategy-card">
-                    <div class="strategy-number" data-target="0">0</div>
+                    <div class="strategy-number" data-target="{{CATEGORY_BASED}}">0</div>
                     <div class="strategy-label">Category-Based</div>
                 </div>
             </div>
@@ -116,7 +116,7 @@
     <!-- Detailed Analysis Table -->
     <section class="analysis-table">
         <div class="container">
-            <h3>August 2025 Strategic Focus</h3>
+            <h3>{{MONTH_NAME}} {{YEAR}} Strategic Focus</h3>
             <table class="data-table">
                 <thead>
                     <tr>
@@ -129,75 +129,75 @@
                 <tbody>
                     <tr class="total-row">
                         <td><strong>Total ITAs</strong></td>
-                        <td data-target="0">0</td>
+                        <td data-target="{{TOTAL_ITAS}}">0</td>
                         <td>100%</td>
-                        <td>Strategic Planning</td>
+                        <td>{{MONTH_STRATEGY_PURPOSE}}</td>
                     </tr>
                     <tr class="category-header">
                         <td colspan="4">Category-Based Draws (0 ITAs)</td>
                     </tr>
                     <tr>
                         <td>French-Speaking</td>
-                        <td data-target="0">0</td>
+                        <td data-target="{{FRENCH_ITAS}}">0</td>
                         <td>0%</td>
-                        <td>Pending</td>
+                        <td>{{FRENCH_STATUS}}</td>
                     </tr>
                     <tr>
                         <td>Healthcare</td>
-                        <td data-target="0">0</td>
+                        <td data-target="{{HEALTHCARE_ITAS}}">0</td>
                         <td>0%</td>
-                        <td>Pending</td>
+                        <td>{{HEALTHCARE_STATUS}}</td>
                     </tr>
                     <tr>
                         <td>STEM</td>
-                        <td data-target="0">0</td>
+                        <td data-target="{{STEM_ITAS}}">0</td>
                         <td>0%</td>
-                        <td>Pending</td>
+                        <td>{{STEM_STATUS}}</td>
                     </tr>
                     <tr>
                         <td>Trade</td>
-                        <td data-target="0">0</td>
+                        <td data-target="{{TRADE_ITAS}}">0</td>
                         <td>0%</td>
-                        <td>Pending</td>
+                        <td>{{TRADE_STATUS}}</td>
                     </tr>
                     <tr>
                         <td>Education</td>
-                        <td data-target="0">0</td>
+                        <td data-target="{{EDUCATION_ITAS}}">0</td>
                         <td>0%</td>
-                        <td>Pending</td>
+                        <td>{{EDUCATION_STATUS}}</td>
                     </tr>
                     <tr>
                         <td>Agriculture</td>
-                        <td data-target="0">0</td>
+                        <td data-target="{{AGRICULTURE_ITAS}}">0</td>
                         <td>0%</td>
-                        <td>Pending</td>
+                        <td>{{AGRICULTURE_STATUS}}</td>
                     </tr>
                     <tr class="program-header">
                         <td colspan="4">Program-Based Draws (0 ITAs)</td>
                     </tr>
                     <tr>
                         <td>Canadian Experience Class (CEC)</td>
-                        <td data-target="0">0</td>
+                        <td data-target="{{CEC_ITAS}}">0</td>
                         <td>0%</td>
-                        <td>Pending</td>
+                        <td>{{CEC_STATUS}}</td>
                     </tr>
                     <tr>
                         <td>Provincial Nominee Program (PNP)</td>
-                        <td data-target="0">0</td>
+                        <td data-target="{{PNP_ITAS}}">0</td>
                         <td>0%</td>
-                        <td>Pending</td>
+                        <td>{{PNP_STATUS}}</td>
                     </tr>
                     <tr>
                         <td>Federal Skilled Worker (FSW)</td>
-                        <td data-target="0">0</td>
+                        <td data-target="{{FSW_ITAS}}">0</td>
                         <td>0%</td>
-                        <td>Pending</td>
+                        <td>{{FSW_STATUS}}</td>
                     </tr>
                     <tr>
                         <td>Federal Skilled Trades (FST)</td>
-                        <td data-target="0">0</td>
+                        <td data-target="{{FST_ITAS}}">0</td>
                         <td>0%</td>
-                        <td>Pending</td>
+                        <td>{{FST_STATUS}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -207,19 +207,19 @@
     <!-- Strategic Analysis -->
     <section class="strategic-analysis">
         <div class="container">
-            <h3>🎯 August Strategy</h3>
-            <p>Strategic immigration planning with focused selections and comprehensive system optimization.</p>
+            <h3>🎯 {{MONTH_STRATEGY_TITLE}}</h3>
+            <p>{{MONTH_STRATEGY_DESCRIPTION}}</p>
             
             <div class="analysis-cards">
                 <div class="analysis-card">
                     <div class="card-icon">🎓</div>
                     <h4>CEC FOCUS</h4>
                     <h5>Canadian Experience Class Dominance</h5>
-                    <p>Canadian Experience Class candidates are positioned for strategic selections with focused program-based approaches.</p>
+                    <p>{{CEC_ANALYSIS}}</p>
                     <ul>
-                        <li>Initial month setup</li>
-                        <li>Monitoring for draws</li>
-                        <li>Strategic positioning</li>
+                        <li>{{CEC_POINT_1}}</li>
+                        <li>{{CEC_POINT_2}}</li>
+                        <li>{{CEC_POINT_3}}</li>
                     </ul>
                 </div>
                 
@@ -227,11 +227,11 @@
                     <div class="card-icon">🤝</div>
                     <h4>PNP FOCUS</h4>
                     <h5>Provincial Nominee Program Activity</h5>
-                    <p>Provincial Nominee Program maintains strategic coordination with federal-provincial partnership focus.</p>
+                    <p>{{PNP_ANALYSIS}}</p>
                     <ul>
-                        <li>Provincial coordination</li>
-                        <li>Regional focus</li>
-                        <li>Quality selection</li>
+                        <li>{{PNP_POINT_1}}</li>
+                        <li>{{PNP_POINT_2}}</li>
+                        <li>{{PNP_POINT_3}}</li>
                     </ul>
                 </div>
                 
@@ -239,11 +239,11 @@
                     <div class="card-icon">⏸️</div>
                     <h4>CATEGORY PAUSE</h4>
                     <h5>Category-Based Strategic Pause</h5>
-                    <p>Category-based draws are strategically planned with system optimization and targeted selections.</p>
+                    <p>{{CATEGORY_ANALYSIS}}</p>
                     <ul>
-                        <li>System preparation</li>
-                        <li>Strategic planning</li>
-                        <li>Optimization phase</li>
+                        <li>{{CATEGORY_POINT_1}}</li>
+                        <li>{{CATEGORY_POINT_2}}</li>
+                        <li>{{CATEGORY_POINT_3}}</li>
                     </ul>
                 </div>
             </div>
@@ -254,11 +254,11 @@
     <section class="ytd-context">
         <div class="container">
             <h3>Year-to-Date Context</h3>
-            <p>Strategic immigration planning continues with comprehensive system optimization and focused selections.</p>
+            <p>{{YTD_CONTEXT}}</p>
             
             <div class="outlook-section">
-                <h4>🔮 September Outlook</h4>
-                <p>Following current strategic planning, September is expected to continue with focused immigration selections and system optimization.</p>
+                <h4>🔮 {{NEXT_MONTH}} Outlook</h4>
+                <p>{{NEXT_MONTH_OUTLOOK}}</p>
             </div>
         </div>
     </section>
@@ -268,11 +268,11 @@
         <div class="container">
             <h3>Quick Navigation</h3>
             <div class="nav-links">
-                <a href="../ee-july-2025/" class="nav-link">← July 2025 Report</a>
-                <a href="../ee-september-2025/" class="nav-link">September 2025 Report →</a>
+                <a href="../ee-{{PREVIOUS_MONTH_LOWER}}-{{YEAR}}/" class="nav-link">← {{PREVIOUS_MONTH}} {{YEAR}} Report</a>
+                <a href="../ee-{{NEXT_MONTH_LOWER}}-{{YEAR}}/" class="nav-link">{{NEXT_MONTH}} {{YEAR}} Report →</a>
             </div>
             <div class="additional-links">
-                <a href="../ee-2025/" class="nav-link">📊 2025 Cumulative Analysis</a>
+                <a href="../ee-2025/" class="nav-link">📊 {{YEAR}} Cumulative Analysis</a>
                 <a href="../index.html" class="nav-link">📅 All Monthly Reports</a>
             </div>
         </div>
@@ -281,34 +281,34 @@
     <!-- Month Strategy Summary -->
     <section class="month-strategy">
         <div class="container">
-            <h3>August Strategy</h3>
+            <h3>{{MONTH_NAME}} Strategy</h3>
             <div class="strategy-metrics">
                 <div class="strategy-metric">
-                    <div class="metric-value">0%</div>
+                    <div class="metric-value">{{MONTH_VOLUME_REDUCTION}}%</div>
                     <div class="metric-label">Volume Reduction</div>
                 </div>
                 <div class="strategy-metric">
-                    <div class="metric-value">0%</div>
+                    <div class="metric-value">{{MONTH_PROGRAM_FOCUS}}%</div>
                     <div class="metric-label">Program Focus</div>
                 </div>
             </div>
-            <p class="strategy-note"><strong>🎯 Strategic Note:</strong> Strategic immigration planning demonstrates sophisticated system optimization and targeted selection approaches.</p>
+            <p class="strategy-note"><strong>🎯 Strategic Note:</strong> {{MONTH_STRATEGIC_NOTE}}</p>
         </div>
     </section>
 
     <!-- Social Sharing -->
     <section class="social-sharing">
         <div class="container">
-            <h3>📊 Share August 2025 Report</h3>
+            <h3>📊 Share {{MONTH_NAME}} {{YEAR}} Report</h3>
             <p>Help spread valuable immigration insights to professionals and candidates who need this information.</p>
             
             <div class="share-buttons">
-                <a href="https://twitter.com/intent/tweet?text=Express Entry August 2025 Analysis - Track immigration trends and insights" target="_blank" class="share-button twitter">Share on X</a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://immiwatch.ca/reports/express-entry/ee-august-2025/" target="_blank" class="share-button linkedin">Share on LinkedIn</a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://immiwatch.ca/reports/express-entry/ee-august-2025/" target="_blank" class="share-button facebook">Share on Facebook</a>
-                <a href="https://wa.me/?text=Express Entry August 2025 Analysis - Track immigration trends and insights%20https://immiwatch.ca/reports/express-entry/ee-august-2025/" target="_blank" class="share-button whatsapp">Share on WhatsApp</a>
-                <a href="https://t.me/share/url?url=https://immiwatch.ca/reports/express-entry/ee-august-2025/&text=Express Entry August 2025 Analysis - Track immigration trends and insights" target="_blank" class="share-button telegram">Share on Telegram</a>
-                <a href="mailto:?subject=Express Entry August 2025 Analysis&body=Express Entry August 2025 Analysis - Track immigration trends and insights%20https://immiwatch.ca/reports/express-entry/ee-august-2025/" class="share-button email">Share via Email</a>
+                <a href="https://twitter.com/intent/tweet?text={{SHARE_TEXT}}" target="_blank" class="share-button twitter">Share on X</a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{SHARE_URL}}" target="_blank" class="share-button linkedin">Share on LinkedIn</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{SHARE_URL}}" target="_blank" class="share-button facebook">Share on Facebook</a>
+                <a href="https://wa.me/?text={{SHARE_TEXT}}%20{{SHARE_URL}}" target="_blank" class="share-button whatsapp">Share on WhatsApp</a>
+                <a href="https://t.me/share/url?url={{SHARE_URL}}&text={{SHARE_TEXT}}" target="_blank" class="share-button telegram">Share on Telegram</a>
+                <a href="mailto:?subject={{SHARE_SUBJECT}}&body={{SHARE_TEXT}}%20{{SHARE_URL}}" class="share-button email">Share via Email</a>
             </div>
             
             <div class="community-impact">
@@ -335,7 +335,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 ImmiWatch Data Studio - Express Entry August 2025 Analysis</p>
+                <p>© {{YEAR}} ImmiWatch Data Studio - Express Entry {{MONTH_NAME}} {{YEAR}} Analysis</p>
                 <p>Professional Immigration Intelligence | hi@lexpoint.io</p>
             </div>
         </div>

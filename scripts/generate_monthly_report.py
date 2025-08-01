@@ -25,7 +25,7 @@ import argparse
 class MonthlyReportGenerator:
     def __init__(self):
         self.base_dir = Path("reports/express-entry")
-        self.template_file = self.base_dir / "ee-april-2025" / "index.html"
+        self.template_file = Path("scripts/monthly_report_template.html")
         self.output_dir = self.base_dir
         
     def validate_month_format(self, month_str):
@@ -100,39 +100,228 @@ class MonthlyReportGenerator:
             "key_highlights": []
         }
     
+    def get_month_specific_content(self, month_info):
+        """Get month-specific content and variables"""
+        month_name = month_info["month_name"]
+        month_lower = month_name.lower()
+        year = month_info["year"]
+        
+        # Month-specific content based on month
+        month_content = {
+            # Basic variables
+            "MONTH_NAME": month_name,
+            "MONTH_LOWER": month_lower,
+            "YEAR": year,
+            
+            # Month-specific content
+            "MONTH_EMOJI": self.get_month_emoji(month_info["month_num"]),
+            "MONTH_STRATEGY": self.get_month_strategy(month_info["month_num"]),
+            "MONTH_DESCRIPTION": self.get_month_description(month_info["month_num"]),
+            "MONTH_FOCUS": self.get_month_focus(month_info["month_num"]),
+            "CHANGE_LABEL": self.get_change_label(month_info["month_num"]),
+            "EXECUTIVE_SUMMARY": self.get_executive_summary(month_info["month_num"]),
+            "MONTH_STRATEGY_PURPOSE": self.get_strategy_purpose(month_info["month_num"]),
+            
+            # Status messages
+            "FRENCH_STATUS": "Pending",
+            "HEALTHCARE_STATUS": "Pending", 
+            "STEM_STATUS": "Pending",
+            "TRADE_STATUS": "Pending",
+            "EDUCATION_STATUS": "Pending",
+            "AGRICULTURE_STATUS": "Pending",
+            "CEC_STATUS": "Pending",
+            "PNP_STATUS": "Pending",
+            "FSW_STATUS": "Pending",
+            "FST_STATUS": "Pending",
+            
+            # Analysis content
+            "MONTH_STRATEGY_TITLE": f"{month_name} Strategy",
+            "MONTH_STRATEGY_DESCRIPTION": self.get_strategy_description(month_info["month_num"]),
+            "CEC_ANALYSIS": self.get_cec_analysis(month_info["month_num"]),
+            "CEC_POINT_1": "Initial month setup",
+            "CEC_POINT_2": "Monitoring for draws",
+            "CEC_POINT_3": "Strategic positioning",
+            "PNP_ANALYSIS": self.get_pnp_analysis(month_info["month_num"]),
+            "PNP_POINT_1": "Provincial coordination",
+            "PNP_POINT_2": "Regional focus",
+            "PNP_POINT_3": "Quality selection",
+            "CATEGORY_ANALYSIS": self.get_category_analysis(month_info["month_num"]),
+            "CATEGORY_POINT_1": "System preparation",
+            "CATEGORY_POINT_2": "Strategic planning",
+            "CATEGORY_POINT_3": "Optimization phase",
+            
+            # Navigation
+            "PREVIOUS_MONTH": self.get_previous_month(month_info["month_num"]),
+            "PREVIOUS_MONTH_LOWER": self.get_previous_month(month_info["month_num"]).lower(),
+            "NEXT_MONTH": self.get_next_month(month_info["month_num"]),
+            "NEXT_MONTH_LOWER": self.get_next_month(month_info["month_num"]).lower(),
+            
+            # Context
+            "YTD_CONTEXT": self.get_ytd_context(month_info["month_num"]),
+            "NEXT_MONTH_OUTLOOK": self.get_next_month_outlook(month_info["month_num"]),
+            
+            # Metrics
+            "MONTH_VOLUME_REDUCTION": "0",
+            "MONTH_PROGRAM_FOCUS": "0",
+            "MONTH_STRATEGIC_NOTE": self.get_strategic_note(month_info["month_num"]),
+            
+            # Social sharing
+            "SHARE_TEXT": f"Express Entry {month_name} {year} Analysis - Track immigration trends and insights",
+            "SHARE_URL": f"https://immiwatch.ca/reports/express-entry/ee-{month_lower}-{year}/",
+            "SHARE_SUBJECT": f"Express Entry {month_name} {year} Analysis",
+            
+            # Data targets (will be updated with actual data)
+            "TOTAL_ITAS": "0",
+            "CATEGORY_BASED": "0", 
+            "PROGRAM_BASED": "0",
+            "CHANGE_FROM_PREVIOUS": "0",
+            "CEC_ITAS": "0",
+            "PNP_ITAS": "0",
+            "FRENCH_ITAS": "0",
+            "HEALTHCARE_ITAS": "0",
+            "STEM_ITAS": "0",
+            "TRADE_ITAS": "0",
+            "EDUCATION_ITAS": "0",
+            "AGRICULTURE_ITAS": "0",
+            "FSW_ITAS": "0",
+            "FST_ITAS": "0"
+        }
+        
+        return month_content
+    
+    def get_month_emoji(self, month_num):
+        """Get month-specific emoji"""
+        emojis = {
+            1: "❄️", 2: "🌸", 3: "🌱", 4: "🌷", 5: "🌿", 6: "☀️",
+            7: "🌻", 8: "🍂", 9: "🍁", 10: "🎃", 11: "🍂", 12: "❄️"
+        }
+        return emojis.get(month_num, "📊")
+    
+    def get_month_strategy(self, month_num):
+        """Get month-specific strategy title"""
+        strategies = {
+            1: "Foundation Month", 2: "French-Speaking Launch", 3: "Spring Expansion",
+            4: "Category Diversification", 5: "Healthcare Focus", 6: "Summer Acceleration",
+            7: "Mid-Year Review", 8: "Late Summer Push", 9: "Fall Strategy",
+            10: "Q4 Preparation", 11: "Pre-Year End", 12: "Year End Review"
+        }
+        return strategies.get(month_num, "Strategic Focus")
+    
+    def get_month_description(self, month_num):
+        """Get month-specific description"""
+        descriptions = {
+            1: "Strategic foundation period with focused immigration planning and system optimization.",
+            2: "French-speaking category launch with enhanced linguistic diversity initiatives.",
+            3: "Spring expansion phase with increased category-based selections and program diversification.",
+            4: "Category diversification period with balanced program and category-based approaches.",
+            5: "Healthcare-focused month with targeted medical professional selections.",
+            6: "Summer acceleration with increased volume and strategic category rotations.",
+            7: "Mid-year strategic review with comprehensive immigration system assessment.",
+            8: "Late summer push with focused program-based selections and strategic planning.",
+            9: "Fall strategy implementation with renewed category-based initiatives.",
+            10: "Q4 preparation phase with year-end immigration planning and optimization.",
+            11: "Pre-year end consolidation with strategic program-based selections.",
+            12: "Year-end review and strategic planning for upcoming immigration year."
+        }
+        return descriptions.get(month_num, "Strategic immigration month with focused selections.")
+    
+    def get_month_focus(self, month_num):
+        """Get month-specific focus"""
+        focuses = {
+            1: "Strategic", 2: "Linguistic", 3: "Expansion", 4: "Diversification",
+            5: "Healthcare", 6: "Acceleration", 7: "Review", 8: "Planning",
+            9: "Strategy", 10: "Preparation", 11: "Consolidation", 12: "Review"
+        }
+        return focuses.get(month_num, "Strategic")
+    
+    def get_change_label(self, month_num):
+        """Get month-specific change label"""
+        return "Initial Month"
+    
+    def get_executive_summary(self, month_num):
+        """Get month-specific executive summary"""
+        summaries = {
+            1: f"January {month_num} begins with strategic foundation building and system optimization, setting the stage for a comprehensive immigration year with focused program-based and category-based selections.",
+            2: f"February {month_num} launches French-speaking initiatives with enhanced linguistic diversity programs, demonstrating Canada's commitment to bilingual immigration excellence.",
+            3: f"March {month_num} represents spring expansion with increased category-based selections and strategic program diversification, building momentum for the immigration year.",
+            4: f"April {month_num} focuses on category diversification with balanced program and category-based approaches, demonstrating refined immigration targeting strategies.",
+            5: f"May {month_num} emphasizes healthcare-focused selections with targeted medical professional recruitment, addressing critical healthcare sector needs.",
+            6: f"June {month_num} accelerates summer immigration with increased volume and strategic category rotations, maintaining momentum through peak activity periods.",
+            7: f"July {month_num} conducts mid-year strategic review with comprehensive immigration system assessment and performance optimization.",
+            8: f"August {month_num} implements late summer strategic planning with focused program-based selections and system optimization.",
+            9: f"September {month_num} launches fall strategy with renewed category-based initiatives and strategic immigration planning.",
+            10: f"October {month_num} prepares for Q4 with year-end immigration planning and strategic system optimization.",
+            11: f"November {month_num} consolidates pre-year end with strategic program-based selections and comprehensive planning.",
+            12: f"December {month_num} conducts year-end review and strategic planning for the upcoming immigration year."
+        }
+        return summaries.get(month_num, f"Strategic immigration month with focused selections and comprehensive planning.")
+    
+    def get_strategy_purpose(self, month_num):
+        """Get month-specific strategy purpose"""
+        purposes = {
+            1: "Foundation Building", 2: "Linguistic Diversity", 3: "Spring Expansion",
+            4: "Category Diversification", 5: "Healthcare Focus", 6: "Summer Acceleration",
+            7: "Mid-Year Review", 8: "Strategic Planning", 9: "Fall Strategy",
+            10: "Q4 Preparation", 11: "Year-End Consolidation", 12: "Annual Review"
+        }
+        return purposes.get(month_num, "Strategic Focus")
+    
+    def get_strategy_description(self, month_num):
+        """Get month-specific strategy description"""
+        return f"Strategic immigration planning with focused selections and comprehensive system optimization."
+    
+    def get_cec_analysis(self, month_num):
+        """Get CEC analysis for the month"""
+        return f"Canadian Experience Class candidates are positioned for strategic selections with focused program-based approaches."
+    
+    def get_pnp_analysis(self, month_num):
+        """Get PNP analysis for the month"""
+        return f"Provincial Nominee Program maintains strategic coordination with federal-provincial partnership focus."
+    
+    def get_category_analysis(self, month_num):
+        """Get category analysis for the month"""
+        return f"Category-based draws are strategically planned with system optimization and targeted selections."
+    
+    def get_previous_month(self, month_num):
+        """Get previous month name"""
+        months = ["January", "February", "March", "April", "May", "June",
+                 "July", "August", "September", "October", "November", "December"]
+        prev_month = month_num - 1 if month_num > 1 else 12
+        return months[prev_month - 1]
+    
+    def get_next_month(self, month_num):
+        """Get next month name"""
+        months = ["January", "February", "March", "April", "May", "June",
+                 "July", "August", "September", "October", "November", "December"]
+        next_month = month_num + 1 if month_num < 12 else 1
+        return months[next_month - 1]
+    
+    def get_ytd_context(self, month_num):
+        """Get year-to-date context"""
+        return f"Strategic immigration planning continues with comprehensive system optimization and focused selections."
+    
+    def get_next_month_outlook(self, month_num):
+        """Get next month outlook"""
+        next_month = self.get_next_month(month_num)
+        return f"Following current strategic planning, {next_month} is expected to continue with focused immigration selections and system optimization."
+    
+    def get_strategic_note(self, month_num):
+        """Get strategic note for the month"""
+        return f"Strategic immigration planning demonstrates sophisticated system optimization and targeted selection approaches."
+
     def update_content(self, template_content, month_info, data):
-        """Update template content with month-specific information"""
+        """Update template content with month-specific data"""
         content = template_content
         
-        # Update meta tags
-        content = self.update_meta_tags(content, month_info)
+        # Get month-specific content
+        month_content = self.get_month_specific_content(month_info)
         
-        # Update navigation breadcrumbs
-        content = self.update_breadcrumbs(content, month_info)
+        # Replace all variables in template
+        for variable, value in month_content.items():
+            content = content.replace(f"{{{{{variable}}}}}", str(value))
         
-        # Update page title and header
-        content = self.update_header(content, month_info)
-        
-        # Update statistics
+        # Update statistics with actual data
         content = self.update_statistics(content, data)
-        
-        # Update executive summary
-        content = self.update_executive_summary(content, data)
-        
-        # Update key highlights
-        content = self.update_key_highlights(content, data)
-        
-        # Update program breakdown table
-        content = self.update_program_table(content, data)
-        
-        # Update strategic analysis
-        content = self.update_strategic_analysis(content, data)
-        
-        # Update navigation links
-        content = self.update_navigation_links(content, month_info)
-        
-        # Update social sharing
-        content = self.update_social_sharing(content, month_info)
         
         return content
     
