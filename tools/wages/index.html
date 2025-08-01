@@ -451,12 +451,8 @@
         const navMenu = document.querySelector('.nav-menu');
         let isMobileMenuOpen = false;
 
-        console.log('Mobile menu button found:', mobileMenuBtn);
-        console.log('Nav menu found:', navMenu);
-
         mobileMenuBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            console.log('Mobile menu button clicked!');
             toggleMobileMenu();
         });
 
