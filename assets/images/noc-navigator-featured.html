@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { margin: 0; font-family: 'Inter', Arial, sans-serif; }
+        .container { 
+            width: 1200px; 
+            height: 630px; 
+            background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .grid { 
+            background-image: 
+                linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .dashboard {
+            position: absolute;
+            left: 80px;
+            top: 120px;
+            width: 700px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .brand-panel {
+            position: absolute;
+            right: 80px;
+            top: 120px;
+            width: 300px;
+            height: 400px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            text-align: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+        .title { color: white; font-size: 28px; font-weight: 800; margin-bottom: 10px; }
+        .subtitle { color: #10b981; font-size: 16px; font-weight: 500; margin-bottom: 40px; }
+        .feature { color: rgba(255,255,255,0.8); font-size: 14px; margin-bottom: 15px; text-align: left; }
+        .branding { color: rgba(255,255,255,0.9); font-size: 18px; font-weight: 600; margin-top: 40px; }
+        .tagline { color: rgba(255,255,255,0.6); font-size: 14px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="grid"></div>
+        <div class="dashboard">
+            <!-- Dashboard mockup content would go here -->
+        </div>
+        <div class="brand-panel">
+            <div class="logo-circle">🔍</div>
+            <div class="title">NOC Navigator</div>
+            <div class="subtitle">by Lexpoint.io</div>
+            <div class="feature">• Advanced Search & Filtering</div>
+            <div class="feature">• TEER Level Analysis</div>
+            <div class="feature">• Program Eligibility Mapping</div>
+            <div class="feature">• Real-time NOC Database</div>
+            <div class="branding">ImmiWatch Data Studio</div>
+            <div class="tagline">Professional Immigration Tools</div>
+        </div>
+    </div>
+</body>
+</html>
