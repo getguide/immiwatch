@@ -62,21 +62,28 @@ class CurrentMonthlyReportManager:
         return month_str, month_info
     
     def get_next_month_info(self):
-        """Get next month information"""
+        """Get next month information - actually gets current month when on first day"""
         now = datetime.now()
-        next_month = now.replace(day=1) + timedelta(days=32)
-        next_month = next_month.replace(day=1)
         
-        month_str = f"{next_month.year}-{next_month.month:02d}"
+        # If we're on the first day of the month, we want to create the current month
+        # not the next month
+        if now.day == 1:
+            target_month = now
+        else:
+            # For other days, get the next month
+            target_month = now.replace(day=1) + timedelta(days=32)
+            target_month = target_month.replace(day=1)
+        
+        month_str = f"{target_month.year}-{target_month.month:02d}"
         
         month_info = {
-            "year": next_month.year,
-            "month": next_month.month,
-            "month_name": next_month.strftime("%B"),
-            "month_short": next_month.strftime("%b"),
-            "directory": f"ee-{next_month.strftime('%B').lower()}-{next_month.year}",
-            "url_path": f"reports/express-entry/ee-{next_month.strftime('%B').lower()}-{next_month.year}/",
-            "is_current_month": False
+            "year": target_month.year,
+            "month": target_month.month,
+            "month_name": target_month.strftime("%B"),
+            "month_short": target_month.strftime("%b"),
+            "directory": f"ee-{target_month.strftime('%B').lower()}-{target_month.year}",
+            "url_path": f"reports/express-entry/ee-{target_month.strftime('%B').lower()}-{target_month.year}/",
+            "is_current_month": True
         }
         
         return month_str, month_info
