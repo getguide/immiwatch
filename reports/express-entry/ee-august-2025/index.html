@@ -18,9 +18,365 @@
     <meta name="description" content="Express Entry August 2025 analysis: ITAs issued, CRS scores, program breakdown, and immigration insights.">
     <meta name="keywords" content="Express Entry, August 2025, ITAs, CRS score, immigration, Canada">
     
-    <link rel="stylesheet" href="../../assets/css/styles.css">
-    <link rel="stylesheet" href="../../assets/css/shared-styles.css">
-    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="stylesheet" href="../../../assets/css/shared-styles.css">
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    
+    <style>
+        .report-content {
+            background: white;
+            padding: 3rem 0;
+        }
+        
+        .report-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .data-table th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        
+        .data-table tr:hover {
+            background: var(--gray-50);
+        }
+        
+        .total-row {
+            background: var(--blue-50) !important;
+            font-weight: 600;
+        }
+        
+        .category-header,
+        .program-header {
+            background: var(--gray-100);
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--blue-600) 0%, var(--blue-800) 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+        
+        .hero-content {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-full);
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .metric-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+        
+        .executive-summary {
+            background: white;
+            padding: 3rem 0;
+        }
+        
+        .strategic-overview {
+            background: var(--gray-50);
+            padding: 3rem 0;
+        }
+        
+        .strategy-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .strategy-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .strategy-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--blue-600);
+            margin-bottom: 0.5rem;
+        }
+        
+        .strategy-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+        
+        .analysis-table {
+            background: white;
+            padding: 3rem 0;
+        }
+        
+        .strategic-analysis {
+            background: var(--gray-50);
+            padding: 3rem 0;
+        }
+        
+        .analysis-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .analysis-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .analysis-card h4 {
+            color: var(--blue-600);
+            margin-bottom: 0.5rem;
+        }
+        
+        .analysis-card h5 {
+            color: var(--gray-700);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .analysis-card ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        .analysis-card li {
+            margin-bottom: 0.5rem;
+            color: var(--gray-600);
+        }
+        
+        .ytd-context {
+            background: white;
+            padding: 3rem 0;
+        }
+        
+        .quick-navigation {
+            background: var(--gray-50);
+            padding: 3rem 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .nav-link {
+            color: var(--blue-600);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        
+        .additional-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .month-strategy {
+            background: white;
+            padding: 3rem 0;
+        }
+        
+        .strategy-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .strategy-metric {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--gray-50);
+            border-radius: var(--border-radius-lg);
+        }
+        
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--blue-600);
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+        
+        .strategy-note {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--blue-50);
+            border-radius: var(--border-radius-lg);
+            border-left: 4px solid var(--blue-600);
+        }
+        
+        .social-sharing {
+            background: var(--gray-50);
+            padding: 3rem 0;
+        }
+        
+        .share-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .share-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius-md);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .share-button.twitter {
+            background: #1da1f2;
+            color: white;
+        }
+        
+        .share-button.linkedin {
+            background: #0077b5;
+            color: white;
+        }
+        
+        .share-button.facebook {
+            background: #1877f2;
+            color: white;
+        }
+        
+        .share-button.whatsapp {
+            background: #25d366;
+            color: white;
+        }
+        
+        .share-button.telegram {
+            background: #0088cc;
+            color: white;
+        }
+        
+        .share-button.email {
+            background: var(--gray-600);
+            color: white;
+        }
+        
+        .share-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .community-impact {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+        }
+        
+        .go-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--blue-600);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: all 0.2s;
+        }
+        
+        .go-to-top:hover {
+            background: var(--blue-700);
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
