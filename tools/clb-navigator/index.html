@@ -18,7 +18,16 @@
     <meta name="twitter:description" content="Compare language exam scores easily with our CLB Navigator. Convert IELTS, CELPIP, TEF, and TCF scores to Canadian Language Benchmark (CLB) levels for immigration applications.">
     <meta name="twitter:image" content="https://immiwatch.ca/assets/images/clb-navigator-featured.png">
     
-    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <!-- Favicon - Aggressive cache busting -->
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg?v=3&t=1737962580">
+    <link rel="shortcut icon" href="../../favicon.svg?v=3&t=1737962580">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../favicon.svg?v=3&t=1737962580">
+    <meta name="msapplication-TileColor" content="#4338ca">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
     <link rel="stylesheet" href="../../assets/css/shared-styles.css">
     
     <style>
@@ -76,11 +85,23 @@
         /* Iframe Loading Styles */
         .iframe-container {
             position: relative;
-            width: 100%;
-            height: 600px;
-            border-radius: var(--border-radius-lg);
             overflow: hidden;
-            box-shadow: var(--shadow-lg);
+            width: 100%;
+            padding-top: 100vh; /* Adjust this value to control height */
+            margin: 2rem 0;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @media (max-width: 768px) {
+            .iframe-container {
+                padding-top: 60vh;
+            }
         }
         .loader {
             position: absolute;
