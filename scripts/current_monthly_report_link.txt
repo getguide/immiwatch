@@ -1,4 +1,4 @@
-Current Monthly Report: 2025-07
-URL: https://immiwatch.ca/reports/express-entry/ee-july-2025/
-Local Path: reports/express-entry/ee-july-2025/index.html
-Designated: 2025-07-30T10:20:44.719834
+Current Monthly Report: 2025-08
+URL: https://immiwatch.ca/reports/express-entry/ee-august-2025/
+Local Path: reports/express-entry/ee-august-2025/index.html
+Designated: 2025-08-01T07:10:45.610314

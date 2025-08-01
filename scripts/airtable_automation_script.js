@@ -18,6 +18,14 @@ async function sendDrawWebhook(record) {
     try {
         console.log("🔄 Processing Express Entry draw from Airtable...");
         
+        // Debug: Check if record exists
+        if (!record) {
+            throw new Error("Record is undefined - check Airtable automation setup");
+        }
+        
+        console.log("📊 Record object:", record);
+        console.log("📊 Record keys:", Object.keys(record));
+        
         // Extract data from Airtable record
         // UPDATE THESE FIELD NAMES to match your Airtable field names
         const drawData = {

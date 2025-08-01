@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced NOC Navigator for Canadian immigration - Comprehensive search, skill level analysis, and program eligibility insights.">
+    <meta name="keywords" content="NOC navigator, national occupational classification, TEER levels, immigration eligibility">
+    <title>NOC Navigator | ImmiWatch Data Studio</title>
+    
+    <!-- Favicon - Aggressive cache busting -->
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg?v=3&t=1737962580">
+    <link rel="shortcut icon" href="../../favicon.svg?v=3&t=1737962580">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../favicon.svg?v=3&t=1737962580">
+    <meta name="msapplication-TileColor" content="#4338ca">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="../../assets/css/shared-styles.css">
+    
+    <!-- Custom Styles for NOC Navigator -->
+    <style>
+        .iframe-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 100vh; /* Adjust this value to control height */
+            margin: 2rem 0;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @media (max-width: 768px) {
+            .iframe-container {
+                padding-top: 60vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <span class="logo-main">ImmiWatch</span>
+                    <span class="logo-subtitle">By Lexpoint.io</span>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../" class="nav-link">Home</a></li>
+                <li><a href="../../reports/" class="nav-link">Reports</a></li>
+                <li><a href="../" class="nav-link active">Navigators</a></li>
+                <li><a href="../../news/" class="nav-link">News</a></li>
+                <li><a href="../../about/" class="nav-link">About</a></li>
+                <li><a href="https://intake.immigratic.com/t/eELGpk1aGhus" target="_blank" class="nav-link nav-cta">Get Started</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <a href="../../" class="breadcrumb-link">Home</a>
+                <span>›</span>
+                <a href="../" class="breadcrumb-link">Navigators</a>
+                <span>›</span>
+                <span>NOC Navigator</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <section class="page-header" style="background: var(--gradient-hero);">
+        <div class="container">
+            <div class="page-header-content">
+                <div class="page-badge">
+                    🔍 <span>NOC SYSTEM</span>
+                </div>
+                
+                <h1 class="page-title">NOC Navigator</h1>
+                <p class="page-subtitle">
+                    Advanced National Occupational Classification navigator with comprehensive search, skill level analysis, and program eligibility insights for strategic occupation selection.
+                </p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">NOC 2021</div>
+                        <div class="stat-label">Version</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">TEER</div>
+                        <div class="stat-label">System</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Program</div>
+                        <div class="stat-label">Mapping</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content with Iframe -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Launch Navigator</h2>
+                <p class="section-description">
+                    Use the interactive NOC Navigator below to search and analyze occupations.
+                </p>
+            </div>
+            <div class="iframe-container">
+                <iframe class="airtable-embed" src="https://airtable.com/embed/appLwnB8MeMIvrLPm/shr4LNZQgkTPRcQOg?backgroundColor=greenDusty&viewControls=on" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="content-section gray">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">📖 User Guide</div>
+                <h2 class="section-title">How to Use NOC Navigator</h2>
+                <p class="section-description">
+                    Step-by-step guidance for maximizing the NOC Navigator's features.
+                </p>
+            </div>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">1️⃣</div>
+                    <h3 class="card-title">Search Occupations</h3>
+                    <p class="card-description">
+                        Use the search bar to find occupations by title, NOC code, or keywords.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">2️⃣</div>
+                    <h3 class="card-title">Analyze Details</h3>
+                    <p class="card-description">
+                        Review TEER levels, skill types, and program eligibility for each occupation.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">3️⃣</div>
+                    <h3 class="card-title">Filter & Compare</h3>
+                    <p class="card-description">
+                        Apply filters to compare multiple occupations and find the best fit for your immigration strategy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="content-section" style="background: var(--gradient-primary); color: white;">
+        <div class="container" style="text-align: center;">
+            <h2 style="color: white; margin-bottom: 1rem;">Ready to Explore More Tools?</h2>
+            <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.9;">
+                Check out our other professional immigration navigators and resources.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="../" class="btn btn-secondary">View All Navigators</a>
+                <a href="../../reports/" class="btn btn-secondary">View Reports</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">ImmiWatch Data Studio</div>
+                <p class="footer-description">
+                    Professional immigration tools and calculators. Precision utilities for strategic Canadian immigration planning.
+                </p>
+                
+                <div class="footer-links">
+                    <a href="../clb-navigator.html" class="footer-link">CLB Navigator</a>
+                    <a href="./" class="footer-link">NOC Navigator</a>
+                    <a href="../../reports/" class="footer-link">Reports</a>
+                    <a href="mailto:hi@lexpoint.io" class="footer-link">Contact</a>
+                    <a href="https://immiwatch.ca" target="_blank" class="footer-link">immiwatch.ca</a>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 ImmiWatch Data Studio - Professional Immigration Navigators</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+                        Immigration Planning Utilities | 
+                        <a href="mailto:hi@lexpoint.io" style="color: var(--primary-400);">hi@lexpoint.io</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        let isMobileMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+
+        function toggleMobileMenu() {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            
+            if (isMobileMenuOpen) {
+                navMenu.classList.add('mobile-open');
+                mobileMenuBtn.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            } else {
+                navMenu.classList.remove('mobile-open');
+                mobileMenuBtn.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (isMobileMenuOpen && !navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Close mobile menu when clicking on nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                if (isMobileMenuOpen) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // Close mobile menu on window resize to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024 && isMobileMenuOpen) {
+                toggleMobileMenu();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,273 +1,255 @@
 # 🔗 Airtable Integration Guide
 
-## 🎯 **Overview**
+## Overview
+This guide explains how to set up Airtable automation to send Express Entry draw data to the ImmiWatch GitHub repository via webhooks.
 
-This guide shows you how to set up Airtable automation to send Express Entry draw data to our webhook system for automatic monthly report updates.
+## Prerequisites
 
-## 📋 **Prerequisites**
+### 1. GitHub Token Setup
+1. Go to **GitHub.com** → Click your **profile picture** (top right)
+2. Click **Settings**
+3. Scroll down to **Developer settings** (bottom left)
+4. Click **Personal access tokens**
+5. Click **Tokens (classic)**
+6. Click **Generate new token (classic)**
+7. Give it a name: `"Airtable Webhook Token"`
+8. Set **Expiration**: Choose `No expiration` or `90 days`
+9. **Set EXACT Permissions:**
+   - ✅ **repo** (Full control of private repositories)
+   - ✅ **workflow** (Update GitHub Action workflows)
+10. Click **Generate token**
+11. **Copy the token immediately** (you won't see it again!)
 
-### **1. GitHub Token Setup**
-1. Go to GitHub → Settings → Developer settings → Personal access tokens
-2. Create a new token with `repo` permissions
-3. Copy the token (you'll need it for the script)
+### 2. Airtable Setup
+1. Create a table with these fields:
+   - `Program` (Single select: EE-PNP, EE-CEC, EE-FSW, EE-FST, EE-Health, EE-French, EE-Trade, EE-Education, EE-Agriculture, EE-STEM)
+   - `Draw Date` (Date)
+   - `CRS Score` (Number)
+   - `ITAs Issued` (Number)
+   - `Draw Number` (Number)
+   - `Category` (Single select: General, Healthcare, STEM, Trade, etc.)
+   - `Region` (Single select: All, Ontario, BC, etc.)
 
-### **2. Airtable Setup**
-1. Enable Airtable Scripting app in your workspace
-2. Create a table with the required fields (see field mapping below)
-3. Set up automation trigger (when new record is created)
+## Working Script
 
-## 🔧 **Step-by-Step Setup**
+**Copy and paste this script into your Airtable automation:**
 
-### **Step 1: Create Airtable Table**
+```javascript
+// Final Working Airtable Automation Script for Express Entry Draws
+// ======================================================
 
-Create a table with these fields:
+// Configuration - UPDATE THIS TOKEN
+const GITHUB_TOKEN = "YOUR_NEW_TOKEN_HERE"; // Replace with your new token
+const GITHUB_REPO = "getguide/immiwatch";
+const WEBHOOK_URL = `https://api.github.com/repos/${GITHUB_REPO}/dispatches`;
 
-| Field Name | Type | Required | Example |
-|------------|------|----------|---------|
-| Program | Single select | ✅ | EE-PNP, EE-CEC, EE-Health |
-| Draw Date | Date | ✅ | 2025-08-05 |
-| CRS Score | Number | ✅ | 726 |
-| ITAs Issued | Number | ✅ | 277 |
-| Draw Number | Number | ✅ | 348 |
-| Category | Single select | ❌ | General |
-| Region | Single select | ❌ | All |
+// Main function for Airtable automation
+async function sendDrawWebhook() {
+    try {
+        console.log("🔄 Processing Express Entry draw from Airtable...");
+        
+        // Get the config object which contains the record data
+        const config = input.config();
+        console.log("📊 Config object:", config);
+        
+        // Extract data directly from the config object
+        const drawData = {
+            Program: config.Program,
+            draw_date: config['Draw Date'],
+            Score: config['CRS Score'],
+            Invitation: config['ITAs Issued'],
+            Draw_Number: config['Draw Number'],
+            Category: config.Category || "General",
+            Region: config.Region || "All"
+        };
+        
+        console.log("📊 Extracted draw data:", drawData);
+        
+        return await processDrawData(drawData);
+        
+    } catch (error) {
+        console.error("❌ Error sending webhook:", error.message);
+        return { 
+            success: false, 
+            error: error.message 
+        };
+    }
+}
 
-### **Step 2: Set Up Automation**
+// Process draw data and send webhook
+async function processDrawData(drawData) {
+    try {
+        // Validate required fields
+        const requiredFields = ['Program', 'draw_date', 'Score', 'Invitation', 'Draw_Number'];
+        for (const field of requiredFields) {
+            if (!drawData[field]) {
+                throw new Error(`Missing required field: ${field}`);
+            }
+        }
+        
+        // Format webhook payload for our system
+        const webhookPayload = {
+            body: {
+                Program: drawData.Program,
+                Category: drawData.Category,
+                Region: drawData.Region,
+                "draw.date.most.recent": drawData.draw_date,
+                Score: parseInt(drawData.Score),
+                "Scoring System": "CRS",
+                "Filter by program": "Express Entry",
+                Invitation: parseInt(drawData.Invitation),
+                "Last Checked": new Date().toISOString(),
+                "Draw Number": parseInt(drawData.Draw_Number)
+            }
+        };
+        
+        console.log("📄 Formatted webhook payload:", JSON.stringify(webhookPayload, null, 2));
+        
+        // Send webhook to GitHub
+        const payload = {
+            event_type: "express_entry_draw",
+            client_payload: webhookPayload.body
+        };
+        
+        const response = await fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+        
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`GitHub API error: ${response.status} - ${errorText}`);
+        }
+        
+        console.log(`✅ Webhook sent successfully for Draw #${drawData.Draw_Number}`);
+        console.log(`🎯 Program: ${drawData.Program}`);
+        console.log(`📅 Date: ${drawData.draw_date}`);
+        console.log(`📈 ITAs: ${drawData.Invitation}`);
+        console.log(`🎯 CRS: ${drawData.Score}`);
+        
+        return { 
+            success: true, 
+            draw_number: drawData.Draw_Number,
+            program: drawData.Program,
+            message: "Webhook sent successfully"
+        };
+        
+    } catch (error) {
+        console.error("❌ Error processing draw data:", error.message);
+        return { 
+            success: false, 
+            error: error.message 
+        };
+    }
+}
 
-1. **Go to Automations** in your Airtable workspace
-2. **Create new automation**
-3. **Trigger**: "When a record is created" (or your preferred trigger)
-4. **Action**: "Run a script"
-5. **Copy the script** from `scripts/airtable_automation_script.js`
-
-### **Step 3: Configure the Script**
-
-1. **Replace the GitHub token**:
-   ```javascript
-   const GITHUB_TOKEN = "your_actual_github_token_here";
-   ```
-
-2. **Update field names** to match your Airtable fields:
-   ```javascript
-   const drawData = {
-       Program: record.getCellValue('Your Program Field Name'),
-       draw_date: record.getCellValue('Your Draw Date Field Name'),
-       Score: record.getCellValue('Your CRS Score Field Name'),
-       Invitation: record.getCellValue('Your ITAs Issued Field Name'),
-       Draw_Number: record.getCellValue('Your Draw Number Field Name'),
-       // ... etc
-   };
-   ```
-
-### **Step 4: Test the Integration**
-
-1. **Create a test record** in your Airtable table
-2. **Check the automation logs** for success/error messages
-3. **Verify the webhook** was sent to GitHub
-4. **Check the monthly report** was updated
-
-## 📊 **Field Mapping**
-
-### **Required Fields**
-Your Airtable field names must map to these webhook fields:
-
-| Airtable Field | Webhook Field | Description |
-|----------------|---------------|-------------|
-| Program | body.Program | Draw type (EE-PNP, EE-CEC, etc.) |
-| Draw Date | body.draw.date.most.recent | Date of the draw (YYYY-MM-DD) |
-| CRS Score | body.Score | CRS cutoff score |
-| ITAs Issued | body.Invitation | Number of ITAs issued |
-| Draw Number | body.Draw Number | Express Entry draw number |
-
-### **Optional Fields**
-| Airtable Field | Webhook Field | Description |
-|----------------|---------------|-------------|
-| Category | body.Category | Internal category (default: "General") |
-| Region | body.Region | Internal region (default: "All") |
-
-## 🎯 **Supported Program Values**
-
-### **Program-Based Draws**
-- `EE-PNP` → Updates PNP ITAs
-- `EE-CEC` → Updates CEC ITAs
-- `EE-FSW` → Updates FSW ITAs
-- `EE-FST` → Updates FST ITAs
-
-### **Category-Based Draws**
-- `EE-Health` → Updates Healthcare ITAs
-- `EE-French` → Updates French-Speaking ITAs
-- `EE-Trade` → Updates Trade ITAs
-- `EE-Education` → Updates Education ITAs
-- `EE-Agriculture` → Updates Agriculture ITAs
-- `EE-STEM` → Updates STEM ITAs
-
-## 🔄 **Workflow Example**
-
-### **When IRCC Announces a Draw**
-
-1. **IRCC announces** new Express Entry draw
-2. **Your Lambda function** detects the draw
-3. **Lambda sends webhook** to Airtable (or you manually add)
-4. **Airtable automation triggers** when new record is created
-5. **Script processes** the Airtable data
-6. **Script sends webhook** to our GitHub repository
-7. **GitHub Actions processes** the webhook
-8. **Monthly report updates** automatically
-9. **Changes are committed** and pushed to live site
-
-### **Example Airtable Record**
+// Execute the function
+return await sendDrawWebhook();
 ```
-Program: EE-PNP
-Draw Date: 2025-08-05
-CRS Score: 726
-ITAs Issued: 277
-Draw Number: 348
-Category: General
-Region: All
-```
 
-### **Result**
-- **Webhook sent** to GitHub
-- **August 2025 report** updated with +277 PNP ITAs
-- **Total August PNP** now shows accumulated total
-- **Report live** within minutes
+## Airtable Automation Setup
 
-## 🛠️ **Troubleshooting**
+### 1. Create Automation
+1. In your Airtable base, click **Automations** (top right)
+2. Click **Create a custom automation**
+3. Choose **When a record is created** or **When a record is updated**
+4. Select your table
+5. Add **Run a script** action
+6. Paste the script above
 
-### **Common Issues**
+### 2. Configure the Script
+1. Replace `YOUR_NEW_TOKEN_HERE` with your GitHub token
+2. Update field names if they don't match your Airtable fields
+3. Test with a sample record
 
-#### **1. GitHub Token Error**
-```
-❌ Error: GitHub API error: 401 - Bad credentials
-```
-**Solution**: Check your GitHub token has `repo` permissions
+## Supported Program Values
 
-#### **2. Missing Field Error**
-```
-❌ Error: Missing required field: Program
-```
-**Solution**: Check your Airtable field names match the script
+| Program | Type | Description |
+|---------|------|-------------|
+| EE-PNP | Program-based | Provincial Nominee Program |
+| EE-CEC | Program-based | Canadian Experience Class |
+| EE-FSW | Program-based | Federal Skilled Worker |
+| EE-FST | Program-based | Federal Skilled Trades |
+| EE-Health | Category-based | Healthcare workers |
+| EE-French | Category-based | French-speaking candidates |
+| EE-Trade | Category-based | Skilled trades |
+| EE-Education | Category-based | Education workers |
+| EE-Agriculture | Category-based | Agriculture workers |
+| EE-STEM | Category-based | STEM professionals |
 
-#### **3. Invalid Program Value**
-```
-❌ Error: Invalid program value: EE-PNP-INVALID
-```
-**Solution**: Use only supported program values (EE-PNP, EE-CEC, etc.)
+## Expected Output
 
-#### **4. Date Format Error**
-```
-❌ Error: Invalid date format: 05/08/2025
-```
-**Solution**: Use YYYY-MM-DD format in Airtable
-
-### **Testing Steps**
-
-1. **Test with sample data**:
-   ```javascript
-   // Add this to your script for testing
-   const testData = {
-       Program: "EE-PNP",
-       draw_date: "2025-08-05",
-       Score: 726,
-       Invitation: 277,
-       Draw_Number: 348
-   };
-   ```
-
-2. **Check automation logs** in Airtable
-3. **Verify GitHub Actions** ran successfully
-4. **Check monthly report** was updated
-
-## 📈 **Monitoring**
-
-### **Success Indicators**
-- ✅ **Airtable automation** runs without errors
-- ✅ **GitHub Actions** workflow completes successfully
-- ✅ **Monthly report** shows updated totals
-- ✅ **Git commit** created with draw information
-
-### **Log Messages to Look For**
+When successful, you should see:
 ```
 🔄 Processing Express Entry draw from Airtable...
-📊 Extracted draw data: {Program: "EE-PNP", ...}
+📊 Config object: {Program: "EE-PNP", Draw Date: "2025-06-02", ...}
+📊 Extracted draw data: {Program: "EE-PNP", draw_date: "2025-06-02", ...}
 📄 Formatted webhook payload: {...}
 ✅ Webhook sent successfully for Draw #348
 🎯 Program: EE-PNP
-📅 Date: 2025-08-05
+📅 Date: 2025-06-02
 📈 ITAs: 277
 🎯 CRS: 726
 ```
 
-## 🔒 **Security**
+## Troubleshooting
 
-### **Token Security**
-- ✅ **Store token securely** in Airtable environment variables
-- ✅ **Use minimal permissions** (repo scope only)
-- ✅ **Rotate tokens** regularly
-- ✅ **Monitor token usage** in GitHub
+### Common Issues
 
-### **Data Validation**
-- ✅ **Validate all fields** before sending
-- ✅ **Check data types** (numbers, dates)
-- ✅ **Sanitize input** to prevent injection
-- ✅ **Log all activities** for audit trail
+1. **"Resource not accessible by personal access token"**
+   - Ensure your GitHub token has `repo` and `workflow` permissions
+   - Create a new token with the correct permissions
 
-## 🚀 **Advanced Features**
+2. **"Missing required field"**
+   - Check that all required fields are filled in your Airtable record
+   - Verify field names match exactly
 
-### **Batch Processing**
-If you need to process multiple draws at once:
+3. **"Config object is empty"**
+   - Ensure your automation is triggered by the correct table
+   - Check that the record has data in all required fields
 
-```javascript
-// Process multiple records
-async function processMultipleDraws(records) {
-    const results = [];
-    for (const record of records) {
-        const result = await sendDrawWebhook(record);
-        results.push(result);
-        // Add delay to avoid rate limiting
-        await new Promise(resolve => setTimeout(resolve, 1000));
-    }
-    return results;
-}
-```
+### Debug Steps
 
-### **Error Handling**
-```javascript
-// Enhanced error handling
-try {
-    const result = await sendDrawWebhook(record);
-    if (result.success) {
-        console.log("✅ Success:", result.message);
-    } else {
-        console.error("❌ Failed:", result.error);
-        // Send notification or retry
-    }
-} catch (error) {
-    console.error("💥 Critical error:", error);
-    // Handle critical failures
-}
-```
+1. Check the console output in Airtable
+2. Verify GitHub token permissions
+3. Test with a simple record first
+4. Check GitHub Actions logs for webhook processing
 
-## 📞 **Support**
+## Security Best Practices
 
-### **Getting Help**
-1. **Check automation logs** in Airtable
-2. **Verify GitHub Actions** workflow status
-3. **Test with sample data** using the test script
-4. **Check field mapping** matches your Airtable setup
+1. **Token Security**
+   - Use environment variables when possible
+   - Rotate tokens regularly
+   - Never share tokens publicly
 
-### **Common Questions**
-- **Q**: "Why isn't my automation triggering?"
-- **A**: Check trigger conditions and field values
+2. **Data Validation**
+   - Always validate input data
+   - Sanitize user inputs
+   - Handle errors gracefully
 
-- **Q**: "Why is the webhook failing?"
-- **A**: Verify GitHub token and field names
+3. **Monitoring**
+   - Monitor webhook delivery status
+   - Set up alerts for failures
+   - Log all automation runs
 
-- **Q**: "Why isn't the report updating?"
-- **A**: Check GitHub Actions workflow and logs
+## Integration with GitHub Actions
 
----
+The webhook triggers the GitHub Actions workflow in `.github/workflows/webhook_handler.yml`, which:
 
-**Last Updated**: July 2025  
-**Maintained By**: ImmiWatch Development Team  
-**Version**: 1.0 
+1. Receives the webhook data
+2. Validates the draw information
+3. Updates the current monthly Express Entry report
+4. Commits and pushes changes to the repository
+
+## Support
+
+For issues or questions:
+1. Check the console output in Airtable
+2. Review GitHub Actions logs
+3. Verify token permissions
+4. Test with sample data first 
