@@ -193,16 +193,16 @@
                 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-number">NOC 2021</div>
+                        <div class="stat-number" data-target="516">0</div>
+                        <div class="stat-label">NOC Codes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="32920">0</div>
+                        <div class="stat-label">Titles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="2021">0</div>
                         <div class="stat-label">Version</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">TEER</div>
-                        <div class="stat-label">System</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">Program</div>
-                        <div class="stat-label">Mapping</div>
                     </div>
                 </div>
             </div>
@@ -490,6 +490,30 @@
             if (window.innerWidth > 1024 && isMobileMenuOpen) {
                 toggleMobileMenu();
             }
+        });
+
+        // Counting animation for stats
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16); // 60fps
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target.toLocaleString();
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start).toLocaleString();
+                }
+            }, 16);
+        }
+
+        // Start counting animation when page loads
+        window.addEventListener('load', function() {
+            const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                animateCounter(stat, target);
+            });
         });
     </script>
 </body>
