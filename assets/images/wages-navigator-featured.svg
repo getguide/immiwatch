@@ -1,0 +1,117 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4338ca;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f8fafc;stop-opacity:0.95" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d97706;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Background Pattern -->
+  <circle cx="100" cy="100" r="50" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="1100" cy="150" r="80" fill="rgba(255,255,255,0.05)"/>
+  <circle cx="150" cy="500" r="60" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="1050" cy="450" r="40" fill="rgba(255,255,255,0.06)"/>
+  
+  <!-- Main Dashboard Card -->
+  <rect x="50" y="80" width="1100" height="470" rx="20" fill="url(#card)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+  
+  <!-- Header Section -->
+  <rect x="80" y="120" width="1040" height="80" rx="12" fill="url(#accent)"/>
+  <text x="120" y="155" font-family="Inter, sans-serif" font-size="32" font-weight="700" fill="white">Wages Navigator</text>
+  <text x="120" y="185" font-family="Inter, sans-serif" font-size="16" font-weight="400" fill="rgba(255,255,255,0.9)">Canadian Wage Analysis & LMIA Requirements</text>
+  
+  <!-- Province Icons -->
+  <circle cx="900" cy="160" r="25" fill="rgba(255,255,255,0.2)"/>
+  <text x="900" y="170" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="white" text-anchor="middle">ON</text>
+  
+  <circle cx="970" cy="160" r="25" fill="rgba(255,255,255,0.2)"/>
+  <text x="970" y="170" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="white" text-anchor="middle">BC</text>
+  
+  <circle cx="1040" cy="160" r="25" fill="rgba(255,255,255,0.2)"/>
+  <text x="1040" y="170" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="white" text-anchor="middle">AB</text>
+  
+  <!-- Main Content Grid -->
+  <rect x="80" y="220" width="500" height="300" rx="12" fill="white" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+  
+  <!-- Search Section -->
+  <text x="100" y="250" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#1f2937">Occupation Search</text>
+  
+  <!-- Search Inputs -->
+  <rect x="100" y="270" width="200" height="40" rx="6" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1"/>
+  <text x="200" y="295" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="#374151" text-anchor="middle">NOC Code</text>
+  
+  <rect x="320" y="270" width="160" height="40" rx="6" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1"/>
+  <text x="400" y="295" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="#374151" text-anchor="middle">Province</text>
+  
+  <rect x="100" y="330" width="380" height="40" rx="6" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1"/>
+  <text x="290" y="355" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="#374151" text-anchor="middle">Job Title</text>
+  
+  <!-- Search Button -->
+  <rect x="100" y="390" width="380" height="50" rx="8" fill="url(#accent)"/>
+  <text x="290" y="420" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Search Wages</text>
+  
+  <!-- Results Section -->
+  <rect x="600" y="220" width="520" height="300" rx="12" fill="white" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+  
+  <text x="620" y="250" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#1f2937">Wage Analysis Results</text>
+  
+  <!-- Wage Cards -->
+  <rect x="620" y="270" width="120" height="80" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="680" y="295" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#92400e" text-anchor="middle">Ontario</text>
+  <text x="680" y="320" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#92400e" text-anchor="middle">$85K</text>
+  
+  <rect x="760" y="270" width="120" height="80" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="820" y="295" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1e40af" text-anchor="middle">BC</text>
+  <text x="820" y="320" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#1e40af" text-anchor="middle">$92K</text>
+  
+  <rect x="900" y="270" width="120" height="80" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="960" y="295" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#15803d" text-anchor="middle">Alberta</text>
+  <text x="960" y="320" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#15803d" text-anchor="middle">$88K</text>
+  
+  <rect x="1040" y="270" width="60" height="80" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+  <text x="1070" y="295" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#991b1b" text-anchor="middle">LMIA</text>
+  <text x="1070" y="320" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#991b1b" text-anchor="middle">$95K</text>
+  
+  <!-- Settlement Funds -->
+  <rect x="620" y="370" width="480" height="60" rx="8" fill="url(#accent)"/>
+  <text x="860" y="395" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Settlement Funds Required: $13,757</text>
+  <text x="860" y="415" font-family="Inter, sans-serif" font-size="14" font-weight="400" fill="rgba(255,255,255,0.9)" text-anchor="middle">For Express Entry Application</text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="150" cy="150" r="8" fill="#f59e0b"/>
+  <circle cx="180" cy="150" r="8" fill="#3b82f6"/>
+  <circle cx="210" cy="150" r="8" fill="#16a34a"/>
+  
+  <!-- Branding -->
+  <text x="1200" y="620" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="rgba(255,255,255,0.8)" text-anchor="end">Wages Navigator by Lexpoint.io</text>
+  
+  <!-- Data Visualization Elements -->
+  <rect x="80" y="540" width="1100" height="2" fill="rgba(255,255,255,0.2)"/>
+  
+  <!-- Progress Bars -->
+  <rect x="100" y="560" width="200" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+  <rect x="100" y="560" width="160" height="8" rx="4" fill="#f59e0b"/>
+  
+  <rect x="320" y="560" width="200" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+  <rect x="320" y="560" width="180" height="8" rx="4" fill="#3b82f6"/>
+  
+  <rect x="540" y="560" width="200" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+  <rect x="540" y="560" width="170" height="8" rx="4" fill="#16a34a"/>
+  
+  <rect x="760" y="560" width="200" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+  <rect x="760" y="560" width="190" height="8" rx="4" fill="#dc2626"/>
+  
+  <rect x="980" y="560" width="200" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+  <rect x="980" y="560" width="150" height="8" rx="4" fill="#8b5cf6"/>
+</svg> 
