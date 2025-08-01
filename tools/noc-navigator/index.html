@@ -499,10 +499,13 @@
             const timer = setInterval(() => {
                 start += increment;
                 if (start >= target) {
-                    element.textContent = target.toLocaleString();
+                    // Don't add comma for version (year)
+                    const isVersion = element.closest('.stat-card').querySelector('.stat-label').textContent === 'Version';
+                    element.textContent = isVersion ? target.toString() : target.toLocaleString();
                     clearInterval(timer);
                 } else {
-                    element.textContent = Math.floor(start).toLocaleString();
+                    const isVersion = element.closest('.stat-card').querySelector('.stat-label').textContent === 'Version';
+                    element.textContent = isVersion ? Math.floor(start).toString() : Math.floor(start).toLocaleString();
                 }
             }, 16);
         }
