@@ -1,0 +1,118 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1b4b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4338ca;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.05" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Main dashboard card -->
+  <rect x="80" y="120" width="700" height="400" rx="12" fill="url(#cardGradient)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+  
+  <!-- Dashboard header -->
+  <rect x="100" y="140" width="660" height="60" rx="8" fill="rgba(255,255,255,0.1)"/>
+  <text x="120" y="165" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#ffffff">NOC Navigator Dashboard</text>
+  <text x="120" y="185" font-family="Inter, Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.7)">National Occupational Classification System</text>
+  
+  <!-- Search bar -->
+  <rect x="100" y="220" width="660" height="40" rx="20" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <circle cx="130" cy="240" r="8" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+  <line x1="136" y1="246" x2="142" y2="252" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+  <text x="160" y="245" font-family="Inter, Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Search occupations, NOC codes, TEER levels...</text>
+  
+  <!-- Data visualization bars -->
+  <g>
+    <!-- Bar chart -->
+    <rect x="120" y="280" width="200" height="120" rx="6" fill="rgba(255,255,255,0.08)"/>
+    <text x="130" y="300" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="rgba(255,255,255,0.8)">TEER Levels</text>
+    
+    <!-- Bars -->
+    <rect x="140" y="320" width="30" height="60" rx="2" fill="url(#accentGradient)"/>
+    <rect x="180" y="330" width="30" height="50" rx="2" fill="rgba(99,102,241,0.8)"/>
+    <rect x="220" y="340" width="30" height="40" rx="2" fill="rgba(147,197,253,0.8)"/>
+    <rect x="260" y="350" width="30" height="30" rx="2" fill="rgba(196,181,253,0.8)"/>
+  </g>
+  
+  <!-- Stats cards -->
+  <g>
+    <rect x="340" y="280" width="140" height="60" rx="6" fill="rgba(255,255,255,0.08)"/>
+    <text x="350" y="300" font-family="Inter, Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.6)">Total NOC Codes</text>
+    <text x="350" y="320" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="#ffffff">40,000+</text>
+    
+    <rect x="500" y="280" width="140" height="60" rx="6" fill="rgba(255,255,255,0.08)"/>
+    <text x="510" y="300" font-family="Inter, Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.6)">Program Eligible</text>
+    <text x="510" y="320" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="url(#accentGradient)">15,000+</text>
+  </g>
+  
+  <!-- Table preview -->
+  <rect x="120" y="360" width="520" height="120" rx="6" fill="rgba(255,255,255,0.08)"/>
+  <text x="130" y="380" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="rgba(255,255,255,0.8)">Recent Searches</text>
+  
+  <!-- Table rows -->
+  <rect x="130" y="390" width="500" height="20" rx="2" fill="rgba(255,255,255,0.05)"/>
+  <text x="140" y="405" font-family="Inter, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.7)">21211 - Data Scientists</text>
+  <text x="500" y="405" font-family="Inter, Arial, sans-serif" font-size="11" fill="url(#accentGradient)">TEER 1</text>
+  
+  <rect x="130" y="415" width="500" height="20" rx="2" fill="rgba(255,255,255,0.03)"/>
+  <text x="140" y="430" font-family="Inter, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.7)">22221 - Registered Nurses</text>
+  <text x="500" y="430" font-family="Inter, Arial, sans-serif" font-size="11" fill="url(#accentGradient)">TEER 1</text>
+  
+  <rect x="130" y="440" width="500" height="20" rx="2" fill="rgba(255,255,255,0.05)"/>
+  <text x="140" y="455" font-family="Inter, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.7)">21231 - Software Engineers</text>
+  <text x="500" y="455" font-family="Inter, Arial, sans-serif" font-size="11" fill="url(#accentGradient)">TEER 1</text>
+  
+  <!-- Side panel -->
+  <rect x="820" y="120" width="300" height="400" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  
+  <!-- Brand section -->
+  <circle cx="970" cy="180" r="40" fill="url(#accentGradient)" opacity="0.2"/>
+  <circle cx="970" cy="180" r="25" fill="url(#accentGradient)"/>
+  <text x="970" y="185" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">🔍</text>
+  
+  <text x="970" y="250" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" fill="#ffffff" text-anchor="middle">NOC Navigator</text>
+  <text x="970" y="275" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="url(#accentGradient)" text-anchor="middle">by Lexpoint.io</text>
+  
+  <!-- Features list -->
+  <g transform="translate(840, 320)">
+    <circle cx="10" cy="10" r="3" fill="url(#accentGradient)"/>
+    <text x="25" y="15" font-family="Inter, Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.8)">Advanced Search & Filtering</text>
+    
+    <circle cx="10" cy="35" r="3" fill="url(#accentGradient)"/>
+    <text x="25" y="40" font-family="Inter, Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.8)">TEER Level Analysis</text>
+    
+    <circle cx="10" cy="60" r="3" fill="url(#accentGradient)"/>
+    <text x="25" y="65" font-family="Inter, Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.8)">Program Eligibility Mapping</text>
+    
+    <circle cx="10" cy="85" r="3" fill="url(#accentGradient)"/>
+    <text x="25" y="90" font-family="Inter, Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.8)">Real-time NOC Database</text>
+  </g>
+  
+  <!-- ImmiWatch branding -->
+  <text x="970" y="500" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="rgba(255,255,255,0.9)" text-anchor="middle">ImmiWatch Data Studio</text>
+  <text x="970" y="520" font-family="Inter, Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)" text-anchor="middle">Professional Immigration Tools</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="1050" cy="200" r="2" fill="rgba(255,255,255,0.3)"/>
+  <circle cx="1080" cy="250" r="1.5" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="900" cy="180" r="1" fill="rgba(255,255,255,0.5)"/>
+  <circle cx="1100" cy="300" r="2.5" fill="url(#accentGradient)" opacity="0.6"/>
+</svg>
