@@ -701,12 +701,11 @@ def main():
         # Extract data from repository dispatch
         client_payload = event_data.get('client_payload', {})
         
-        # Check if this is a news event (draw articles come through news_article event)
-        if client_payload.get('event_type') != 'news_article':
-            logger.info("Not a news article event, skipping")
-            return
+        # For repository dispatch, the event type is in the action, not in client_payload
+        # Skip the event type check and just process the data
+        logger.info(f"Processing repository dispatch with category: {client_payload.get('category', 'unknown')}")
         
-        # The data is directly in client_payload, not nested in 'data'
+        # The data is directly in client_payload
         data = client_payload
         
     else:
@@ -732,12 +731,11 @@ def main():
     
     # Output result for GitHub Actions
     if github_event_path:
-        print(f"success={result['success']}")
         if result['success']:
             print(f"article_url={result['article_url']}")
             print(f"title={result['title']}")
         else:
-            print(f"error={result['error']}")
+            print(f"error={result.get('error', 'Unknown error')}")
     
     return result
 
