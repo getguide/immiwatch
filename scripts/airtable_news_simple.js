@@ -69,66 +69,72 @@ async function sendNewsWebhook() {
             return categoryMap[airtableCategory] || 'other';
         }
         
-        // Map the category to our system format
-        if (newsData.category) {
-            newsData.category = mapCategory(newsData.category);
-        }
-        
-        // Validate category (now using our mapped categories)
-        const validCategories = ['policy-announcements', 'program-delivery', 'draw', 'atip-insights', 'legal-decisions', 'system-notices', 'form-changes', 'deadline-alerts', 'statistical-reports', 'scam-alerts', 'other'];
-        if (newsData.category && !validCategories.includes(newsData.category.toLowerCase())) {
-            throw new Error("Invalid category: " + newsData.category + ". Valid categories: " + validCategories.join(', '));
-        }
-        
-        // Special validation for draw articles
-        if (newsData.category === 'draw') {
-            if (!newsData.invitation || !newsData.cutoff) {
-                throw new Error("Draw articles require both 'invitation' and 'cutoff' fields");
-            }
-            if (isNaN(parseInt(newsData.invitation)) || isNaN(parseInt(newsData.cutoff))) {
-                throw new Error("Draw articles require numeric 'invitation' and 'cutoff' values");
-            }
-        }
-        
-        // Validate impact level
-        const validImpactLevels = ['critical', 'high', 'moderate', 'low', 'informational'];
-        if (newsData.impact && !validImpactLevels.includes(newsData.impact.toLowerCase())) {
-            throw new Error("Invalid impact level: " + newsData.impact + ". Valid levels: " + validImpactLevels.join(', '));
-        }
-        
-        // Validate date format
-        if (newsData.date_of_update) {
-            const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-            if (!dateRegex.test(newsData.date_of_update)) {
-                throw new Error("Invalid date format: " + newsData.date_of_update + ". Expected format: YYYY-MM-DD");
-            }
-        }
-        
-                            // Clean and normalize data - only include essential fields for GitHub API limit
-                    const cleanedData = {
-                        headline: newsData.headline ? newsData.headline.trim() : '',
-                        summary: newsData.summary ? newsData.summary.trim() : '',
-                        category: newsData.category ? newsData.category.trim() : '',
-                        impact: newsData.impact ? newsData.impact.trim() : '',
-                        date: newsData.date_of_update ? newsData.date_of_update.trim() : '',
-                        source: newsData.source ? newsData.source.trim() : 'IRCC Official',
-                        source_url: newsData.source_url ? newsData.source_url.trim() : '',
-                        program_affected: newsData.program_affected ? newsData.program_affected.trim() : '',
-                        urgency_level: newsData.urgency_level ? newsData.urgency_level.trim() : '',
-                        week_of_year: newsData.week_of_year ? parseInt(newsData.week_of_year) : null
-                    };
+                            // Map the category to our system format
+                    if (newsData.category) {
+                        newsData.category = mapCategory(newsData.category);
+                    }
                     
-                    // Add draw-specific fields if this is a draw article (replaces some general fields)
-                    if (newsData.category === 'draw' && newsData.invitation && newsData.cutoff) {
-                        // Remove general fields to stay under 10-property limit
-                        delete cleanedData.program_affected;
-                        delete cleanedData.urgency_level;
-                        delete cleanedData.week_of_year;
-                        
-                        // Add draw-specific fields
-                        cleanedData.invitation = parseInt(newsData.invitation);
-                        cleanedData.cutoff = parseInt(newsData.cutoff);
-                        cleanedData.draw_type = newsData.draw_type ? newsData.draw_type.trim() : 'PNP';
+                    // Validate category (now using our mapped categories)
+                    const validCategories = ['policy-announcements', 'program-delivery', 'draw', 'atip-insights', 'legal-decisions', 'system-notices', 'form-changes', 'deadline-alerts', 'statistical-reports', 'scam-alerts', 'other'];
+                    if (newsData.category && !validCategories.includes(newsData.category.toLowerCase())) {
+                        throw new Error("Invalid category: " + newsData.category + ". Valid categories: " + validCategories.join(', '));
+                    }
+                    
+                    // Special validation for draw articles
+                    if (newsData.category === 'draw') {
+                        if (!newsData.invitation || !newsData.cutoff) {
+                            throw new Error("Draw articles require both 'invitation' and 'cutoff' fields");
+                        }
+                        if (isNaN(parseInt(newsData.invitation)) || isNaN(parseInt(newsData.cutoff))) {
+                            throw new Error("Draw articles require numeric 'invitation' and 'cutoff' values");
+                        }
+                    }
+                    
+                    // Validate impact level
+                    const validImpactLevels = ['critical', 'high', 'moderate', 'low', 'informational'];
+                    if (newsData.impact && !validImpactLevels.includes(newsData.impact.toLowerCase())) {
+                        throw new Error("Invalid impact level: " + newsData.impact + ". Valid levels: " + validImpactLevels.join(', '));
+                    }
+                    
+                    // Validate date format
+                    if (newsData.date_of_update) {
+                        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+                        if (!dateRegex.test(newsData.date_of_update)) {
+                            throw new Error("Invalid date format: " + newsData.date_of_update + ". Expected format: YYYY-MM-DD");
+                        }
+                    }
+                    
+                    // Create cleanedData based on whether it's a draw or general article
+                    let cleanedData;
+                    
+                    if (newsData.category === 'draw') {
+                        // Draw article - include draw-specific fields, stay under 10 properties
+                        cleanedData = {
+                            headline: newsData.headline ? newsData.headline.trim() : '',
+                            summary: newsData.summary ? newsData.summary.trim() : '',
+                            category: newsData.category ? newsData.category.trim() : '',
+                            impact: newsData.impact ? newsData.impact.trim() : '',
+                            date: newsData.date_of_update ? newsData.date_of_update.trim() : '',
+                            source: newsData.source ? newsData.source.trim() : 'IRCC Official',
+                            source_url: newsData.source_url ? newsData.source_url.trim() : '',
+                            invitation: parseInt(newsData.invitation),
+                            cutoff: parseInt(newsData.cutoff),
+                            draw_type: newsData.draw_type ? newsData.draw_type.trim() : 'PNP'
+                        };
+                    } else {
+                        // General article - include all general fields
+                        cleanedData = {
+                            headline: newsData.headline ? newsData.headline.trim() : '',
+                            summary: newsData.summary ? newsData.summary.trim() : '',
+                            category: newsData.category ? newsData.category.trim() : '',
+                            impact: newsData.impact ? newsData.impact.trim() : '',
+                            date: newsData.date_of_update ? newsData.date_of_update.trim() : '',
+                            source: newsData.source ? newsData.source.trim() : 'IRCC Official',
+                            source_url: newsData.source_url ? newsData.source_url.trim() : '',
+                            program_affected: newsData.program_affected ? newsData.program_affected.trim() : '',
+                            urgency_level: newsData.urgency_level ? newsData.urgency_level.trim() : '',
+                            week_of_year: newsData.week_of_year ? parseInt(newsData.week_of_year) : null
+                        };
                     }
         
         console.log("📄 Formatted news data:", JSON.stringify(cleanedData));
