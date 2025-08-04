@@ -89,7 +89,7 @@
     <link rel="stylesheet" href="../../../../../assets/css/shared-styles.css">
     
     <style>
-        /* NEWS ARTICLE SPECIFIC STYLES */
+        /* ENHANCED DRAW ARTICLE STYLES */
         .news-header {
             background: linear-gradient(135deg, #059669 0%, #047857 100%);
             color: white;
@@ -99,109 +99,233 @@
         .news-category {
             display: inline-block;
             background: rgba(255, 255, 255, 0.2);
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-full);
             font-size: 0.875rem;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 1rem;
         }
         
         .news-title {
             font-size: 2.5rem;
-            font-weight: 700;
+            font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .news-meta {
             display: flex;
-            align-items: center;
-            gap: 2rem;
-            font-size: 0.875rem;
-            opacity: 0.8;
             flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
         
         .news-meta-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.875rem;
         }
         
         .impact-level {
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--border-radius-full);
             font-weight: 600;
+            font-size: 0.75rem;
         }
         
         .impact-critical {
-            color: #86efac;
+            background: #dc2626;
+            color: white;
         }
         
-        .news-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 0;
-        }
-        
-        .news-article {
-            background: white;
+        /* NEW: DRAW STATISTICS CARD */
+        .draw-stats-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px solid #e2e8f0;
             border-radius: var(--border-radius-xl);
             padding: 2rem;
+            margin: 2rem 0;
             box-shadow: var(--shadow-lg);
         }
         
-        .news-summary {
-            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-            border-left: 4px solid var(--green-500);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0.5rem;
-        }
-        
-        .impact-assessment {
-            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-            border-left: 4px solid var(--yellow-500);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0.5rem;
-        }
-        
-        .news-content h3 {
-            color: var(--gray-800);
-            font-size: 1.75rem;
-            font-weight: 600;
-            margin: 2rem 0 1rem;
-        }
-        
-        .news-content h4 {
-            color: var(--gray-700);
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 1.5rem 0 1rem;
-        }
-        
-        .news-content p {
-            color: var(--gray-600);
-            line-height: 1.7;
+        .draw-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
             margin-bottom: 1.5rem;
-            font-size: 1.1rem;
         }
         
-        .news-content ul, .news-content ol {
-            color: var(--gray-600);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: white;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
         }
         
-        .news-content li {
+        .stat-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: #059669;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #059669;
+            display: block;
             margin-bottom: 0.5rem;
         }
         
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .stat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* NEW: QUICK FACTS BOX */
+        .quick-facts {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: var(--border-radius-xl);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .quick-facts h3 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .quick-facts ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quick-facts li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .quick-facts li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #059669;
+            font-weight: bold;
+        }
+        
+        /* NEW: WHAT THIS MEANS FOR YOU */
+        .user-impact-section {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: var(--border-radius-xl);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .user-impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .user-type-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .user-type-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: #3b82f6;
+        }
+        
+        .user-type-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .user-type-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+        
+        /* NEW: NEXT STEPS */
+        .next-steps {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 2px solid #059669;
+            border-radius: var(--border-radius-xl);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .next-steps h3 {
+            color: #065f46;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .steps-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .steps-list li {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: var(--border-radius-lg);
+            border-left: 4px solid #059669;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #059669;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        /* ENHANCED DRAW DETAILS */
         .draw-details {
             background: var(--gray-50);
             padding: 1.5rem;
             border-radius: 0.5rem;
             margin: 2rem 0;
+            border: 2px solid #e2e8f0;
         }
         
         .draw-details ul {
@@ -211,19 +335,29 @@
         
         .draw-details li {
             margin-bottom: 0.75rem;
-            padding: 0.5rem 0;
+            padding: 0.75rem;
             border-bottom: 1px solid var(--gray-200);
+            background: white;
+            border-radius: var(--border-radius-sm);
+            transition: all 0.3s ease;
+        }
+        
+        .draw-details li:hover {
+            background: #f8fafc;
+            transform: translateX(4px);
         }
         
         .draw-details li:last-child {
             border-bottom: none;
         }
         
+        /* ENHANCED SOURCE LINKS */
         .source-links {
             background: var(--gray-50);
             padding: 1.5rem;
             border-radius: 0.5rem;
             margin: 2rem 0;
+            border: 2px solid #e2e8f0;
         }
         
         .source-links ul {
@@ -233,18 +367,32 @@
         
         .source-links li {
             margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            background: white;
+            border-radius: var(--border-radius-sm);
+            transition: all 0.3s ease;
+        }
+        
+        .source-links li:hover {
+            background: #f8fafc;
+            transform: translateX(4px);
         }
         
         .source-links a {
             color: var(--blue-600);
             text-decoration: none;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .source-links a:hover {
+            color: var(--blue-700);
             text-decoration: underline;
         }
         
+        /* ENHANCED TAGS */
         .tags-section {
             margin: 2rem 0;
         }
@@ -259,18 +407,23 @@
             font-size: 0.875rem;
             font-weight: 500;
             margin: 0.25rem;
+            transition: all 0.3s ease;
         }
         
         .news-tag:hover {
             background: var(--green-200);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
         }
         
+        /* ENHANCED SHARE SECTION */
         .share-section {
             background: var(--gray-50);
             padding: 2rem;
             border-radius: 0.5rem;
             margin: 2rem 0;
             text-align: center;
+            border: 2px solid #e2e8f0;
         }
         
         .share-buttons {
@@ -311,6 +464,7 @@
             box-shadow: var(--shadow-md);
         }
         
+        /* ENHANCED RELATED NEWS */
         .related-news {
             margin: 3rem 0;
         }
@@ -343,34 +497,17 @@
             font-size: 0.875rem;
         }
         
+        /* ENHANCED NEWSLETTER CTA */
         .newsletter-cta {
             background: linear-gradient(135deg, #059669 0%, #047857 100%);
             color: white;
             padding: 2rem;
             border-radius: var(--border-radius-xl);
+            margin: 2rem 0;
             text-align: center;
-            margin: 3rem 0;
         }
         
-        .newsletter-cta h3 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .newsletter-cta p {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1.5rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--border-radius-lg);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
+        /* MOBILE RESPONSIVENESS */
         @media (max-width: 768px) {
             .news-title {
                 font-size: 2rem;
@@ -379,12 +516,97 @@
             .news-meta {
                 flex-direction: column;
                 gap: 1rem;
-                align-items: flex-start;
+            }
+            
+            .draw-stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .user-impact-grid {
+                grid-template-columns: 1fr;
             }
             
             .share-buttons {
                 flex-direction: column;
+                align-items: center;
             }
+            
+            .share-btn {
+                width: 100%;
+                max-width: 200px;
+                text-align: center;
+            }
+        }
+        
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .draw-stats-card,
+        .quick-facts,
+        .user-impact-section,
+        .next-steps {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* ENHANCED CONTENT STYLES */
+        .news-summary {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #0ea5e9;
+            border-radius: var(--border-radius-xl);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .news-summary h3 {
+            color: #0369a1;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .impact-assessment {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 2px solid #dc2626;
+            border-radius: var(--border-radius-xl);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .impact-assessment h4 {
+            color: #991b1b;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .article-body h3 {
+            color: #059669;
+            border-bottom: 2px solid #059669;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .article-body h4 {
+            color: #047857;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .article-body p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -474,6 +696,93 @@
         <div class="container">
             <article class="news-article">
                 
+                <!-- NEW: DRAW STATISTICS CARD -->
+                <div class="draw-stats-card">
+                    <h3 style="text-align: center; color: #059669; margin-bottom: 1.5rem;">📊 Draw Statistics</h3>
+                    <div class="draw-stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon">🎯</div>
+                            <span class="stat-number">4,000</span>
+                            <div class="stat-label">ITAs Issued</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">📈</div>
+                            <span class="stat-number">475</span>
+                            <div class="stat-label">CRS Cutoff</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">🏥</div>
+                            <span class="stat-number">Health</span>
+                            <div class="stat-label">Draw Type</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">📅</div>
+                            <span class="stat-number">July 22</span>
+                            <div class="stat-label">Draw Date</div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; color: #64748b; font-size: 0.875rem; margin: 0;">
+                        <strong>Historic:</strong> Largest-ever health occupation draw in Express Entry history
+                    </p>
+                </div>
+
+                <!-- NEW: QUICK FACTS -->
+                <div class="quick-facts">
+                    <h3>⚡ Quick Facts</h3>
+                    <ul>
+                        <li>Largest health occupation draw in Express Entry history</li>
+                        <li>CRS cutoff of 475 is highly accessible for healthcare professionals</li>
+                        <li>Targets physicians, nurses, medical technologists, and other healthcare roles</li>
+                        <li>Demonstrates Canada's commitment to sector-specific immigration</li>
+                        <li>Expected to significantly impact healthcare workforce availability</li>
+                    </ul>
+                </div>
+
+                <!-- NEW: WHAT THIS MEANS FOR YOU -->
+                <div class="user-impact-section">
+                    <h3>🎯 What This Means For You</h3>
+                    <div class="user-impact-grid">
+                        <div class="user-type-card">
+                            <div class="user-type-icon">👨‍⚕️</div>
+                            <div class="user-type-title">Healthcare Professionals</div>
+                            <p>If you have a CRS score of 450+ and work in healthcare, this draw significantly improves your chances. Consider Express Entry as a viable pathway to permanent residence.</p>
+                        </div>
+                        <div class="user-type-card">
+                            <div class="user-type-icon">📋</div>
+                            <div class="user-type-title">Immigration Practitioners</div>
+                            <p>Advise healthcare professional clients to maintain active Express Entry profiles and prepare for potential sector-specific draws. Monitor healthcare occupation lists.</p>
+                        </div>
+                        <div class="user-type-card">
+                            <div class="user-type-icon">🏥</div>
+                            <div class="user-type-title">Healthcare Employers</div>
+                            <p>This draw creates opportunities to recruit international talent. The large volume of ITAs suggests increased availability of qualified healthcare professionals.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW: NEXT STEPS -->
+                <div class="next-steps">
+                    <h3>🚀 Next Steps</h3>
+                    <ul class="steps-list">
+                        <li>
+                            <div class="step-number">1</div>
+                            <strong>Check Your CRS Score:</strong> Use our CRS calculator to see if you meet the 475 threshold
+                        </li>
+                        <li>
+                            <div class="step-number">2</div>
+                            <strong>Update Your Profile:</strong> Ensure your Express Entry profile reflects your healthcare experience
+                        </li>
+                        <li>
+                            <div class="step-number">3</div>
+                            <strong>Prepare Documents:</strong> Gather all required documentation for your permanent residence application
+                        </li>
+                        <li>
+                            <div class="step-number">4</div>
+                            <strong>Monitor Future Draws:</strong> Stay updated on upcoming healthcare-specific draws
+                        </li>
+                    </ul>
+                </div>
+
                 <!-- Executive Summary -->
                 <div class="news-summary">
                     <h3>🎯 Executive Summary</h3>
@@ -583,9 +892,9 @@
                 <div class="source-links">
                     <h4>📚 Official Sources</h4>
                     <ul>
-                        <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/policies-operational-instructions-agreements/ministerial-instructions/express-entry-rounds.html" target="_blank">IRCC Express Entry Rounds of Invitations</a></li>
-                        <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry.html" target="_blank">Express Entry System Information</a></li>
-                        <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/eligibility/criteria-comprehensive-ranking-system.html" target="_blank">Comprehensive Ranking System Guide</a></li>
+                        <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/policies-operational-instructions-agreements/ministerial-instructions/express-entry-rounds.html" target="_blank">🔗 IRCC Express Entry Rounds of Invitations</a></li>
+                        <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry.html" target="_blank">🔗 Express Entry System Information</a></li>
+                        <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/eligibility/criteria-comprehensive-ranking-system.html" target="_blank">🔗 Comprehensive Ranking System Guide</a></li>
                     </ul>
                 </div>
 
