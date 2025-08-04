@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATIP Insights | Daily News | ImmiWatch</title>
-    <meta name="description" content="Latest internal documents, operational bulletins, and strategic insights from ATIP research and analysis.">
+    <meta name="description" content="Internal documents, operational bulletins, and strategic insights from Access to Information and Privacy (ATIP) research.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../../../favicon.svg?v=3">
@@ -28,7 +28,7 @@
     <style>
         /* Category Landing Page Specific Styles */
         .category-hero {
-            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
             color: white;
             padding: 3rem 0;
         }
@@ -58,89 +58,20 @@
             margin: 3rem 0;
         }
         
-        .article-card {
-            background: white;
-            border-radius: var(--border-radius-xl);
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--gray-200);
-            transition: all 0.3s ease;
-        }
-        
-        .article-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--primary-300);
-        }
-        
-        .article-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .article-date {
-            color: var(--gray-600);
-            font-size: 0.875rem;
-        }
-        
-        .article-badge {
-            background: var(--primary-100);
-            color: var(--primary-700);
-            padding: 0.25rem 0.75rem;
-            border-radius: var(--border-radius-full);
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        
-        .article-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--gray-900);
-        }
-        
-        .article-title a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        .article-title a:hover {
-            color: var(--primary-600);
-        }
-        
-        .article-excerpt {
-            color: var(--gray-600);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
-        .article-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary-600);
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 0.875rem;
-        }
-        
-        .article-link:hover {
-            color: var(--primary-700);
-        }
-        
         .empty-state {
             text-align: center;
-            padding: 4rem 2rem;
-            color: var(--gray-600);
+            padding: 3rem;
+            color: var(--gray-500);
         }
         
-        .empty-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
+        @media (max-width: 768px) {
+            .category-title {
+                font-size: 2rem;
+            }
+            
+            .category-subtitle {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -160,7 +91,7 @@
                 <li><a href="../../../" class="nav-link">Home</a></li>
                 <li><a href="../../../reports/" class="nav-link">Reports</a></li>
                 <li><a href="../../../tools/" class="nav-link">Navigators</a></li>
-                <li><a href="../../" class="nav-link active">News</a></li>
+                <li><a href="../../../news/" class="nav-link active">News</a></li>
                 <li><a href="../../../about/" class="nav-link">About</a></li>
                 <li><a href="https://intake.immigratic.com/t/eELGpk1aGhus" target="_blank" class="nav-link nav-cta">Get Started</a></li>
             </ul>
@@ -181,7 +112,7 @@
                 <span>›</span>
                 <a href="../../" class="breadcrumb-link">News</a>
                 <span>›</span>
-                <a href="../" class="breadcrumb-link">Daily</a>
+                <a href="../" class="breadcrumb-link">Daily News</a>
                 <span>›</span>
                 <span>ATIP Insights</span>
             </div>
@@ -203,56 +134,12 @@
     <section class="content-section">
         <div class="container">
             <div class="articles-grid">
-                <!-- Express Entry Health Draw Article -->
-                <article class="article-card">
-                    <div class="article-meta">
-                        <span class="article-date">📅 July 22, 2025</span>
-                        <span class="article-badge">Express Entry</span>
-                    </div>
-                    <h2 class="article-title">
-                        <a href="2025-07-22/express-entry-health-draw-4000-itas-475-crs/">Historic Express Entry Health Draw: 4,000 ITAs Issued with 475 CRS Cutoff</a>
-                    </h2>
-                    <p class="article-excerpt">
-                        IRCC conducted its largest-ever Express Entry draw targeting health occupations on July 22, 2025, issuing 4,000 ITAs with a minimum CRS score of 475. This historic draw addresses critical national labor shortages in healthcare.
-                    </p>
-                    <a href="2025-07-22/express-entry-health-draw-4000-itas-475-crs/" class="article-link">
-                        Read Full Analysis →
-                    </a>
-                </article>
-
-                <!-- Express Entry PNP-Only Draw Article -->
-                <article class="article-card">
-                    <div class="article-meta">
-                        <span class="article-date">📅 July 21, 2025</span>
-                        <span class="article-badge">Express Entry</span>
-                    </div>
-                    <h2 class="article-title">
-                        <a href="2025-07-21/express-entry-pnp-draw-202-itas-788-crs/">Express Entry PNP-Only Draw Issues 202 ITAs with 788 CRS Cutoff</a>
-                    </h2>
-                    <p class="article-excerpt">
-                        IRCC conducted an Express Entry draw specifically for Provincial Nominee Program (PNP) candidates on July 21, 2025, issuing 202 ITAs with a minimum CRS score of 788. This reflects IRCC's ongoing strategy of program-specific selections.
-                    </p>
-                    <a href="2025-07-21/express-entry-pnp-draw-202-itas-788-crs/" class="article-link">
-                        Read Full Analysis →
-                    </a>
-                </article>
-
-                <!-- Express Entry Draw #267 Article -->
-                <article class="article-card">
-                    <div class="article-meta">
-                        <span class="article-date">📅 July 17, 2025</span>
-                        <span class="article-badge">Express Entry</span>
-                    </div>
-                    <h2 class="article-title">
-                        <a href="2025-07-17/express-entry-draw-267-4750-itas/">Express Entry Draw #267: 4,750 ITAs Issued at CRS 491</a>
-                    </h2>
-                    <p class="article-excerpt">
-                        IRCC conducted Express Entry Draw #267 on July 17, 2025, issuing 4,750 Invitations to Apply (ITAs) with a minimum Comprehensive Ranking System (CRS) score of 491. This represents continued high-volume invitation activity in Canada's flagship economic immigration program.
-                    </p>
-                    <a href="2025-07-17/express-entry-draw-267-4750-itas/" class="article-link">
-                        Read Full Analysis →
-                    </a>
-                </article>
+                <!-- Empty State -->
+                <div class="empty-state">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🔍</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--gray-700);">No Articles Yet</h3>
+                    <p style="font-size: 1.1rem; max-width: 500px; margin: 0 auto;">ATIP insights and internal documents will appear here as they are published.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -261,30 +148,74 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <div class="logo-icon"></div>
-                        <div class="logo-text">
-                            <span class="logo-main">ImmiWatch</span>
-                            <span class="logo-subtitle">By Lexpoint.io</span>
-                        </div>
-                    </div>
-                    <p>Canada's most comprehensive immigration intelligence platform.</p>
-                </div>
+                <div class="footer-logo">ImmiWatch Data Studio</div>
+                <p class="footer-description">
+                    Professional Canada immigration analytics and insights. A premium product by Lexpoint.io, delivering data-driven immigration intelligence since 2025.
+                </p>
                 
                 <div class="footer-links">
-                    <a href="../../../" class="footer-link">Home</a>
                     <a href="../../../reports/" class="footer-link">Reports</a>
                     <a href="../../../tools/" class="footer-link">Navigators</a>
-                    <a href="../../" class="footer-link">Newsletter</a>
+                    <a href="https://intake.immigratic.com/t/eELGpk1aGhus" target="_blank" class="footer-link">Newsletter</a>
+                    <a href="../../../news/" class="footer-link">Immigration News</a>
+                    <a href="../../../about/" class="footer-link">About</a>
                     <a href="mailto:hi@lexpoint.io" class="footer-link">Contact</a>
                 </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 ImmiWatch. All rights reserved.</p>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 ImmiWatch Data Studio - Part of Lexpoint.io</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+                        Professional Immigration Analytics | 
+                        <a href="mailto:hi@lexpoint.io" style="color: var(--primary-400);">hi@lexpoint.io</a>
+                    </p>
+                </div>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            const body = document.body;
+
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    mobileMenuBtn.classList.toggle('active');
+                    body.classList.toggle('menu-open');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    }
+                });
+
+                // Close menu when clicking on links
+                navMenu.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
-</html> 
+</html>
