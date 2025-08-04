@@ -131,13 +131,15 @@ async function sendNewsWebhook() {
                             date: newsData.date_of_update ? newsData.date_of_update.trim() : '',
                             source: newsData.source ? newsData.source.trim() : 'IRCC Official',
                             source_url: newsData.source_url ? newsData.source_url.trim() : '',
-                            program_affected: newsData.program_affected ? newsData.program_affected.trim() : '',
+                            program_affected: Array.isArray(newsData.program_affected) ? newsData.program_affected.join(', ') : (newsData.program_affected ? newsData.program_affected.toString() : ''),
                             urgency_level: newsData.urgency_level ? newsData.urgency_level.trim() : '',
                             week_of_year: newsData.week_of_year ? parseInt(newsData.week_of_year) : null
                         };
                     }
         
         console.log("📄 Formatted news data:", JSON.stringify(cleanedData));
+        console.log("🔍 Property count:", Object.keys(cleanedData).length);
+        console.log("🔍 Properties:", Object.keys(cleanedData));
         
         // Send webhook to GitHub Repository Dispatch
         const payload = {
