@@ -96,7 +96,7 @@
         }
 
         /* Navigation */
-        nav {
+        .navbar {
             background: white;
             box-shadow: var(--shadow-sm);
             position: sticky;
@@ -105,22 +105,44 @@
             transition: all 0.3s ease;
         }
 
-        nav.scrolled {
+        .navbar.scrolled {
             box-shadow: var(--shadow-md);
         }
 
-        .nav-container {
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
         }
 
-        .nav-logo {
-            font-size: 1.5rem;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-600);
+            border-radius: 8px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--primary-600);
-            text-decoration: none;
+        }
+
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: var(--gray-500);
         }
 
         .nav-menu {
@@ -130,15 +152,70 @@
             align-items: center;
         }
 
-        .nav-menu a {
+        .nav-link {
             color: var(--gray-700);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
-        .nav-menu a:hover {
+        .nav-link:hover,
+        .nav-link.active {
             color: var(--primary-600);
+        }
+
+        .nav-cta {
+            background: var(--primary-600);
+            color: white !important;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-700);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: var(--gray-700);
+            transition: all 0.3s ease;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--gray-50);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .breadcrumb-link {
+            color: var(--primary-600);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--primary-700);
         }
 
         /* Hero Section */
@@ -431,19 +508,49 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav id="navbar">
-        <div class="container">
-            <div class="nav-container">
-                <a href="/" class="nav-logo">ImmiWatch</a>
-                <ul class="nav-menu">
-                    <li><a href="/news/">News</a></li>
-                    <li><a href="/tools/">Tools</a></li>
-                    <li><a href="/reports/">Reports</a></li>
-                    <li><a href="/about/">About</a></li>
-                </ul>
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <span class="logo-main">ImmiWatch</span>
+                    <span class="logo-subtitle">By Lexpoint.io</span>
+                </div>
             </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../../../" class="nav-link">Home</a></li>
+                <li><a href="../../../../reports/" class="nav-link">Reports</a></li>
+                <li><a href="../../../../tools/" class="nav-link">Navigators</a></li>
+                <li><a href="../../../" class="nav-link active">News</a></li>
+                <li><a href="../../../../about/" class="nav-link">About</a></li>
+                <li><a href="https://intake.immigratic.com/t/eELGpk1aGhus" target="_blank" class="nav-link nav-cta">Get Started</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <a href="../../../../" class="breadcrumb-link">Home</a>
+                <span>›</span>
+                <a href="../../../" class="breadcrumb-link">News</a>
+                <span>›</span>
+                <a href="../../" class="breadcrumb-link">Daily</a>
+                <span>›</span>
+                <a href="../" class="breadcrumb-link">System Notices</a>
+                <span>›</span>
+                <span>IRCC Officer Decision Notes</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -655,6 +762,19 @@
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    mobileMenuBtn.classList.toggle('active');
+                });
             }
         });
     </script>
