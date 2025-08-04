@@ -11,7 +11,7 @@
 // Configuration - UPDATE THIS TOKEN
 const GITHUB_TOKEN = "your_github_token_here"; // Replace with your actual token
 const GITHUB_REPO = "getguide/immiwatch";
-const WEBHOOK_URL = `https://api.github.com/repos/${GITHUB_REPO}/dispatches`;
+const WEBHOOK_URL = "https://api.github.com/repos/" + GITHUB_REPO + "/dispatches";
 
 // Main function for Airtable automation
 async function sendNewsWebhook(record) {
@@ -49,27 +49,27 @@ async function sendNewsWebhook(record) {
         const requiredFields = ['headline', 'summary', 'date_of_update', 'category', 'impact'];
         for (const field of requiredFields) {
             if (!newsData[field] || newsData[field].toString().trim() === '') {
-                throw new Error(`Missing required field: ${field}`);
+                throw new Error("Missing required field: " + field);
             }
         }
         
         // Validate category
         const validCategories = ['policy', 'draws', 'legal', 'systems', 'programs', 'documents', 'analysis', 'other'];
         if (newsData.category && !validCategories.includes(newsData.category.toLowerCase())) {
-            throw new Error(`Invalid category: ${newsData.category}. Valid categories: ${validCategories.join(', ')}`);
+            throw new Error("Invalid category: " + newsData.category + ". Valid categories: " + validCategories.join(', '));
         }
         
         // Validate impact level
         const validImpactLevels = ['critical', 'high', 'moderate', 'low', 'informational'];
         if (newsData.impact && !validImpactLevels.includes(newsData.impact.toLowerCase())) {
-            throw new Error(`Invalid impact level: ${newsData.impact}. Valid levels: ${validImpactLevels.join(', ')}`);
+            throw new Error("Invalid impact level: " + newsData.impact + ". Valid levels: " + validImpactLevels.join(', '));
         }
         
         // Validate date format
         if (newsData.date_of_update) {
             const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
             if (!dateRegex.test(newsData.date_of_update)) {
-                throw new Error(`Invalid date format: ${newsData.date_of_update}. Expected format: YYYY-MM-DD`);
+                throw new Error("Invalid date format: " + newsData.date_of_update + ". Expected format: YYYY-MM-DD");
             }
         }
         
@@ -106,7 +106,7 @@ async function sendNewsWebhook(record) {
             cleanedData.week_of_year = parseInt(cleanedData.week_of_year);
         }
         
-        console.log("📄 Formatted news data:", JSON.stringify(cleanedData, null, 2));
+        console.log("📄 Formatted news data:", JSON.stringify(cleanedData));
         
         // Send webhook to GitHub Repository Dispatch
         const payload = {
@@ -126,14 +126,14 @@ async function sendNewsWebhook(record) {
         
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`GitHub API error: ${response.status} - ${errorText}`);
+            throw new Error("GitHub API error: " + response.status + " - " + errorText);
         }
         
-        console.log(`✅ News webhook sent successfully!`);
-        console.log(`📰 Headline: ${cleanedData.headline}`);
-        console.log(`📅 Date: ${cleanedData.date_of_update}`);
-        console.log(`🏷️ Category: ${cleanedData.category}`);
-        console.log(`⚡ Impact: ${cleanedData.impact}`);
+        console.log("✅ News webhook sent successfully!");
+        console.log("📰 Headline: " + cleanedData.headline);
+        console.log("📅 Date: " + cleanedData.date_of_update);
+        console.log("🏷️ Category: " + cleanedData.category);
+        console.log("⚡ Impact: " + cleanedData.impact);
         
         return { 
             success: true, 
