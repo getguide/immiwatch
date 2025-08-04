@@ -12,8 +12,8 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Immigration Systems | Daily News | ImmiWatch</title>
-    <meta name="description" content="Latest updates on Canadian immigration systems, portal maintenance, technical updates, and digital service announcements from IRCC and provincial authorities.">
+    <title>System Notices | Daily News | ImmiWatch</title>
+    <meta name="description" content="Portal maintenance, technical updates, and system enhancement notifications from IRCC.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../../../favicon.svg?v=3">
@@ -28,7 +28,7 @@
     <style>
         /* Category Landing Page Specific Styles */
         .category-hero {
-            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
             color: white;
             padding: 3rem 0;
         }
@@ -70,7 +70,7 @@
         .article-card:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-xl);
-            border-color: var(--purple-300);
+            border-color: var(--primary-300);
         }
         
         .article-meta {
@@ -87,8 +87,8 @@
         }
         
         .article-badge {
-            background: var(--purple-100);
-            color: var(--purple-700);
+            background: var(--primary-100);
+            color: var(--primary-700);
             padding: 0.25rem 0.75rem;
             border-radius: var(--border-radius-full);
             font-size: 0.75rem;
@@ -108,7 +108,7 @@
         }
         
         .article-title a:hover {
-            color: var(--purple-600);
+            color: var(--primary-600);
         }
         
         .article-excerpt {
@@ -121,14 +121,26 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--purple-600);
+            color: var(--primary-600);
             font-weight: 600;
             text-decoration: none;
             font-size: 0.875rem;
         }
         
         .article-link:hover {
-            color: var(--purple-700);
+            color: var(--primary-700);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--gray-600);
+        }
+        
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -171,7 +183,7 @@
                 <span>›</span>
                 <a href="../" class="breadcrumb-link">Daily</a>
                 <span>›</span>
-                <span>Systems</span>
+                <span>System Notices</span>
             </div>
         </div>
     </div>
@@ -179,10 +191,10 @@
     <!-- Category Hero -->
     <section class="category-hero">
         <div class="container">
-            <span class="category-icon">💻</span>
-            <h1 class="category-title">Immigration Systems</h1>
+            <span class="category-icon">🔧</span>
+            <h1 class="category-title">System Notices</h1>
             <p class="category-subtitle">
-                Latest updates on Canadian immigration systems, portal maintenance, technical updates, and digital service announcements from IRCC and provincial authorities.
+                Portal maintenance, technical updates, and system enhancement notifications from IRCC.
             </p>
         </div>
     </section>
@@ -195,16 +207,16 @@
                 <article class="article-card">
                     <div class="article-meta">
                         <span class="article-date">📅 July 20, 2025</span>
-                        <span class="article-badge">IRCC Portal</span>
+                        <span class="article-badge">System Notice</span>
                     </div>
                     <h2 class="article-title">
-                        <a href="2025-07-20/ircc-portal-maintenance-july-26-27/">Critical IRCC Portal Maintenance: July 26-27, 2025</a>
+                        <a href="2025-07-20/ircc-portal-maintenance-july-26-27/">IRCC Portal Maintenance: July 26-27, 2025</a>
                     </h2>
                     <p class="article-excerpt">
-                        IRCC announced a major system maintenance window that will affect all online services, including application submissions and status checking. All digital immigration services will be temporarily unavailable during the maintenance period.
+                        IRCC announces scheduled maintenance for Express Entry portal and application systems. All online services will be unavailable during the maintenance window.
                     </p>
                     <a href="2025-07-20/ircc-portal-maintenance-july-26-27/" class="article-link">
-                        Read Full Details →
+                        Read Full Analysis →
                     </a>
                 </article>
             </div>
@@ -215,44 +227,28 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3 class="footer-title">ImmiWatch</h3>
-                    <p class="footer-description">
-                        Professional immigration intelligence and analytics platform providing comprehensive insights into Canadian immigration programs.
-                    </p>
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon"></div>
+                        <div class="logo-text">
+                            <span class="logo-main">ImmiWatch</span>
+                            <span class="logo-subtitle">By Lexpoint.io</span>
+                        </div>
+                    </div>
+                    <p>Canada's most comprehensive immigration intelligence platform.</p>
                 </div>
                 
-                <div class="footer-section">
-                    <h4 class="footer-heading">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="../../../reports/">Reports</a></li>
-                        <li><a href="../../../tools/">Navigators</a></li>
-                        <li><a href="../../">News</a></li>
-                        <li><a href="../../../about/">About</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 class="footer-heading">Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="../../../tools/noc-navigator.html">NOC Navigator</a></li>
-                        <li><a href="../../../tools/clb-navigator.html">CLB Navigator</a></li>
-                        <li><a href="../../digest/">Weekly Digest</a></li>
-                        <li><a href="../">Daily News</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 class="footer-heading">Contact</h4>
-                    <p class="footer-contact">
-                        Email: <a href="mailto:hi@lexpoint.io">hi@lexpoint.io</a><br>
-                        Website: <a href="https://immiwatch.ca">immiwatch.ca</a>
-                    </p>
+                <div class="footer-links">
+                    <a href="../../../" class="footer-link">Home</a>
+                    <a href="../../../reports/" class="footer-link">Reports</a>
+                    <a href="../../../tools/" class="footer-link">Navigators</a>
+                    <a href="../../" class="footer-link">Newsletter</a>
+                    <a href="mailto:hi@lexpoint.io" class="footer-link">Contact</a>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 ImmiWatch by Lexpoint.io. All rights reserved.</p>
+                <p>&copy; 2025 ImmiWatch. All rights reserved.</p>
             </div>
         </div>
     </footer>
