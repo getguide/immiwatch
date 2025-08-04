@@ -53,16 +53,16 @@ async function sendNewsWebhook() {
         // Category mapping function
         function mapCategory(airtableCategory) {
             const categoryMap = {
-                'Policy Announcement': 'policy',
-                'Program Delivery Update': 'policy',
-                'Invitation Round': 'draws',
-                'ATIP Insight / Internal Docs': 'analysis',
-                'Legal Decision / Jurisprudence': 'legal',
-                'System / Portal Notice': 'systems',
-                'Form / Document Change': 'documents',
-                'Deadline / Expiry Alert': 'other',
-                'Statistical / Trend Report': 'analysis',
-                'Scam / Fraud Alert': 'other',
+                'Policy Announcement': 'policy-announcements',
+                'Program Delivery Update': 'program-delivery',
+                'Invitation Round': 'invitation-rounds',
+                'ATIP Insight / Internal Docs': 'atip-insights',
+                'Legal Decision / Jurisprudence': 'legal-decisions',
+                'System / Portal Notice': 'system-notices',
+                'Form / Document Change': 'form-changes',
+                'Deadline / Expiry Alert': 'deadline-alerts',
+                'Statistical / Trend Report': 'statistical-reports',
+                'Scam / Fraud Alert': 'scam-alerts',
                 'Other': 'other'
             };
             
@@ -75,7 +75,7 @@ async function sendNewsWebhook() {
         }
         
         // Validate category (now using our mapped categories)
-        const validCategories = ['policy', 'draws', 'legal', 'systems', 'programs', 'documents', 'analysis', 'other'];
+        const validCategories = ['policy-announcements', 'program-delivery', 'invitation-rounds', 'atip-insights', 'legal-decisions', 'system-notices', 'form-changes', 'deadline-alerts', 'statistical-reports', 'scam-alerts', 'other'];
         if (newsData.category && !validCategories.includes(newsData.category.toLowerCase())) {
             throw new Error("Invalid category: " + newsData.category + ". Valid categories: " + validCategories.join(', '));
         }
