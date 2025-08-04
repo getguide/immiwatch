@@ -196,8 +196,8 @@ class HttpClient {
     
     async makeRequest(url, data, options = {}) {
         const defaultOptions = {
-            method: 'POST',
-            headers: {
+        method: 'POST',
+        headers: {
                 'Content-Type': 'application/json',
                 'User-Agent': 'ImmiWatch-Airtable-Webhook/1.0',
                 'X-Webhook-Secret': CONFIG.WEBHOOK_SECRET
@@ -489,7 +489,7 @@ async function handleAirtableWebhook(airtableData) {
 
 // Export for use in different environments
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
+module.exports = {
         handleAirtableWebhook,
         AirtableWebhookProcessor,
         Logger,
