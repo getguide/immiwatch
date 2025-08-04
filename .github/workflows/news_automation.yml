@@ -47,7 +47,24 @@ jobs:
         if: steps.article_type.outputs.is_draw == 'true'
         id: draw_automation
         run: |
-          python scripts/draw_automation.py
+          python scripts/draw_automation.py > draw_output.txt 2>&1
+          if [ $? -eq 0 ]; then
+            echo "success=true" >> $GITHUB_OUTPUT
+            if grep -q "article_url=" draw_output.txt; then
+              ARTICLE_URL=$(grep "article_url=" draw_output.txt | cut -d'=' -f2)
+              echo "article_url=$ARTICLE_URL" >> $GITHUB_OUTPUT
+            fi
+            if grep -q "title=" draw_output.txt; then
+              TITLE=$(grep "title=" draw_output.txt | cut -d'=' -f2)
+              echo "title=$TITLE" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "success=false" >> $GITHUB_OUTPUT
+            if grep -q "error=" draw_output.txt; then
+              ERROR=$(grep "error=" draw_output.txt | cut -d'=' -f2)
+              echo "error=$ERROR" >> $GITHUB_OUTPUT
+            fi
+          fi
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           
@@ -55,9 +72,26 @@ jobs:
         if: steps.article_type.outputs.is_draw == 'false'
         id: news_automation
         run: |
-          python scripts/news_automation.py
+          python scripts/news_automation.py > news_output.txt 2>&1
+          if [ $? -eq 0 ]; then
+            echo "success=true" >> $GITHUB_OUTPUT
+            if grep -q "article_url=" news_output.txt; then
+              ARTICLE_URL=$(grep "article_url=" news_output.txt | cut -d'=' -f2)
+              echo "article_url=$ARTICLE_URL" >> $GITHUB_OUTPUT
+            fi
+            if grep -q "title=" news_output.txt; then
+              TITLE=$(grep "title=" news_output.txt | cut -d'=' -f2)
+              echo "title=$TITLE" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "success=false" >> $GITHUB_OUTPUT
+            if grep -q "error=" news_output.txt; then
+              ERROR=$(grep "error=" news_output.txt | cut -d'=' -f2)
+              echo "error=$ERROR" >> $GITHUB_OUTPUT
+            fi
+          fi
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL || '' }}
           
       - name: 📝 Commit and Push Changes
         if: steps.draw_automation.outputs.success == 'true' || steps.news_automation.outputs.success == 'true'
