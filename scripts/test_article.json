@@ -1,0 +1,14 @@
+{
+  "headline": "New Express Entry Draw Targets Healthcare Professionals with 3,500 ITAs",
+  "summary": "IRCC announces a new Express Entry draw specifically targeting healthcare professionals, issuing 3,500 Invitations to Apply (ITAs) with a CRS cutoff of 485 points. This sector-specific draw addresses critical healthcare workforce shortages across Canada.",
+  "program_affected": ["Express Entry", "Work Permit", "Healthcare Occupations"],
+  "impact": "high",
+  "urgency_level": "informational",
+  "week_of_year": 31,
+  "date_of_update": "2025-07-29",
+  "source_url": "https://ircc.gc.ca/english/immigrate/express-entry/draws.asp",
+  "source": "IRCC",
+  "category": "draws",
+  "cutoff": 485,
+  "invitation": 3500
+} 
