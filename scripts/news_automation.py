@@ -993,14 +993,16 @@ def main():
     try:
         # Check if running in GitHub Actions (with repository dispatch)
         if os.getenv('GITHUB_EVENT_PATH'):
-            # Read from GitHub event
+            # Running in GitHub Actions
             with open(os.getenv('GITHUB_EVENT_PATH'), 'r') as f:
                 event_data = json.load(f)
+            
+            print("📊 Full event data: " + json.dumps(event_data, indent=2))
             
             # Extract data from GitHub event
             if event_data.get('event_type') == 'news_article':
                 json_data = event_data.get('client_payload', {})
-                print(f"📥 Received news data from GitHub: {json.dumps(json_data, indent=2)}")
+                print("📥 Received news data: " + json.dumps(json_data, indent=2))
             else:
                 print(f"❌ Unexpected event type: {event_data.get('event_type')}")
                 sys.exit(1)
