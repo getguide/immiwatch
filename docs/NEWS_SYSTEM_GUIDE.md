@@ -1,44 +1,93 @@
-# 📰 ImmiWatch Individual News System Guide
+# 📰 ImmiWatch News System Guide
 
 ## 🎯 STRATEGIC OVERVIEW
 
-### Why Individual News Pages?
-- **SEO Authority**: Each news item becomes independently searchable and rankable
-- **Professional Reference**: Immigration practitioners can bookmark/share specific updates
-- **Content Longevity**: News becomes evergreen resource vs. buried in newsletters
-- **User Experience**: Direct access to specific immigration information
-- **Analytics Insights**: Track which news types drive most engagement
+### Dual News System Architecture
+ImmiWatch operates a sophisticated dual-news system:
+
+1. **Daily News** (`/news/daily/`) - Individual news articles published as they occur
+2. **Weekly Digest** (`/news/digest/`) - Comprehensive weekly summaries of all developments
+
+### Why This Dual Approach?
+- **Daily News**: Immediate coverage for time-sensitive developments
+- **Weekly Digest**: Comprehensive analysis and strategic insights
+- **SEO Authority**: Individual articles rank independently
+- **Professional Reference**: Immigration practitioners can bookmark specific updates
+- **Content Longevity**: News becomes evergreen resource
+- **User Experience**: Both quick updates and deep analysis available
 
 ---
 
 ## 🏗️ SYSTEM ARCHITECTURE
 
-### URL Structure
-```
-/immigration-news/[category]/[date]/[slug]/
+### Current URL Structure
 
-Pattern: /immigration-news/{category}/{YYYY-MM-DD}/{descriptive-slug}/
+#### Daily News Structure
+```
+/news/daily/[category]/[date]/[slug]/
+
+Examples:
+/news/daily/draws/2025-07-22/express-entry-health-draw-4000-itas-475-crs/
+/news/daily/policy/2025-07-23/ontario-premier-ford-work-permits-asylum-seekers/
+/news/daily/legal/2025-07-23/saskatchewan-pnp-misrepresentation-unauthorized-representative/
 ```
 
-### Categories & Examples
-| Category | Description | Example URL |
-|----------|-------------|-------------|
-| `policy` | Government announcements, program changes | `/immigration-news/policy/2025-01-27/express-entry-cap-increase/` |
-| `draws` | Invitation rounds, CRS updates | `/immigration-news/draws/2025-01-21/pnp-draw-2100-itas/` |
-| `programs` | PNP updates, federal program changes | `/immigration-news/programs/2025-01-20/ontario-pnp-tech-stream-update/` |
-| `legal` | Court decisions, regulatory updates | `/immigration-news/legal/2025-01-15/federal-court-cec-decision/` |
-| `systems` | Portal updates, technical changes | `/immigration-news/systems/2025-01-25/ircc-portal-maintenance-update/` |
-| `documents` | Form updates, requirement changes | `/immigration-news/documents/2025-01-18/new-medical-exam-requirements/` |
-| `analysis` | ATIP insights, data analysis | `/immigration-news/analysis/2025-01-22/crs-score-trends-q1-2025/` |
-| `other` | Miscellaneous updates | `/immigration-news/other/2025-01-19/immigration-conference-highlights/` |
+#### Weekly Digest Structure
+```
+/news/digest/week-[week]-[year]/
+
+Examples:
+/news/digest/week-30-2025/
+/news/digest/week-29-2025/
+/news/digest/week-28-2025/
+```
+
+### News Categories (8 Total)
+
+| Category | Icon | Description | Current Status |
+|----------|------|-------------|----------------|
+| `policy` | 📢 | Government policy changes, program updates, regulatory modifications | **Active** (3 Articles) |
+| `draws` | 🎯 | Express Entry draws, PNP invitations, program-specific selections | **Active** (3 Articles) |
+| `programs` | 🏛️ | Provincial nominee program changes, federal program modifications | Coming Soon |
+| `legal` | ⚖️ | Federal Court rulings, tribunal decisions, legal precedents | **Active** (1 Article) |
+| `systems` | 🔧 | Portal maintenance, technical updates, system enhancements | **Active** (1 Article) |
+| `documents` | 📄 | New forms, document updates, requirement changes | Coming Soon |
+| `analysis` | 📊 | Data analysis, trend reports, strategic insights | Coming Soon |
+| `other` | 📋 | Miscellaneous immigration news, industry developments | Coming Soon |
 
 ---
 
-## 📋 UNIVERSAL NEWS TEMPLATE STRUCTURE
+## 📋 DAILY NEWS WORKFLOW
 
-### Required Components (Every Article Must Have)
+### When Publishing Individual News Article
 
-#### 1. **META DATA**
+#### 1. **Create Article Structure**
+```
+/news/daily/[category]/[YYYY-MM-DD]/[descriptive-slug]/
+└── index.html
+```
+
+#### 2. **Update Required Pages**
+
+**A. Latest News Section** (`/news/daily/index.html`)
+- Add to "Latest News" section (top 3 most recent articles)
+- Include: Category badge, title, date, impact level, summary, read more link
+
+**B. Category Count Update** (`/news/daily/index.html`)
+- Update the category card count (e.g., "3 Articles" → "4 Articles")
+- Located in the categories grid section
+
+**C. Main News Page Recent News** (`/news/index.html`)
+- Update "🔥 Recent News" section in the right sidebar
+- Include: Title, category, date
+
+**D. Category Index Page** (`/news/daily/[category]/index.html`)
+- Add to the category's article list
+- Update category-specific metadata
+
+#### 3. **Article Content Requirements**
+
+**Meta Data Structure:**
 ```html
 <!-- DYNAMIC META TAGS -->
 <title>[News Title] | ImmiWatch Immigration News</title>
@@ -49,31 +98,15 @@ Pattern: /immigration-news/{category}/{YYYY-MM-DD}/{descriptive-slug}/
 <meta name="author" content="ImmiWatch Editorial Team">
 <meta name="publish-date" content="YYYY-MM-DD">
 <meta name="article-category" content="[Category Name]">
-<meta name="article-impact" content="[High/Medium/Low]">
+<meta name="article-impact" content="[High/Medium/Low/Critical/Important]">
 <meta name="article-source" content="[IRCC Official/Court Decision/etc.]">
 ```
 
-#### 2. **STRUCTURED DATA**
-```json
-{
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    "headline": "[Article Title]",
-    "description": "[Article Description]",
-    "datePublished": "YYYY-MM-DDTHH:MM:SSZ",
-    "author": {"@type": "Organization", "name": "ImmiWatch Editorial Team"},
-    "publisher": {"@type": "Organization", "name": "ImmiWatch"},
-    "mainEntityOfPage": "[Full URL]",
-    "articleSection": "[Category]",
-    "keywords": ["keyword1", "keyword2", "keyword3"]
-}
-```
-
-#### 3. **CONTENT SECTIONS**
+**Content Sections:**
 1. **Breadcrumb Navigation** - Clear hierarchy
-2. **Category Badge** - Visual category identification
+2. **Category Badge** - Visual category identification (📢 Policy, 🎯 Draws, etc.)
 3. **Article Title** - Clear, descriptive, SEO-optimized
-4. **Meta Information** - Date, author, impact level, source, reading time
+4. **Meta Information** - Date, impact level, source, reading time
 5. **Executive Summary** - 2-3 sentence key takeaway
 6. **Impact Assessment** - Professional analysis of implications
 7. **Key Changes/Points** - Bulleted list of main items
@@ -84,6 +117,61 @@ Pattern: /immigration-news/{category}/{YYYY-MM-DD}/{descriptive-slug}/
 12. **Related News** - Cross-linking to relevant articles
 13. **Newsletter CTA** - Conversion to newsletter subscription
 
+#### 4. **Impact Level Classification**
+- **Critical Impact** (Red) - Major policy changes, system-wide effects
+- **Important Impact** (Orange) - Significant program changes
+- **High Impact** (Red) - Major draws, legal decisions
+- **Medium Impact** (Yellow) - Program-specific updates
+- **Low Impact** (Green) - Minor administrative changes
+
+---
+
+## 📧 WEEKLY DIGEST WORKFLOW
+
+### When Publishing Weekly Newsletter
+
+#### 1. **Create Newsletter Structure**
+```
+/news/digest/week-[week]-[year]/
+└── index.html
+```
+
+#### 2. **Update Required Pages**
+
+**A. Main Digest Page** (`/news/digest/index.html`)
+- Add to "Weekly Intelligence Reports" section
+- Include: Week number, date range, title, summary, highlights
+- Update "Newsletters Published" count in hero stats
+
+**B. Newsletter Content Structure**
+- **Hero Section**: Week number, date range, main title
+- **Key Highlights**: Bulleted list of main developments
+- **Category Sections**: Organized by news type (Policy, Draws, Legal, etc.)
+- **Individual News Summaries**: Brief summaries with links to full articles
+- **Strategic Analysis**: Professional insights and implications
+
+#### 3. **Newsletter Content Requirements**
+
+**Meta Data:**
+```html
+<title>Week [XX] • [Date Range] | ImmiWatch Weekly</title>
+<meta name="description" content="[Week summary with key highlights]">
+<meta name="keywords" content="[relevant, immigration, keywords, separated, by, commas]">
+```
+
+**Content Sections:**
+1. **Hero Section** - Week number, date range, main title
+2. **Key Highlights** - Bulleted list of main developments
+3. **Category Sections** - Organized by news type:
+   - 📢 Policy Announcements
+   - 🎯 Invitation Rounds  
+   - ⚖️ Legal Decisions
+   - 🔧 System Updates
+   - 📊 Analysis & Insights
+4. **Individual News Summaries** - Brief summaries with links to full articles
+5. **Strategic Analysis** - Professional insights and implications
+6. **Related Resources** - Links to relevant reports and tools
+
 ---
 
 ## 🎨 DESIGN STANDARDS
@@ -91,9 +179,19 @@ Pattern: /immigration-news/{category}/{YYYY-MM-DD}/{descriptive-slug}/
 ### Visual Hierarchy
 - **Header**: Blue gradient with clear category and title
 - **Content**: Clean, readable typography with clear sections
-- **Impact Levels**: Color-coded (Red=High, Yellow=Medium, Green=Low)
+- **Impact Levels**: Color-coded badges
 - **Sources**: Blue background for official links
 - **Key Points**: Checkmark list for easy scanning
+
+### Category Icons & Colors
+- **Policy** 📢 - Blue (#1e40af)
+- **Draws** 🎯 - Green (#059669)
+- **Legal** ⚖️ - Purple (#7c3aed)
+- **Systems** 🔧 - Gray (#6b7280)
+- **Programs** 🏛️ - Orange (#ea580c)
+- **Documents** 📄 - Blue (#3b82f6)
+- **Analysis** 📊 - Teal (#0d9488)
+- **Other** 📋 - Gray (#6b7280)
 
 ### Mobile Optimization
 - Responsive design for all devices
@@ -120,84 +218,31 @@ Pattern: /immigration-news/{category}/{YYYY-MM-DD}/{descriptive-slug}/
 5. **External Linking**: Authoritative government sources only
 
 ### Content Length
-- **Minimum**: 400 words for search visibility
-- **Target**: 600-800 words for comprehensive coverage
-- **Maximum**: 1200 words to maintain readability
+- **Daily News**: 400-800 words for comprehensive coverage
+- **Weekly Digest**: 1500-2500 words for complete weekly analysis
+- **News Summaries**: 100-150 words per news item in digest
 
 ---
 
-## 🔄 NEWSLETTER INTEGRATION
+## 🔄 INTEGRATION WORKFLOW
 
-### Weekly Newsletter Links
-Each weekly newsletter should include:
-```html
-<h3>Policy Announcements</h3>
-<div class="news-item">
-    <h4><a href="/immigration-news/policy/2025-01-27/express-entry-changes/">Express Entry Changes: New CRS Minimum 475</a></h4>
-    <p class="summary">IRCC announces significant changes effective February 1...</p>
-    <a href="/immigration-news/policy/2025-01-27/express-entry-changes/" class="read-more">Read Full Analysis →</a>
-</div>
-```
+### Daily News → Weekly Digest Integration
+1. **Collect Daily News**: Gather all news from the week
+2. **Categorize**: Organize by news type (Policy, Draws, Legal, etc.)
+3. **Summarize**: Create brief summaries for digest inclusion
+4. **Link**: Include links to full articles in digest
+5. **Analyze**: Add strategic analysis and implications
+6. **Publish**: Release weekly digest with complete coverage
 
-### Benefits
-- Newsletter becomes gateway to detailed analysis
-- Individual articles get traffic from newsletter
-- Users can choose summary vs. deep-dive
-- Better analytics on content performance
+### Cross-Referencing
+- **Daily News** → Link to related weekly digests
+- **Weekly Digest** → Link to individual daily news articles
+- **Category Pages** → Link to both daily news and relevant digests
+- **Main News Page** → Show both latest news and latest digest
 
 ---
 
-## 📊 IMPLEMENTATION STRATEGY
-
-### Phase 1: Template & Structure (Week 1)
-- [x] Create universal template
-- [ ] Set up directory structure
-- [ ] Test template with sample news
-- [ ] Validate SEO elements
-
-### Phase 2: Content Migration (Week 2)
-- [ ] Extract individual news from existing newsletters
-- [ ] Create individual articles for Week 28 & 29 news
-- [ ] Update newsletter pages to link to individual articles
-- [ ] Set up proper redirects
-
-### Phase 3: Integration (Week 3)
-- [ ] Update newsletter template to link to individual news
-- [ ] Create news archive/browse pages
-- [ ] Implement tag-based filtering
-- [ ] Set up RSS feed for news
-
-### Phase 4: Enhancement (Week 4)
-- [ ] Advanced search functionality
-- [ ] Related content algorithms
-- [ ] Social sharing optimization
-- [ ] Analytics tracking setup
-
----
-
-## 🎯 IMPACT ASSESSMENT FRAMEWORK
-
-### High Impact (Red)
-- Major policy changes affecting large populations
-- Express Entry draw changes
-- Program suspensions/launches
-- Court decisions affecting system-wide processes
-
-### Medium Impact (Yellow)
-- Program-specific updates
-- Document requirement changes
-- Processing time updates
-- Regional program changes
-
-### Low Impact (Green)
-- Technical system updates
-- Form updates
-- Minor administrative changes
-- Clarification announcements
-
----
-
-## 📈 SUCCESS METRICS
+## 📊 SUCCESS METRICS
 
 ### SEO Performance
 - Individual article ranking for specific keywords
@@ -223,25 +268,30 @@ Each weekly newsletter should include:
 
 ### File Structure
 ```
-/immigration-news/
-├── policy/
-│   └── YYYY-MM-DD/
-│       └── article-slug/
-│           └── index.html
-├── draws/
-├── programs/
-├── legal/
-├── systems/
-├── documents/
-├── analysis/
-└── other/
+/news/
+├── daily/
+│   ├── index.html
+│   ├── policy/
+│   │   ├── index.html
+│   │   └── YYYY-MM-DD/
+│   │       └── article-slug/
+│   │           └── index.html
+│   ├── draws/
+│   ├── legal/
+│   ├── systems/
+│   └── [other-categories]/
+├── digest/
+│   ├── index.html
+│   └── week-XX-YYYY/
+│       └── index.html
+└── index.html
 ```
 
 ### Naming Conventions
 - **Dates**: YYYY-MM-DD format
 - **Slugs**: lowercase, hyphen-separated, descriptive
 - **Files**: Always `index.html` for clean URLs
-- **Images**: `/assets/images/news/YYYY-MM-DD-article-slug.jpg`
+- **Images**: `/assets/images/news/YYYY-MM-DD-article-slug.svg`
 
 ### Automation Opportunities
 - Auto-generate meta dates
@@ -251,14 +301,42 @@ Each weekly newsletter should include:
 
 ---
 
-## 🚀 NEXT STEPS
+## 🚀 IMPLEMENTATION CHECKLIST
 
-1. **Approve Strategy**: Confirm approach and timeline
-2. **Create Sample Articles**: Build 3-5 examples from recent newsletters
-3. **Update Newsletter Template**: Add linking to individual articles
-4. **Launch Beta**: Test with current newsletter audience
-5. **Full Implementation**: Roll out complete system
+### For Daily News Publication
+- [ ] Create article directory structure
+- [ ] Write article content with proper meta data
+- [ ] Update "Latest News" section in `/news/daily/index.html`
+- [ ] Update category count in `/news/daily/index.html`
+- [ ] Update "Recent News" section in `/news/index.html`
+- [ ] Update category index page if exists
+- [ ] Test all links and navigation
+- [ ] Verify SEO meta data
+- [ ] Check mobile responsiveness
+
+### For Weekly Digest Publication
+- [ ] Create digest directory structure
+- [ ] Write digest content with proper meta data
+- [ ] Update "Weekly Intelligence Reports" in `/news/digest/index.html`
+- [ ] Update newsletter count in `/news/digest/index.html`
+- [ ] Include links to all relevant daily news articles
+- [ ] Add strategic analysis and implications
+- [ ] Test all links and navigation
+- [ ] Verify SEO meta data
+- [ ] Check mobile responsiveness
 
 ---
 
-This system will position ImmiWatch as Canada's definitive source for immigration news, creating massive SEO value while providing unparalleled professional resources for immigration practitioners and candidates. 
+## 🎯 NEXT STEPS
+
+1. **Complete Category Pages**: Create index pages for all 8 categories
+2. **Enhance Cross-Linking**: Improve internal linking between daily news and digests
+3. **Add Search Functionality**: Implement search across all news content
+4. **Social Media Integration**: Auto-post to social platforms
+5. **Analytics Tracking**: Set up detailed analytics for news performance
+6. **RSS Feed**: Create RSS feed for news updates
+7. **Email Integration**: Connect with newsletter email system
+
+---
+
+This comprehensive system positions ImmiWatch as Canada's definitive source for immigration news, creating massive SEO value while providing unparalleled professional resources for immigration practitioners and candidates. 
