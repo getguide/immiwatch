@@ -26,7 +26,7 @@ jobs:
         run: |
           # Read the event data to determine category
           if [ -f "$GITHUB_EVENT_PATH" ]; then
-            CATEGORY=$(jq -r '.client_payload.data.category // .client_payload.data.draw_type // "general"' "$GITHUB_EVENT_PATH")
+            CATEGORY=$(jq -r '.client_payload.category // .client_payload.draw_type // "general"' "$GITHUB_EVENT_PATH")
             echo "category=$CATEGORY" >> $GITHUB_OUTPUT
             
             # Check if this is a draw article
