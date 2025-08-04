@@ -526,26 +526,64 @@ class DrawAutomationSystem:
         with open(self.daily_index_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # Create new latest news item
-        new_latest_news = f"""
-                    <a href="daily/draws/{analysis['date']}/{self.create_slug(analysis['title'])}/" class="latest-news-item">
-                        <div class="latest-news-meta">
-                            <span class="latest-news-date">{self.format_date(analysis['date'])}</span>
-                            <span class="latest-news-category">Draws</span>
+        # Create impact class
+        impact_class = 'impact-high' if analysis['impact_level'].lower() == 'high' else 'impact-important'
+        
+        # Create new news card in the correct format
+        new_news_card = f"""                <!-- {analysis['title']} -->
+                <article class="news-card">
+                    <div class="news-card-header">
+                        <span class="news-category-badge category-invitation-rounds">🎯 Invitation Rounds</span>
+                        <h3><a href="draws/{analysis['date']}/{self.create_slug(analysis['title'])}/">{analysis['title']}</a></h3>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span>{self.format_date(analysis['date'])}</span>
+                            <span>•</span>
+                            <span><span class="impact-indicator {impact_class}"></span>{analysis['impact_level'].title()} Impact</span>
                         </div>
-                        <h3 class="latest-news-title">{analysis['title']}</h3>
-                        <p class="latest-news-excerpt">
-                            IRCC conducted an Express Entry draw targeting {analysis['draw_type']} candidates, issuing {analysis['itas']:,} ITAs with a minimum CRS score of {analysis['crs']}.
+                        <p class="summary">
+                            IRCC conducted an Express Entry draw targeting {analysis['draw_type']} candidates, issuing {analysis['itas']:,} ITAs with a minimum CRS score of {analysis['crs']}. This program-specific draw continues IRCC's strategy of targeted immigration selection.
                         </p>
-                    </a>
-                </div>
-            </div>
-        </section>
+                    </div>
+                    <div class="news-card-footer">
+                        <a href="draws/{analysis['date']}/{self.create_slug(analysis['title'])}/" class="read-more-btn">Read Full Analysis →</a>
+                    </div>
+                </article>
 """
         
-        # Find the end of the latest news section and insert new item
-        pattern = r'(</div>\s*</div>\s*</section>)'
-        content = re.sub(pattern, new_latest_news, content, count=1)
+        # Find the news-grid div and insert at the beginning
+        news_grid_pattern = r'(<div class="news-grid">)\s*\n'
+        
+        if re.search(news_grid_pattern, content):
+            # Insert the new card at the beginning of news-grid
+            content = re.sub(news_grid_pattern, f'\\1\n{new_news_card}\n', content)
+            
+            # Now remove the oldest (4th) news card if it exists
+            # Count existing news cards
+            news_cards = re.findall(r'<article class="news-card">', content)
+            if len(news_cards) > 3:
+                # Find and remove the 4th news card
+                card_count = 0
+                lines = content.split('\n')
+                new_lines = []
+                removing = False
+                
+                for line in lines:
+                    if '<article class="news-card">' in line:
+                        card_count += 1
+                        if card_count == 4:
+                            removing = True
+                    
+                    if not removing:
+                        new_lines.append(line)
+                    
+                    if removing and '</article>' in line:
+                        removing = False
+                        # Skip the empty line after the article
+                        continue
+                
+                content = '\n'.join(new_lines)
         
         # Update the draws count
         current_count = re.search(r'Invitation Rounds.*?(\d+)\s*Articles', content)
