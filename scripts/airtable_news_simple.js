@@ -50,7 +50,31 @@ async function sendNewsWebhook() {
             }
         }
         
-        // Validate category
+        // Category mapping function
+        function mapCategory(airtableCategory) {
+            const categoryMap = {
+                'Policy Announcement': 'policy',
+                'Program Delivery Update': 'policy',
+                'Invitation Round': 'draws',
+                'ATIP Insight / Internal Docs': 'analysis',
+                'Legal Decision / Jurisprudence': 'legal',
+                'System / Portal Notice': 'systems',
+                'Form / Document Change': 'documents',
+                'Deadline / Expiry Alert': 'other',
+                'Statistical / Trend Report': 'analysis',
+                'Scam / Fraud Alert': 'other',
+                'Other': 'other'
+            };
+            
+            return categoryMap[airtableCategory] || 'other';
+        }
+        
+        // Map the category to our system format
+        if (newsData.category) {
+            newsData.category = mapCategory(newsData.category);
+        }
+        
+        // Validate category (now using our mapped categories)
         const validCategories = ['policy', 'draws', 'legal', 'systems', 'programs', 'documents', 'analysis', 'other'];
         if (newsData.category && !validCategories.includes(newsData.category.toLowerCase())) {
             throw new Error("Invalid category: " + newsData.category + ". Valid categories: " + validCategories.join(', '));
