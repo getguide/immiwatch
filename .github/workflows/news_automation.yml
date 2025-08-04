@@ -47,22 +47,36 @@ jobs:
         if: steps.article_type.outputs.is_draw == 'true'
         id: draw_automation
         run: |
+          echo "🔍 Starting draw automation..."
           python scripts/draw_automation.py > draw_output.txt 2>&1
-          if [ $? -eq 0 ]; then
+          EXIT_CODE=$?
+          echo "📄 Full output:"
+          cat draw_output.txt
+          echo "🔍 Exit code: $EXIT_CODE"
+          
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "✅ Draw automation succeeded"
             echo "success=true" >> $GITHUB_OUTPUT
             if grep -q "article_url=" draw_output.txt; then
               ARTICLE_URL=$(grep "article_url=" draw_output.txt | cut -d'=' -f2)
               echo "article_url=$ARTICLE_URL" >> $GITHUB_OUTPUT
+              echo "📄 Article URL: $ARTICLE_URL"
             fi
             if grep -q "title=" draw_output.txt; then
               TITLE=$(grep "title=" draw_output.txt | cut -d'=' -f2)
               echo "title=$TITLE" >> $GITHUB_OUTPUT
+              echo "📝 Title: $TITLE"
             fi
           else
+            echo "❌ Draw automation failed"
             echo "success=false" >> $GITHUB_OUTPUT
             if grep -q "error=" draw_output.txt; then
               ERROR=$(grep "error=" draw_output.txt | cut -d'=' -f2)
               echo "error=$ERROR" >> $GITHUB_OUTPUT
+              echo "🚨 Error: $ERROR"
+            else
+              echo "error=Unknown error in draw automation" >> $GITHUB_OUTPUT
+              echo "🚨 Unknown error in draw automation"
             fi
           fi
         env:
