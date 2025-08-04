@@ -585,11 +585,14 @@ class DrawAutomationSystem:
                 
                 content = '\n'.join(new_lines)
         
-        # Update the draws count
-        current_count = re.search(r'Invitation Rounds.*?(\d+)\s*Articles', content)
-        if current_count:
-            new_count = int(current_count.group(1)) + 1
-            content = re.sub(r'(Invitation Rounds.*?)(\d+)(\s*Articles)', f'\\g<1>{new_count}\\g<3>', content)
+        # Update the draws count in the category card
+        # Find the draws category card and update its count
+        draws_card_pattern = r'(<a href="draws/"[^>]*>.*?<span class="category-count">)(\d+)(\s*Articles</span>)'
+        current_count_match = re.search(draws_card_pattern, content, re.DOTALL)
+        if current_count_match:
+            current_count = int(current_count_match.group(2))
+            new_count = current_count + 1
+            content = re.sub(draws_card_pattern, f'\\g<1>{new_count}\\g<3>', content, flags=re.DOTALL)
         
         # Write updated content
         with open(self.daily_index_path, 'w', encoding='utf-8') as f:
