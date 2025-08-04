@@ -9,13 +9,18 @@
 // Configuration
 const CONFIG = {
     // Webhook endpoint for our automation system
-    AUTOMATION_WEBHOOK_URL: 'https://your-server.com/webhook/news',
+    // UPDATE THIS URL to your actual webhook handler URL
+    AUTOMATION_WEBHOOK_URL: 'https://your-webhook-server.com/webhook/news',
+    
+    // Webhook secret for security (generate a secure random key)
+    // UPDATE THIS SECRET to a secure random string
+    WEBHOOK_SECRET: 'your-secure-webhook-secret-here',
     
     // Slack webhook for notifications (optional)
     SLACK_WEBHOOK_URL: 'https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK',
     
     // Logging configuration
-    LOG_LEVEL: 'DEBUG', // DEBUG, INFO, WARN, ERROR
+    LOG_LEVEL: 'INFO', // DEBUG, INFO, WARN, ERROR
     
     // Retry configuration
     MAX_RETRIES: 3,
@@ -194,7 +199,8 @@ class HttpClient {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'User-Agent': 'ImmiWatch-Airtable-Webhook/1.0'
+                'User-Agent': 'ImmiWatch-Airtable-Webhook/1.0',
+                'X-Webhook-Secret': CONFIG.WEBHOOK_SECRET
             },
             timeout: 30000 // 30 seconds
         };
