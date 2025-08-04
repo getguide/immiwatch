@@ -112,17 +112,23 @@ async function sendNewsWebhook() {
                         impact: newsData.impact ? newsData.impact.trim() : '',
                         date: newsData.date_of_update ? newsData.date_of_update.trim() : '',
                         source: newsData.source ? newsData.source.trim() : 'IRCC Official',
+                        source_url: newsData.source_url ? newsData.source_url.trim() : '',
                         program_affected: newsData.program_affected ? newsData.program_affected.trim() : '',
                         urgency_level: newsData.urgency_level ? newsData.urgency_level.trim() : '',
-                        week_of_year: newsData.week_of_year ? parseInt(newsData.week_of_year) : null,
-                        source_url: newsData.source_url ? newsData.source_url.trim() : ''
+                        week_of_year: newsData.week_of_year ? parseInt(newsData.week_of_year) : null
                     };
                     
-                    // Add draw-specific fields if this is a draw article
+                    // Add draw-specific fields if this is a draw article (replaces some general fields)
                     if (newsData.category === 'draw' && newsData.invitation && newsData.cutoff) {
+                        // Remove general fields to stay under 10-property limit
+                        delete cleanedData.program_affected;
+                        delete cleanedData.urgency_level;
+                        delete cleanedData.week_of_year;
+                        
+                        // Add draw-specific fields
                         cleanedData.invitation = parseInt(newsData.invitation);
                         cleanedData.cutoff = parseInt(newsData.cutoff);
-                        cleanedData.draw_type = newsData.draw_type ? newsData.draw_type.trim() : 'General';
+                        cleanedData.draw_type = newsData.draw_type ? newsData.draw_type.trim() : 'PNP';
                     }
         
         console.log("📄 Formatted news data:", JSON.stringify(cleanedData));
@@ -150,7 +156,7 @@ async function sendNewsWebhook() {
         
         console.log("✅ News webhook sent successfully!");
         console.log("📰 Headline: " + cleanedData.headline);
-        console.log("📅 Date: " + cleanedData.date_of_update);
+        console.log("📅 Date: " + cleanedData.date);
         console.log("🏷️ Category: " + cleanedData.category);
         console.log("⚡ Impact: " + cleanedData.impact);
         
