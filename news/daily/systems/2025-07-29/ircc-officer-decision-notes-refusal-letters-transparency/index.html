@@ -97,23 +97,29 @@
 
         /* Navigation */
         .navbar {
-            background: white;
-            box-shadow: var(--shadow-sm);
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
             transition: all 0.3s ease;
         }
 
         .navbar.scrolled {
-            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
         }
 
         .nav-content {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo {
