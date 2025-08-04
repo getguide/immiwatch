@@ -53,9 +53,11 @@
         }
         
         .articles-grid {
-            display: grid;
-            gap: 2rem;
-            margin: 3rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 3rem auto;
+            max-width: 900px;
         }
         
         .article-card {
@@ -203,12 +205,22 @@
     <section class="content-section">
         <div class="container">
             <div class="articles-grid">
-                <!-- Empty State -->
-                <div class="empty-state" style="text-align: center; padding: 3rem; color: var(--gray-500);">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">🏛️</div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--gray-700);">No Articles Yet</h3>
-                    <p style="font-size: 1.1rem; max-width: 500px; margin: 0 auto;">Program delivery updates will appear here as they are published.</p>
-                </div>
+                <!-- IRCC Work Permit Policy Update -->
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span class="article-date">📅 July 30, 2025</span>
+                        <span class="article-badge">Policy Update</span>
+                    </div>
+                    <h2 class="article-title">
+                        <a href="2025-07-30/ircc-updates-work-permit-policies-caregiver-skilled-worker-programs/">IRCC Updates Work Permit Policies for Caregiver and Skilled Worker Programs</a>
+                    </h2>
+                    <p class="article-excerpt">
+                        Major policy changes reduce caregiver work experience requirement from 12 to 6 months, allow foreign experience, and update bridging open work permit policies.
+                    </p>
+                    <a href="2025-07-30/ircc-updates-work-permit-policies-caregiver-skilled-worker-programs/" class="article-link">
+                        Read Full Update →
+                    </a>
+                </article>
             </div>
         </div>
     </section>
