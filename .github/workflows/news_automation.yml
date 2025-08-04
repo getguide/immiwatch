@@ -96,18 +96,20 @@ jobs:
       - name: 📝 Commit and Push Changes
         if: steps.draw_automation.outputs.success == 'true' || steps.news_automation.outputs.success == 'true'
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add .
           
           # Determine commit message based on article type
           if [ "${{ steps.article_type.outputs.is_draw }}" == "true" ]; then
-            git commit -m "🎯 AUTO: New Draw Article - ${{ steps.draw_automation.outputs.title }}"
+            git commit -m "🎯 AUTO: New Draw Article - ${{ steps.draw_automation.outputs.title }}" || echo "No changes to commit"
           else
-            git commit -m "📰 AUTO: New News Article - ${{ steps.news_automation.outputs.title }}"
+            git commit -m "📰 AUTO: New News Article - ${{ steps.news_automation.outputs.title }}" || echo "No changes to commit"
           fi
           
-          git push origin main
+          # Use GitHub token for authentication
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git push origin main || echo "Push failed, but continuing"
           
       - name: 🎉 Success Notification
         if: steps.draw_automation.outputs.success == 'true' || steps.news_automation.outputs.success == 'true'
