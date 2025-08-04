@@ -699,12 +699,13 @@ def main():
         # Extract data from repository dispatch
         client_payload = event_data.get('client_payload', {})
         
-        # Check if this is a draw event
-        if client_payload.get('event_type') != 'draw_article':
-            logger.info("Not a draw article event, skipping")
+        # Check if this is a news event (draw articles come through news_article event)
+        if client_payload.get('event_type') != 'news_article':
+            logger.info("Not a news article event, skipping")
             return
         
-        data = client_payload.get('data', {})
+        # The data is directly in client_payload, not nested in 'data'
+        data = client_payload
         
     else:
         # Running locally for testing
