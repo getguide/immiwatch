@@ -14,33 +14,30 @@ const GITHUB_REPO = "getguide/immiwatch";
 const WEBHOOK_URL = "https://api.github.com/repos/" + GITHUB_REPO + "/dispatches";
 
 // Main function for Airtable automation
-async function sendNewsWebhook(record) {
+async function sendNewsWebhook() {
     try {
         console.log("🔄 Processing news article from Airtable...");
         
-        // Debug: Check if record exists
-        if (!record) {
-            throw new Error("Record is undefined - check Airtable automation setup");
-        }
+        // Access mapped values directly from input.config()
+        const config = input.config();
+        console.log("📊 Config object:", config);
+        console.log("📊 Config keys:", Object.keys(config));
         
-        console.log("📊 Record object:", record);
-        console.log("📊 Record keys:", Object.keys(record));
-        
-        // Extract data from Airtable record
-        // UPDATE THESE FIELD NAMES to match your Airtable field names
+        // Extract data from mapped input variables
+        // These should match your Airtable automation input variable names exactly
         const newsData = {
-            headline: record.getCellValue('Headline'),
-            summary: record.getCellValue('Summary'),
-            program_affected: record.getCellValue('Program Affected'),
-            impact: record.getCellValue('Impact'),
-            urgency_level: record.getCellValue('Urgency Level'),
-            week_of_year: record.getCellValue('Week of Year'),
-            date_of_update: record.getCellValue('Date of Update'),
-            source_url: record.getCellValue('Source URL'),
-            source: record.getCellValue('Source'),
-            category: record.getCellValue('Category'),
-            cutoff: record.getCellValue('Cutoff'),
-            invitation: record.getCellValue('Invitation')
+            headline: config.Headline,
+            summary: config.Summary,
+            program_affected: config['Program Affected'],
+            impact: config.Impact,
+            urgency_level: config['Urgency Level'],
+            week_of_year: config['Week of Year'],
+            date_of_update: config['Date of Update'],
+            source_url: config['Source URL'],
+            source: config.Source,
+            category: config.Category,
+            cutoff: config.Cutoff,
+            invitation: config.Invitation
         };
         
         console.log("📊 Extracted news data:", newsData);
@@ -151,6 +148,6 @@ async function sendNewsWebhook(record) {
     }
 }
 
-// Execute the function with the current record
+// Execute the function without parameters
 // This is what Airtable will run when the automation triggers
-return await sendNewsWebhook(input.config().record); 
+return await sendNewsWebhook(); 
