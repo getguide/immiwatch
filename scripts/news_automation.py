@@ -1000,11 +1000,13 @@ def main():
             print("📊 Full event data: " + json.dumps(event_data, indent=2))
             
             # Extract data from GitHub event
-            if event_data.get('event_type') == 'news_article':
+            event_type = event_data.get('action') or event_data.get('event_type')
+            print(f"🔍 Detected event type/action: {event_type}")
+            if event_type == 'news_article':
                 json_data = event_data.get('client_payload', {})
                 print("📥 Received news data: " + json.dumps(json_data, indent=2))
             else:
-                print(f"❌ Unexpected event type: {event_data.get('event_type')}")
+                print(f"❌ Unexpected event type/action: {event_type}")
                 sys.exit(1)
         else:
             # Local testing mode
