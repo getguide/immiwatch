@@ -369,6 +369,8 @@ class DrawAutomationSystem:
         # Prepare template variables
         template_vars = {
             "TITLE": analysis["title"],
+            "ARTICLE_TITLE": analysis["title"],  # Added missing ARTICLE_TITLE
+            "DRAW_TYPE": analysis["draw_type"],  # Added missing DRAW_TYPE
             "DESCRIPTION": analysis["description"],
             "KEYWORDS": analysis["keywords"],
             "PUBLISH_DATE": analysis["date"],
