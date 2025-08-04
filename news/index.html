@@ -542,50 +542,16 @@
             }
         });
 
-        // Mobile menu toggle functionality
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navMenu = document.querySelector('.nav-menu');
-        let isMobileMenuOpen = false;
-
-        mobileMenuBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleMobileMenu();
-        });
-
-        function toggleMobileMenu() {
-            isMobileMenuOpen = !isMobileMenuOpen;
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
             
-            if (isMobileMenuOpen) {
-                navMenu.classList.add('mobile-open');
-                mobileMenuBtn.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-            } else {
-                navMenu.classList.remove('mobile-open');
-                mobileMenuBtn.classList.remove('active');
-                document.body.style.overflow = ''; // Restore scrolling
-            }
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (isMobileMenuOpen && !navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                toggleMobileMenu();
-            }
-        });
-
-        // Close mobile menu when clicking on nav links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                if (isMobileMenuOpen) {
-                    toggleMobileMenu();
-                }
-            });
-        });
-
-        // Close mobile menu on window resize to desktop
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 1024 && isMobileMenuOpen) {
-                toggleMobileMenu();
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navMenu.classList.toggle('mobile-open');
+                    mobileMenuBtn.classList.toggle('active');
+                });
             }
         });
     </script>
