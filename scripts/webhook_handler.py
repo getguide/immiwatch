@@ -130,7 +130,7 @@ def home():
 
 if __name__ == '__main__':
     # Get port from environment or use default
-    port = int(os.getenv('PORT', 5000))
+    port = int(os.getenv('PORT', 5001))
     
     print(f"🚀 Starting ImmiWatch Webhook Handler on port {port}")
     print(f"📡 Webhook URL: http://localhost:{port}/webhook/news")

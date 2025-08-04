@@ -1,0 +1,45 @@
+name: News Webhook Handler
+
+on:
+  repository_dispatch:
+    types: [news_article]
+
+jobs:
+  process_news_webhook:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        pip install requests pathlib2
+        
+    - name: Process news webhook
+      id: news_webhook
+      run: |
+        python3 scripts/news_automation.py
+        
+    - name: Notify Slack - Success
+      if: steps.news_webhook.outputs.success == 'true'
+      run: |
+        curl -X POST -H 'Content-type: application/json' \
+        --data '{
+          "text": "🎉 *News Article Published Successfully!*\n\n📰 *Article Details:*\n• **Headline:** ${{ github.event.client_payload.headline }}\n• **Category:** ${{ github.event.client_payload.category }}\n• **Impact:** ${{ github.event.client_payload.impact }}\n• **Date:** ${{ github.event.client_payload.date_of_update }}\n• **Source:** ${{ github.event.client_payload.source }}\n\n📈 **Article URL:** ${{ steps.news_webhook.outputs.article_url }}\n🔗 **View Article:** https://immiwatch.ca/news/daily/${{ github.event.client_payload.category }}/${{ github.event.client_payload.date_of_update }}/${{ steps.news_webhook.outputs.slug }}/\n\n✅ **Status:** Article published and pages updated\n\n📊 **Summary:** Added new ${{ github.event.client_payload.category }} article to website\n\n🔗 **GitHub Commit:** https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+        }' \
+        ${{ secrets.SLACK_WEBHOOK_URL }}
+    
+    - name: Notify Slack - Failure
+      if: steps.news_webhook.outputs.success == 'false'
+      run: |
+        curl -X POST -H 'Content-type: application/json' \
+        --data '{
+          "text": "❌ *News Article Processing Failed!*\n\n📰 *Article Details:*\n• **Headline:** ${{ github.event.client_payload.headline }}\n• **Category:** ${{ github.event.client_payload.category }}\n• **Impact:** ${{ github.event.client_payload.impact }}\n• **Date:** ${{ github.event.client_payload.date_of_update }}\n• **Source:** ${{ github.event.client_payload.source }}\n\n🚨 **Error Details:**\n${{ steps.news_webhook.outputs.error }}\n\n🔍 **Debug Info:**\n• **GitHub Run:** ${{ github.run_id }}\n• **Workflow:** ${{ github.workflow }}\n• **Repository:** ${{ github.repository }}\n• **Branch:** ${{ github.ref }}\n\n⚠️ **Action Required:** Manual intervention needed\n\n🔗 **View Logs:** https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        }' \
+        ${{ secrets.SLACK_WEBHOOK_URL }} 

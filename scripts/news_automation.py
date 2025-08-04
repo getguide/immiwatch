@@ -987,28 +987,67 @@ class NewsAutomationSystem:
 
 def main():
     """Main function to run the automation system"""
-    if len(sys.argv) != 2:
-        print("Usage: python news_automation.py <json_file>")
-        sys.exit(1)
-    
-    json_file = sys.argv[1]
-    
     try:
-        with open(json_file, 'r', encoding='utf-8') as f:
-            json_data = json.load(f)
+        # Check if running in GitHub Actions (with repository dispatch)
+        if os.getenv('GITHUB_EVENT_PATH'):
+            # Read from GitHub event
+            with open(os.getenv('GITHUB_EVENT_PATH'), 'r') as f:
+                event_data = json.load(f)
+            
+            # Extract data from GitHub event
+            if event_data.get('event_type') == 'news_article':
+                json_data = event_data.get('client_payload', {})
+                print(f"📥 Received news data from GitHub: {json.dumps(json_data, indent=2)}")
+            else:
+                print(f"❌ Unexpected event type: {event_data.get('event_type')}")
+                sys.exit(1)
+        else:
+            # Local testing mode
+            if len(sys.argv) != 2:
+                print("Usage: python news_automation.py <json_file>")
+                sys.exit(1)
+            
+            json_file = sys.argv[1]
+            
+            # Read JSON data
+            with open(json_file, 'r', encoding='utf-8') as f:
+                json_data = json.load(f)
+        
+        # Initialize and run automation system
+        automation = NewsAutomationSystem()
+        success = automation.publish_article(json_data)
+        
+        if success:
+            print("🎉 Article published successfully!")
+            
+            # Output for GitHub Actions
+            if os.getenv('GITHUB_OUTPUT'):
+                with open(os.getenv('GITHUB_OUTPUT'), 'a') as f:
+                    f.write(f"success=true\n")
+                    f.write(f"article_url=https://immiwatch.ca/news/daily/{json_data.get('category', '')}/{json_data.get('date_of_update', '')}/{automation.generate_slug(json_data.get('headline', ''))}/\n")
+                    f.write(f"slug={automation.generate_slug(json_data.get('headline', ''))}\n")
+            
+            sys.exit(0)
+        else:
+            print("❌ Article publication failed. Check draft folder for details.")
+            
+            # Output for GitHub Actions
+            if os.getenv('GITHUB_OUTPUT'):
+                with open(os.getenv('GITHUB_OUTPUT'), 'a') as f:
+                    f.write(f"success=false\n")
+                    f.write(f"error=Article publication failed\n")
+            
+            sys.exit(1)
+            
     except Exception as e:
-        print(f"Error reading JSON file: {e}")
-        sys.exit(1)
-    
-    # Initialize and run automation system
-    automation = NewsAutomationSystem()
-    success = automation.publish_article(json_data)
-    
-    if success:
-        print("🎉 Article published successfully!")
-        sys.exit(0)
-    else:
-        print("❌ Article publication failed. Check draft folder for details.")
+        print(f"❌ Error: {e}")
+        
+        # Output for GitHub Actions
+        if os.getenv('GITHUB_OUTPUT'):
+            with open(os.getenv('GITHUB_OUTPUT'), 'a') as f:
+                f.write(f"success=false\n")
+                f.write(f"error={str(e)}\n")
+        
         sys.exit(1)
 
 if __name__ == "__main__":
