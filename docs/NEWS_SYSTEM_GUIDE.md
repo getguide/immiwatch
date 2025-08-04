@@ -18,6 +18,18 @@ ImmiWatch operates a sophisticated dual-news system:
 
 ---
 
+## 🤖 AUTOMATION SYSTEM
+
+The news system now includes **automated article creation** from Airtable data:
+
+- **Draw Articles**: Fully automated with intelligent analysis
+- **GitHub Actions**: Automated workflow for article creation
+- **Airtable Integration**: Direct data pipeline from database to website
+
+See [News Automation Guide](NEWS_AUTOMATION_GUIDE.md) for complete automation documentation.
+
+---
+
 ## 🏗️ SYSTEM ARCHITECTURE
 
 ### Current URL Structure
