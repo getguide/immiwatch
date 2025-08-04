@@ -152,11 +152,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 1.25rem;
+    position: relative;
     animation: gentleFloat 3s ease-in-out infinite;
     box-shadow: var(--shadow-md);
+}
+
+.logo-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 4px;
 }
 
 .logo-text {
