@@ -1,0 +1,100 @@
+name: 📰 News Automation
+
+on:
+  repository_dispatch:
+    types: [news_article]
+
+jobs:
+  process-news:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: 📦 Install dependencies
+        run: |
+          pip install requests
+          
+      - name: 🔍 Determine Article Type
+        id: article_type
+        run: |
+          # Read the event data to determine category
+          if [ -f "$GITHUB_EVENT_PATH" ]; then
+            CATEGORY=$(jq -r '.client_payload.data.category // .client_payload.data.draw_type // "general"' "$GITHUB_EVENT_PATH")
+            echo "category=$CATEGORY" >> $GITHUB_OUTPUT
+            
+            # Check if this is a draw article
+            if [[ "$CATEGORY" == "draw" || "$CATEGORY" == "draws" || "$CATEGORY" == "CEC" || "$CATEGORY" == "Health" || "$CATEGORY" == "PNP" || "$CATEGORY" == "General" || "$CATEGORY" == "FSTP" || "$CATEGORY" == "FSWP" ]]; then
+              echo "is_draw=true" >> $GITHUB_OUTPUT
+              echo "automation_script=draw_automation.py" >> $GITHUB_OUTPUT
+            else
+              echo "is_draw=false" >> $GITHUB_OUTPUT
+              echo "automation_script=news_automation.py" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "category=general" >> $GITHUB_OUTPUT
+            echo "is_draw=false" >> $GITHUB_OUTPUT
+            echo "automation_script=news_automation.py" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: 🎯 Process Draw Article
+        if: steps.article_type.outputs.is_draw == 'true'
+        id: draw_automation
+        run: |
+          python scripts/draw_automation.py
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          
+      - name: 📰 Process General News Article
+        if: steps.article_type.outputs.is_draw == 'false'
+        id: news_automation
+        run: |
+          python scripts/news_automation.py
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          
+      - name: 📝 Commit and Push Changes
+        if: steps.draw_automation.outputs.success == 'true' || steps.news_automation.outputs.success == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          
+          # Determine commit message based on article type
+          if [ "${{ steps.article_type.outputs.is_draw }}" == "true" ]; then
+            git commit -m "🎯 AUTO: New Draw Article - ${{ steps.draw_automation.outputs.title }}"
+          else
+            git commit -m "📰 AUTO: New News Article - ${{ steps.news_automation.outputs.title }}"
+          fi
+          
+          git push origin main
+          
+      - name: 🎉 Success Notification
+        if: steps.draw_automation.outputs.success == 'true' || steps.news_automation.outputs.success == 'true'
+        run: |
+          if [ "${{ steps.article_type.outputs.is_draw }}" == "true" ]; then
+            echo "✅ Draw article created successfully!"
+            echo "📄 Article URL: ${{ steps.draw_automation.outputs.article_url }}"
+            echo "📝 Title: ${{ steps.draw_automation.outputs.title }}"
+          else
+            echo "✅ News article created successfully!"
+            echo "📄 Article URL: ${{ steps.news_automation.outputs.article_url }}"
+            echo "📝 Title: ${{ steps.news_automation.outputs.title }}"
+          fi
+          
+      - name: ❌ Error Notification
+        if: steps.draw_automation.outputs.success == 'false' || steps.news_automation.outputs.success == 'false'
+        run: |
+          if [ "${{ steps.article_type.outputs.is_draw }}" == "true" ]; then
+            echo "❌ Draw article creation failed!"
+            echo "🚨 Error: ${{ steps.draw_automation.outputs.error }}"
+          else
+            echo "❌ News article creation failed!"
+            echo "🚨 Error: ${{ steps.news_automation.outputs.error }}"
+          fi 

@@ -55,7 +55,7 @@ async function sendNewsWebhook() {
             const categoryMap = {
                 'Policy Announcement': 'policy-announcements',
                 'Program Delivery Update': 'program-delivery',
-                'Invitation Round': 'invitation-rounds',
+                'Invitation Round': 'draw', // Special handling for draws
                 'ATIP Insight / Internal Docs': 'atip-insights',
                 'Legal Decision / Jurisprudence': 'legal-decisions',
                 'System / Portal Notice': 'system-notices',
@@ -75,9 +75,19 @@ async function sendNewsWebhook() {
         }
         
         // Validate category (now using our mapped categories)
-        const validCategories = ['policy-announcements', 'program-delivery', 'invitation-rounds', 'atip-insights', 'legal-decisions', 'system-notices', 'form-changes', 'deadline-alerts', 'statistical-reports', 'scam-alerts', 'other'];
+        const validCategories = ['policy-announcements', 'program-delivery', 'draw', 'atip-insights', 'legal-decisions', 'system-notices', 'form-changes', 'deadline-alerts', 'statistical-reports', 'scam-alerts', 'other'];
         if (newsData.category && !validCategories.includes(newsData.category.toLowerCase())) {
             throw new Error("Invalid category: " + newsData.category + ". Valid categories: " + validCategories.join(', '));
+        }
+        
+        // Special validation for draw articles
+        if (newsData.category === 'draw') {
+            if (!newsData.invitation || !newsData.cutoff) {
+                throw new Error("Draw articles require both 'invitation' and 'cutoff' fields");
+            }
+            if (isNaN(parseInt(newsData.invitation)) || isNaN(parseInt(newsData.cutoff))) {
+                throw new Error("Draw articles require numeric 'invitation' and 'cutoff' values");
+            }
         }
         
         // Validate impact level
@@ -98,22 +108,21 @@ async function sendNewsWebhook() {
                     const cleanedData = {
                         headline: newsData.headline ? newsData.headline.trim() : '',
                         summary: newsData.summary ? newsData.summary.trim() : '',
-                        date_of_update: newsData.date_of_update ? newsData.date_of_update.trim() : '',
-                        category: newsData.category ? newsData.category.toLowerCase() : '',
-                        impact: newsData.impact ? newsData.impact.toLowerCase() : '',
-                        source: newsData.source ? newsData.source.trim() : '',
-                        source_url: newsData.source_url ? newsData.source_url.trim() : '',
-                        program_affected: Array.isArray(newsData.program_affected) ? newsData.program_affected.filter(item => item && item.toString().trim() !== '') : [],
+                        category: newsData.category ? newsData.category.trim() : '',
+                        impact: newsData.impact ? newsData.impact.trim() : '',
+                        date: newsData.date_of_update ? newsData.date_of_update.trim() : '',
+                        source: newsData.source ? newsData.source.trim() : 'IRCC Official',
+                        program_affected: newsData.program_affected ? newsData.program_affected.trim() : '',
                         urgency_level: newsData.urgency_level ? newsData.urgency_level.trim() : '',
-                        week_of_year: newsData.week_of_year ? parseInt(newsData.week_of_year) : null
+                        week_of_year: newsData.week_of_year ? parseInt(newsData.week_of_year) : null,
+                        source_url: newsData.source_url ? newsData.source_url.trim() : ''
                     };
-        
-                            // Add cutoff and invitation if they exist (for invitation rounds)
-                    if (newsData.cutoff && newsData.cutoff.toString().trim() !== '') {
-                        cleanedData.cutoff = parseInt(newsData.cutoff);
-                    }
-                    if (newsData.invitation && newsData.invitation.toString().trim() !== '') {
+                    
+                    // Add draw-specific fields if this is a draw article
+                    if (newsData.category === 'draw' && newsData.invitation && newsData.cutoff) {
                         cleanedData.invitation = parseInt(newsData.invitation);
+                        cleanedData.cutoff = parseInt(newsData.cutoff);
+                        cleanedData.draw_type = newsData.draw_type ? newsData.draw_type.trim() : 'General';
                     }
         
         console.log("📄 Formatted news data:", JSON.stringify(cleanedData));
