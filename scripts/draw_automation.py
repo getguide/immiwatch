@@ -418,7 +418,7 @@ class DrawAutomationSystem:
             "BREADCRUMB_TITLE": f"Express Entry {analysis['draw_type']} Draw",
             "CANONICAL_URL": f"https://immiwatch.ca/news/daily/draws/{analysis['date']}/{self.create_slug(analysis['title'])}/",
             "SHARE_TITLE": analysis["title"],
-            "KEYWORDS_ARRAY": f'"{analysis["keywords"].replace(", ", '", "')}"'
+            "KEYWORDS_ARRAY": '"' + analysis["keywords"].replace(", ", '", "') + '"'
         }
         
         # Replace all variables in template
