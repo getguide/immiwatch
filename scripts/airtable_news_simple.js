@@ -94,38 +94,27 @@ async function sendNewsWebhook() {
             }
         }
         
-        // Clean and normalize data
-        const cleanedData = {};
-        for (const [key, value] of Object.entries(newsData)) {
-            if (value !== null && value !== undefined) {
-                if (typeof value === 'string') {
-                    cleanedData[key] = value.trim();
-                } else if (Array.isArray(value)) {
-                    cleanedData[key] = value.filter(item => item && item.toString().trim() !== '');
-                } else {
-                    cleanedData[key] = value;
-                }
-            }
-        }
+                            // Clean and normalize data - only include essential fields for GitHub API limit
+                    const cleanedData = {
+                        headline: newsData.headline ? newsData.headline.trim() : '',
+                        summary: newsData.summary ? newsData.summary.trim() : '',
+                        date_of_update: newsData.date_of_update ? newsData.date_of_update.trim() : '',
+                        category: newsData.category ? newsData.category.toLowerCase() : '',
+                        impact: newsData.impact ? newsData.impact.toLowerCase() : '',
+                        source: newsData.source ? newsData.source.trim() : '',
+                        source_url: newsData.source_url ? newsData.source_url.trim() : '',
+                        program_affected: Array.isArray(newsData.program_affected) ? newsData.program_affected.filter(item => item && item.toString().trim() !== '') : [],
+                        urgency_level: newsData.urgency_level ? newsData.urgency_level.trim() : '',
+                        week_of_year: newsData.week_of_year ? parseInt(newsData.week_of_year) : null
+                    };
         
-        // Normalize category and impact to lowercase
-        if (cleanedData.category) {
-            cleanedData.category = cleanedData.category.toLowerCase();
-        }
-        if (cleanedData.impact) {
-            cleanedData.impact = cleanedData.impact.toLowerCase();
-        }
-        
-        // Convert numeric fields
-        if (cleanedData.cutoff) {
-            cleanedData.cutoff = parseInt(cleanedData.cutoff);
-        }
-        if (cleanedData.invitation) {
-            cleanedData.invitation = parseInt(cleanedData.invitation);
-        }
-        if (cleanedData.week_of_year) {
-            cleanedData.week_of_year = parseInt(cleanedData.week_of_year);
-        }
+                            // Add cutoff and invitation if they exist (for invitation rounds)
+                    if (newsData.cutoff && newsData.cutoff.toString().trim() !== '') {
+                        cleanedData.cutoff = parseInt(newsData.cutoff);
+                    }
+                    if (newsData.invitation && newsData.invitation.toString().trim() !== '') {
+                        cleanedData.invitation = parseInt(newsData.invitation);
+                    }
         
         console.log("📄 Formatted news data:", JSON.stringify(cleanedData));
         
