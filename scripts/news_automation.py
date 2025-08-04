@@ -31,20 +31,20 @@ class NewsAutomationSystem:
         self.assets_path = self.base_path / "assets"
         self.slack_webhook = os.getenv('SLACK_WEBHOOK_URL')
         
-                            # Category configurations
-                    self.categories = {
-                        'policy-announcements': {'icon': '📢', 'color': '#1e40af', 'name': 'Policy Announcements'},
-                        'program-delivery': {'icon': '🏛️', 'color': '#ea580c', 'name': 'Program Delivery Updates'},
-                        'invitation-rounds': {'icon': '🎯', 'color': '#059669', 'name': 'Invitation Rounds'},
-                        'atip-insights': {'icon': '📊', 'color': '#0d9488', 'name': 'ATIP Insights'},
-                        'legal-decisions': {'icon': '⚖️', 'color': '#7c3aed', 'name': 'Legal Decisions'},
-                        'system-notices': {'icon': '🔧', 'color': '#6b7280', 'name': 'System Notices'},
-                        'form-changes': {'icon': '📄', 'color': '#3b82f6', 'name': 'Form Changes'},
-                        'deadline-alerts': {'icon': '⏰', 'color': '#dc2626', 'name': 'Deadline Alerts'},
-                        'statistical-reports': {'icon': '📈', 'color': '#0d9488', 'name': 'Statistical Reports'},
-                        'scam-alerts': {'icon': '🚨', 'color': '#dc2626', 'name': 'Scam Alerts'},
-                        'other': {'icon': '📋', 'color': '#6b7280', 'name': 'Other Updates'}
-                    }
+        # Category configurations
+        self.categories = {
+            'policy-announcements': {'icon': '📢', 'color': '#1e40af', 'name': 'Policy Announcements'},
+            'program-delivery': {'icon': '🏛️', 'color': '#ea580c', 'name': 'Program Delivery Updates'},
+            'invitation-rounds': {'icon': '🎯', 'color': '#059669', 'name': 'Invitation Rounds'},
+            'atip-insights': {'icon': '📊', 'color': '#0d9488', 'name': 'ATIP Insights'},
+            'legal-decisions': {'icon': '⚖️', 'color': '#7c3aed', 'name': 'Legal Decisions'},
+            'system-notices': {'icon': '🔧', 'color': '#6b7280', 'name': 'System Notices'},
+            'form-changes': {'icon': '📄', 'color': '#3b82f6', 'name': 'Form Changes'},
+            'deadline-alerts': {'icon': '⏰', 'color': '#dc2626', 'name': 'Deadline Alerts'},
+            'statistical-reports': {'icon': '📈', 'color': '#0d9488', 'name': 'Statistical Reports'},
+            'scam-alerts': {'icon': '🚨', 'color': '#dc2626', 'name': 'Scam Alerts'},
+            'other': {'icon': '📋', 'color': '#6b7280', 'name': 'Other Updates'}
+        }
         
         # Impact level configurations
         self.impact_levels = {
