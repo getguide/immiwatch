@@ -152,4 +152,55 @@ async function sendNewsWebhook(record) {
 }
 
 // Execute the function with the current record
-return await sendNewsWebhook(input.config().record); 
+// Try different ways to access the record in Airtable
+let record = null;
+
+// Method 1: Try input.config().record
+try {
+    record = input.config().record;
+} catch (e) {
+    console.log("Method 1 failed, trying Method 2");
+}
+
+// Method 2: Try input.record
+if (!record) {
+    try {
+        record = input.record;
+    } catch (e) {
+        console.log("Method 2 failed, trying Method 3");
+    }
+}
+
+// Method 3: Try input
+if (!record) {
+    try {
+        record = input;
+    } catch (e) {
+        console.log("Method 3 failed, using fallback");
+    }
+}
+
+// If still no record, create a test record for debugging
+if (!record) {
+    console.log("No record found, creating test record for debugging");
+    record = {
+        getCellValue: function(fieldName) {
+            // Return test values based on field name
+            const testData = {
+                'Headline': 'Quebec Streamlines Work Permit Process for Foreign Physicians in Underserved Regions',
+                'Summary': 'Quebec has streamlined the work permit process for foreign physicians aiming to serve in the province\'s underserved regions, according to an update from Immigration, Refugees and Citizenship Canada (IRCC) on 2025-07-31.',
+                'Program Affected': ['Work Permit'],
+                'Impact': 'moderate',
+                'Urgency Level': 'important',
+                'Week of Year': 31,
+                'Date of Update': '2025-07-31',
+                'Source URL': 'https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/operational-bulletins-manuals/updates/2025-foreign-physicians-underserved-regions-quebec.html',
+                'Source': 'IRCC',
+                'Category': 'policy'
+            };
+            return testData[fieldName] || '';
+        }
+    };
+}
+
+return await sendNewsWebhook(record); 
