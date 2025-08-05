@@ -491,6 +491,8 @@ body {
     padding: 0;
     overflow-x: auto;
     gap: 0;
+    justify-content: center;
+    align-items: center;
 }
 
 .section-nav a {
@@ -507,11 +509,13 @@ body {
 .section-nav a:hover {
     color: var(--primary-600);
     background: var(--primary-50);
+    border-bottom-color: var(--primary-600);
 }
 
 @media (max-width: 768px) {
     .section-nav ul {
         padding: 0 1rem;
+        justify-content: flex-start;
     }
     
     .section-nav a {
