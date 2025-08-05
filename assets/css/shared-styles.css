@@ -699,6 +699,66 @@ body {
     font-weight: var(--font-weight-medium);
 }
 
+/* Hero Stats Styling */
+.stat {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: var(--border-radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.stat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.stat:hover::before {
+    left: 100%;
+}
+
+.stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.stat .stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-200);
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+}
+
+.stat:hover .stat-number {
+    transform: scale(1.1);
+    color: white;
+}
+
+.stat .stat-label {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+    transition: opacity 0.3s ease;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.stat:hover .stat-label {
+    opacity: 1;
+}
+
 /* =============================================================================
    COMPLETE FOOTER SYSTEM
    ============================================================================= */
