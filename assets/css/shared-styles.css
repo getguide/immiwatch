@@ -1,6 +1,22 @@
-/* ImmiWatch Data Studio - Modern Design System */
+/* ImmiWatch Data Studio - Complete Master Design System */
 
+/* =============================================================================
+   FAVICON AND META SETUP
+   ============================================================================= */
+/* Add this to your HTML head for consistent favicon across all pages */
+/*
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3&t=1737962580">
+<link rel="shortcut icon" href="/favicon.svg?v=3&t=1737962580">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg?v=3&t=1737962580">
+<meta name="msapplication-TileColor" content="#4338ca">
+<meta name="theme-color" content="#4338ca">
+*/
+
+/* =============================================================================
+   COMPLETE DESIGN TOKENS
+   ============================================================================= */
 :root {
+    /* Primary Brand Colors */
     --primary-900: #1e1b4b;
     --primary-800: #312e81;
     --primary-700: #3730a3;
@@ -12,18 +28,22 @@
     --primary-100: #e0e7ff;
     --primary-50: #f0f4ff;
     
+    /* Accent Colors */
     --accent-600: #dc2626;
     --accent-500: #ef4444;
     --accent-400: #f87171;
     
+    /* Success Colors */
     --success-600: #059669;
     --success-500: #10b981;
     --success-400: #34d399;
     
+    /* Warning Colors */
     --warning-600: #d97706;
     --warning-500: #f59e0b;
     --warning-400: #fbbf24;
     
+    /* Gray Scale */
     --gray-900: #111827;
     --gray-800: #1f2937;
     --gray-700: #374151;
@@ -35,6 +55,7 @@
     --gray-100: #f3f4f6;
     --gray-50: #f9fafb;
     
+    /* Gradients */
     --gradient-primary: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
     --gradient-accent: linear-gradient(135deg, var(--accent-500) 0%, var(--warning-500) 100%);
     --gradient-hero: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-700) 50%, var(--primary-500) 100%);
@@ -42,18 +63,21 @@
     --gradient-oinp: linear-gradient(135deg, #059669 0%, #10b981 100%);
     --gradient-bcpnp: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
     
+    /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     
+    /* Border Radius */
     --border-radius-sm: 0.375rem;
     --border-radius-md: 0.5rem;
     --border-radius-lg: 0.75rem;
     --border-radius-xl: 1rem;
     --border-radius-2xl: 1.5rem;
     
+    /* Spacing */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
@@ -62,6 +86,7 @@
     --spacing-2xl: 3rem;
     --spacing-3xl: 4rem;
     
+    /* Typography */
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
@@ -72,6 +97,7 @@
     --font-size-4xl: 2.25rem;
     --font-size-5xl: 3rem;
     
+    /* Font Weights */
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -79,21 +105,39 @@
     --font-weight-bold: 700;
     --font-weight-extrabold: 800;
     
+    /* Line Heights */
     --line-height-tight: 1.25;
     --line-height-snug: 1.375;
     --line-height-normal: 1.5;
     --line-height-relaxed: 1.625;
     --line-height-loose: 2;
     
+    /* Transitions */
     --transition-fast: 150ms ease;
     --transition-normal: 300ms ease;
     --transition-slow: 500ms ease;
+    
+    /* Z-Index Scale */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
 }
 
+/* =============================================================================
+   RESET AND BASE STYLES
+   ============================================================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -101,14 +145,33 @@ body {
     line-height: var(--line-height-normal);
     color: var(--gray-900);
     background-color: white;
+    overflow-x: hidden;
 }
 
+/* =============================================================================
+   LAYOUT COMPONENTS
+   ============================================================================= */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
 }
 
+.container-wide {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.container-narrow {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* =============================================================================
+   COMPLETE NAVIGATION SYSTEM
+   ============================================================================= */
 .navbar {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
@@ -116,7 +179,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: var(--z-fixed);
     border-bottom: 1px solid var(--gray-200);
     transition: all var(--transition-normal);
 }
@@ -135,6 +198,7 @@ body {
     margin: 0 auto;
 }
 
+/* Logo System */
 .logo {
     display: flex;
     align-items: center;
@@ -216,6 +280,7 @@ body {
     }
 }
 
+/* Navigation Menu */
 .nav-menu {
     display: flex;
     align-items: center;
@@ -264,6 +329,46 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
+/* Mobile Menu System */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+}
+
+.hamburger-line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--gray-700);
+    margin: 2px 0;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+}
+
+/* Hamburger animation when active */
+.mobile-menu-btn.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* =============================================================================
+   BREADCRUMB SYSTEM
+   ============================================================================= */
 .breadcrumb {
     background: var(--gray-50);
     padding: 1rem 0;
@@ -290,6 +395,9 @@ body {
     text-decoration: underline;
 }
 
+/* =============================================================================
+   PAGE HEADER SYSTEM
+   ============================================================================= */
 .page-header {
     background: var(--gradient-hero);
     color: white;
@@ -354,6 +462,9 @@ body {
     line-height: 1.5;
 }
 
+/* =============================================================================
+   CONTENT SECTIONS
+   ============================================================================= */
 .content-section {
     padding: 4rem 0;
 }
@@ -394,6 +505,9 @@ body {
     margin: 0 auto;
 }
 
+/* =============================================================================
+   CARD SYSTEM
+   ============================================================================= */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -425,58 +539,6 @@ body {
 .card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-xl);
-}
-
-.section-nav {
-    background: white;
-    border-bottom: 1px solid var(--gray-200);
-    position: sticky;
-    top: 80px;
-    z-index: 100;
-}
-
-.section-nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    overflow-x: auto;
-    gap: 0;
-}
-
-.section-nav a {
-    display: block;
-    padding: 1rem 1.5rem;
-    text-decoration: none;
-    color: var(--gray-600);
-    font-weight: var(--font-weight-medium);
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: all var(--transition-normal);
-}
-
-.section-nav a:hover {
-    color: var(--primary-600);
-    background: var(--primary-50);
-}
-
-@media (max-width: 768px) {
-    .section-nav ul {
-        padding: 0 1rem;
-    }
-    
-    .section-nav a {
-        padding: 0.75rem 1rem;
-        font-size: 0.875rem;
-    }
-}
-
-.report-highlight {
-    background: var(--primary-100);
-    color: var(--primary-700);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--border-radius-sm);
-    font-weight: 600;
 }
 
 .card.express-entry::before {
@@ -547,6 +609,9 @@ body {
     transform: translateX(2px);
 }
 
+/* =============================================================================
+   BADGE SYSTEM
+   ============================================================================= */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -564,6 +629,9 @@ body {
 .badge-tools { background: #f3e8ff; color: #7c3aed; }
 .badge-featured { background: #fbbf24; color: #92400e; }
 
+/* =============================================================================
+   BUTTON SYSTEM
+   ============================================================================= */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -600,6 +668,9 @@ body {
     border-color: var(--gray-400);
 }
 
+/* =============================================================================
+   STATS SYSTEM
+   ============================================================================= */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -628,6 +699,9 @@ body {
     font-weight: var(--font-weight-medium);
 }
 
+/* =============================================================================
+   COMPLETE FOOTER SYSTEM
+   ============================================================================= */
 .footer {
     background: var(--gray-900);
     color: white;
@@ -677,6 +751,9 @@ body {
     color: var(--gray-400);
 }
 
+/* =============================================================================
+   ANIMATIONS
+   ============================================================================= */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -692,6 +769,9 @@ body {
     animation: fadeInUp 0.6s ease-out;
 }
 
+/* =============================================================================
+   ALERT SYSTEM
+   ============================================================================= */
 .alert {
     padding: 1rem;
     border-radius: var(--border-radius-md);
@@ -717,6 +797,9 @@ body {
     border-left-color: #f59e0b;
 }
 
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
 @media (max-width: 1024px) {
     .nav-menu {
         display: none;
@@ -803,6 +886,9 @@ body {
     }
 }
 
+/* =============================================================================
+   UTILITY CLASSES
+   ============================================================================= */
 .bg-primary { background-color: var(--primary-600) !important; }
 .bg-primary-light { background-color: var(--primary-100) !important; }
 .bg-primary-dark { background-color: var(--primary-800) !important; }
@@ -868,8 +954,9 @@ body {
     background-color: var(--gray-50) !important;
 }
 
-/* Consistency Enforcement Rules */
-/* These rules prevent future inconsistencies */
+/* =============================================================================
+   CONSISTENCY ENFORCEMENT RULES
+   ============================================================================= */
 .page-header {
     background: var(--gradient-hero) !important;
 }
@@ -879,13 +966,17 @@ body {
     color: white !important;
 }
 
-/* Future-Proof Classes */
+/* =============================================================================
+   FUTURE-PROOF CLASSES
+   ============================================================================= */
 .immi-primary { color: var(--primary-600) !important; }
 .immi-bg-primary { background-color: var(--primary-600) !important; }
 .immi-gradient-primary { background: var(--gradient-primary) !important; }
 .immi-gradient-hero { background: var(--gradient-hero) !important; }
 
-/* Report Highlight - Standardized highlight for all executive summaries */
+/* =============================================================================
+   REPORT HIGHLIGHT SYSTEM
+   ============================================================================= */
 .report-highlight {
     background: var(--primary-100);
     color: var(--primary-700);
@@ -894,44 +985,9 @@ body {
     font-weight: 600;
 } 
 
-/* CLEAN MOBILE NAVIGATION - HAMBURGER MENU */
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    flex-direction: column;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    padding: 0;
-    position: relative;
-}
-
-.hamburger-line {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: var(--gray-700);
-    margin: 2px 0;
-    transition: all 0.3s ease;
-    border-radius: 1px;
-}
-
-/* Hamburger animation when active */
-.mobile-menu-btn.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.mobile-menu-btn.active .hamburger-line:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-menu-btn.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
-}
-
-/* Mobile Menu Responsive Styles */
+/* =============================================================================
+   MOBILE MENU RESPONSIVE STYLES
+   ============================================================================= */
 @media (max-width: 1024px) {
     .nav-menu {
         display: none;
@@ -975,7 +1031,3 @@ body {
         display: flex;
     }
 } 
-
-/* AUTO-INCLUDED JAVASCRIPT FOR MOBILE MENU */
-/* This script is automatically included when shared-styles.css is loaded */
-</script> 
